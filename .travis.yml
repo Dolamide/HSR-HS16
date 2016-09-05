@@ -9,4 +9,4 @@ script:
   - ./generate.sh
 
 after_success:
-  - test $TRAVIS_BRANCH = "master" && echo Deploy
+  - test $TRAVIS_BRANCH = "master" && python deploy.py

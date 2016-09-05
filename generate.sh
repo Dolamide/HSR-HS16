@@ -4,8 +4,8 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 rm -Rf $DIR/_build/*
-mkdir $DIR/_build/pdf/
-mkdir $DIR/_build/html/
+mkdir -p $DIR/_build/pdf/
+mkdir -p $DIR/_build/html/
 
 for dir in $DIR/*
 do
