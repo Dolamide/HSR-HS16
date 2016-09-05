@@ -1,1 +1,1 @@
-/home/rzi/HSR/module/.shared/Makefile
+../.shared/Makefile
