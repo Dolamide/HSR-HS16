@@ -1,6 +1,6 @@
 language: python
 python:
-  - "2.7"
+  - "2.7.12"
 
 install:
   - pip install sphinx rst2pdf
