@@ -5,11 +5,13 @@ Prüfungsdetails
 Erlaubte Hilfsmittel
 ---------------------
 
-* ...
-* ...
+* 1 A4 Seite einseitig bedruckt.
+* Sonst: Closed Book
 
 Aufgabentypen
 -------------
+
+
 
 Typ A
 .....
