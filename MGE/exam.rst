@@ -1,12 +1,13 @@
 Prüfungsdetails
 ===============
 
+* Zwei Teile a 1 Stunde
+* Miniprojekte als Voraussetzungen für 
 
 Erlaubte Hilfsmittel
 ---------------------
 
-* ...
-* ...
+* Je Teil (Android/WPF) je 10 Seiten (also 5 A4 Seiten duplex)
 
 Aufgabentypen
 -------------
