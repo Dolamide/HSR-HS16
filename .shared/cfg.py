@@ -39,3 +39,6 @@ def configure():
     # rst2pdf settings
     cfg['pdf_stylesheets'] = [os.path.join(shared_directory, 'pdf_templates', 'raphael.style')]
     cfg['pdf_documents'] = [(cfg['master_doc'], cfg['abbrev'], cfg['project'], cfg['author'])]
+
+    # show TODOs
+    cfg['todo_include_todos'] = True
