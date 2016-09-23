@@ -1,0 +1,15 @@
+09:14:51 **** Incremental Build of configuration Debug for project mylibTest ****
+make all 
+Building file: ../src/Test.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/workspace/mylib" -I"/home/rzi/workspace/mylibTest/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
+Finished building: ../src/Test.cpp
+ 
+Building target: mylibTest
+Invoking: GCC C++ Linker
+g++ -L"/home/rzi/workspace/mylib/Debug" -o "mylibTest"  ./src/Test.o   -lmylib
+Finished building target: mylibTest
+ 
+
+09:14:53 Build Finished (took 1s.128ms)
+

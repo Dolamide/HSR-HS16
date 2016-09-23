@@ -1,0 +1,4 @@
+#include "sayhello.h"
+void sayHello(std::ostream &out){
+	out << "Hello, world!\n";
+}

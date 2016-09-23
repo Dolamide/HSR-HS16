@@ -1,0 +1,13 @@
+/*
+ * Hello.cpp
+ *
+ *  Created on: Sep 23, 2016
+ *      Author: rzi
+ */
+
+#include "Hello.h"
+
+Hello::sayHello(std::ostream &out) {
+	// TODO Auto-generated constructor stub
+
+}

@@ -1,0 +1,79 @@
+09:14:29 **** Incremental Build of configuration Debug for project mylib ****
+make all 
+Building file: ../src/Hello.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Hello.d" -MT"src/Hello.o" -o "src/Hello.o" "../src/Hello.cpp"
+Finished building: ../src/Hello.cpp
+ 
+Building target: libmylib.a
+Invoking: GCC Archiver
+ar -r  "libmylib.a"  ./src/Hello.o ./src/mainsayhello.o ./src/sayhello.o   
+ar: creating libmylib.a
+Finished building target: libmylib.a
+ 
+09:14:42 **** Incremental Build of configuration Debug for project mylib ****
+make all 
+make: Nothing to be done for 'all'.
+09:14:42 **** Incremental Build of configuration Debug for project mylib ****
+make all 
+Building file: ../src/Hello.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Hello.d" -MT"src/Hello.o" -o "src/Hello.o" "../src/Hello.cpp"
+Finished building: ../src/Hello.cpp
+ 
+Building target: libmylib.a
+Invoking: GCC Archiver
+ar -r  "libmylib.a"  ./src/Hello.o ./src/mainsayhello.o ./src/sayhello.o   
+ar: creating libmylib.a
+Finished building target: libmylib.a
+ 
+09:14:43 **** Incremental Build of configuration Debug for project mylibTest ****
+make all 
+Building file: ../src/Test.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/workspace/mylib" -I"/home/rzi/workspace/mylibTest/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
+Finished building: ../src/Test.cpp
+ 
+Building target: mylibTest
+Invoking: GCC C++ Linker
+g++ -L"/home/rzi/workspace/mylib/Debug" -o "mylibTest"  ./src/Test.o   -lmylib
+Finished building target: mylibTest
+ 
+09:14:51 **** Incremental Build of configuration Debug for project mylib ****
+make all 
+Building file: ../src/Hello.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Hello.d" -MT"src/Hello.o" -o "src/Hello.o" "../src/Hello.cpp"
+Finished building: ../src/Hello.cpp
+ 
+Building target: libmylib.a
+Invoking: GCC Archiver
+ar -r  "libmylib.a"  ./src/Hello.o ./src/mainsayhello.o ./src/sayhello.o   
+ar: creating libmylib.a
+Finished building target: libmylib.a
+ 
+09:14:51 **** Incremental Build of configuration Debug for project mylib ****
+make all 
+Building file: ../src/Hello.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Hello.d" -MT"src/Hello.o" -o "src/Hello.o" "../src/Hello.cpp"
+Finished building: ../src/Hello.cpp
+ 
+Building target: libmylib.a
+Invoking: GCC Archiver
+ar -r  "libmylib.a"  ./src/Hello.o ./src/mainsayhello.o ./src/sayhello.o   
+ar: creating libmylib.a
+Finished building target: libmylib.a
+ 
+09:14:51 **** Incremental Build of configuration Debug for project mylibTest ****
+make all 
+Building file: ../src/Test.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/workspace/mylib" -I"/home/rzi/workspace/mylibTest/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
+Finished building: ../src/Test.cpp
+ 
+Building target: mylibTest
+Invoking: GCC C++ Linker
+g++ -L"/home/rzi/workspace/mylib/Debug" -o "mylibTest"  ./src/Test.o   -lmylib
+Finished building target: mylibTest
+ 

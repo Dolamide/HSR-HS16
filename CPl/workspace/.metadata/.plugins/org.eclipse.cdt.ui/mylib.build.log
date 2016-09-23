@@ -1,0 +1,16 @@
+09:14:51 **** Incremental Build of configuration Debug for project mylib ****
+make all 
+Building file: ../src/Hello.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Hello.d" -MT"src/Hello.o" -o "src/Hello.o" "../src/Hello.cpp"
+Finished building: ../src/Hello.cpp
+ 
+Building target: libmylib.a
+Invoking: GCC Archiver
+ar -r  "libmylib.a"  ./src/Hello.o ./src/mainsayhello.o ./src/sayhello.o   
+ar: creating libmylib.a
+Finished building target: libmylib.a
+ 
+
+09:14:51 Build Finished (took 357ms)
+
