@@ -2,6 +2,8 @@
 
 BUILDDIR = _build
 
+default: pdf html
+
 pdf:
 	@BUILD_PDF=TRUE sphinx-build -q -b pdf . $(BUILDDIR)/pdf/
 	@echo "PDF created"
