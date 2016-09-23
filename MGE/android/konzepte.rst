@@ -15,12 +15,12 @@ Activity
 * Activities sind Bausteine, welche die Interaktion mit dem Benutzer regeln.
 
 
-Java-Grundgerüst: 
+Java-Grundgerüst:
 
 .. code:: java
 
   public class MainActivity extends Activity {
-  
+
      @Override
      protected void onCreate(Bundle savedInstanceState) {
          super.onCreate(savedInstanceState);
@@ -68,7 +68,7 @@ API-Level
 ---------
 * Immer Abwärtskompatibel
 * Features können auch mit externen Libraries nachgerüstet werden
-* Auswahl Abwägung zwischen Features und Anzahl zu erreichende User 
+* Auswahl Abwägung zwischen Features und Anzahl zu erreichende User
 
 
 Manifest
@@ -76,3 +76,24 @@ Manifest
 * Berechtigungen, welches API-Level, Activities usw.
 * Ein Teil wird erst durch das Build-System ergänzt.
 
+Launch Modes
+------------
+
+**standard**
+    Neue activity kommt auf den Stack
+    Seit Lollipop werden externe Aktivitäten (bsp. Gallerie öffnen) in einem neuen Task gestartet
+
+**singleTop**
+    Gleich wie standard aber: Wenn bereits eine Instantz des zu startenden Activity-Typs zuoberst auf dem
+    Stack liegt wird diese verwedet und die Methode `onNewIntent` aufgerufen.
+    (Bsp. 10x Suche)
+
+**singleTask**
+    Singleton: Es darf nur einen Task dieser App auf dem System geben.
+
+**singleInstance**
+    Nur genau eine systemweite instanz einer Activity.
+
+.. seealso::
+
+    `Understand Android Activity's launchMode <https://inthecheesefactory.com/blog/understand-android-activity-launchmode/en>`_

@@ -6,7 +6,6 @@ Modul MGE - Zusammenfassung
 
    todo
    android/konzepte
-   android/glossar
    exam
    lernplan
           
