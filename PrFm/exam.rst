@@ -5,8 +5,8 @@ Prüfungsdetails
 Erlaubte Hilfsmittel
 ---------------------
 
-* ...
-* ...
+* closed book
+* one double sided A4 "cheat sheet"
 
 Aufgabentypen
 -------------
