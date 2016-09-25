@@ -10,7 +10,8 @@ mkdir -p $DIR/_build/html/
 for dir in $DIR/*
 do
     module=${dir##*/}
-    if [ -d $module ] && [ $module != '_build' ]; then
+    if [ -d $module ] && [ $module != '_build' ] && [ $module != 'BuPl' ]; then
+        set -e        
         cd "$module" || exit
         echo "Generating PDF and HTML for $module"
         make clean html pdf
