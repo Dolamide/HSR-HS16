@@ -11,7 +11,7 @@ for dir in $DIR/*
 do
     module=${dir##*/}
     if [ -d $module ] && [ $module != '_build' ] && [ $module != 'BuPl' ]; then
-        set -e        
+        set -e
         cd "$module" || exit
         echo "Generating PDF and HTML for $module"
         make clean html pdf
