@@ -11,6 +11,13 @@ Erlaubte Hilfsmittel
 Aufgabentypen
 -------------
 
+Domainmodell nach Larman
+------------------------
+
+* Übung Dino
+* Übung Clubschule
+* Probeprüfung Aufgabe 3
+
 Typ A
 .....
 
