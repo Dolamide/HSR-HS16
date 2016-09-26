@@ -5,8 +5,7 @@ Prüfungsdetails
 Erlaubte Hilfsmittel
 ---------------------
 
-* ...
-* ...
+* Keine (closed Book)
 
 Aufgabentypen
 -------------
