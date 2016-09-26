@@ -12,8 +12,11 @@ html:
 	@sphinx-build -q -b html . $(BUILDDIR)/html/
 	@echo "HTML created"
 
-autobuild:
-	@sphinx-autobuild --open-browser . $(BUILDDIR)/html/
+serve: html
+	@cd _build/html && python3 -m http.server
+
+open_pdf: pdf
+	@xdg-open _build/pdf/* > /dev/null 2>&1 &
 
 clean:
 	@rm -Rf $(BUILDDIR)/*
