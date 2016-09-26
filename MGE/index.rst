@@ -4,12 +4,12 @@ Modul MGE - Zusammenfassung
 .. toctree::
    :maxdepth: 2
 
-   todo
    android/konzepte
+   android/grundlagen_gui
    android/testing
    exam
    lernplan
-          
+
 
 Übersicht
 ---------
@@ -23,5 +23,3 @@ Modul MGE - Zusammenfassung
 * Material Design
 * Patterns und Hintergrunddienste
 * Weiterführende Themen
-
-

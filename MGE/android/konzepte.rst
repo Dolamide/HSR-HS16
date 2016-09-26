@@ -96,4 +96,15 @@ Launch Modes
 
 .. seealso::
 
-    `Understand Android Activity's launchMode <https://inthecheesefactory.com/blog/understand-android-activity-launchmode/en>`_
+    `Understand Android Activity's launchMode <https://inthecheesefactory.com/blog/understand-android-activity-launchmode/en>`
+
+Application
+-----------
+* Pro App genau eine Instanz des Application-Objekts.
+* Keine Garantie, wie lange es lebt (aber existiert immer, wenn Activity existiert)
+* Subklasse möglich (im Manifest angeben)
+* Alle Activities können drauf zugreifen - beispielsweise für globalen Zustand (Login-Tokens...)
+
+.. seealso::
+    
+    `Vorlesung W1, Folie 56 <https://docs.google.com/presentation/d/1VnW43vWOMMOslqA7fmBvLfRviwNlCNiTXQM21AhwbKk/edit#slide=id.gc591fb7d8_0_75>`_
