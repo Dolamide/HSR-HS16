@@ -3,6 +3,12 @@ Objektorientierte Domain - Analyse
 
 Überblick
 --------------
+Analyse = Abklärung / Konzept ≠ Lösung
+*"do the right thing"*
+
+Design = konzeptionelle Lösung, Erfüllt die Anforderungen
+ *"do the thing right"*
+
 * Methodische Analyse des Problembereichs
 * Blackbox- und Whitebox-Sicht
 
@@ -46,6 +52,59 @@ Resultat:
     * Supplementary Specification
     * Glossary
 
-.. todo::
+Domain Modell
+-------------
 
-    => Mehr dazu später!
+Anforderungen
+.............
+
+* Die richtige Form (beschränktes UML Klassendiagramm)
+* Nur Elemente, die sinngemäss benutzt werden
+* Einen passenden Abstraktionsgrad (gemäss Problem)
+
+Ziel: Verständlich und Ziel!
+
+"Wie ein Witz" - beim ersten Mal verständlich
+
+Checkliste
+...........
+
+* Vererbung oder Komposition?
+  * 100% Regel - 100% des Parents gilt für Kind
+  * Wenn overlapping -> Komposition (Rolle)
+  * Zustänmde immer als Komposition
+* Gibt es Redundanzen?
+* Führt das Löschen gleichartiger Objekte zu Informationsverlust?
+* Evtl. Glossar / Begriffserklärung
+* Gibt es Attribute, die Konzeptionelle Klassen sei müssten?
+  typischerweise, wenn nicht einfacher Text oder Zahl
+* Keine Foregin-Keys
+* Fragen / Annahmen notiert?
+* Verständlich?
+* Leserichtung bei Assoziation nötig?
+* Multiplizitäten bei Assoziation angegeben?
+* m-n Assoziation? (typischerweise falsch)
+
+Als Hilfsmittel mit Sätzen überprüfen:
+
+**Store** *contains* one or more **Register**
+
+.. seealso::
+
+    * Larman, Kapitel 9
+    * Larman, Kapitel 31
+
+.. note::
+
+    Klassen können so sortiert werden, dass n über 1 Multiplizitäten
+    sind.
+
+    -> Komplexere Objekte oben, einfachere unten
+
+
+UML-Notation
+''''''''''''
+
+.. image:: images/uml_cheat_sheet.png
+
+Abstrakte Klassen *kursiv*

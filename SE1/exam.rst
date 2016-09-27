@@ -17,6 +17,8 @@ Domainmodell nach Larman
 * Übung Clubschule
 * Probeprüfung Aufgabe 3
 
+-> Vorgenen in OOA.rst
+
 Typ A
 .....
 
