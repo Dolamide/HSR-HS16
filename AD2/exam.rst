@@ -11,8 +11,9 @@ Erlaubte Hilfsmittel
 Aufgabentypen
 -------------
 
-Einfügen von Daten in eienn Binary Search Tree
-..............................................
+Einfügen/Löschen von Daten in eienn Binary Search Tree
+.......................................................
 
 * Übung 1/ Aufgabe 1,2,3
-* Siehe :ref:`schema-bst` 
+* Siehe :ref:`schema-bst`
+* Löschen üben mit Folie 11 in `D_11_1_BinarySearchTrees.1.0.pdf`

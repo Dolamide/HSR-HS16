@@ -20,8 +20,13 @@ Varianten
     * ``remove`` benötigt ``O(n)``
     * => Nur bei kleinen Multimaps praktikabel, da shifting nötig (teuer)
 * **Binary-Search-Tree** (Siehe unten)
-    * Mit "Placeholders" (Sentinels)
+    * Mit "Placeholders" (Guards/Sentinels)
     * Mit null
+
+.. warning::
+
+    Entscheidende Frage bei der Implementierung: Null-Terminiert oder mit Guards?
+
 
 Binary-Search-Trees
 --------------------
@@ -36,7 +41,7 @@ Binary-Search-Trees
     * Keys welche im rechten Subtree sind, sind grösser als root
 * **Inorder-Traversierung** gibt sortierte Reihenfolge aus
 * Externe Knoten speichern keine Daten
-* Die Blattknoten sind als "Placeholders" implementiert ("Sentinels")
+* Die Blattknoten sind als "Placeholders" implementiert ("Guards" / "Sentinels")
 
 .. seealso::
 
@@ -52,7 +57,7 @@ Suche
 * Ist der Knoten ein Blattknoten, so wurde der Eintrag nicht gefunden
 * Performance: ``O(h)``, wobei h die höhe ist.
     * ist der Baum balanciert: ``O(log n)``
-    * Worst case: ``O(n)``
+    * Worst case: ``O(n)`` (entartet, wie bei LinkedList)
 
 .. warning::
 
@@ -60,24 +65,9 @@ Suche
 
 .. image:: images/broken_binary_tree.jpg
 
-
-.. code:: java
-
-     public Node treeSearch(Node subTreeRoot, K key){
-       if (subTreeRoot.isExternal()){
-         // unsuccesful search
-         return subTreeRoot;
-       } else if (key.equals(subTreeRoot.getKey())){
-         // successful search
-         return subTreeRoot;
-       }else if (key < subTreeRoot.getKey()){
-         // recur on left subtree
-         return treeSearch(key.getLeft(), k);
-       }else{
-         // recur on right subtree
-         return treeSearch(key.getRight(), k);
-       }
-     }
+.. literalinclude:: code/BinaryTree.java
+    :language: java
+    :lines: 1-9
 
 
 Einfügen
@@ -87,81 +77,90 @@ Einfügen
 #. Falls der Key existiert, ersetze den Wert oder bei Multimap: suche weiter.
 #. Wenn man in einem Blattknoten endet: In einen internen Knoten umwandeln.
 
-.. code:: java
-
-     public Node insert(Node subTreeRoot, K key, V value){
-       Node p = treeSearch(subTreeRoot, k);
-       if(key.equals(p.getKey())){
-           // Falls ein Wert nur einmal vorkommen darf:
-           p.setValue(v);
-           // Falls ein Wert mehrfach vorkommen darf, suche weiter
-           // bis in man in einem Blattknoten endet
-           treeSearch(p.getLeft(), k, v)
-       }else {
-           // externer knoten "expandieren", sprich in einen internen Knoten umwandeln.
-           expandExternal(p, k, v);
-           // hier eventuell "selbst organisiern", um balance wiederherzustellen
-           // wobei ein eifacher Search-Tree das nicht tut.
-       }
-     }
-
+.. literalinclude:: code/BinaryTree.java
+    :language: java
+    :lines: 11-23
 
 Löschen
 .......
 
+Es gibt 3 mögliche Szenarien:
+
+* Der zu löschende Knoten hat **zwei Blattkinder**
+* Der zu löschende Knoten hat **ein Blattkind**
+* Der zu löschende Knoten hat **keine Blattkinder**
+
+Vorsicht:
+
+-> Anhand von Grafik #11 nachspielen
+-> #19/#20
+
 #. Suche nach dem Key
 #. Falls Knoten p gefunden:
-    * max. 1 interner Kindknoten: Ersetze den gefundenen Konten durch diesen Kindknoten (oder einen der Sentinels, falls nur externe Kindknoten)
-    * 2 interne Kindknoten:
+    * max. 1 Blattkind: "Ersetze" den gefundenen Konten durch diesen Kindknoten (oder einen der Sentinels, falls nur externe Kindknoten)
+    * Genau 2 Blattkinder:
         * Suche den grössten Knoten r im Subtree (immer rechts!)
         * Ersetze p mit r und r mit dessen linken Kindknoten (r hat ja keinen rechten Kindknoten)
 
-.. code:: java
+Die Knoten werden nicht effektiv umgehängt - nur deren Werte!
 
-    public Node delete(Node subTreeRoot, k){
-        Node p = treeSearch(subTreeRoot, k);
-        if (p.isExternal()){
-            // Key nicht gefunden
-            return;
-        }
-        if (p.getRight().isInternal() && p.getLeft().isInternal()){
-            // TODO: beide Kinder sind interne knoten:
+.. literalinclude:: code/BinaryTree.java
+    :language: java
+    :lines: 25-60
 
-        } else if(p.getRight().isInternal()){
-            // ersetze p mit p.getRight()
-            // TODO: OK?
-            q = p.getRight()
-            p.setKey(q.getKey())
-            p.setValue(q.getValue())
-            q.toExternal()
-        } else if(p.getLeft().isInternal()) {
-            // ersetze p mit p.getLeft()
-            // TODO: OK?
-            q = p.getLeft()
-            p.setKey(q.getKey())
-            p.setValue(q.getValue())
-            q.toExternal()
-        }else{
-            // Hat keine interne kindknoten => ersetze p mit "Sentinel"
-            // TODO: OK?
-            p.toExternal()
-        }
-    }
 
 Ausgabe inorder
 ................
 
-.. code:: java
-
-    String inorder(Node subTreeRoot) {
-        if (p == null) {
-            return "";
-        }
-        return inorder(p.getLeft()) + "(" + p.toString() + ")" + inorder(p.getRight());
-    }
+.. literalinclude:: code/BinaryTree.java
+    :language: java
+    :lines: 62-68
 
 ALV-Tree
 ---------
+Performance von Binary-Search-Trees ist nicht immer ideal. Die Einfüge-Reihenfolge
+ist entscheidend.
+
+Ein ALV-Tree hat die gleichen eigenschaften wie ein Binary-Tree ("extends BinaryTree") aber die zusätzliche
+Eigenschaft, dass sich **die Höhe der Kinder von v höchstens um 1 unterscheiden**.
+
+Ein AVL-Tree ist "balanciert", wenn:
+
+* ``b(k) = Höhe(links) – Höhe(rechts)``
+* es muss gelten: ``b(k)`` ist ``–1``, ``0`` oder ``+1``
+
+Höhenbeweis
+...........
+
+.. todo::
+
+    Folgt in Vorlesung W3 (#3, #4)
+
+Einfügen
+.........
+
+Beim Einfügen kann ``-2 ≤ b(x) ≤ 2`` gelten - was eine Verletzung der AVL-Balance ist!
+
+.. image:: images/alv_insert_wrong.png
+
+Man kann 4 generell mögliche Fälle unterscheiden
+
+#. Einfügen in den linken Teilbaum des linken Sohnes
+#. Einfügen in den rechten Teilbaum des linken Sohnes
+#. Einfügen in den linken Teilbaum des rechten Sohnes
+#. Einfügen in den rechten Teilbaum des rechten Sohnes
+
+Vorgehen zur Wiederherstellung der AVL-Balance:
+
+#. Wandere von neu eingefügten Knoten aus aufwärts und Prüfe bei jedem Koten, ob ALV_Balance verletzt wird
+#. Tritt eine Verletzung ein, muss der Baum rotiert werden.
+   Die betroffenen Knoten müssenn nun so umgehängt werden, dass die Inorder Reihenfolge gleich bleibt.
+
+.. image:: images/alv_insert_rotate.png
+
+Sobald das einmal gemacht wurde ist die ALV-Eingeschaft wiederhergestellt, denn
+eine grössere Differenz als 2 ist je Einfügeoperation nicht möglich.
+
 
 Splay-Tree
 -----------
