@@ -1,0 +1,13 @@
+<testsuites>
+	<testsuite name="AllTests" tests="5">
+		<testcase classname="AllTests" name="test_four_minus_one"/>
+		<testcase classname="AllTests" name="test_one_minus_four"/>
+		<testcase classname="AllTests" name="test_seventeen_mod_two"/>
+		<testcase classname="AllTests" name="test_one_plus_one"/>
+		<testcase classname="AllTests" name="test_one_plus_one_stream">
+			<failure message="../src/Test.cpp:47 test_one_plus_one_stream: 5 == result expected:	5	but was:	6	">
+test_one_plus_one_stream: 5 == result expected:	5	but was:	6	
+			</failure>
+		</testcase>
+	</testsuite>
+</testsuites>

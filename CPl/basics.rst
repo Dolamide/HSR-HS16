@@ -14,6 +14,11 @@ Basics
     Deklarationen werden in *header files* gemacht (header, da diese typischerweise im Kopf
     eines Programms inkludiert werden.)
 
+     Mehrfach Definition: Guards
+
+**Undefined behaviour**
+    TBD (bsp. division durch 0, falscher Zugriff) => alles kann passieren
+    Wors case: es läuft!
 
 **One-Definition-Rule**
     Jeder Typ, Funktion, object, template oder translation unit darf nur genau eine definition haben.
@@ -29,13 +34,43 @@ Basics
     Die Kombination aus typ, name, parameter und klammern bildet die **function signature**.
     Für main wäre das `int main()`
 
+    Funktionen! nicht Methoden
+
+**namespace**
+    TODO:
+    Bsp: ``namespace std;`` Methoden können ohne std präfix aufgerufen werden
+
+**Operator overloading**
+
+
 **translation unit**
     Jede .cpp-Datei kann unabhängig kompiliert werden und ist eine sogenannte translation unit.
     Ausgabe: Ein **object file**
 
+
+Daten auf dem Stack - heap muss selbstständig.
+
+
 Header Files
 -------------
-Headers der standard library (bsp. iostream) benötigen keinen .h Endung.
+Braucht es, da *declaration first*. Grund dafür ist, dass die einerseits die Deklaratonen
+bequem Inkludiert werden können, andererseits kann die implementation gewechselt weden.
+
+Headers der Standard Library (bsp. iostream) benötigen keinen .h Endung.
+
+Es werden include Guards benötigt um mehrfach inlcudes zu behandeln (mehrfache deklaration)
+
+.. code:: c++
+
+    #ifndef SRC_HELLO_H_
+    #define SRC_HELLO_H_
+
+    #include <ostream>
+
+    struct Hello {
+    	void sayHello(std::ostream &out) const;
+    };
+    #endif /* SRC_HELLO_H_ */
 
 
 Ablauf Compilation
@@ -67,3 +102,9 @@ Jede funktion benötigt ein Return-Statement, mit 2 Ausnahmen:
 
 * Return-Type ist ``void``
 * Die ``main``-Methode (Falls ohne return wird 0 angenommen)
+
+
+Structs / Classes
+------------------
+Class private, struct: public (blockweise)
+Semikolon nach der Klassendefinition!

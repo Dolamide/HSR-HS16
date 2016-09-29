@@ -1,0 +1,9 @@
+#include <iostream>
+
+int main() {
+  int i{};
+  std::cin >> i;
+  std::cout << std::cin.failbit;
+  std::cout << std::cin.eof;
+  std::cout << std::cin.badbit;
+}

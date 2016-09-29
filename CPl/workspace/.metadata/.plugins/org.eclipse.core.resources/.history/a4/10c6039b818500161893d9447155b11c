@@ -1,0 +1,12 @@
+#include <iostream>
+
+int main() {
+  int i{};
+  std::cin >> i;
+  std::cout << std::cin.failbit;
+  std::cout << std::cin.eofbit;
+  std::cout << std::cin.badbit;
+}
+
+//10: 4 1 2
+//a: 4 2 1

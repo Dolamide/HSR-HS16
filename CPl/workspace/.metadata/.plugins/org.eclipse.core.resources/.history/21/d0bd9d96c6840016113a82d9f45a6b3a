@@ -1,0 +1,5 @@
+#include "src/Hello.h"
+#include <iostream>
+int main() {
+//	sayHello(std::cout);
+}

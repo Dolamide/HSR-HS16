@@ -5,8 +5,8 @@ Prüfungsdetails
 Erlaubte Hilfsmittel
 ---------------------
 
-* ...
-* ...
+* Beliebige Papierunterlagen erlaubt
+* Ausnahme: Alte Prüfungen
 
 Aufgabentypen
 -------------

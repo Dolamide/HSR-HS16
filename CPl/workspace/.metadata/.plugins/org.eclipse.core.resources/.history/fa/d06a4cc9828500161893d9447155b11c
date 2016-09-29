@@ -1,0 +1,13 @@
+#include <iostream>
+
+int main() {
+  char i{};
+  std::cin.get(i);
+  std::cout << std::cin.eof();
+
+}
+
+//10: 0 0 0
+//a: 1 0 0
+//:
+

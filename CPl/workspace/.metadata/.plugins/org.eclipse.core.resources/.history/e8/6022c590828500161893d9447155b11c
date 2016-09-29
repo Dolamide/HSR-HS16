@@ -1,0 +1,12 @@
+#include <iostream>
+
+int main() {
+  char i{};
+  std::cin.get(i);
+  std::cout.put(i);
+
+}
+
+//10: 0 0 0
+//a: 1 0 0
+//:
