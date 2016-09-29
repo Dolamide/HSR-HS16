@@ -1,0 +1,9 @@
+#ifndef SAYHELLO_H_
+#define SAYHELLO_H_
+
+#include <iosfwd>
+
+int calc(std::istream& in);
+int calc(int lhs, int rhs, char op);
+
+#endif /* SAYHELLO_H_ */

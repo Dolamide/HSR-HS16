@@ -17,3 +17,7 @@ Typ A
 * Übung X/ Aufgabe Z
 * Unterrichtsnotizen vom XY
 * Verweis auf Lösungsschema in diesem Dokument
+
+Vorbereitung
+-------------
+`Optional exercises <https://wiki.ifs.hsr.ch/CPlusPlus/ExW2>`_

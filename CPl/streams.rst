@@ -25,6 +25,12 @@ bzw. zu schreiben:
 	if(in >> lhs >> op >> rhs){
 		return calc(lhs,rhs, op);
 	}
+    // äquivalent zu:
+
+    in >> lhs
+    in >> op
+    in >> rhs
+
 
 Es gibt auch die methoden ``get`` und ``put`` mit
 denen ein einzelnes Zeichen gelesen werden kann.
@@ -100,3 +106,7 @@ Dienen dazu, den Output zu formatieren.
 .. todo::
 
     Study the `Input/output manipulators <http://en.cppreference.com/w/cpp/io/manip>`_
+
+    How can you read a std::string name with the code std::cin >> name; if the name provided consists of several words? How can you read the rest of the input into the string variable?
+    Look at declaration of std::getline() function and explain its parameter passing. Why is the std::string parameter passed as reference?
+    (ex. https://wiki.ifs.hsr.ch/CPlusPlus/ExW2)

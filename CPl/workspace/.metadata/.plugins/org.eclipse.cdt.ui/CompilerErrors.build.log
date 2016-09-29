@@ -1,16 +1,7 @@
-07:57:59 **** Incremental Build of configuration Debug for project CompilerErrors ****
-make all 
-Building file: ../hello1.cpp
-Invoking: GCC C++ Compiler
-g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/mylib" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"hello1.d" -MT"hello1.o" -o "hello1.o" "../hello1.cpp"
-../hello1.cpp: In function ‘int main()’:
-../hello1.cpp:5:9: error: ‘NaN’ was not declared in this scope
-  int a {NaN};
-         ^~~
-../hello1.cpp:5:6: warning: unused variable ‘a’ [-Wunused-variable]
-  int a {NaN};
-      ^
-make: *** [subdir.mk:20: hello1.o] Error 1
+18:05:38 **** Clean-only build of configuration Debug for project CompilerErrors ****
+make clean 
+rm -rf  ./hello1.o  ./hello1.d  CompilerErrors
+ 
 
-07:57:59 Build Finished (took 273ms)
+18:05:38 Build Finished (took 60ms)
 

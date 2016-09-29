@@ -1,54 +1,196 @@
-07:59:09 **** Incremental Build of configuration Debug for project W02 ****
+18:40:14 **** Incremental Build of configuration Debug for project libcalc ****
 make all 
-Building file: ../state.cpp
+make: Nothing to be done for 'all'.
+18:40:14 **** Incremental Build of configuration Debug for project calculator ****
+make all 
+Building file: ../main.cpp
 Invoking: GCC C++ Compiler
-g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"state.d" -MT"state.o" -o "state.o" "../state.cpp"
-Finished building: ../state.cpp
- 
-Building target: W02
-Invoking: GCC C++ Linker
-g++  -o "W02"  ./state.o   
-Finished building target: W02
- 
-07:59:12 **** Incremental Build of configuration Debug for project W02 ****
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/libcalc" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"main.d" -MT"main.o" -o "main.o" "../main.cpp"
+../main.cpp:1:20: fatal error: header.h: No such file or directory
+ #include "header.h"
+                    ^
+compilation terminated.
+make: *** [subdir.mk:20: main.o] Error 1
+18:40:30 **** Incremental Build of configuration Debug for project libcalc ****
 make all 
 make: Nothing to be done for 'all'.
-07:59:28 **** Incremental Build of configuration Debug for project W02 ****
+18:40:31 **** Incremental Build of configuration Debug for project calculator ****
 make all 
-make: Nothing to be done for 'all'.
-08:08:37 **** Incremental Build of configuration Debug for project cute ****
-make all 
-Building file: ../src/Test.cpp
+Building file: ../main.cpp
 Invoking: GCC C++ Compiler
-g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/cute/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
-Finished building: ../src/Test.cpp
- 
-Building target: cute
-Invoking: GCC C++ Linker
-g++  -o "cute"  ./src/Test.o   
-Finished building target: cute
- 
-08:08:40 **** Incremental Build of configuration Debug for project W02 ****
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/libcalc" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"main.d" -MT"main.o" -o "main.o" "../main.cpp"
+../main.cpp: In function ‘int main()’:
+../main.cpp:8:3: error: expected ‘}’ at end of input
+   }
+   ^
+make: *** [subdir.mk:20: main.o] Error 1
+18:40:40 **** Incremental Build of configuration Debug for project libcalc ****
 make all 
 make: Nothing to be done for 'all'.
-08:08:43 **** Incremental Build of configuration Debug for project cute ****
+18:40:40 **** Incremental Build of configuration Debug for project calculator ****
 make all 
-make: Nothing to be done for 'all'.
-08:08:46 **** Incremental Build of configuration Debug for project W02 ****
-make all 
-make: Nothing to be done for 'all'.
-08:08:48 **** Incremental Build of configuration Debug for project cute ****
-make all 
-make: Nothing to be done for 'all'.
-08:08:54 **** Incremental Build of configuration Debug for project cute ****
-make all 
-Building file: ../src/Test.cpp
+Building file: ../main.cpp
 Invoking: GCC C++ Compiler
-g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/cute/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
-Finished building: ../src/Test.cpp
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/libcalc" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"main.d" -MT"main.o" -o "main.o" "../main.cpp"
+Finished building: ../main.cpp
  
-Building target: cute
+Building target: calculator
 Invoking: GCC C++ Linker
-g++  -o "cute"  ./src/Test.o   
-Finished building target: cute
+g++ -L"/home/rzi/HSR/module/CPl/workspace/libcalc/Debug" -o "calculator"  ./main.o   -llibcalc
+Finished building target: calculator
+ 
+18:40:42 **** Incremental Build of configuration Debug for project libcalc ****
+make all 
+make: Nothing to be done for 'all'.
+18:40:42 **** Incremental Build of configuration Debug for project calculator ****
+make all 
+make: Nothing to be done for 'all'.
+20:49:47 **** Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+Finished building: ../greeting.cpp
+ 
+Building target: greeting
+Invoking: MacOS X C++ Linker
+g++  -o "greeting"  ./greeting.o   
+Finished building target: greeting
+ 
+20:49:50 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+make: Nothing to be done for 'all'.
+20:51:22 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+../greeting.cpp: In function ‘void sayGreeting(std::ostream&, std::__cxx11::string, std::__cxx11::string)’:
+../greeting.cpp:14:22: error: ‘name2’ was not declared in this scope
+   out << "Hello " << name2 << ", how are you?\n";
+                      ^~~~~
+make: *** [subdir.mk:20: greeting.o] Error 1
+20:51:27 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+../greeting.cpp: In function ‘void sayGreeting(std::ostream&, std::__cxx11::string, std::__cxx11::string)’:
+../greeting.cpp:14:22: error: ‘name2’ was not declared in this scope
+   out << "Hello " << name2 << ", how are you?\n";
+                      ^~~~~
+make: *** [subdir.mk:20: greeting.o] Error 1
+20:51:29 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+Finished building: ../greeting.cpp
+ 
+Building target: greeting
+Invoking: MacOS X C++ Linker
+g++  -o "greeting"  ./greeting.o   
+Finished building target: greeting
+ 
+20:51:31 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+make: Nothing to be done for 'all'.
+20:53:22 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+make: Nothing to be done for 'all'.
+20:55:25 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+../greeting.cpp: In function ‘int main()’:
+../greeting.cpp:21:42: warning: second operand of conditional expression has no effect [-Wunused-value]
+     std::cout << cond ? "Hello" : "Peter";
+                                          ^
+../greeting.cpp:21:42: warning: third operand of conditional expression has no effect [-Wunused-value]
+Finished building: ../greeting.cpp
+ 
+Building target: greeting
+Invoking: MacOS X C++ Linker
+g++  -o "greeting"  ./greeting.o   
+Finished building target: greeting
+ 
+20:57:25 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+../greeting.cpp: In function ‘void sayGreeting(std::ostream&, std::__cxx11::string, std::__cxx11::string)’:
+../greeting.cpp:14:27: error: expected ‘;’ before numeric constant
+   out << "Hello " << name 2<< ", how are you?\n";
+                           ^
+make: *** [subdir.mk:20: greeting.o] Error 1
+20:57:33 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+Finished building: ../greeting.cpp
+ 
+Building target: greeting
+Invoking: MacOS X C++ Linker
+g++  -o "greeting"  ./greeting.o   
+Finished building target: greeting
+ 
+20:57:50 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+../greeting.cpp: In function ‘int main()’:
+../greeting.cpp:19:6: error: ‘cout’ was not declared in this scope
+  std:cout << anAnswer;
+      ^~~~
+../greeting.cpp:19:6: note: suggested alternative:
+In file included from ../greeting.cpp:1:0:
+/usr/include/c++/6.2.1/iostream:61:18: note:   ‘std::cout’
+   extern ostream cout;  /// Linked to standard output
+                  ^~~~
+../greeting.cpp:19:2: warning: label ‘std’ defined but not used [-Wunused-label]
+  std:cout << anAnswer;
+  ^~~
+make: *** [subdir.mk:20: greeting.o] Error 1
+20:58:03 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+Finished building: ../greeting.cpp
+ 
+Building target: greeting
+Invoking: MacOS X C++ Linker
+g++  -o "greeting"  ./greeting.o   
+Finished building target: greeting
+ 
+20:58:08 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+make: Nothing to be done for 'all'.
+20:58:36 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+Finished building: ../greeting.cpp
+ 
+Building target: greeting
+Invoking: MacOS X C++ Linker
+g++  -o "greeting"  ./greeting.o   
+Finished building target: greeting
+ 
+21:00:29 **** Incremental Build of configuration Debug for project greeting ****
+make all 
+Building file: ../greeting.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"greeting.d" -MT"greeting.o" -o "greeting.o" "../greeting.cpp"
+Finished building: ../greeting.cpp
+ 
+Building target: greeting
+Invoking: MacOS X C++ Linker
+g++  -o "greeting"  ./greeting.o   
+Finished building target: greeting
  

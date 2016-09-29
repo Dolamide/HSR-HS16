@@ -19,6 +19,14 @@ Beispiel:
   	std::cout << (!a % 2 ? "even": "odd");
   }
 
+  #include <iostream>
+
+  int main() {
+      bool cond{};
+      // ausgabe ist 0! Da << stärker bindet als ?
+      std::cout << cond ? "Hello" : "Peter";
+  }
+
 
 
 Floating points
@@ -43,3 +51,20 @@ Frame vom Stack abgebaut wurde ("dangeling reference" -> "undefined behaviour")
     int i = 12;
     return i;
     }
+
+Evaluierung von Rechts nach Links
+----------------------------------
+
+.. code:: c++
+
+    // Just a helper method to read a string
+    std::string inputName(std::istream &in){
+        std::string name{};
+        in >> name;
+        return name;
+    }
+
+    // !!
+    sayGreeting(inputName(std::cin), inputName(std::cin));
+    // input: a b
+    // -> 1. Parameter = b, 2. Parameter = a

@@ -1,0 +1,4 @@
+int main() {
+  while (std::cin) {
+    std::cout << '=' << calc(std::cin) << '\n';
+  }

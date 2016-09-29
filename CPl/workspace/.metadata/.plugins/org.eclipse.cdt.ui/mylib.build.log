@@ -1,6 +1,7 @@
-07:57:59 **** Incremental Build of configuration Debug for project mylib ****
-make all 
-make: Nothing to be done for 'all'.
+18:05:39 **** Clean-only build of configuration Debug for project mylib ****
+make clean 
+rm -rf  ./src/Hello.o ./src/mainsayhello.o ./src/sayhello.o  ./src/Hello.d ./src/mainsayhello.d ./src/sayhello.d  libmylib.a
+ 
 
-07:57:59 Build Finished (took 66ms)
+18:05:39 Build Finished (took 62ms)
 

@@ -1,6 +1,7 @@
-07:57:59 **** Incremental Build of configuration Debug for project mylibTest ****
-make all 
-make: Nothing to be done for 'all'.
+18:05:39 **** Clean-only build of configuration Debug for project mylibTest ****
+make clean 
+rm -rf  ./src/Test.o  ./src/Test.d  mylibTest
+ 
 
-07:57:59 Build Finished (took 64ms)
+18:05:39 Build Finished (took 62ms)
 

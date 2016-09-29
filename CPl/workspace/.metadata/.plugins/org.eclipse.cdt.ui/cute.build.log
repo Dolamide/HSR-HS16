@@ -1,15 +1,7 @@
-08:08:54 **** Incremental Build of configuration Debug for project cute ****
-make all 
-Building file: ../src/Test.cpp
-Invoking: GCC C++ Compiler
-g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/cute/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
-Finished building: ../src/Test.cpp
- 
-Building target: cute
-Invoking: GCC C++ Linker
-g++  -o "cute"  ./src/Test.o   
-Finished building target: cute
+18:05:39 **** Clean-only build of configuration Debug for project cute ****
+make clean 
+rm -rf  ./src/Test.o  ./src/Test.d  cute
  
 
-08:08:55 Build Finished (took 1s.125ms)
+18:05:39 Build Finished (took 64ms)
 

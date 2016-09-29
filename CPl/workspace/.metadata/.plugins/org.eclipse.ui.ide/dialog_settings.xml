@@ -7,6 +7,17 @@
 		<item value="958" key="DIALOG_X_ORIGIN"/>
 		<item value="445" key="DIALOG_Y_ORIGIN"/>
 	</section>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/home/rzi/HSR/module/CPl/CPlusPlusLecture/ws02/greeting"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
 	<section name="NewWizardAction">
 		<item value="org.eclipse.cdt.ui.wizards.NewCWizard1" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">

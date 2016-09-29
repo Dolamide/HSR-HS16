@@ -1,0 +1,16 @@
+<testsuites>
+	<testsuite name="AllTests" tests="12">
+		<testcase classname="AllTests" name="test_four_minus_one"/>
+		<testcase classname="AllTests" name="test_one_minus_four"/>
+		<testcase classname="AllTests" name="test_seventeen_mod_two"/>
+		<testcase classname="AllTests" name="test_one_plus_one"/>
+		<testcase classname="AllTests" name="test_one_plus_4_stream_with_spaces"/>
+		<testcase classname="AllTests" name="test_one_plus_4_stream"/>
+		<testcase classname="AllTests" name="test_seventeen_times_fifteen"/>
+		<testcase classname="AllTests" name="test_seventeen_divided_by_fifteen"/>
+		<testcase classname="AllTests" name="test_invalid_operator"/>
+		<testcase classname="AllTests" name="test_incomplete_stream"/>
+		<testcase classname="AllTests" name="test_module_zero"/>
+		<testcase classname="AllTests" name="test_division_by_zero"/>
+	</testsuite>
+</testsuites>
