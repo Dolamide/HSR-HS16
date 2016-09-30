@@ -25,8 +25,8 @@ Varianten
 
 .. warning::
 
-    Entscheidende Frage bei der Implementierung: Null-Terminiert oder mit Guards?
-
+    * Entscheidende Frage bei der Implementierung: Null-Terminiert oder mit Guards?
+    * Map oder Multimap?
 
 Binary-Search-Trees
 --------------------
@@ -65,7 +65,8 @@ Suche
 
 .. image:: images/broken_binary_tree.jpg
 
-.. literalinclude:: code/BinaryTree.java
+
+.. literalinclude:: code/MinimalBinaryTree.java
     :language: java
     :lines: 1-9
 
@@ -77,7 +78,7 @@ Einfügen
 #. Falls der Key existiert, ersetze den Wert oder bei Multimap: suche weiter.
 #. Wenn man in einem Blattknoten endet: In einen internen Knoten umwandeln.
 
-.. literalinclude:: code/BinaryTree.java
+.. literalinclude:: code/MinimalBinaryTree.java
     :language: java
     :lines: 11-23
 
@@ -104,7 +105,7 @@ Vorsicht:
 
 Die Knoten werden nicht effektiv umgehängt - nur deren Werte!
 
-.. literalinclude:: code/BinaryTree.java
+.. literalinclude:: code/MinimalBinaryTree.java
     :language: java
     :lines: 25-60
 
@@ -112,7 +113,7 @@ Die Knoten werden nicht effektiv umgehängt - nur deren Werte!
 Ausgabe inorder
 ................
 
-.. literalinclude:: code/BinaryTree.java
+.. literalinclude:: code/MinimalBinaryTree.java
     :language: java
     :lines: 62-68
 
