@@ -2,7 +2,7 @@ Prüfungsdetails
 ===============
 
 * Zwei Teile a 1 Stunde
-* Miniprojekte als Voraussetzungen für 
+* Miniprojekte als Voraussetzungen für
 
 Erlaubte Hilfsmittel
 ---------------------
@@ -18,3 +18,8 @@ Typ A
 * Übung X/ Aufgabe Z
 * Unterrichtsnotizen vom XY
 * Verweis auf Lösungsschema in diesem Dokument
+
+
+Aufgaben
+--------
+* Layouts: W2 - A1,A2
