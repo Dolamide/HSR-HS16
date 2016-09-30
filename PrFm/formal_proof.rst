@@ -19,6 +19,8 @@ Sequent Calculus
     Usually infinite - specified using a finite set of proof rule schams
 
 **Proof**
+    Is basically a tree
+
     A finite tree with the following proerties
 
         * Node consists of 1 sequent and 0/1 proof rule of the theory
@@ -59,15 +61,87 @@ The statement to proof is the root of the tree.
 * Note that the rule names can't be omitted.
 * Axioms are allways the leafs.
 * The direction is crucial
+* Think Lego!
 
-A Note on propositional logic
-------------------------------
+A Sequent wit two Rules ``\frac{s_2}{s_1} r1``, ``\frac{s_1}{s_2} r2`` ist valid - but does not make
+a lot of sense.
 
-"Assuming that  R => C and R, consequences C"
 
-An example:
+Propositional Calculus
+-----------------------
 
-    R: It rains
-    C: It's clody
+Proposition vs. Predicate
+..........................
 
-"Asssuming that it rains implies that it's cloudy and it rains, consequences C"
+**Proposition**
+    A proposition is a blackbox with no input and either true or false (Eg. ``B``)
+
+**Predicate**
+    The outcome of a Predicate *depends on the input* and can therefore be
+    both, true or false. (Eg. ``B(x)`` or ``A ∧ B => B ∧ A``)
+
+.. image:: images/propositional_calc_sequent.png
+
+H ⊢ G: "Under the hypothesis H, provee the goal G"
+
+H is a **set of predicates**.
+H, P  is basically the same, it's a set of predicates containing all elements of H and P - but only p is realy relevant
+for the proof
+
+[TODO: ∧ Goal]: "UFalls ich P ∧ Q beweisen möchte reicht es mir, P und Q zu beweisen"
+"If I have to profe P∧Q, it is sufficient to proof P and Q"
+
+
+
+
+basicPC
+.......
+TODO: Syntax (#8 im Skript)
+
+**False** is a predicate
+**not**, **and** are logical Operators
+
+This is the abstract syntax - the concete Syntax does also contain ``(`` and ``)``
+eg, ``not (A and B)``
+
+
+Proof Rule Schemas
+..................
+Proof rule schema can be initiated - to prodica a proof rule
+
+image #7
+(mata variables = can be instantiated)
+-> Beliebige Variablen können eingesetzt werden!
+
+
+Proof Rules of PC
+...................
+TODO: Summary from #11 (skript) + mark basic PC and PC
+
+
+PC
+...
+PC is basicPC + "syntactic Sugar". It does not provide more power ,but convenience.
+
+TODO: Syntax (#8 im Skript)
+
+#10
+
+=> Introduce binding strength!
+
+.. note::
+
+    Quantification cannot be expressed in PC
+
+
+Approach well-formated predicate
+................................
+#. Operators OK? (not is unary!)
+#. is it ambiguous? - operator precedence OK?
+   -> Can I draw a parse tree
+
+Approach
+........
+
+#. Model argument as sequent in PC
+#. construct a proof sequent #16 -> Pattern matching!
