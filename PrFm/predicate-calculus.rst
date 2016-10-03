@@ -1,36 +1,54 @@
-First order pcalc
-------------------
-
-Prädikaten logik
-
-#2
+First-order Predicate Calculus (FoPC)
+======================================
 
 **Expression**
     syntactic construct denoting a math. object such as number, set, function ...
+    *expressions can't be proofed - they depend on the input!*
+    Only a predicate can be profen ( = expression with input)
 
-Variable = identifier - placeholder: subject to subtstitution
+**Variable**
+    Identifier / Placeholder: subject to subtstitution
 
--> expressions can't be proofed - they depend on the input!
--> Only a predicate can be profen (=expression with input)
-
-Syntax #4
-
-
-#5 -> Notizen #6
-
-bound: Placeholders,
-free:
-
-"I can freele rename all bound variables" #7
+**bound variable**
+    = place holder. It's name has no significance and can be changed.
+    Is bound in a certain context:
 
 
-#9: Can only be done by a human - only a definition
+    .. image:: images/bound-variable.png
 
 
-=goal: goal: all expressions are equal to themselfs
+**free variable**
+    A variable, that is not bound
 
-=hyp: [x:=F]P (all x in p are substitued with F)
-Assuming E=F, i can interchange Es and Fs in the subtree P (see Diagramm)
+.. todo::
 
+    What's the exact difference between bound and free variables?
 
-hyp
+basicFoPCe
+-----------
+
+basicFoPCe is an extension of PC with a "for all" quantifier, an
+equality relation and a an uninterpreded relation symbol:
+
+``P ::=  ... | ∀x.P | E = E | R(E')``
+
+``E ::= x | f(E')``
+
+(E' = List of Expressions, usually E with an arrow on top)
+
+.. note::
+
+    It's useful to draw an abstract syntax tree!
+
+PoPCe
+-----
+
+.. image:: images/sumary-fopce.png
+
+(PoPCe in Grün)
+
+Note on the Naming of the Rule Schemas
+---------------------------------------
+
+eg. ``=goal`` means, that the goal contains an expression with an equal operator.
+Can be interpreted as eg. "all expressions are equal to themselfs"

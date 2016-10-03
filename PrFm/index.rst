@@ -4,7 +4,9 @@ Modul PrFm - Zusammenfassung
 .. toctree::
    :maxdepth: 2
 
-   programming_paradigms
-   formal_proof
+   programming-paradigms
+   formal-proof
+   propositional-calculus
+   predicate-calculus
    exam
    lernplan
