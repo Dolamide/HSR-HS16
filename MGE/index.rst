@@ -6,6 +6,7 @@ Modul MGE - Zusammenfassung
 
    android/konzepte
    android/grundlagen_gui
+   android/struktur
    android/testing
    exam
    lernplan

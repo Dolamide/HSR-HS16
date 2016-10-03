@@ -10,7 +10,7 @@ Grundlagen GUI Programmierung
 
     Was ist relevant für Prüfung?
     Welche XML-Attribute etc müssen auswendig gelernt bzw. in den Spick aufgenommen werden?
-
+    Merke: ``tools:`` namespace nur für GUI-Builder
 
 Übersicht
 ---------
