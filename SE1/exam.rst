@@ -15,6 +15,8 @@ Domainmodell nach Larman
 
 * Übung Dino
 * Übung Clubschule
+* Übung Eile mit Weile
+* Übung Nutzfahrzeugverleih
 * Probeprüfung Aufgabe 3
 
 -> Vorgenen in OOA.rst
