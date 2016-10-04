@@ -20,6 +20,10 @@ Einfügen/Löschen von Daten in eienn Binary Search Tree
 * Siehe :ref:`schema-bst`
 * Löschen üben mit Folie 11 in `D_11_1_BinarySearchTrees.1.0.pdf`
 
+Einfügen in AVL-Bäume - Rotationen
+....................................
+* Übung 3/ Aufgabe 1,2
+* Übung 3/ Aufgabe 3 (implementation)
 
 Falls genügend Zeit
 -------------------

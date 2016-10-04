@@ -46,7 +46,8 @@ Binary-Search-Trees
 .. seealso::
 
     * Data Structures & Algorithms in Java - Sexth Edition, Seite 425.
-    * `Interactive Binary-Search-Tree visualization <https://www.cs.usfca.edu/~galles/visualization/BST.html>`_
+    * `Interactive Binary-Search-Tree visualization 1 <https://www.cs.usfca.edu/~galles/visualization/BST.html>`_
+    * `Interactive Binary-Search-Tree visualization 2 <http://visualgo.net/bst>`_
 
 Suche
 ......
@@ -133,9 +134,76 @@ Ein AVL-Tree ist "balanciert", wenn:
 Höhenbeweis
 ...........
 
-.. todo::
+Es ist zu beweisen, ob ein Baum garantiert die komplexität O(log(n)) aufweist.
 
-    Folgt in Vorlesung W3 (#3, #4)
+Maximale höhe eines gültigen Baums? bsp. mit 4 Nodes = 3?
+Minimale Anzahl Knoten m_min mit Höhe h? bsp. h=3 -> 4
+
+Arbeiten mit dem Baum mit einer minimalen Anzahl Konten für eine Höhe h. In der Beweisführung ist angenommen, dass der linke Subtree grösser
+als der Rechte ist (wäre natürlich vertauschbar!)
+
+1. Aufteilen eines Baums in 3 Teilbäume:
+
+    * ganzer Baum - hat höhe ``h``
+    * linker subtree - hat höhe ``(h-1)``
+    * rechter subtree - hat höhe ``(h-2)``
+
+2. `=> n(h) = 1 + n(h-1) + n(h-2)`
+3. n(h) kann um zu Vereinfachen wie folgt angenähert werden:
+
+   `n(h) > 2n(h-2) // Annähern!`
+
+4. Der Schritt kann analog mit dem  linken und dem rechten Subtree durchgeführt werden:
+
+   `n(h-2) = 1 + n(h-3) + n(h-4)`
+
+   `n(h-2) > 2n(h-4)`
+
+   `=> n(h) >  4n(h-4)`
+
+   `n(h-4) = 1 + n(h-5) + n(h-6)`
+
+   `n(h-4) > 2n(h-6)`
+
+   `=> n(h) > 8n(h-6)`
+
+5. Allgemein kann also die minimale Anzahl konten wie folgt definiert werden:
+
+    `=> n(h) > (2^i)n(h-2i)`
+
+6. Es muss nun ein Base Case gefunden werden um den Beweis abzuschliessen:
+
+    `n_min (h=1) = 1`
+
+    `n_min (h=2) = 2`
+
+7. `i` muss nun so gewählt werden, dass wir in einen der Base Cases kommen:
+
+    `i := h-2i = (1 | 2)`
+
+    `=> h = (1|2) + 2i`
+
+    `Bsp. i = 1  : h=3|4`
+
+    `Bsp. i = 2  : h=5|6`
+
+    `Bsp. i = 3  : h=7|8`
+
+    `...`
+
+    `=> i = ⌈h/2⌉ - 1`
+
+    `=> n > 2^(⌈h/2⌉ - 1) * (1|2)`
+
+8. Uns interessiert nun die O-Notation - Konstante können also weggelassen werden - auch der Celiling-Operator
+
+    `=> n > 2^((h/2) - 1) | log()`
+
+    `log(n) > (h/2)-1`
+
+    `h < 2 * log(n) + 2`
+
+    `=> h ϵ O(log(n))`
 
 Einfügen
 .........
@@ -153,15 +221,78 @@ Man kann 4 generell mögliche Fälle unterscheiden
 
 Vorgehen zur Wiederherstellung der AVL-Balance:
 
+Trinode Umstrukturierung
+''''''''''''''''''''''''
+
 #. Wandere von neu eingefügten Knoten aus aufwärts und Prüfe bei jedem Koten, ob ALV_Balance verletzt wird
 #. Tritt eine Verletzung ein, muss der Baum rotiert werden.
-   Die betroffenen Knoten müssenn nun so umgehängt werden, dass die Inorder Reihenfolge gleich bleibt.
+   Die betroffenen Knoten müssenn nun so umgehängt werden, dass die **Inorder Reihenfolge** gleich bleibt.
 
 .. image:: images/alv_insert_rotate.png
 
 Sobald das einmal gemacht wurde ist die ALV-Eingeschaft wiederhergestellt, denn
 eine grössere Differenz als 2 ist je Einfügeoperation nicht möglich.
 
+
+.. seealso::
+
+    Vorlesungsfolien `D_11_3_ALVTrees` #11, #15, #16.
+
+Cut/Link Restrukturierungs-Algorithmus
+'''''''''''''''''''''''''''''''''''''''
+
+Vorteil: Keine Fallunterscheidung
+
+Nachteil: Komplexer
+
+Methode `restructure(x)` wird mit dem neu Angefügten Knoten x aufgerufen.
+
+1. z, y, x und T0, T1, T2, T3 festlegen
+
+.. image:: images/alv_insert_cutlink1.png
+
+2. Die Sieben Teile gemäss inorder Reihenfolge nummerieren
+
+.. image:: images/alv_insert_cutlink2.png
+
+3. ensprechend der inorder Reihenfolge in ein Array abfüllen
+
+.. image:: images/alv_insert_cutlink3.png
+
+4. Schrittweise neuer Baum a der Mitte des Arrays aufbauen:  #25/#26
+
+.. image:: images/alv_insert_cutlink4.png
+
+Löschen
+.......
+
+Löschen kann mit hilfe der Methode `restructure(x)` vom Cut/Link Restrukturierungs-Algorithmus
+implementiert werden:
+
+#. Lösche das Kind k
+#. Prüfe Tree von unten nach oben - sobald unbalanciert:
+#. z ist der Unbalanciert Knoten - y das Kind von z mit der grösseren Höhe und x das kind von
+   y mit der grösseren Höhe.
+#. Rufe restructure(x) auf
+#. Zurück zu Schritt 2.
+#. Falls komplett balanciert - fertig!
+
+
+.. image:: images/alv_delete.png
+
+
+.. todo::
+
+    * Einbinden von Beispielscode
+
+Laufzeitverhalten
+.................
+
+(Eine einzelne Restrukturierung braucht konstante Zeit - also O(1))
+
+* `find`:  O(log n), da die Höhe des Bausm O(log n) ist und keine Restrukturierung notwendig ist.
+* `insert`: O(log n), da find gebraucht wird (O(log n)) und anschliessend ein Restrukturierung stattfindet (O(log n))
+* `delete`: O(log n), analog insert
 
 Splay-Tree
 -----------
