@@ -6,7 +6,7 @@ Vorgehen
 
 #. Domainmodell entwerfen
 #. Screens ableiten
-#. Screens in Beziehung bringen und gruppieren
+#. Screens in Beziehung bringen ("Sollte erreichbar sein über") und gruppieren (Orientation/Screen Size)
 #. Navigation zwischen den Screens festlegen
 #. Wireframe/Storyboard für die Gesamtübersicht erstellen
 #. Usability Test mit einem Paper-Prototypen des Wireframes
@@ -22,10 +22,21 @@ Vorgehen
 
 Zurück ≠ Zurück
 ---------------
-Zurück kann entweder *zum hierarchischen Parent* (ancestral) oder aber zurück zum *vorherigen Element* (temporal) bedeuten.
+Zurück kann entweder *zum hierarchischen Parent* **up** (ancestral) oder aber zurück zum *vorherigen Element* **back** (temporal) bedeuten.
 
-In Android wird typischeweise *ancestral* über den Button oben Links implementiert ("zum Parent screen")
-*Temporal* dagegen wird über den "hardware" Back-Button implementiert ("zurück zum vorherigen Screen")
+In Android wird typischeweise *ancestral* über den Button oben Links implementiert **Up** ("zum Parent screen")
+Der Up-Button muss manuell implementiert werden und zu dessen hierarchischen Parent (oder typisch
+hierarchischen Parent bzw. Root) führen.
+
+*Temporal* dagegen wird über den "hardware" **Back-Button** implementiert ("zurück zum vorherigen Screen").
+Typischerweise muss der Back-Button nicht manuell gemanaged werden - das Default Verhalten entspricht
+meistens dem, was der User erwartet. Tabs, Filter, Zoom, Sorting usw. macht der Back-Button
+nicht "rückggängig".
+
+
+.. image:: images/ancestral-temporal-navigation.png
+
+ (Quelle: https://developer.android.com/training/design-navigation/ancestral-temporal.html)
 
 Fragments
 ---------
