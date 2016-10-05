@@ -124,7 +124,8 @@ Performance von Binary-Search-Trees ist nicht immer ideal. Die Einfüge-Reihenfo
 ist entscheidend.
 
 Ein ALV-Tree hat die gleichen eigenschaften wie ein Binary-Tree ("extends BinaryTree") aber die zusätzliche
-Eigenschaft, dass sich **die Höhe der Kinder von v höchstens um 1 unterscheiden**.
+Eigenschaft, dass sich **die Höhe der Kinder von v höchstens um 1 unterscheiden**. Dadurch wird im Worst-Case
+eine logarithmische Laufzeit garantiert.
 
 Ein AVL-Tree ist "balanciert", wenn:
 
@@ -137,7 +138,7 @@ Höhenbeweis
 Es ist zu beweisen, ob ein Baum garantiert die komplexität O(log(n)) aufweist.
 
 Maximale höhe eines gültigen Baums? bsp. mit 4 Nodes = 3?
-Minimale Anzahl Knoten m_min mit Höhe h? bsp. h=3 -> 4
+Minimale Anzahl Knoten m_min mit Höhe h? bsp. h=3 -> 4 ("inverse problem")
 
 Arbeiten mit dem Baum mit einer minimalen Anzahl Konten für eine Höhe h. In der Beweisführung ist angenommen, dass der linke Subtree grösser
 als der Rechte ist (wäre natürlich vertauschbar!)
@@ -224,11 +225,15 @@ Vorgehen zur Wiederherstellung der AVL-Balance:
 Trinode Umstrukturierung
 ''''''''''''''''''''''''
 
+"Search and Repair" Strategie.
+
 #. Wandere von neu eingefügten Knoten aus aufwärts und Prüfe bei jedem Koten, ob ALV_Balance verletzt wird
 #. Tritt eine Verletzung ein, muss der Baum rotiert werden.
    Die betroffenen Knoten müssenn nun so umgehängt werden, dass die **Inorder Reihenfolge** gleich bleibt.
 
 .. image:: images/alv_insert_rotate.png
+
+**CHECK: INORDER Reihenfolge vergleichen**
 
 Sobald das einmal gemacht wurde ist die ALV-Eingeschaft wiederhergestellt, denn
 eine grössere Differenz als 2 ist je Einfügeoperation nicht möglich.
