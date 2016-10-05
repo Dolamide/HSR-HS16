@@ -11,6 +11,8 @@ Erlaubte Hilfsmittel
 Aufgabentypen
 -------------
 
+* Bei Zeit und Bedarf: Übung 2 - Aufgabe 2 (Rekursion)
+
 Typ A
 .....
 
@@ -52,3 +54,15 @@ Lösung:
 
 Grund: Bei den Zuweisungen von o1 und o2 wird geboxt.
 Wird o1 auf 4 gesetzt, dann bleibt die referenz in myList unverändert auf 1.
+
+Ausgelassen
+-----------
+
+Vorlesung W3:
+* Arithmetische Operatoren
+* Vergleichsoperatoren
+* Logische Operatoren
+* Bit Operatoren
+* Boolsche Ausdrücke
+* Overflow-Checks
+* typeof / sizeof

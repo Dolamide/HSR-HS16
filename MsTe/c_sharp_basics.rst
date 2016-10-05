@@ -15,6 +15,7 @@ Identifiers
 Kommentare
 -----------
 Es gibt Single Line ``//`` und Multi-Line ``/* ... */`` Kommentare.
+
 Zudem existieren `Spezielle Dokumentationsstrings <http://www.codeproject.com/Articles/3009/C-Documenting-and-Commenting>`_ (XML) ```///```(mit XML)
 
 
@@ -52,6 +53,12 @@ Defaults:
 
 .. image:: images/default-visibility.png
 
+Operator Rangfolge
+-------------------
+
+.. image:: images/operator-rang.png
+
+.. image:: images/operator-rang2.png
 
 Offene Fragen
 ---------------
@@ -59,5 +66,3 @@ Offene Fragen
 * virtual keyword?
 * override keyword?
 * Mehrfachvererbung (syntax)?
-* public B(int x, int y) : base(x) { this.y = y; } ??
-* super = base?

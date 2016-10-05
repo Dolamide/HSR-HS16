@@ -6,7 +6,9 @@ Modul MsTe - Zusammenfassung
 
    dot-net
    c_sharp_basics
+   c_sharp_klassen
    tips
+   pitfalls
    snippets
    exam
    lernplan
