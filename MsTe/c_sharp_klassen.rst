@@ -56,3 +56,10 @@ Structs sollten verwendet werden, wenn:
     }
     // Analog zu Klassen
     Point p = new Point(2,3);
+
+
+Mit dem `ref` keyword bei einem parameter (und dessen Aufruf!!) kann
+auch eine Referenz übergeben werden.
+Das `out` Keyword ist dazu identisch - mit dem Unterschied, dass der
+übergebene Wert noch nicht initialisiert ist - wird also als return Wert
+behandelt.

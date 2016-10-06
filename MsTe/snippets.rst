@@ -233,6 +233,19 @@ Partials
         { /* */ }
     }
 
+Konstruktor
+-----------
+
+.. code:: c#
+
+    public Book(string title, string author, bool available){}
+    public Book(string title, string author, bool available) : base(){}
+    public Book(string title, string author) : this(title, author, true) { }
+    public Book(string title) : this(title, "anonymous", true) { }
+    public Book() : this("untitled", "anonymous", true) { }
+    // ...
+
+
 Destruktor
 ----------
 
@@ -241,6 +254,13 @@ Destruktor
     class MyClass {
         ~MyClass() { /* ... */ }
     }
+
+Optionale Parameter
+--------------------
+
+.. code:: c#
+
+    privat void Sort(int from=-1, int to=-1){};
 
 Operator-Overloading
 --------------------
