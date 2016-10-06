@@ -4,7 +4,7 @@ First-order Predicate Calculus (FoPC)
 **Expression**
     syntactic construct denoting a math. object such as number, set, function ...
     *expressions can't be proofed - they depend on the input!*
-    Only a predicate can be profen ( = expression with input)
+    Only a predicate can be proven ( = expression with input)
 
 **Variable**
     Identifier / Placeholder: subject to subtstitution
