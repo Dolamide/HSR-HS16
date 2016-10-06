@@ -52,3 +52,55 @@ Note on the Naming of the Rule Schemas
 
 eg. ``=goal`` means, that the goal contains an expression with an equal operator.
 Can be interpreted as eg. "all expressions are equal to themselfs"
+
+Excursion: Computing
+---------------------
+
+Logic Programming:
+    Programs = Rules in predicate logic
+    Computation = Proof of predicate
+
+Given the following Graph:
+
+.. graphiviz:
+
+    digraph G {
+    "a" -> "b"
+    "b" -> "a"
+    "b" -> "c"
+    "c" -> "b"
+    "c" -> "d"
+    "d" -> "c"
+    "p" -> "q"
+    "q" -> "p"
+    }
+
+
+Is it possible, to calculate the following questions?
+
+#. Is a reachable from d?
+#. Is a *not* reachable from q?
+#. Which nodes are reachable from a?
+
+In order to answer these questions, one has to model the problem as a sequent in FoPCe:
+
+Given the following Hypothesis (G)
+Reflexive: ∀x. R(x,x )
+Symetric: ∀x.∀y. R(x, y) ⇒ R(y, x)
+Transitive: ∀x.∀y∀z. R(x, y) ∧ R(y, z) ⇒ R(x, z)
+
+R(a, b), R(b, c), R(c,d) R(p, q)
+
+#. Is a reachable from d? G ⊢ R(a, d)
+#. Is a *not* reachable from q? G ⊢ ¬ R(a, q)
+#. Which nodes are reachable from a? G ⊢ ∃x.R(a, x)
+
+Now try to proof - if possible, the statement is correct, otherwise not.
+
+Equational Reasoning
+--------------------
+If proofs only involve equality, this is a more compact and better readable
+syntax:
+
+
+.. image:: images/equational-reasoning.png

@@ -52,6 +52,9 @@ or
 
     "If x > y results in an int, x and y must be integers"
 
+As a basic rule:
+"In order to proove the sequent S0 it is sufficient to proof both the sequents S1 and S2"
+
 Now, the rules can be put togehter like lego and get a tree as a result.
 The statement to proof is the root of the tree.
 

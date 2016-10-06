@@ -69,6 +69,8 @@ Proof Rules of PC
 
 (BasicPC in Green)
 
+Read ∧-goal like this:
+"In order to prove that H entails P and Q it is sufficient to prove that H entails P and H entails Q"
 
 Approach well-formated predicate
 ---------------------------------
