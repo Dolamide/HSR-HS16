@@ -23,6 +23,7 @@ Einfügen/Löschen von Daten in eienn Binary Search Tree
 Einfügen in AVL-Bäume - Rotationen
 ....................................
 * Übung 3/ Aufgabe 1,2
+    -> Balancierungsfaktor = |h(left)-h(right)|
 * Übung 3/ Aufgabe 3 (implementation)
 
 Falls genügend Zeit
