@@ -5,7 +5,7 @@ Prüfungsdetails
 Erlaubte Hilfsmittel
 ---------------------
 
-* ...
+* open book
 * ...
 
 Aufgabentypen
