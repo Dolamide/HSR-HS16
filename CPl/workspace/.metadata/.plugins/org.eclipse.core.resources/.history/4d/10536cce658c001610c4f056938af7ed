@@ -1,0 +1,12 @@
+#include "Counting.h"
+#include "cute.h"
+
+void thisIsACountingTest() {
+	ASSERTM("start writing tests", false);	
+}
+
+cute::suite make_suite_Counting() {
+	cute::suite s { };
+	s.push_back(CUTE(thisIsACountingTest));
+	return s;
+}

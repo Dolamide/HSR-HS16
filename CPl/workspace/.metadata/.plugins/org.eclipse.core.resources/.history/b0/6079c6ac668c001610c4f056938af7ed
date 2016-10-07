@@ -1,0 +1,12 @@
+#include "Tests.h"
+#include "cute.h"
+
+void thisIsATestsTest() {
+	ASSERTM("start writing tests", false);	
+}
+
+cute::suite make_suite_Tests() {
+	cute::suite s { };
+	s.push_back(CUTE(thisIsATestsTest));
+	return s;
+}

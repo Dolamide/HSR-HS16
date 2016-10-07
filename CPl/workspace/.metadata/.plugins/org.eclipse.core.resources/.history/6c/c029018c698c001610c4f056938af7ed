@@ -1,0 +1,21 @@
+#include "counting.h"
+
+#include <algorithm>
+#include <iterator>
+
+int chcount(std::istream &in){
+	using it=std::istream_iterator<char>;
+	return distance(it{in}, it{});
+
+}
+
+int chacount(std::istream &in){
+	using it=std::istreambuf_iterator<char>;
+	return distance(it{in}, it{});
+}
+
+int wcount(std::istream &in){
+	using it=std::istreambuf_iterator<char>;
+	return distance(it{in}, it{});
+
+}

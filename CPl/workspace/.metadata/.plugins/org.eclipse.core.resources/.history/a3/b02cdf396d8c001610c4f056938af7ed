@@ -1,0 +1,10 @@
+#include "sum.h"
+
+int sumi(std::istream &in){
+
+}
+
+double sumd(std::istream &in){
+	return 0;
+}
+

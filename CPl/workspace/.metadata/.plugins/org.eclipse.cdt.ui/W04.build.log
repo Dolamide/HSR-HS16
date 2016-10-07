@@ -1,0 +1,16 @@
+12:41:02 **** Incremental Build of configuration Debug for project W04 ****
+make all 
+Building file: ../table.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"table.d" -MT"table.o" -o "table.o" "../table.cpp"
+Finished building: ../table.cpp
+ 
+Building target: libW04.a
+Invoking: GCC Archiver
+ar -r  "libW04.a"  ./calculations.o ./counting.o ./sum.o ./table.o   
+ar: creating libW04.a
+Finished building target: libW04.a
+ 
+
+12:41:02 Build Finished (took 514ms)
+

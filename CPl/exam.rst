@@ -11,6 +11,11 @@ Erlaubte Hilfsmittel
 Aufgabentypen
 -------------
 
+* rvalue und lvalue
+* Element type as const as possible !!!! (garantiert Frage)
+* Don't use Loops - use algorithms
+
+
 Typ A
 .....
 

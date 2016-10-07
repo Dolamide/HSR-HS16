@@ -1,0 +1,13 @@
+#include "counting.h"
+
+#include <algorithm>
+#include <iterator>
+
+void chcount(std::istream &in, std::ostream &out){
+	using it=std::istream_iterator<char>;
+	for_each(it{in}, it{}, [](auto x){
+		std::cout << x
+	});
+//	out << count(it{in}, it{}, ' ');
+
+}

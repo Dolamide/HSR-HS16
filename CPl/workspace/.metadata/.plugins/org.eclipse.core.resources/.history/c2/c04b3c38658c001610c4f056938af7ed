@@ -1,0 +1,8 @@
+#include "chcount.h"
+#include <algorithm>
+#include <iosfwd>
+#include <iterator>
+
+void chcount(std::istream in, std::ostream out){
+	copy();
+}

@@ -1,0 +1,9 @@
+#include "chcount.h"
+#include <algorithm>
+#include <iosfwd>
+#include <iterator>
+
+void chcount(std::istream in, std::ostream out){
+	std::istream_iterator<std::string> fup {in};
+	count(begin(in), end(in), ' ');
+}

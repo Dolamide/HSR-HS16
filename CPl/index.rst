@@ -8,6 +8,7 @@ Modul CPl - Zusammenfassung
    basics
    values
    streams
+   sequences
    tips
    pitfalls
    exam

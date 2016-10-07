@@ -1,0 +1,35 @@
+#include "calculations.h"
+#include <iosfwd>
+#include <iterator>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+
+std::vector<std::vector<std::string>> const DIGITS {
+		{" - ", "   ", " - ", " - ", "   ", " - ", " - ", " - ", " - ", " - " },
+		{"| |", "  |", "  |", "  |", "| |", "|  ", "|  ", "  |", "| |", "| |"},
+		{"   ", "   ", " - ", " - ", " - ", " - ", " - ", "   ", " - ", " - "},
+		{"| |", "  |", "|  ", "  |", "  |", "  |", "| |", "  |", "| |", "  |"},
+		{" - ", "   ", " - ", " - ", "   ", " - ", " - ", "   ", " - ", " - "},
+	};
+
+void printLargeNumber(int i, std::ostream &out){
+	printLargeNumber(i, out, 1);
+}
+void printLargeNumber(int i, std::ostream &out, int scale n){
+	auto s = std::to_string(i);
+	for_each(cbegin(DIGITS), cend(DIGITS), [s, &out](auto line){
+		for_each(cbegin(s), cend(s), [line, &out](auto x){
+			int num = (x - '0');
+			out << line.at(num);
+		});
+		out << '\n';
+	});
+}
+
+void printLargeDigit(int i, std::ostream &out) {
+	for_each(cbegin(DIGITS), cend(DIGITS), [i, &out](auto x){
+		out << x.at(i) << '\n';
+	});
+}

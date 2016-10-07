@@ -1,0 +1,14 @@
+#include "sum.h"
+
+#include <iterator>
+#include <algorithm>
+
+int sumi(std::istream &in){
+	using in = std::istream_iterator<int>;
+	return 0;
+}
+
+double sumd(std::istream &in){
+	return 0;
+}
+

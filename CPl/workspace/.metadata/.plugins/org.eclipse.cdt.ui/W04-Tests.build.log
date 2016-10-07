@@ -1,0 +1,10 @@
+12:41:02 **** Incremental Build of configuration Debug for project W04-Tests ****
+make all 
+Building target: W04-Tests
+Invoking: GCC C++ Linker
+g++ -L"/home/rzi/HSR/module/CPl/workspace/W04/Debug" -o "W04-Tests"  ./src/TestCalculations.o   -lW04
+Finished building target: W04-Tests
+ 
+
+12:41:02 Build Finished (took 220ms)
+
