@@ -36,7 +36,7 @@ nicht "rückggängig".
 
 .. image:: images/ancestral-temporal-navigation.png
 
- (Quelle: https://developer.android.com/training/design-navigation/ancestral-temporal.html)
+(Quelle: https://developer.android.com/training/design-navigation/ancestral-temporal.html)
 
 Fragments
 ---------
