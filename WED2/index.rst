@@ -8,5 +8,6 @@ Modul WED - Zusammenfassung
    node
    express
    nedb
+   rest
    exam
    lernplan
