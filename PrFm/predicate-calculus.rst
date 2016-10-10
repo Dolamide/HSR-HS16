@@ -40,12 +40,13 @@ equality relation and a an uninterpreded relation symbol:
 
     It's useful to draw an abstract syntax tree!
 
-PoPCe
+
+FoPCe
 -----
 
 .. image:: images/sumary-fopce.png
 
-(PoPCe in Grün)
+(FoPCe in Grün)
 
 Note on the Naming of the Rule Schemas
 ---------------------------------------
@@ -104,3 +105,15 @@ syntax:
 
 
 .. image:: images/equational-reasoning.png
+
+Approach well-formated predicate
+---------------------------------
+#. Expression or Predicate  (eg. Equality is only defined for expressions)
+    ``P ::=  ... | ∀x.P | E = E | R(E')``
+
+    ``E ::= x | f(E')``
+
+#. Relation or function symbol
+#. Operators OK? (not is unary!)
+#. is it ambiguous? - operator precedence OK? (**binding strength**: ``¬``, ``∧``, ``∨``, ``⇒``, ``⇔``)
+   -> Can I draw a parse tree

@@ -72,12 +72,6 @@ Proof Rules of PC
 Read ∧-goal like this:
 "In order to prove that H entails P and Q it is sufficient to prove that H entails P and H entails Q"
 
-Approach well-formated predicate
----------------------------------
-#. Operators OK? (not is unary!)
-#. is it ambiguous? - operator precedence OK?
-   -> Can I draw a parse tree
-
 Approach
 ---------
 

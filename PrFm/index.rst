@@ -8,5 +8,6 @@ Modul PrFm - Zusammenfassung
    formal-proof
    propositional-calculus
    predicate-calculus
+   prolog
    exam
    lernplan
