@@ -37,8 +37,8 @@ Binary-Search-Trees
 
 
 * **key(u) ≤ key(v) ≤ key(w)**
-    * Keys welche im linken Subtree sind, sind kleiner gleich root
-    * Keys welche im rechten Subtree sind, sind grösser als root
+    * Keys welche im linken Subtree sind, sind **kleiner gleich** root
+    * Keys welche im rechten Subtree sind, sind **grösser** als root
 * **Inorder-Traversierung** gibt sortierte Reihenfolge aus
 * Externe Knoten speichern keine Daten
 * Die Blattknoten sind als "Placeholders" implementiert ("Guards" / "Sentinels")
@@ -301,3 +301,53 @@ Laufzeitverhalten
 
 Splay-Tree
 -----------
+Strukturierung (sortierung) analog zum sortierten Binärbaum (oben).
+
+Multimap - gleiche Keys können aber weit auseinander im Tree liegen.
+
+Nach jedem Zugriff auf ein Konten soll dieser zur Root werden.
+
+.. todo::
+
+    Recap Doppel-Rotation
+
+
+Suche
+.....
+#. Suche abwärts bis zum gesuchten Entry oder ein externer Konten (wie gehabt)
+#. Rotation: mit der ``splay``-Operation
+
+- bei Rotation ändert sich die Struktur des Baumes oberhalb x nicht
+
+zig(links) zag(rechts) immer von unten aus lesen!
+
+.. image:: images/splaying_flowchart.png
+
+Wenn externer Knoten -> splay() mit dessen Parent!
+
+Vorgehen:
+
+#. X, Y, Z notieren
+#. Splaying gemäss flow-chart durchführen
+#. Rotationen einzeln durchführen
+
+Löschen
+.......
+Ersetze v durch Inorder-Nachfolger. Lösche z.
+splay(u) mit dem tiefsten zugegriffenen internen Knoten durchführen
+
+
+.. image:: images/splaying_delete.png
+
+
+Insert
+......
+Benutze den neuen Knoten bei welchem der Entry eingefügt/ersetzt wurde
+für die Splay-Methode.
+
+Performance
+...........
+"Dinge die oft gesucht werden nahe in die Root"
+
+Kosten: O(h): Worst-Case: O(n), wenn h=n (LinkedList)\
+              Durchschnittlich O(log n)
