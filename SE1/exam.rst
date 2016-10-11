@@ -21,6 +21,11 @@ Domainmodell nach Larman
 
 -> Vorgenen in OOA.rst
 
+Use Cases
+---------
+* Übung "Videoverleih"
+* 
+
 Typ A
 .....
 

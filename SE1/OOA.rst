@@ -69,6 +69,7 @@ Ziel: Verständlich und Ziel!
 Checkliste
 ...........
 
+* **Was muss möglich sein** -> Checkliste erstellen
 * Vererbung oder Komposition?
   * 100% Regel - 100% des Parents gilt für Kind
   * Wenn overlapping -> Komposition (Rolle)
