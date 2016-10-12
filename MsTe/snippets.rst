@@ -246,13 +246,27 @@ Konstruktor
     // ...
 
 
-Destruktor
-----------
+Dispose Pattern
+----------------
 
 .. code:: c#
 
-    class MyClass {
-        ~MyClass() { /* ... */ }
+    ~DataAccess() { Dispose(false); }
+    public void Dispose()
+    {
+        Dispose(true);
+        System.GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+                if (connection != null)
+                {
+                    connection.Dispose();
+                }
+        } // Dispose unmanaged resources
     }
 
 Optionale Parameter
@@ -283,4 +297,19 @@ Operator-Overloading
 
         // ...
         MyClass mcTotal = mc1 + mc2;
+    }
+
+Vererbung
+----------
+
+.. code:: c#
+
+    class Base
+    {
+        int a;
+        public Base(){}
+    }
+    class Sub : Base
+    {
+        public Sub(){}
     }

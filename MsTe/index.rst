@@ -7,6 +7,7 @@ Modul MsTe - Zusammenfassung
    dot-net
    c_sharp_basics
    c_sharp_klassen
+   garbage_collection
    tips
    pitfalls
    snippets
