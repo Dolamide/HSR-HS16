@@ -9,6 +9,8 @@ Modul CPl - Zusammenfassung
    values
    streams
    sequences
+   functions
+   error-handling
    tips
    pitfalls
    exam
