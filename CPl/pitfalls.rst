@@ -1,11 +1,25 @@
 Pitfalls
 ========
 
+* Value Range is *implementation defined*!
+
+Strings
+-------
+* string literals sind nicht vom typ std::string (but it's usually converted properly when needed)
+    * kann mit s suffix erreicht werden (``using namespace std::string_literals`` nicht vergessen)
+* trigraphs: eg. "huu??!"; wird zu "huu|". Lösung: raw string: R"huu??!"
+
+Boolean Integral Promotion
+--------------------------
+Unbedingt auf klammern achten, da sonst bool werte als 0(false) bzw. 1(true) behandelt werden.
+
+x != 0 & 42 % x;
+
 Undefined behaviour
 --------------------
 
-* Division durch 0:
-  * Modulo 0 ``5%0``
+* Integer Division durch 0:
+  * Auch Modulo 0 ``5%0``
 
 Operator Rangordnung
 --------------------
@@ -28,6 +42,25 @@ Beispiel:
   }
 
 
+Whitespace mit Shift-Operator
+-----------------------------
+
+.. code:: c++
+
+    #include <string>
+    #include <iostream>
+    int main() {
+        std::string name{};
+        std::cin >> name;
+        std::cout << name;
+    }
+
+    // Besser:
+    int main() {
+        std::string name{};
+        std::getline(std::cin, name);
+        std::cout << name;
+    }
 
 Floating points
 ----------------

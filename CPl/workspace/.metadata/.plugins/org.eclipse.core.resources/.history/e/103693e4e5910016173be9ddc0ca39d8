@@ -1,0 +1,10 @@
+#ifndef CALC_H_
+#define CALC_H_
+
+#include <iosfwd>
+
+int calc(std::istream& in, bool& error);
+
+int calc(int lhs, int rhs, char op, bool& error);
+
+#endif /* CALC_H_ */

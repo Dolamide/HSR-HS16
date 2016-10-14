@@ -1,0 +1,20 @@
+10:23:10 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/Test.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
+Finished building: ../src/Test.cpp
+ 
+Building file: ../src/pocketcalculator.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/pocketcalculator.d" -MT"src/pocketcalculator.o" -o "src/pocketcalculator.o" "../src/pocketcalculator.cpp"
+Finished building: ../src/pocketcalculator.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+Finished building target: Testat
+ 
+
+10:23:12 Build Finished (took 1s.730ms)
+

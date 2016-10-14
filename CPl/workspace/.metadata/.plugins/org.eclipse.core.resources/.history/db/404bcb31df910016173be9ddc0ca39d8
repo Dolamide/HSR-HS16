@@ -1,0 +1,10 @@
+#ifndef SEVENSEGMENTS_CPP_
+#define SEVENSEGMENTS_CPP_
+
+#include <iosfwd>
+
+void printLargeNumber(int const i, std::ostream &out, int const scale=1);
+void printError(std::ostream &out, int const scale=1);
+void printLargeDigit(int const i, std::ostream &out);
+
+#endif /* SEVENSEGMENTS_CPP_ */

@@ -1,8 +1,0 @@
-#ifndef COUNTING_H_
-#define COUNTING_H_
-
-#include "cute_suite.h"
-
-extern cute::suite make_suite_Counting();
-
-#endif /* COUNTING_H_ */

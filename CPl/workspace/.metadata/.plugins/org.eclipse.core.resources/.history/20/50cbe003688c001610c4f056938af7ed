@@ -1,8 +1,0 @@
-#ifndef COUNTING_H_
-#define COUNTING_H_
-#include <iosfwd>
-
-void chcount(std::istream &in, std::ostream &out);
-void chacount(std::istream &in, std::ostream &out);
-
-#endif /* COUNTING_H_ */

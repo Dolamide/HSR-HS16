@@ -11,7 +11,13 @@ ZEN of this C++ Lecutre
         struct Hello {
             void sayHello() const;
         };
-    * 
+    * Const to the right:
+    .. code:: c++
+
+        int const theAnswer{42}; // Read: set 42 as theAnswer of constant type int
+    * const means constant and ≠ final in Java (where the object can change)
+* Define variables **as local as possible**
+
 
 Just good style
 ----------------
@@ -26,3 +32,9 @@ General C++ Zen
 * Only on Definition is allowed (but multiple deklaration) - therefore use Guards in the header files.
 * The range of values of int, long usw. is *implementation defined*
 * Be aware of undefined behaviour and stay away from it!
+
+Undifined Behaviour
+--------------------
+* Mehrere funktionsaufrufe als Parameter für einen Funtionsaufruf:
+  .. code:: c++
+    foo(baa(1), baa(2), baa(3));

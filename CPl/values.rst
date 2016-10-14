@@ -82,7 +82,24 @@ Typische Typen:
 * unsigned short, unsigned, unsigned long, unsigned long long
 * float, double, long double (there are no "unsigned" floating points)
 
-Recap: unsigned = nur positive Zahlen
+.. todo::
+
+    Tabelle mit typen erstellen
+    -> unsigned short, unsigned, unsigned long, unsigned long long
+      können alle OPTIONAL von int gefolgt werden;
+      bsp. unsigned a{4}; ist identisch zu unsigned int a{4};
+    Merke: Deren grösse muss nicht gleich sein -> implementation defined
+
+    -> signed char, short, int, long, long long: optional (unnötig) signed vorergehend
+
+    Tabelle:
+    typ     Literal     Typical Bit Width    Typical Range
+    int     42 (dec)
+            052 (oct)
+                hex
+    unsigned    123u    ...
+
+    -> https://www.tutorialspoint.com/cplusplus/cpp_data_types.htm
 
 Literals:
 
@@ -140,6 +157,8 @@ auto y = x % 2 ? 1 : 0; // 1
 
 Automatische Typkonvertierung
 ------------------------------
+
+= Integer Promotion
 
 C++ konvertiret die Typen automatisch in einer Expression.
 Aber Vorsicht: Bei der Zuweisung erfolgt die Konvertierung erst

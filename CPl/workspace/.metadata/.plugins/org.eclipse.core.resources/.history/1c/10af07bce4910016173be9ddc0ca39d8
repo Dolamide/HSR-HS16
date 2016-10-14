@@ -1,0 +1,40 @@
+#include <exception>
+#include <sstream>
+#include <string>
+#include <iostream>
+
+#include "calc.h"
+
+int calc(int lhs, int rhs, char op, bool& error) {
+	error = false;
+	switch (op) {
+		case '+':
+			return lhs + rhs;
+		case '-':
+			return lhs - rhs;
+		case '*':
+			return lhs * rhs;
+		case '/':
+			return rhs == 0 ? -1 : lhs / rhs;
+		case '%':
+			return rhs == 0 ? -1 : lhs % rhs;
+		default:
+			error = true;
+	}
+}
+
+int calc(std::istream& in){
+	int lhs{-1};
+	char op {};
+	int rhs{-1};
+
+	std::string line{};
+	getline(in, line);
+	std::istringstream is{line};
+
+	if(is >> lhs >> op >> rhs){
+		return calc(lhs,rhs, op);
+	}
+
+	throw std::logic_error("Failed to parse input");
+}

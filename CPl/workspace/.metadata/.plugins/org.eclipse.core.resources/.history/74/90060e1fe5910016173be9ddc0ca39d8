@@ -1,0 +1,19 @@
+#include <iostream>
+#include <exception>
+
+#include "sevensegment.h"
+#include "calc.h"
+#include "pocketcalculator.h"
+
+void pocketcalculator(std::istream& in, std::ostream& out, unsigned const scale, unsigned const maxWidth){
+	while(in){
+		try{
+			int result = calc(in);
+			printLargeNumber(result, out, scale, maxWidth);
+		}catch(std::logic_error const &e){
+			printError(out, scale);
+		}
+	}
+	out << "Bye\n";
+
+}

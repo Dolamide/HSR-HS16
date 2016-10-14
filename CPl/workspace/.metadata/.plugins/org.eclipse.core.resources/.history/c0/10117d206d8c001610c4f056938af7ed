@@ -1,9 +1,0 @@
-#include "sum.h"
-
-int sumi(std::istream &in){
-
-}
-int sumd(std::istream &in){
-	return 0;
-}
-

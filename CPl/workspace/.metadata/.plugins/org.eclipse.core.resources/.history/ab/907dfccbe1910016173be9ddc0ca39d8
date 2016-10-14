@@ -1,0 +1,18 @@
+#include <iostream>
+#include <string>
+#include "pocketcalculator.h"
+
+int main(int argc, char* argv[]) {
+	unsigned scale{1};
+	unsigned maxWidth{0};
+	std::cout << argc;
+	switch(argc){
+		case 3:
+			maxWidth = argv[0];
+		case 2:
+			scale = 14;
+			break;
+	}
+	pocketcalculator(std::cin, std::cout, scale, maxWidth);
+	return 0;
+}

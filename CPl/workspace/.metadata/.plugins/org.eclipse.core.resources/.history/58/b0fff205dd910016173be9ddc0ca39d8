@@ -1,0 +1,6 @@
+#include "sevensegment.h"
+#include "calc.h";
+
+#include <iosfwd>
+
+void printLargeNumber(int const i, std::ostream &out);
