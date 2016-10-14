@@ -89,6 +89,7 @@ Manager     start up
 =========== ================
 
 #. Use Cases schreiben
+    * Müssen *elementare Aktionen* sein, als nicht zu spezifisch!
     * zuerst im "brief"-Format
     * Ein UC pro Benutzerziel - muss Benutzerziel erfüllen
     * Gute Namensgebung, meist "objekt verb" (Velo zurückgeben, process sale)
