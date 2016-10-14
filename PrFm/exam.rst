@@ -11,9 +11,7 @@ Erlaubte Hilfsmittel
 Aufgabentypen
 -------------
 
-Typ A
+Prolog
 .....
 
-* Übung X/ Aufgabe Z
-* Unterrichtsnotizen vom XY
-* Verweis auf Lösungsschema in diesem Dokument
+* Learn prolog: Exercises chapter 1 & 2 (especially 2.3 and 2.4)
