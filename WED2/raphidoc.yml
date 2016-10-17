@@ -1,0 +1,19 @@
+version: 1.0
+
+site_name: WED2 Dokumentation
+
+pages:
+    - index.md
+    - node.md
+    - express.md
+    - nedb.md
+    - rest.md
+    - flexbox.md
+    - exam.md
+    - lernplan.md
+
+assets:
+    - images/
+
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/demo/raphi_theme/
