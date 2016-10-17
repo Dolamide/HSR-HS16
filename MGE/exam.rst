@@ -8,6 +8,7 @@ Erlaubte Hilfsmittel
 ---------------------
 
 * Je Teil (Android/WPF) je 10 Seiten (also 5 A4 Seiten duplex)
+* Teil Android: XML Lesen (primär der ersten 2 Wochen) *lesen* aber nicht *schreiben* können.
 
 Aufgabentypen
 -------------

@@ -11,6 +11,7 @@ Modul MGE - Zusammenfassung
    android/listen
    android/persistenz
    android/hintergrundtasks
+   android/material_design
    exam
    lernplan
 
