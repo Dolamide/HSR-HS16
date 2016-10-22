@@ -1,0 +1,24 @@
+version: 1.0
+
+site_name: CPl Dokumentation
+
+pages:
+    - index.md
+    - basics.md
+    - values.md
+    - streams.md
+    - sequences.md
+    - functions.md
+    - error-handling.md
+    - classes.md
+    - tips.md
+    - pitfalls.md
+    - cevelop.md
+    - zen.md
+    - exam.md
+    - lernplan.md
+assets:
+    - images/
+
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/demo/raphi_theme/

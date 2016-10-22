@@ -1,5 +1,4 @@
-Functions
-=========
+# Functions
 
 Gute funktion:
 
@@ -10,67 +9,67 @@ Gute funktion:
 
 Function declarations in .h and definitions in .cpp files.
 
-.. todo::
+!!! todo
 
     Ausnahme: deduced ()
     deduced
     https://wiki.ifs.hsr.ch/CPlusPlus/files/C++chapter3.pdf
     inline keyword avoids ODR violation?
 
-
     member functions (are directly implemented ) & template functions
      -> are implicitly inline
 
-Scopes
-------
+## Scopes
 
 Analog zu java - blöcke mit {} erstellen
 können variablen aus parent scope überdecken (shadowing) - wäre in Java nicht möglich!
 
 Closing bracket `}` = "collects garbage"
+
 * stack wird aufgeräumt
 * block wird aufgeräumt
 * auf objekten wird desktruktor aufgerufen
+
 (mehr dazu später)
 
-Namespaces
------------
+## Namespaces
+
 Zweck: Namensräume um kollisionen mit gleichen Namen (ODR) zu vermeiden. (bsp: ``std``)
 
 `::` gibt den globalen präfix zurück. Folglich ist `::std::cout` identisch zu `std::cout`
 
 Namespaces können verschachtelt werden.
 
-.. code:: c++
-
-    namespace demo{
-        void foo(); // 1
-        namespace sub {
-            void foo(){/* 2 */}; // 2 (with definition)
-        }
+```c++
+namespace demo{
+    void foo(); // 1
+    namespace sub {
+        void foo(){/*2*/}; // 2 (with definition)
     }
-    namespace demo {
-        void bar(){
-            foo(); // 1
-            sub::foo(); // 2
-        }
+}
+namespace demo {
+    void bar(){
+        foo(); // 1
+        sub::foo(); // 2
     }
+}
 
-    void demo::foo(/* 1 */); // definition
+void demo::foo(/*1*/); // definition
 
-    int main(){
-        using demo::sub::foo;
-        foo(); //2
-        {
-            using namespace demo::sub;
-            foo(); // 2
-        }
-        demo::foo(); //1
-        demo::bar();
+int main(){
+    using demo::sub::foo;
+    foo(); //2
+    {
+        using namespace demo::sub;
+        foo(); // 2
     }
+    demo::foo(); //1
+    demo::bar();
+}
+```
 
+!!! tipp
 
-Prüfungstipp:
     using std::string; // aber nicht in header files!
     string s{"no std:: prefix required...."}
 
@@ -79,11 +78,11 @@ Prüfungstipp:
 
 
 Anonymous Namespace:
+
 * Nur für Spezialfälle (und legacy)
 * Um code zu verstecken
 
-.. code:: c++
-
+```c++
     #include <iostream>
     namespace {
         void doit(){
@@ -95,85 +94,90 @@ Anonymous Namespace:
         print(); // print is called
     }
 
+```
 Alternativ: special case: inline namespace
 
-References
-----------
+## References
 
 Pass by value: `f(type par)`
+
 Pass by const-ref.: `f(type const &par)`
+
 Pass by reference: `f(type &par)`
 
 return by value: `type f()`
+
 return by reference: `type &f();` `type const &g()`
 
 *Vorsicht: dangeling references - sprich referenz auf lokale variable*
 
 Referenzen nur dann zurückgeben, wenn auch argument - bzw. garantierter laufzeit!
 
-
 const reference? bedeutet: wir dürfen den Wert nicht verändern!
+
 keine null reference!
 
 **lvalue reference**: Bsp. `std::ostream &out` - für parameter mit side effects
+
 **const references**: `std::vector<int> const &v` für grosse parameter ohne seiteneffekte
+
 **rvalue references**: `std::vector<int> &&` für move und perfect forwarding?!
 
 
-.. code::
+```c++
+std::ostream &print(std::ostream &out){
+    return out;
+}
+```
 
-    std::ostream &print(std::ostream &out){
-        return out;
-    }
-
-.. seealso::
+!!! seealso
 
     Folien #20ff
 
 
-Function Overloading
---------------------
+## Function Overloading
 
 Der Compiler entscheided, welche signatur verwendet wird!
 
-.. code:: c++
-
-    void incr(int& var);
-    void incr(int& var, unsigned delta);
+```c++
+void incr(int& var);
+void incr(int& var, unsigned delta);
+```
 
 Typ muss identisch sein
 
 **Overloading Ambiguity**
 
-.. code:: c++
+```c++
+int factorial(int n);
+int factorial(double n);
 
-     int factorial(int n);
-     int factorial(double n);
-
-     factorial(10u); // ambiguous
-     factorial(1e1l); // ambiguous
+factorial(10u); // ambiguous
+factorial(1e1l); // ambiguous
+```
 
 Folge: Compilerfehler!
 
-Default Arguments
-.................
+### Default Arguments
+
 Bei der definition! (keine repetition!)
 
-.. code::
+```c++
+void incr(int& var, unsigned delta=1);
+```
 
-    void incr(int& var, unsigned delta=1);
+## Functions as Parameters
 
+```c++
+void printfunc(double x, double f(double)){
+    std::cout << x << ' ' << f(x) << '\n';
+}
+```
 
-Functions as Parameters
-------------------------
+besser:
 
-.. code:: c++
-
-    void printfunc(double x, double f(double)){
-        std::cout << x << ' ' << f(x) << '\n';
-    }
-
-    besser:
-    void printfunc(double x, std::function<double(double)> f){
-        std::cout << x << ' ' << f(x) << '\n';
-    }
+```c++
+void printfunc(double x, std::function<double(double)> f){
+    std::cout << x << ' ' << f(x) << '\n';
+}
+```

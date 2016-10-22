@@ -1,22 +1,21 @@
-ZEN of this C++ Lecutre
-========================
+# ZEN of this C++ Lecutre
 
 * Do NOT use global variables! (eg. std::cout) throughout your code
 * Test ALL THE code
 * Put everything into a library and call it from a "dumb" executable project
 * Use const when ever possible
     * Also on member functions!
-      .. code:: c++
-
-        struct Hello {
-            void sayHello() const;
-        };
+      ```c++
+      struct Hello {
+          void sayHello() const;
+      };      
+      ```
     * Const to the right:
-    .. code:: c++
-
+        ```c++
         int const theAnswer{42}; // Read: set 42 as theAnswer of constant type int
+        ```
     * const means constant and ≠ final in Java (where the object can change)
-    * Gehört zur "natur"/Signatur einer Funktion (also bsp. in Klasse) 
+    * Gehört zur "natur"/Signatur einer Funktion (also bsp. in Klasse)
 * Define variables **as local as possible**
 
 
@@ -37,5 +36,6 @@ General C++ Zen
 Undifined Behaviour
 --------------------
 * Mehrere funktionsaufrufe als Parameter für einen Funtionsaufruf:
-  .. code:: c++
+    ```c++
     foo(baa(1), baa(2), baa(3));
+    ```

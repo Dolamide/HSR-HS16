@@ -181,7 +181,7 @@ Wenn ein Member static ist kann er nicht auch const sein. Das `this` Object ist 
 Date::isLeapYear(2016);
 ```
 
-# Operator overloading
+## Operator overloading
 
 Wie in C# ist Operator-Overloading in C++ möglich.
 
@@ -192,7 +192,7 @@ Mächtig, sollte aber nur dann verwendet werden, wenn sinnvoll und "natürlich".
 
 `::`, `.*`, `.` und `?:` können nicht überladen werden.s
 
-## Freies Operator-Overloading
+### Freies Operator-Overloading
 Im Header-File:
 ```c++
 class Date { int year, month, day;};
@@ -207,7 +207,7 @@ inline bool operator<(Date const & lhs, Date const & rhs)
 Problem:
 * Member Variablen von Date sind `private` - daher kann so nicht darauf zugegriffen werden.
 
-## Member Operator-Overloading
+### Member Operator-Overloading
 Im Header-File:
 
 ```c++
@@ -225,7 +225,7 @@ class Date {
 Problem:
 * Nur ein Parameter (Linke Seite) - kann zu unnatürlichem Verhalten führen.
 
-## Best Practice
+### Best Practice
 Nur einmal Implementieren und dann mehrfach verwenden
 ```c++
 class Date {
@@ -252,7 +252,7 @@ inline bool operator!=(Date const & lhs, Date const & rhs) {
 Noch besser mit Boost.
 
 
-## Tipps
+### Tipps
 Die Implementierung ist sehr aufwändig und fehleranfällig. Darum gibt es in der Stdlib ein Hilfskonstrukt `std::tie`.
 
 ```c++
@@ -265,7 +265,7 @@ bool Date::operator<(Date const & rhs) const {
 Aber auch so müssen viele Operatoren überschrieben werden - darum können Libraries wie Boost verwendet werden, welche das übernehmen.
 
 
-## Best pracice mit shift Operatoren & Streams
+### Best pracice mit shift Operatoren & Streams
 
 Problem: Wenn implementierung als Member ist das Verhalten unnatürlich:
 
