@@ -1,0 +1,19 @@
+version: 1.0
+
+site_name: AD2 Dokumentation
+
+pages:
+    - index.md
+    - search-trees.md
+    - sorting.md
+    - text-processing.md
+    - dynamic-programming.md
+    - graphs.md
+    - exam.md
+    - lernplan.md
+
+assets:
+    - images/
+
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/demo/raphi_theme/
