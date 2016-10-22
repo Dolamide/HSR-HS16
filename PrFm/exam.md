@@ -1,17 +1,13 @@
-Prüfungsdetails
-===============
+# Prüfungsdetails
 
 
-Erlaubte Hilfsmittel
----------------------
+## Erlaubte Hilfsmittel
 
 * closed book
 * one double sided A4 "cheat sheet"
 
-Aufgabentypen
--------------
+## Aufgabentypen
 
-Prolog
-.....
+### Prolog
 
 * Learn prolog: Exercises chapter 1 & 2 (especially 2.3 and 2.4)

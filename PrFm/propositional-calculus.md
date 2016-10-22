@@ -1,25 +1,25 @@
-Propositional Calculus (PC)
-===========================
+# Propositional Calculus (PC)
 
-Proposition vs. Predicate
---------------------------
+!!! todo
+    * Latexify all Formulas
 
-**Proposition**
-    A proposition is a blackbox with no input and either true or false (Eg. ``B``)
+## Proposition vs. Predicate
 
-**Predicate**
-    The outcome of a Predicate *depends on the input* and can therefore be
-    both, true or false. (Eg. ``B(x)`` or ``A ∧ B => B ∧ A``)
 
-.. image:: images/propositional_calc_sequent.png
+Proposition
+: A proposition is a blackbox with no input and either true or false (Eg. ``B``)
+
+Predicate
+: The outcome of a Predicate *depends on the input* and can therefore be both, true or false. (Eg. ``B(x)`` or ``A ∧ B => B ∧ A``)
+
+![](images/propositional_calc_sequent.png)
 
 H is a **set of predicates**.
 
 ``H, P``  is basically the same. It's a set of predicates containing all elements of H and P, but
 only P is relevant for the proof.
 
-basicPC
--------
+## basicPC
 
 ``P ::=  ⊥ | ¬ P | P ∧ P``
 
@@ -30,19 +30,17 @@ This is the abstract syntax - the concete Syntax does also contain ``(`` and ``)
 eg, ``not (A and B)``
 
 
-Proof Rule Schemas
-------------------
+## Proof Rule Schemas
+
 Proof rule schema can be initiated.
 
-**mata variables**
-    Variables in the Proof Schames. They can be instantiated with
-    any value.
+meta variables
+: Variables in the Proof Schames. They can be instantiated with any value.
 
-.. image:: images/proof-rule-schames.png
+![](images/proof-rule-schames.png)
 
+## PC
 
-PC
----
 PC is basicPC + "syntactic Sugar". It does not provide more power, but convenience.
 
 ``P ::=  ⊥ | T | ¬ P | P ∧ P | P ∨ P | P ⇒ P | P ⇔ P``
@@ -57,27 +55,23 @@ PC is basicPC + "syntactic Sugar". It does not provide more power, but convenien
 
 **binding strength**: ``¬``, ``∧``, ``∨``, ``⇒``, ``⇔``
 
-.. note::
+!!! note
 
     Quantification cannot be expressed in PC
 
-Proof Rules of PC
------------------
+## Proof Rules of PC
 
-
-.. image:: images/sumary-pc.png
-
-(BasicPC in Green)
+![](images/sumary-pc.png)
+: BasicPC in Green
 
 Read ∧-goal like this:
 "In order to prove that H entails P and Q it is sufficient to prove that H entails P and H entails Q"
 
-Approach
----------
+## Approach
 
-#. Model argument as sequent in PC
-#. construct a proof sequent #16 -> Pattern matching + syntactic rewriting
+1. Model argument as sequent in PC
+2. construct a proof sequent #16 -> Pattern matching + syntactic rewriting
 
-.. seealso::
+!!! seealso
 
-    Levels of Reasoning, Skript #10
+    Levels of Reasoning, Skript Page 10

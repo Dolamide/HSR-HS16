@@ -1,8 +1,6 @@
-Lernplan
-========
+# Lernplan
 
-Übersicht
----------
+## Übersicht
 
 Was ich kann:
 
