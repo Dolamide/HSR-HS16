@@ -16,6 +16,7 @@ ZEN of this C++ Lecutre
 
         int const theAnswer{42}; // Read: set 42 as theAnswer of constant type int
     * const means constant and ≠ final in Java (where the object can change)
+    * Gehört zur "natur"/Signatur einer Funktion (also bsp. in Klasse) 
 * Define variables **as local as possible**
 
 

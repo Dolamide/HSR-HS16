@@ -46,6 +46,15 @@ Keine Meta-info verfügbar (kein stack trace usw.)
 In <stdexcept> der stdlib gibt es eineige vordefinierte Exceptions, die abgefangen werden können.
 Bsp: logic_error, invalid_argument, out_of_range - bsp. `throw std::invalid_argument{"too small"};`
 
+.. code:: c++
+
+    try {
+        throw std::logic_error("That is not logical!")
+    } catch(std::logic_error const & e){
+        std::cout << e.what()
+    }
+
+
 
 Testing for Exceptions
 ......................

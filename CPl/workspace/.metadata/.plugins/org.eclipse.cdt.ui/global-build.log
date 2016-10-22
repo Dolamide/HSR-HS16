@@ -1255,3 +1255,370 @@ Invoking: GCC C++ Linker
 g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
 Finished building target: Testat
  
+16:42:53 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/Test.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
+Finished building: ../src/Test.cpp
+ 
+Building file: ../src/main.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cpp"
+Finished building: ../src/main.cpp
+ 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+../src/sevensegment.cpp: In lambda function:
+../src/sevensegment.cpp:41:16: error: invalid use of incomplete type ‘std::ostringstream {aka class std::__cxx11::basic_ostringstream<char>}’
+   out << buffer.str();
+                ^
+In file included from ../src/sevensegment.cpp:1:0:
+/usr/include/c++/6.2.1/iosfwd:104:11: note: declaration of ‘std::ostringstream {aka class std::__cxx11::basic_ostringstream<char>}’
+     class basic_ostringstream;
+           ^~~~~~~~~~~~~~~~~~~
+../src/sevensegment.cpp: In instantiation of ‘do_print(std::__cxx11::string, std::ostream&, unsigned int)::<lambda(auto:1)> [with auto:1 = std::vector<std::__cxx11::basic_string<char> >]’:
+/usr/include/c++/6.2.1/bits/stl_algo.h:3769:5:   required from ‘_Funct std::for_each(_IIter, _IIter, _Funct) [with _IIter = __gnu_cxx::__normal_iterator<const std::vector<std::__cxx11::basic_string<char> >*, std::vector<std::vector<std::__cxx11::basic_string<char> > > >; _Funct = do_print(std::__cxx11::string, std::ostream&, unsigned int)::<lambda(auto:1)>]’
+../src/sevensegment.cpp:44:3:   required from here
+../src/sevensegment.cpp:21:68: warning: narrowing conversion of ‘(((counter == 2) || (counter == 4)) ? ((unsigned int)scale) : 1u)’ from ‘unsigned int’ to ‘int’ inside { } [-Wnarrowing]
+   const int repetitions {(counter == 2 || counter == 4) ? scale : 1};
+                                                                    ^
+../src/sevensegment.cpp:24:29: error: ‘std::ostringstream buffer’ has incomplete type
+   std::ostringstream buffer{};
+                             ^
+make: *** [src/subdir.mk:32: src/sevensegment.o] Error 1
+16:43:22 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+../src/sevensegment.cpp: In instantiation of ‘do_print(std::__cxx11::string, std::ostream&, unsigned int)::<lambda(auto:1)> [with auto:1 = std::vector<std::__cxx11::basic_string<char> >]’:
+/usr/include/c++/6.2.1/bits/stl_algo.h:3769:5:   required from ‘_Funct std::for_each(_IIter, _IIter, _Funct) [with _IIter = __gnu_cxx::__normal_iterator<const std::vector<std::__cxx11::basic_string<char> >*, std::vector<std::vector<std::__cxx11::basic_string<char> > > >; _Funct = do_print(std::__cxx11::string, std::ostream&, unsigned int)::<lambda(auto:1)>]’
+../src/sevensegment.cpp:45:3:   required from here
+../src/sevensegment.cpp:22:68: warning: narrowing conversion of ‘(((counter == 2) || (counter == 4)) ? ((unsigned int)scale) : 1u)’ from ‘unsigned int’ to ‘int’ inside { } [-Wnarrowing]
+   const int repetitions {(counter == 2 || counter == 4) ? scale : 1};
+                                                                    ^
+Finished building: ../src/sevensegment.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+Finished building target: Testat
+ 
+16:44:18 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+../src/sevensegment.cpp: In instantiation of ‘do_print(std::__cxx11::string, std::ostream&, unsigned int)::<lambda(auto:1)> [with auto:1 = std::vector<std::__cxx11::basic_string<char> >]’:
+/usr/include/c++/6.2.1/bits/stl_algo.h:3769:5:   required from ‘_Funct std::for_each(_IIter, _IIter, _Funct) [with _IIter = __gnu_cxx::__normal_iterator<const std::vector<std::__cxx11::basic_string<char> >*, std::vector<std::vector<std::__cxx11::basic_string<char> > > >; _Funct = do_print(std::__cxx11::string, std::ostream&, unsigned int)::<lambda(auto:1)>]’
+../src/sevensegment.cpp:44:3:   required from here
+../src/sevensegment.cpp:39:68: warning: narrowing conversion of ‘(((counter == 1) || (counter == 3)) ? ((unsigned int)scale) : 1u)’ from ‘unsigned int’ to ‘int’ inside { } [-Wnarrowing]
+   const int repetitions {(counter == 1 || counter == 3) ? scale : 1};
+                                                                    ^
+Finished building: ../src/sevensegment.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+Finished building target: Testat
+ 
+16:45:24 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+../src/sevensegment.cpp: In function ‘void do_print(std::__cxx11::string, std::ostream&, unsigned int)’:
+../src/sevensegment.cpp:19:22: error: narrowing conversion of ‘-1’ from ‘int’ to ‘unsigned int’ inside { } [-Wnarrowing]
+  unsigned counter {-1};
+                      ^
+../src/sevensegment.cpp: In instantiation of ‘do_print(std::__cxx11::string, std::ostream&, unsigned int)::<lambda(auto:1)> [with auto:1 = std::vector<std::__cxx11::basic_string<char> >]’:
+/usr/include/c++/6.2.1/bits/stl_algo.h:3769:5:   required from ‘_Funct std::for_each(_IIter, _IIter, _Funct) [with _IIter = __gnu_cxx::__normal_iterator<const std::vector<std::__cxx11::basic_string<char> >*, std::vector<std::vector<std::__cxx11::basic_string<char> > > >; _Funct = do_print(std::__cxx11::string, std::ostream&, unsigned int)::<lambda(auto:1)>]’
+../src/sevensegment.cpp:44:3:   required from here
+../src/sevensegment.cpp:40:25: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+   for (int var = 0; var < repetitions; ++var) {
+                     ~~~~^~~~~~~~~~~~~
+make: *** [src/subdir.mk:32: src/sevensegment.o] Error 1
+16:45:37 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+../src/sevensegment.cpp: In function ‘void do_print(std::__cxx11::string, std::ostream&, unsigned int)’:
+../src/sevensegment.cpp:19:22: error: narrowing conversion of ‘-1’ from ‘int’ to ‘unsigned int’ inside { } [-Wnarrowing]
+  unsigned counter {-1};
+                      ^
+make: *** [src/subdir.mk:32: src/sevensegment.o] Error 1
+16:45:45 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+Finished building: ../src/sevensegment.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+Finished building target: Testat
+ 
+16:45:56 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+Finished building: ../src/sevensegment.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+Finished building target: Testat
+ 
+16:47:29 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+../src/sevensegment.cpp: In lambda function:
+../src/sevensegment.cpp:42:27: error: no matching function for call to ‘begin(std::ostream&)’
+      std::fill_n(begin(out), repetitions, out);
+                           ^
+In file included from /usr/include/c++/6.2.1/string:51:0,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/bits/range_access.h:105:37: note: candidate: template<class _Tp> const _Tp* std::begin(const std::valarray<_Tp>&)
+   template<typename _Tp> const _Tp* begin(const valarray<_Tp>&);
+                                     ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:105:37: note:   template argument deduction/substitution failed:
+../src/sevensegment.cpp:42:27: note:   ‘std::ostream {aka std::basic_ostream<char>}’ is not derived from ‘const std::valarray<_Tp>’
+      std::fill_n(begin(out), repetitions, out);
+                           ^
+In file included from /usr/include/c++/6.2.1/string:51:0,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/bits/range_access.h:104:31: note: candidate: template<class _Tp> _Tp* std::begin(std::valarray<_Tp>&)
+   template<typename _Tp> _Tp* begin(valarray<_Tp>&);
+                               ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:104:31: note:   template argument deduction/substitution failed:
+../src/sevensegment.cpp:42:27: note:   ‘std::ostream {aka std::basic_ostream<char>}’ is not derived from ‘std::valarray<_Tp>’
+      std::fill_n(begin(out), repetitions, out);
+                           ^
+In file included from /usr/include/c++/6.2.1/string:51:0,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/bits/range_access.h:87:5: note: candidate: template<class _Tp, long unsigned int _Nm> constexpr _Tp* std::begin(_Tp (&)[_Nm])
+     begin(_Tp (&__arr)[_Nm])
+     ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:87:5: note:   template argument deduction/substitution failed:
+../src/sevensegment.cpp:42:27: note:   mismatched types ‘_Tp [_Nm]’ and ‘std::ostream {aka std::basic_ostream<char>}’
+      std::fill_n(begin(out), repetitions, out);
+                           ^
+In file included from /usr/include/c++/6.2.1/string:51:0,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/bits/range_access.h:58:5: note: candidate: template<class _Container> decltype (__cont.begin()) std::begin(const _Container&)
+     begin(const _Container& __cont) -> decltype(__cont.begin())
+     ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:58:5: note:   template argument deduction/substitution failed:
+/usr/include/c++/6.2.1/bits/range_access.h: In substitution of ‘template<class _Container> decltype (__cont.begin()) std::begin(const _Container&) [with _Container = std::basic_ostream<char>]’:
+../src/sevensegment.cpp:42:27:   required from here
+/usr/include/c++/6.2.1/bits/range_access.h:58:56: error: ‘const class std::basic_ostream<char>’ has no member named ‘begin’; did you mean ‘beg’?
+     begin(const _Container& __cont) -> decltype(__cont.begin())
+                                                 ~~~~~~~^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:48:5: note: candidate: template<class _Container> decltype (__cont.begin()) std::begin(_Container&)
+     begin(_Container& __cont) -> decltype(__cont.begin())
+     ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:48:5: note:   template argument deduction/substitution failed:
+/usr/include/c++/6.2.1/bits/range_access.h: In substitution of ‘template<class _Container> decltype (__cont.begin()) std::begin(_Container&) [with _Container = std::basic_ostream<char>]’:
+../src/sevensegment.cpp:42:27:   required from here
+/usr/include/c++/6.2.1/bits/range_access.h:48:50: error: ‘class std::basic_ostream<char>’ has no member named ‘begin’; did you mean ‘beg’?
+     begin(_Container& __cont) -> decltype(__cont.begin())
+                                           ~~~~~~~^~~~~
+In file included from /usr/include/c++/6.2.1/bits/range_access.h:36:0,
+                 from /usr/include/c++/6.2.1/string:51,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/initializer_list:89:5: note: candidate: template<class _Tp> constexpr const _Tp* std::begin(std::initializer_list<_Tp>)
+     begin(initializer_list<_Tp> __ils) noexcept
+     ^~~~~
+/usr/include/c++/6.2.1/initializer_list:89:5: note:   template argument deduction/substitution failed:
+../src/sevensegment.cpp:42:27: note:   ‘std::basic_ostream<char>’ is not derived from ‘std::initializer_list<_Tp>’
+      std::fill_n(begin(out), repetitions, out);
+                           ^
+make: *** [src/subdir.mk:32: src/sevensegment.o] Error 1
+16:48:17 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+../src/sevensegment.cpp: In lambda function:
+../src/sevensegment.cpp:42:27: error: no matching function for call to ‘begin(std::ostream&)’
+      std::fill_n(begin(out), repetitions, buffer.str());
+                           ^
+In file included from /usr/include/c++/6.2.1/string:51:0,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/bits/range_access.h:105:37: note: candidate: template<class _Tp> const _Tp* std::begin(const std::valarray<_Tp>&)
+   template<typename _Tp> const _Tp* begin(const valarray<_Tp>&);
+                                     ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:105:37: note:   template argument deduction/substitution failed:
+../src/sevensegment.cpp:42:27: note:   ‘std::ostream {aka std::basic_ostream<char>}’ is not derived from ‘const std::valarray<_Tp>’
+      std::fill_n(begin(out), repetitions, buffer.str());
+                           ^
+In file included from /usr/include/c++/6.2.1/string:51:0,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/bits/range_access.h:104:31: note: candidate: template<class _Tp> _Tp* std::begin(std::valarray<_Tp>&)
+   template<typename _Tp> _Tp* begin(valarray<_Tp>&);
+                               ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:104:31: note:   template argument deduction/substitution failed:
+../src/sevensegment.cpp:42:27: note:   ‘std::ostream {aka std::basic_ostream<char>}’ is not derived from ‘std::valarray<_Tp>’
+      std::fill_n(begin(out), repetitions, buffer.str());
+                           ^
+In file included from /usr/include/c++/6.2.1/string:51:0,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/bits/range_access.h:87:5: note: candidate: template<class _Tp, long unsigned int _Nm> constexpr _Tp* std::begin(_Tp (&)[_Nm])
+     begin(_Tp (&__arr)[_Nm])
+     ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:87:5: note:   template argument deduction/substitution failed:
+../src/sevensegment.cpp:42:27: note:   mismatched types ‘_Tp [_Nm]’ and ‘std::ostream {aka std::basic_ostream<char>}’
+      std::fill_n(begin(out), repetitions, buffer.str());
+                           ^
+In file included from /usr/include/c++/6.2.1/string:51:0,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/bits/range_access.h:58:5: note: candidate: template<class _Container> decltype (__cont.begin()) std::begin(const _Container&)
+     begin(const _Container& __cont) -> decltype(__cont.begin())
+     ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:58:5: note:   template argument deduction/substitution failed:
+/usr/include/c++/6.2.1/bits/range_access.h: In substitution of ‘template<class _Container> decltype (__cont.begin()) std::begin(const _Container&) [with _Container = std::basic_ostream<char>]’:
+../src/sevensegment.cpp:42:27:   required from here
+/usr/include/c++/6.2.1/bits/range_access.h:58:56: error: ‘const class std::basic_ostream<char>’ has no member named ‘begin’; did you mean ‘beg’?
+     begin(const _Container& __cont) -> decltype(__cont.begin())
+                                                 ~~~~~~~^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:48:5: note: candidate: template<class _Container> decltype (__cont.begin()) std::begin(_Container&)
+     begin(_Container& __cont) -> decltype(__cont.begin())
+     ^~~~~
+/usr/include/c++/6.2.1/bits/range_access.h:48:5: note:   template argument deduction/substitution failed:
+/usr/include/c++/6.2.1/bits/range_access.h: In substitution of ‘template<class _Container> decltype (__cont.begin()) std::begin(_Container&) [with _Container = std::basic_ostream<char>]’:
+../src/sevensegment.cpp:42:27:   required from here
+/usr/include/c++/6.2.1/bits/range_access.h:48:50: error: ‘class std::basic_ostream<char>’ has no member named ‘begin’; did you mean ‘beg’?
+     begin(_Container& __cont) -> decltype(__cont.begin())
+                                           ~~~~~~~^~~~~
+In file included from /usr/include/c++/6.2.1/bits/range_access.h:36:0,
+                 from /usr/include/c++/6.2.1/string:51,
+                 from /usr/include/c++/6.2.1/bits/locale_classes.h:40,
+                 from /usr/include/c++/6.2.1/bits/ios_base.h:41,
+                 from /usr/include/c++/6.2.1/ios:42,
+                 from /usr/include/c++/6.2.1/ostream:38,
+                 from /usr/include/c++/6.2.1/iterator:64,
+                 from ../src/sevensegment.cpp:2:
+/usr/include/c++/6.2.1/initializer_list:89:5: note: candidate: template<class _Tp> constexpr const _Tp* std::begin(std::initializer_list<_Tp>)
+     begin(initializer_list<_Tp> __ils) noexcept
+     ^~~~~
+/usr/include/c++/6.2.1/initializer_list:89:5: note:   template argument deduction/substitution failed:
+../src/sevensegment.cpp:42:27: note:   ‘std::basic_ostream<char>’ is not derived from ‘std::initializer_list<_Tp>’
+      std::fill_n(begin(out), repetitions, buffer.str());
+                           ^
+make: *** [src/subdir.mk:32: src/sevensegment.o] Error 1
+16:48:27 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+Finished building: ../src/sevensegment.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+Finished building target: Testat
+ 
+16:50:35 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+Finished building: ../src/sevensegment.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+Finished building target: Testat
+ 
+16:51:47 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/Test.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
+Finished building: ../src/Test.cpp
+ 
+Building file: ../src/main.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.cpp"
+Finished building: ../src/main.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+Finished building target: Testat
+ 
+16:52:35 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+make: Nothing to be done for 'all'.
+16:55:46 **** Incremental Build of configuration Debug for project Testat ****
+make all 
+Building file: ../src/Test.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/Test.d" -MT"src/Test.o" -o "src/Test.o" "../src/Test.cpp"
+Finished building: ../src/Test.cpp
+ 
+Building file: ../src/sevensegment.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -I"/home/rzi/HSR/module/CPl/workspace/Testat/cute" -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"src/sevensegment.d" -MT"src/sevensegment.o" -o "src/sevensegment.o" "../src/sevensegment.cpp"
+Finished building: ../src/sevensegment.cpp
+ 
+Building target: Testat
+Invoking: GCC C++ Linker
+g++  -o "Testat"  ./src/Test.o ./src/calc.o ./src/main.o ./src/pocketcalculator.o ./src/sevensegment.o   
+./src/main.o: In function `main':
+/home/rzi/HSR/module/CPl/workspace/Testat/Debug/../src/main.cpp:6: multiple definition of `main'
+./src/Test.o:/home/rzi/HSR/module/CPl/workspace/Testat/Debug/../src/Test.cpp:352: first defined here
+collect2: error: ld returned 1 exit status
+make: *** [makefile:47: Testat] Error 1

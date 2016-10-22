@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <sstream>
 
 #include "sevensegment.h"
 
@@ -14,28 +15,32 @@ std::vector<std::vector<std::string>> const DIGITS {
 		{" - ", "   ", " - ", " - ", "   ", " - ", " - ", "   ", " - ", " - ", " - ", "   ", " - "},
 	};
 
-void do_print(std::string s, std::ostream &out, unsigned const scale){
-	int counter {0};
-	for_each(cbegin(DIGITS), cend(DIGITS), [s, &out, &counter, scale](auto line){
-		++counter;
-		const int repetitions {(counter == 2 || counter == 4) ? scale : 1};
-		for (int var = 0; var < repetitions; ++var) {
-			for_each(cbegin(s), cend(s), [line, &out, &counter, scale](auto x){
-				switch(x){
-					case 'E':
-						out << line.at(10);
-						break;
-					case 'r':
-						out << line.at(11);
-						break;
-					case 'o':
-						out << line.at(12);
-						break;
-					default:
-						int num{x - '0'};
-						out << line.at(num);
-				}
-			});
+void doPrint(std::string s, std::ostream &out, unsigned const scale){
+	unsigned index {0};
+	for_each(cbegin(DIGITS), cend(DIGITS), [s, &out, &index, scale](auto line){
+		++index;
+
+		std::ostringstream buffer{};
+		for_each(cbegin(s), cend(s), [line, &buffer, &index, scale](auto x){
+			switch(x){
+				case 'E':
+					buffer << line.at(10);
+					break;
+				case 'r':
+					buffer << line.at(11);
+					break;
+				case 'o':
+					buffer << line.at(12);
+					break;
+				default:
+					int num{x - '0'};
+					buffer << line.at(num);
+			}
+		});
+
+		const unsigned repetitions {(index == 2u || index == 4u) ? scale : 1u};
+		for (unsigned var = 0; var < repetitions; ++var) {
+			out << buffer.str();
 			out << '\n';
 		}
 	});
@@ -43,7 +48,7 @@ void do_print(std::string s, std::ostream &out, unsigned const scale){
 
 void printError(std::ostream &out, unsigned const scale){
 	std::string s{"Error"};
-	do_print(s, out, scale);
+	doPrint(s, out, scale);
 }
 
 void printLargeNumber(int const i, std::ostream &out, unsigned const scale, unsigned const maxWidth){
@@ -51,7 +56,7 @@ void printLargeNumber(int const i, std::ostream &out, unsigned const scale, unsi
 	if(maxWidth > 0 && s.length() > maxWidth){
 		printError(out, scale);
 	}else{
-		do_print(s, out, scale);
+		doPrint(s, out, scale);
 	}
 }
 
