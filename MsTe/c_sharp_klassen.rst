@@ -1,5 +1,15 @@
 Klassen & Structs
 ==================
+!!! todo
+
+    Recap class:
+
+    TODO: Flow chart zu vererbung, versiegeln, interfaces/abstrakte klasse,
+    * new: dynamic dispatch wird unterbrochen
+
+    von oben nach aben ab kasse bis zur spezifisten methode
+
+    Übungen: Repetition (archiv)
 
 Default Werte bei der Initialisierung
 

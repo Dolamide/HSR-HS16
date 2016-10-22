@@ -16,6 +16,7 @@ nicht mehr über eine Root-Referenz referenziert werden.
 * Aufuf über System.GC oder wenn:
     * System zu wenig Arbeisspeicher hat
     * Spezifischer (dynamischer) Schwellwert überschritten wird
+    * Falls Anwendung nicht aktiv (nicht deterministisch)
 
 
 .. image:: images/gc_overview.png
@@ -36,8 +37,12 @@ da wird wohl am meisten Memory frei.
 Finalization
 -------------
 
-Der Destruktor wird Asynchron in separatem Thread ausgeführt.
--> Viel effizienter, wenn kein Destruktor / Finalizer vorhanden sind
+GC gibt Speicher von nicht mehr referenzierten Objekte frei - nicht aber *Referenzen auf Fremdresourcen*
+wie beispielsweise Datenbank-Verbindungen oder geöffnete Datein. Diese werden manuell verwaltet - müssen
+also auch manuell aufgeräumnt werden.
+
+Die Aufrufreihenfolge der Destruktoren ist genau umgekehrt zu der der Konstruktor - also von der
+Untersten zur Obersten Klasse..
 
 .. code:: c#
 
@@ -45,66 +50,68 @@ Der Destruktor wird Asynchron in separatem Thread ausgeführt.
         ~MyClass() { /* ... */ }
     }
 
+!!! interna
+    Der Compiler übersetzt den Destruktor in eine methode `Finalize` um und markiert die Klasse als "finalisierungsbedürftig".
+    Trifft der Garbagecollector nun auf ein verwaistes und so markiertes Objekt, so schiebt er es in eine Warteschlage, welche
+    *in einem separaten Thread* abgearbeitet wird. Das betroffene Objekt wird dann erst später vom GC abgeräumt.
+    Dies ist nicht effizient - daher sollte der Destruktor nur verwendet werden, wenn wirklich nötig.
+
 Deterministic Finalization
 ---------------------------
 
-Der programmierer kann unmanaged Ressourcen freigeben.
+Der Destruktor hat zwei entschidene Nachteile:
 
-.. code:: c#
+1. Es ist nicht exakt vorhersagbar, wann der Destruktor ausgefürt wird
+2. Der Destruktor ist nicht explizit aufrufbar
 
-    public class DataAccess : IDisposable
+Der zweite Punkt ist speziell wichtig, da man wertvolle Ressourcen so schnell wie möglich freigegeben
+möchte und nicht erst warten möchte bis kein Speicher mehr vorhanden ist und endlich der GC aufräumt.
+
+Darum wird eine spezielle Methode implementiert, die diese Resourcen aufräumt. Dies könnte eine beliebige
+Methode sein - nach C#-Konvention implementiert man aber das IDisposable-Interface und überschreibt deren Methode `Dispose`.
+
+Damit sich aber Destruktor und die Disposable-Methode nicht in die Quere kommen muss deren Verhalten abgestimmt werden.
+Dafür gibt es das Dispose-Pattern:
+
+```c#
+~DataAccess() { Dispose(false); }
+public void Dispose()
+{
+    Dispose(true);
+    System.GC.SuppressFinalize(this);
+}
+
+protected virtual void Dispose(bool disposing)
+{
+    if (disposing)
     {
-        private DbConnection connection;
-        public DataAccess()
-        {
-            connection = new SqlConnection();
-        }
-
-        ~DataAccess()
-        {
-            connection.Dispose();
-        }
-
-        public void Dispose()
-        {
-            connection.Dispose();
-            // Call base.Dispose(); if necessary
-            System.GC.SuppressFinalize(this);
-        }
+            if (resource != null)
+            {
+                // Managed = objekte, die auch Dispose haben...
+                resource.Dispose();
+            }
     }
+    // Lokale dinge aufräumen...
+    foo = null;
+    ReleaseBuffer(buffer);
+}
+```
 
-alternativ mit dem using Statement (analog try-with-resources in Java):
+Das Pattern löst folgende Probleme:
 
-.. code:: c#
+* Fremdresourcen sollten von Dispose oder spätestens vom Destruktor freigegeben werden
+* Nach dem Dispose aufgerufen wurde muss der Finalisierungsprozess das Gleiche nicht noch einmal machen.
+* Der Destruktor darf nur externe, nicht verwaltete Ressourcen freigeben.
+* Dispose muss alle Referenztypen (durch setzen auf null oder Aufruf von Dispose) freigenen.
+    * Vorsicht: Im Destruktor ist nicht garantiert, dass alle Referenztypen noch erreichbar sind. bei manuellem Dispose Aufruf dagegen schon!
 
-    using (DataAccess dataAccess = new DataAccess()) {
-        /* ... */
-    }
+Alternativ (für wenige unmanaged Resourcen) kann mit dem using Statement gearbeitet werden (analog try-with-resources in Java):
 
-C# Dispose Pattern
-
-.. code:: c#
-
-    ~DataAccess() { Dispose(false); }
-    public void Dispose()
-    {
-        Dispose(true);
-        System.GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-                if (connection != null)
-                {
-                    // Managed = objekte, die auch Dispose haben...
-                    connection.Dispose();
-                }
-        }
-        // Lokale dinge aufräumen...
-    }
-
+```c#
+using (DataAccess dataAccess = new DataAccess()) {
+    /* ... */
+}
+```
 
 Object Pinning
 --------------

@@ -13,13 +13,10 @@ Aufgabentypen
 
 * Bei Zeit und Bedarf: Übung 2 - Aufgabe 2 (Rekursion)
 
-Typ A
-.....
+Überschreiben
+...............
 
-* Übung X/ Aufgabe Z
-* Unterrichtsnotizen vom XY
-* Verweis auf Lösungsschema in diesem Dokument
-
+Car - welche methode wird ausgeführt.
 
 Boxing / Referenzen
 ...................
