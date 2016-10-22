@@ -116,14 +116,50 @@ Diagramme
 **<<include>>**: "Sub function" (authentifiziere Benutzer)
 
 **<<extend>>**: "Erweiterung" - extension points müssen definiert werden (vermeinden wenn möglich!). Dann Sinnvoll, wenn Basis Case später nicht verändert werden darf
+    -> Muss de-fakto nie verwendet werden..
 
 Nichfunktionale Anforderungen
 -----------------------------
 
+Nichtfunktionale Anforderungen gehen oft vergessen?
+
+* Informatiker denken in erster Linie an Implementation - nicht an Qualität
+* Betrachtung aus kundensicht um NFA überhaupt zu shene...
+
+Softwarequalität
+: Unter Softwarequalität versteht man die Gesamtheit der Merkmale und  Merkmalswerte eines Softwareprodukts, die sich auf dessen Eignung  beziehen, festgelegte oder vorausgesetzte Erfordernisse zu erfüllen
+: [ISO9126d]
+
+Warum sind nichtfunktionale wichtig?
+* Hat hoher Einfluss auf Architektur und Benutzerzufriedenheit
+    * Bsp. Sicherheit, Performance
+
+NFA sind typischerwiese..
+* Leistungsanforderungen wie Antwortzeiten, Durchsatzraten usw.
+* Mengenanforderungen wie Anzahl Kundendatensätze, Anzahl gleichzeitige Benutzer
+* Randbedingungen wie bsp. vorgeschriebene Programmiersprache, Versionen, DBs uws.
+
+Nach Larman: **FURPS+** (Other Requirements in Use Cases)
+* **F**unctinality
+* **U**sability
+* **R**eliability
+* **P**erformance
+* **S**upportability
+* **+** Others: Hardware & Software Constraints, Packaging, Licencing, Development Process
+
+Alle Anforderungen sollen so formuliert werden, dass *messbare Checkliste*
+Bsp: *Text visible from 1m, Colors used with symbols* oder *Authorization takes < 500ms*
+
+
+Aufbau SRS
+----------
+
+
+.. image:: images/srs.png
+
 
 Anforderungsspezifikation
 --------------------------
-
 
 Systemsequenzdiagramme & Contracts für Sys.op.
 -----------------------------------------------
@@ -131,6 +167,44 @@ Systemsequenzdiagramme & Contracts für Sys.op.
 Zustands- und Acvity-Diagramme
 -------------------------------
 
+!!! todo
+
+    * Beispiel zustandsdiagramm
+
+Checkliste
+* Anfangszustand!
+* Alle zustände ereichbar
+* Endzustand (kann u.U weggelassen werden.)
+
+Bsp: Zustandsautomat für Roboterstaubsauger
+
+Guard: Vorbedingung Boolesche
+
+
+Zustands ≠ Activity!
+
+Syntax
+.......
+
+Ereignis
+: TODO
+
+TODO bild
+
+State
+: Beschreibender Name
+: 100FR oder 20000FR auf Sparkonto sind kein unterschied, da gleiches Verhalten
+: aber wenn Konto berzogen ist das Verhalten anders (kein Abheben mehr möglich)
+
+TODO bild
+
+Aktivität
+: Verhalten aufgrund eines Ereignis (bsp. do/entry/exit)
+
+
+Bild Nested States
+
+Checkliste anhand von Vorgehen:  #17
 
 .. todo::
 
