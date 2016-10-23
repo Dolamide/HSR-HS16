@@ -1,20 +1,12 @@
-Grundlagen
-==========
+# Vertragsrecht
+
 * Obligation = Schuldverhältnis
-
-
-Vertragsrecht
-=============
-
 * Geregelt im Öffentlichen Recht(auf einer Seite ist der Staat)
 * Obligation != Vertrag!
 * Vertrag ist immer Rechtsgeschäft aber nicht zwingend umgekehrt
 
-
-Schuldverhältnis
-----------------
+## Schuldverhältnis
 * Schuldverhältnis = Leistungspflicht / Forderungsrecht
-
 
 Entstehung durch Gesetz:
 
@@ -23,27 +15,25 @@ Entstehung durch Gesetz:
 * ungerechtfertigte Bereicherung (wenn einfach Geld auf dem Konto)
 * Sonstiges wie Unterhaltsforderungen usw.
 
-
 Entstehung durch Rechtsgeschäft:
 
 * Willensäusserung - beispielsweise Testament
 * zwei oder mehrseitige Rechtsgeschäfte wie Kaufverträge, Werkverträge oder Aufträge.
 
-
 Willensäusserung:
+
 * ausdrücklich: Bsp. mündlich anpreisen
 * stillschweigend: Preisschild
 * mittelbar: Antragssteller in der Regel länger gebunden als wenn unmittelbar.
 * unmittelbar:
 
+## Rechtsgeschäft
 
+!!! todo
 
-Rechtsgeschäft
---------------
+    ?!
 
-
-Vertrag
--------
+## Vertrag
 
 * Vertragsabschluss erfolgt, wenn sich zwei Parteien auf eine Willensäusserung einigen
 * Antrag + Annahm = Vertragsabschluss
@@ -58,8 +48,8 @@ Voraussetzungen:
 
 Arten von Verträgen
 
-.. image:: images/vertragsarten.png
-
+![](images/vertragsarten.png)
+: vertragsarten
 
 * Einseitig: Nur eine Partei hat Leistungspflicht (bsp. Erbe)
 * Zweiseitig: Beide haben pflicht.
@@ -80,7 +70,7 @@ Schranken:
     * Auch Unternehmen hat Persönlichkeit
 * Unmöglichkeit (Grundstück auf dem Mond)
 
-=> Vertrag ist nichtig!
+➪ Vertrag ist nichtig!
 
 2 Gültige Kaufverträge sind nicht wiederrechtlich es
 kann aber Entschädigung geltend gemacht werden.
@@ -103,17 +93,19 @@ kommen aus 3 möglichen Quellen zur Anwendung:
 * Nicht zwingende ("dispositive") Bestimmungen - Abweichung möglich
 
 Bsp. Vertrag zwischen Bauherr und Bauingenieur:
+
 * Zwingende Bestimmungen des Auftragsrechts
 * Vertragliche Vereinbarung - bsp. SIA-Norm
 * dispositive Bestimmungen des Auftragsrechts
 
 
-Formvorschriften
------------------
+## Formvorschriften
+
 Grundsätzlich formlos bsp. Auftrag, Arbeitsvertrag, Mietvertrag
 Ausnahme: bsp. Grundstückkauf oder nach Vereinbarung
 
 Formen:
+
 * Einfache Schriftlichkeit
   Schriftliche Erklärung + Unterschrift
 * qualifizierte Schriftlichkeit
@@ -123,50 +115,45 @@ Formen:
   Beispiel: Güterstand beid der Ehe, Erbvertrag (Vorbezug)
 
 
-Vertragserfüllung
------------------
+## Vertragserfüllung
+
 Verträge sind einzuhalten - einseitige Lösung nur selten möglich.
 Ausnahme: Streitfall
 
 
 Geldschuld: Bringschult
--> Müssen überbracht werden
+➪ Müssen überbracht werden
 Sonst: Holschuld
 
 Zeitpunkt: Vertraglich vereinbart - sonst je nach Rechtsverhältnis
 
+## Leistungsstörung
 
-Leistungsstörung
-----------------
 * Nichtleistung: Nichterfüllung wegen Unmöglichkeit (bsp. Bilder abgebrannt)
 * Schlechtleistung: Nicht das oder nicht alles, was vertraglich vereinbart
 * Spätleistung: Nicht rechtzeitig
 
-Verzugsfolgen
--------------
-Mahnung -> Mahnfrist.
+## Verzugsfolgen
+
+Mahnung ➪ Mahnfrist.
 Mahngebüren können erhoben werden (wenn in AGB vorgesehen)
 
 Klage auf Erfüllung + Schadenersatz vordern
 Verzicht auf Leistung mit Schadenersatz oder Rücktritt (als wäre nie geschehen)
 
+## Durchsetzung  von Vorderungen
 
-Durchsetzung  von Vorderungen
------------------------------
 Geldleistungspflichten: immer über Betreibung
 
 Am Wohnsitz (Gemeinde, Kreis usw.) des Schuldners beim
 Betreibungsamt - bei Zügeln muss erneut Betreibung eingereicht werden.
 Zahlungsbefehl vom Betreibungsamt. Falls Forderung nicht OK - Rechtsvorschlag
 erhoben. Dann muss der Gläubiger beweisen!
--> im Extremfall Verpfändungen möglich
+➪ im Extremfall Verpfändungen möglich
 
 Andere Leistungspflichten: Zivilprozessverfahren
 
-
-
-Verjährung von Forderungen
----------------------------
+## Verjährung von Forderungen
 
 Verjährung = Forderung ist nicht durchsetzbar (besteht aber Theoretisch noch weiter)
 Frist 10 Jahre und 5 Jahre bei regelmässigen Forderungen wie Lohn, Miete etc.
@@ -174,7 +161,6 @@ Ab: Fälligkeit (bsp. wenn Uhr erhalten)
 
 Zweck: Verschleppung / Verzöglerung vermeiden
 
-.. todo::
+!!! todo
 
     * Öffentliches Recht vs. Privatrecht (OR/ZGB) - OR Teil des ZGB usw.
-    *

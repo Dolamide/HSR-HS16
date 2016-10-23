@@ -1,18 +1,14 @@
-Prüfungsdetails
-===============
+# Prüfungsdetails
 
 
-Erlaubte Hilfsmittel
----------------------
+## Erlaubte Hilfsmittel
 
 * open book
 * ...
 
-Aufgabentypen
--------------
+## Aufgabentypen
 
-Typ A
-.....
+### Typ A
 
 * Übung X/ Aufgabe Z
 * Unterrichtsnotizen vom XY

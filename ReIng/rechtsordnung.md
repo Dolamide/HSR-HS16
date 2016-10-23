@@ -1,15 +1,14 @@
-Rechtsordnung
-==============
+# Rechtsordnung
+
 Rechtsordnung dient der Schaffung der Grundordnung des Zusammenlebens.
 (Bsp. Sicherung des Friedens, Freiheit, Gleichheit usw.)
 Stetige Veränderung - von Gesetz, Sitte, Moral
 
-.. todo::
+!!! todo
 
-    #8-14
+    Folien Nr. 8-14
 
-Öffentliches Recht
-------------------
+## Öffentliches Recht
 
 * Alles zwischen Staat und Bürger.
 * Regelt grundlagen, Organisation und Tätigkeit vom Stat
@@ -17,8 +16,7 @@ Stetige Veränderung - von Gesetz, Sitte, Moral
 * Subordinationsprinzip: Unter bzw. Überordungsprinzip
 * Legalitätsprinzip: Staatliches Handeln muss im Korset des Gesetzes stehen (sonst willkür)
 
-Privat-/Zivilrecht
-------------------
+## Privat-/Zivilrecht
 
 * Regelt rechtliche beziehung zwischen Bürgern
 * dispositives (abänderbares) Recht
@@ -27,4 +25,4 @@ Privat-/Zivilrecht
     * Vertragsfreiheit(also die freie Ausgestaltung im Rahmen der Rechtsordnung)
     * freie Wahl der Partei
     * freie Wahl des Zeitpunkts
-    * freie Wahl der Dauer 
+    * freie Wahl der Dauer
