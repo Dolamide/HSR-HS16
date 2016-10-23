@@ -1,12 +1,11 @@
-Material Design
-===============
+# Material Design
 
-Vision
-----------
+## Vision
+
 Einheitliche Design Language und "Human-Interface Guidelines" für Android (und mehr Applikationen von Google) zu etablieren.
 
 Umfasst Regeln, Empfehlungen und Beispiele - von Farben, Icons bis zum Screen aufbau.
-Der `Styleguide <https://material.google.com/>`_ umfasst:
+Der [Styleguide](https://material.google.com) umfasst:
 
 * Layout
 * Style
@@ -23,17 +22,15 @@ Materia "Metapher" - 3D-Raum mit Licht und Schatten, Angelehnt an physikalische 
 
 Animationen helfen die Illusion aufrecht zu erhalten, dass wir die Materialien auf dem Screen (durch eine Glasscheibe) direkt manipulieren
 
-.. image:: https://material-design.storage.googleapis.com/publish/material_v_9/0Bzhp5Z4wHba3VG9SaVpNbkpHb2s/whatismaterial_3d_elevation2.png
+![](https://material-design.storage.googleapis.com/publish/material_v_9/0Bzhp5Z4wHba3VG9SaVpNbkpHb2s/whatismaterial_3d_elevation2.png)
 
-
-
-!!! merke
+!!! remember
 
     * Dinge sollen sich nur dann bewegen, wenn sinnvoll.
     * Material Design orientiert sich an einem 8dp Gitter - folglich sind alle Grössen ein vielfaches von 8.
 
 
-.. image:: images/material_design_zusammenfassung.png
+![](images/material_design_zusammenfassung.png)
 
 !!! seealso
 
@@ -42,12 +39,12 @@ Animationen helfen die Illusion aufrecht zu erhalten, dass wir die Materialien a
     * https://play.google.com/store/apps/details?id=com.bhphoto
 
 
-Integration in die eigenen App
--------------------------------
+## Integration in die eigenen App
 
 Das aussehen sollte nicht direkt auf den Elementen verändert werden sondern global (analog nicht inline in HTML sondern extern in CSS.)
 
 In der View können Styles referenziert werden (analog "klasse"):
+
 ```xml
 <Button
    ...
@@ -97,8 +94,7 @@ Hier können dinge wie die [Primärpalette bestehend aus drei Farbtönen](https:
 
 
 
-UI-Komponenten
---------------
+## UI-Komponenten
 
 FAB – Floating Action Button
 : Aktion nicht eindeutig ist, lieber keinen FAB nehmen

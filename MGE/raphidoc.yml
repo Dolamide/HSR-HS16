@@ -1,0 +1,23 @@
+version: 1.0
+
+site_name: MGE Dokumentation
+
+pages:
+    - index.md
+    - android/konzepte.md
+    - android/grundlagen_gui.md
+    - android/struktur.md
+    - android/testing.md
+    - android/listen.md
+    - android/persistenz.md
+    - android/hintergrundtasks.md
+    - android/material_design.md
+    - exam.md
+    - lernplan.md
+
+
+assets:
+    - android/images/
+
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/demo/raphi_theme/
