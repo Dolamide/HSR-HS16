@@ -1,62 +1,58 @@
-Objektorientierte Domain - Analyse
-===================================
+# Objektorientierte Domain - Analyse
 
-Überblick
---------------
+## Überblick
+
 Analyse = Abklärung / Konzept ≠ Lösung
-*"do the right thing"*
+➪ *"do the right thing"*
 
 Design = konzeptionelle Lösung, Erfüllt die Anforderungen
- *"do the thing right"*
+➪ *"do the thing right"*
 
 * Methodische Analyse des Problembereichs
 * Blackbox- und Whitebox-Sicht
 
 **Statisches Domain-Modell** (Klassendiagramm)
 
-    * Zerlegung in verständliche Teile: *Konzeptionelle* Klassen
-    * Visueller Glossar
-    * Basis für OO- und DB-Entwurf
+* Zerlegung in verständliche Teile: *Konzeptionelle* Klassen
+* Visueller Glossar
+* Basis für OO- und DB-Entwurf
 
 **Dynamisches Domain-Modell** Use Case Szenarien / Interaktionsdiagramm
 
-    * Gegenprobe zwischen UseCases und Domain-Modell
+* Gegenprobe zwischen UseCases und Domain-Modell
 
-OOA nach Larman
----------------
+## OOA nach Larman
 
 **Statisches Modell**
 
-    * als Klassendiagramm
-    * Klassen mit Attributen *ohne Operationen*
-    * Klassendiagramme mit Beziehungen
+* als Klassendiagramm
+* Klassen mit Attributen *ohne Operationen*
+* Klassendiagramme mit Beziehungen
 
 **Dynamisches Modell**
 
-    * *Blackbox Interaktionsdiagramme* für Systemoperationen
-    * Contracts für Systemoperationen
-    * Eventuell Zustands- und Aktivitätsdiagramme
+* *Blackbox Interaktionsdiagramme* für Systemoperationen
+* Contracts für Systemoperationen
+* Eventuell Zustands- und Aktivitätsdiagramme
 
 (Die *kursiven* Punkte unterscheiden sich von der "klassischen" OOA)
 
-Abgrenzung: Anforderungsanalyse
---------------------------------
+## Abgrenzung: Anforderungsanalyse
+
 * Festlegen der Anforderungen
 * Blackbox-Sicht (nicht Wie)
 * Auftraggeber zusammen mit Auftragnehmer
 
 Resultat:
 
-    * Vision
-    * Use-Cases / User Stories (UC-Diagramm, Textuelle beschreibung)
-    * Supplementary Specification
-    * Glossary
+* Vision
+* Use-Cases / User Stories (UC-Diagramm, Textuelle beschreibung)
+* Supplementary Specification
+* Glossary
 
-Domain Modell
--------------
+## Domain Modell
 
-Anforderungen
-.............
+### Anforderungen
 
 * Die richtige Form (beschränktes UML Klassendiagramm)
 * Nur Elemente, die sinngemäss benutzt werden
@@ -66,10 +62,9 @@ Ziel: Verständlich und Ziel!
 
 "Wie ein Witz" - beim ersten Mal verständlich
 
-Checkliste
-...........
+### Checkliste
 
-* **Was muss möglich sein** -> Checkliste erstellen
+* **Was muss möglich sein** → Checkliste erstellen
 * Vererbung oder Komposition?
   * 100% Regel - 100% des Parents gilt für Kind
   * Wenn overlapping -> Komposition (Rolle)
@@ -90,22 +85,20 @@ Als Hilfsmittel mit Sätzen überprüfen:
 
 **Store** *contains* one or more **Register**
 
-.. seealso::
+!!! seealso
 
     * Larman, Kapitel 9
     * Larman, Kapitel 31
 
-.. note::
+!!! note
 
     Klassen können so sortiert werden, dass n über 1 Multiplizitäten
     sind.
 
-    -> Komplexere Objekte oben, einfachere unten
+    ➪ Komplexere Objekte oben, einfachere unten
 
 
-UML-Notation
-''''''''''''
+### UML-Notation
 
-.. image:: images/uml_cheat_sheet.png
-
-Abstrakte Klassen *kursiv*
+![](images/uml_cheat_sheet.png)
+: Abstrakte Klassen *kursiv*

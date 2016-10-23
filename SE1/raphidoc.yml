@@ -1,0 +1,24 @@
+version: 1.0
+
+site_name: SE1 Dokumentation
+
+pages:
+    - index.md
+    - intro.md
+    - OOA.md
+    - konfigurationsmanagement.md
+    - domain-model.md
+    - requirements-engineering.md
+    - architektur.md
+    - software-testing.md
+    - projektmanagement.md
+    - exam.md
+    - lernplan.md
+
+
+
+assets:
+    - images/
+
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/demo/raphi_theme/
