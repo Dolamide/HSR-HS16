@@ -1,0 +1,22 @@
+version: 1.0
+
+site_name: MsTe Dokumentation
+
+pages:
+    - index.md
+    - dot-net.md
+    - c_sharp_basics.md
+    - c_sharp_klassen.md
+    - garbage_collection.md
+    - delegatesEvents.md
+    - tips.md
+    - pitfalls.md
+    - snippets.md
+    - exam.md
+    - lernplan.md
+
+assets:
+    - images/
+
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/demo/raphi_theme/

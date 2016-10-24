@@ -18,7 +18,7 @@ Multicast-Delegates
 
 ### Deklaration
 
-```c#
+```cs
 
 // 1. Deklaration eines Delegate-Typs
 public delegate void Notifier(string sender);
@@ -44,7 +44,7 @@ class Examples {
 Bei der Zuweisung kann irgend eine Methode (statisch oder auf einem Objekt) angegben werden, auf die die Signatur des Delegates passt. Im Beispiel also
 eine Methode mit Rückgabewert void und einem String als Parameter.
 
-```c#
+```cs
 greetings = SayHello;
 greetings = Console.WriteLine;
 ```
@@ -72,7 +72,7 @@ Jeder Delegatey-Typ ist ein Mutlicast Delegate, was bedeutet, dass jeder Delegat
 
 Die Ausführung erfolgt in gleicher Reihenfolge des Hinzufügens.
 
-```c#
+```cs
 Notifier greetings = SayHello;
 greetings += SayHello;
 greetings += SayGoodBye;
@@ -92,11 +92,13 @@ Hat ein Delegate einen Rückgabewert, so wird derjenige Rückgababewert des Letz
 
 Das Delegate merkt sich das target (das Objekt/die Klasse, auf dem die Methode deklariert ist), die Methode sowie das Vorherige Element (prev) (analog LinkedList). Prev ermöglicht also, dass mehrere Methoden einem Delegate zugewiesen werden können.
 
-```c#
+```cs
 public delegate void Notifier(string sender);
 ```
+
 wird vom Compiler zu
-```c#
+
+```cs
 public sealed class Notifier : MulticastDelegate {
     public Notifier(object obj, int method) { }
     public virtual void Invoke( string sender) { }
@@ -110,13 +112,13 @@ public sealed class Notifier : MulticastDelegate {
 
 Aus dem Aufruf
 
-```c#
+```cs
 greetings("John");
 ```
 
 macht der Compiler:
 
-```c#
+```cs
 foreach(Delegate del in greetings.GetInvocationList())
 {
     ((Notifier)del)("John");
@@ -143,7 +145,7 @@ foreach(Delegate del in greetings.GetInvocationList())
 ### Weiteres
 Delegates können auch zusammengefügt werden:
 
-```c#
+```cs
 Notifier n1 = SayHello;
 Notifier n2 = SayGoodBye;
 Notifier c1 = n1 + n2;
@@ -163,7 +165,7 @@ Event
 
 Beispiel:
 
-```c#
+```cs
 public delegate void TickEventHandler (int ticks, int interval);
 public class Clock
 {
@@ -179,7 +181,7 @@ public class Clock
 
 macht der Compiler zu:
 
-```c#
+```cs
 public delegate void TickEventHandler (int ticks, int interval);
 public class Clock
 {
@@ -202,7 +204,7 @@ public class Clock
 
 Somit kann man ganz bequem events wie folgt hinzufügen (und analog dazu entfernen)
 
-```c#
+```cs
 ClockObserver t1 = new ClockObserver("O1");
 c1.onTickEvent += t1.OnTickEvent;
 ```
@@ -215,7 +217,7 @@ Um in Frameworks gute wartbarkeit zu erlangen sollte:
 * der 1. Parameter der Sender des Events sein
 * der 2. Parameter der Event typ EventArgs sein, welche von EventArgs ableitet
 
-```c#
+```cs
 public delegate void ClickEventHandler(object sender, ClickEventArgs e);
 
 public class ClickEventArgs : EventArgs
@@ -233,7 +235,7 @@ public class Button
 
 Anonyme Methoden können dann Verwendet werden, we die deklaration einer speziellen Methoden nicht sinnvoll ist (siehe Lambdas).
 
-```
+```cs
 list.ForEach(delegate(int i)
     { Console.WriteLine(i); }
 );
