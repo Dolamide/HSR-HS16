@@ -1,0 +1,12 @@
+@charset "utf-8";
+
+@mixin addSymbol($pseudo, $symbol){
+      &:#{$pseudo} {
+        content: $symbol;
+    }
+}
+
+.symbol{
+   @include addSymbol(after, "?");
+   @include addSymbol(before, "¿");
+}
