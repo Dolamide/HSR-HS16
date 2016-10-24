@@ -95,3 +95,14 @@ singleInstance
 !!! seealso
 
     [Vorlesung W1, Folie 56](https://docs.google.com/presentation/d/1VnW43vWOMMOslqA7fmBvLfRviwNlCNiTXQM21AhwbKk/edit#slide=id.gc591fb7d8_0_75)
+
+## Context
+
+Context-Instanz ( typischerweise die Activity) kann:
+
+* neue Views erstellen
+* auf System-Services zugreifen `context.getSystemService(LAYOUT_INFLATER_SERVICE);`
+* Applikationsinstanz erhalten
+* neue Activities starten
+* Preferences lesen und schreiben
+* Services starten

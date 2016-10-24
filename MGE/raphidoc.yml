@@ -12,6 +12,7 @@ pages:
     - android/persistenz.md
     - android/hintergrundtasks.md
     - android/material_design.md
+    - android/patterns.md
     - exam.md
     - lernplan.md
 
