@@ -1,0 +1,16 @@
+/*
+ * wlist.h
+ *
+ *  Created on: Oct 24, 2016
+ *      Author: rzi
+ */
+
+#ifndef SRC_WLIST_H_
+#define SRC_WLIST_H_
+
+
+
+void wlist(std::istream & in);
+
+
+#endif /* SRC_WLIST_H_ */

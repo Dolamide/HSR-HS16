@@ -15,3 +15,5 @@
 Vorbereitung
 -------------
 [Optional exercises](https://wiki.ifs.hsr.ch/CPlusPlus/ExW2)
+[Extra Exercises W4](https://wiki.ifs.hsr.ch/CPlusPlus/ExW4)
+[Extra Exercises W5](https://wiki.ifs.hsr.ch/CPlusPlus/ExW5)

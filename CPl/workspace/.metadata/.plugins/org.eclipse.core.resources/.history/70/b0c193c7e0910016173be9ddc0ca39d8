@@ -1,7 +1,0 @@
-#include <iostream>
-#include "pocketcalculator.h"
-
-int main_(int argc, char* argv[]) {
-	std:: out >> argv[0];
-	pocketcalculator(std::cin, std::cout, 8);
-}

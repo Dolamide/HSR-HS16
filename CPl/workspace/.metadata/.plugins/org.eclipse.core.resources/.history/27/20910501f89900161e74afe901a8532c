@@ -1,0 +1,17 @@
+/*
+ * wlist.h
+ *
+ *  Created on: Oct 24, 2016
+ *      Author: rzi
+ */
+
+#ifndef SRC_MIXED_H_
+#define SRC_MIXED_H_
+
+#include <set>
+
+std::set<std::string> wlist(std::istream & in);
+int countingToLower(std::string in);
+
+
+#endif /* SRC_MIXED_H_ */

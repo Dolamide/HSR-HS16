@@ -1,0 +1,42 @@
+#include "mixed.h"
+
+#include <iosfwd>
+#include <string>
+#include <iterator>
+#include <vector>
+#include <algorithm>
+#include <iostream>
+
+std::set<std::string> wlist(std::istream & in){
+	using input = std::istream_iterator<std::string>;
+	input in_iterator{in};
+	input eof{};
+	std::vector<std::string> allwords { in_iterator, eof };
+
+	std::transform(allwords.begin(), allwords.end(), allwords.begin(), [](std::string c){
+		// transform to lowercase
+		std::transform(c.begin(), c.end(),c.begin(), ::tolower);
+		return c;
+	});
+
+	// contains a **sorted set ** of unique objects of type Key.
+	std::set<std::string> uniqueWords { allwords.begin(), allwords.end() };
+
+	return uniqueWords;
+
+}
+
+int countingToLower(std::string &in) {
+	int counter{0};
+//	std::transform(in.begin(), in.end(), in.begin(), [&counter](auto it){
+//		counter++;
+//		return ::tolower(it);
+//	});
+	return counter;
+}
+
+//std::string -> #include <string>
+//std::cin -> #include <iostream>
+//std::istream -> #include <iosfwd>
+//istream_iterator -> #include <iterator>
+//std::vector -> #include <vector>
