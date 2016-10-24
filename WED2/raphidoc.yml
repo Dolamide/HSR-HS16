@@ -9,6 +9,8 @@ pages:
     - nedb.md
     - rest.md
     - flexbox.md
+    - responsive-layout.md
+    - sass.md
     - exam.md
     - lernplan.md
 

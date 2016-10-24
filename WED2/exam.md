@@ -12,6 +12,7 @@
 * absolute positionierung RECAP
 * Flexbox üben, üben, üben (http://flexboxfroggy.com/)
 * Übung 1 der Woche 5
+* Sass: Sass Einheiten rechnen
 
 ## Aufgabentypen
 ### Typ A
