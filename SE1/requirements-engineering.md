@@ -1,5 +1,16 @@
 # Einführung in Requirements Engineering
 
+!!! todo
+
+    Lesen in Larman:
+
+    * Kapitel 8. Iteration 1 - Basics (8S)"
+    * Kapitel 10. System Sequence Diagrams (8S)
+    * Kapitel 11. Operation Contracts (14S)"
+    * Kapitel 28. UML Activity Diagrams and Modeling (10S)
+    * Kapitel 29. UML State Machine Diagrams and Modeling (8S)
+    * Kapitel 12. Requirements to Design - Iteratively (2S)
+
 Funktional
 : "**WAS** soll das System machen" ➪ Use Cases
 
@@ -10,7 +21,7 @@ Unterscheidung der Anforderungen an das **Projekt**  (Project Management) und an
 
 Requirements Working Product: Software Requirements Specification (SRS)
 
-Problem: Anforderungen ändern sich! Die Anforderungen können nicht am Anfang im Detail erfasst werden => Iteratives vorgehen. Vorsicht: Systematische Erfassung und Verwaltung wichtig ➪ Requirements Management
+Problem: Anforderungen ändern sich! Die Anforderungen können nicht am Anfang im Detail erfasst werden ➪ Iteratives vorgehen. Vorsicht: Systematische Erfassung und Verwaltung wichtig ➪ Requirements Management
 
 ## Use Cases
 
@@ -58,28 +69,10 @@ Grad der Ausarbeitung: #31t
 1. Systemgrenzen festlegen
 2. Primäre Aktoren identifizieren und Ziele jedes Aktoren identifizieren
 
-    !!! todo
-
-        Table:
-
-        =========== ================
-        Actor       Goal
-        =========== ================
-        Cashier     process sales
-
-                    process rentals
-
-                    handle returns
-
-                    cash in
-
-                    ...
-        ----------- ----------------
-        Manager     start up
-                    shut down
-
-                    ...
-        =========== ================
+    | Actor | Goal |
+    |---------|--------------------------------------------------------------|
+    | Cashier | process sales <br>  process rentals <br>   handle returns <br>   cash in <br>   ... |
+    | Manager | start up   <br> shut down <br>   ... |
 
 3. Use Cases schreiben
     * Müssen *elementare Aktionen* sein, als nicht zu spezifisch!
@@ -143,62 +136,54 @@ Alle Anforderungen sollen so formuliert werden, dass *messbare Checkliste*
 Bsp: *Text visible from 1m, Colors used with symbols* oder *Authorization takes < 500ms*
 
 
-## Aufbau SRS
-
+## Anforderungsspezifikation
 ![](images/srs.png)
 
-## Anforderungsspezifikation
+## Zustandsdiagramme
 
-## Systemsequenzdiagramme & Contracts für Sys.op.
+![Beispiel UC](images/state-diagram-example.png)
+: SE1: Testat 2 Musterlösung
 
-## Zustands- und Acvity-Diagramme
+UC-Zustandsdiagramm
+: Systemereignisse, Zustände und Übergänge für UCs.
 
-!!! todo
-
-    * Beispiel zustandsdiagramm
-
-Checkliste
-
-* Anfangszustand!
-* Alle zustände ereichbar
-* Endzustand (kann u.U weggelassen werden.)
-
-Bsp: Zustandsautomat für Roboterstaubsauger
-
-Guard: Vorbedingung Boolesche
-
-
-Zustands ≠ Activity!
-
-### Syntax
+System-Zustandsdiagramm
+: Alle Systemereignisse, Zustände und Übergänge des Systems. Enthält alle UC-Zustandsdiagramme
 
 Ereignis
-: TODO
+Event
+: passiert zu einem Zeitpunkt - typischerweise von Aussen. Das System wird darüber benachrichtigt und reagiert darauf.
 
-TODO bild
+![UML Notation: Event](images/state-diagram-event.png)
 
+Zustand
 State
-: Beschreibender Name
-: 100FR oder 20000FR auf Sparkonto sind kein unterschied, da gleiches Verhalten
-: aber wenn Konto berzogen ist das Verhalten anders (kein Abheben mehr möglich)
+: Zustand eines Objektes, wobei nur Zustände unterschieden werden sollten, die unterschiedliches Verhalten aufweisen (100FR oder 20000FR auf Sparkonto sind kein unterschied - 100Fr und -1'000 FR dagegen schon!)
 
-TODO bild
+![UML Notation: State](images/state-diagram-state.png)
 
-Aktivität
-: Verhalten aufgrund eines Ereignis (bsp. do/entry/exit)
+Zustandübergang
+Transition
+: Übergang von einem Zustand in einen andere, ausgelöst durch Ereignisse. Zustandsübergänge erfolgen augenblicklich - wobei beim Übergang Aktivitäten ausgeführt werden können.
+
+![UML Notation: Transition](images/state-diagram-transition.png)
+
+Guard
+: Vorbedingung für Transition - muss eine boolesche Bedinnung sien.
 
 
-Bild Nested States
+!!! warning
 
-Checkliste anhand von Vorgehen:  #17
+    * Anfangszustand muss vorhanden sein
+    * Alle Zustände müssen erreichbar sein
+    * Endzustand kann u.U weggelassen werden
 
-!!! todo
 
-    Lesen in Larman:
+## Aktivitätsdiagramme
+Aktivitätsdiagramme zeigen sequentielle und parallele Aktivitäten (Flussdiagramme). Anwendung in Analyse und Design für Modellierung von Geschäftsprozessen und Use Cases.
 
-    * Kapitel 8. Iteration 1 - Basics (8S)"
-    * Kapitel 10. System Sequence Diagrams (8S)
-    * Kapitel 11. Operation Contracts (14S)"
-    * Kapitel 28. UML Activity Diagrams and Modeling (10S)
-    * Kapitel 29. UML State Machine Diagrams and Modeling (8S)
-    * Kapitel 12. Requirements to Design - Iteratively (2S)
+![Basisnotation für Aktivitätsdiagramme](images/activity-diagram-notation.png)
+: Basisnotation für Aktivitätsdiagramme
+
+![Zusätzliche Notation für Aktivitätsdiagramme](images/activity-diagram-notation-2.png)
+: Zusätzliche Notation für Aktivitätsdiagramme
