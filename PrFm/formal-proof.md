@@ -59,10 +59,6 @@ The statement to proof is the root of the tree.
 * The direction is crucial
 * Think Lego!
 
-!!! todo
-
-    * Bug: The Pattern is not applied twice here!
-
 A Sequent wit two Rules $$\frac{s_2}{s_1} r1$$, $$\frac{s_1}{s_2} r2$$ ist valid - but does not make
 a lot of sense.
 
