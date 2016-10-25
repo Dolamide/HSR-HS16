@@ -15,7 +15,7 @@ import os
 import ssl
 import tempfile
 
-SOURCE = '_build/'
+SOURCE = 'output/'
 HASH_FILE_NAME = '.sync_hashes'
 
 HOST = os.getenv('FTP_HOST')
