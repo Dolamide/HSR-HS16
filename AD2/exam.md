@@ -21,6 +21,16 @@
     -> Balancierungsfaktor = |h(left)-h(right)|
 * Übung 3/ Aufgabe 3 (implementation)
 
+### Manuelle lexikographische Sortierung
+
+➪ Siehe Prüfung 2006
+
+### Manuelles Pattern-Matching
+* Brute-Force
+* Boyer-Moore ( ➪ Siehe Prüfung 2006)
+* KMP
+
+
 ### Bei genügend Zeit
 
 * Übung 1 / Aufgabe 4:
