@@ -9,6 +9,7 @@ pages:
     - c_sharp_klassen.md
     - garbage_collection.md
     - delegatesEvents.md
+    - generics.md
     - tips.md
     - pitfalls.md
     - snippets.md

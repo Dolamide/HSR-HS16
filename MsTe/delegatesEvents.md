@@ -153,6 +153,34 @@ Notifier c1 = n1 + n2;
 Notifier c1 = (Notifier)Delegate.Combine(n1, n2);
 ```
 
+### Generic Delegates
+
+Action: 0-n Parameter mit void als Rückgabewert.
+
+```
+public delegate void Action();
+public delegate void Action<in T>(T obj);
+public delegate void Action<in T1, in T2>(T1 obj1, T2 obj2);
+[...]
+public delegate void Action<in T1, ..., in T16>(T1 obj1,..., T16 obj16);
+```
+
+`Func`: Funktion mit 0 – n Parametern - `TResult` als Rückgabewert
+
+```cs
+public delegate TResult Func<out TResult>();
+public delegate TResult Func<in T, out TResult>(T arg);
+public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
+[...]
+public delegate TResult Func<in T1, ..., in T16, out TResult>(T1 arg1,..., T16 arg16);
+```
+
+`Predicate`: Prädikat mit 1 Parameter «bool» als Rückgabewert
+
+```cs
+public delegate bool Predicate<in T>(T obj);
+```
+
 ## Events
 
 Events sind ein reines Compiler-Feature, als syntactic Sugar.

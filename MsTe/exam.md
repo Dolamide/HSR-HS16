@@ -12,7 +12,7 @@
 
 ### Überschreiben
 
-Car - welche methode wird ausgeführt. Siehe Folien Repetiton Vererbung.
+Car - welche methode wird ausgeführt. Siehe Folien **Repetiton Vererbung**.
 
 ### Boxing / Referenzen
 
@@ -45,6 +45,13 @@ Lösung:
 ```
 
 Grund: Bei den Zuweisungen von o1 und o2 wird geboxt. Wird o1 auf 4 gesetzt, dann bleibt die referenz in myList unverändert auf 1.
+
+## Nullable Generics
+➪ Übungen Woche 6 - Aufgabe 1.3
+
+## Weiteres
+
+* Mehr zu Generics in den Zusatzaufgaben der Woche 6.
 
 ## Ausgelassen
 
