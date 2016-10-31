@@ -3,7 +3,7 @@
 ![Sorting Übersicht](images/sorting_sumary.png)
 
 Stabile Sortierungseigenschaft
-: Die relative Ordnung von zwei Elementen mit dem selben Schlüssel werden durch den Algorithmus **nicht verändert**.
+: Die relative Ordnung von zwei Elementen mit dem selben Schlüssel werden durch den Algorithmus **nicht verändert**. Bsp `7:a 1:a 7:b 1:b` ➪ `1:a 1:b 7:a 7:b`
 
 ## Merge-Sort
 
@@ -236,8 +236,6 @@ Die Optimierung hat aber kein Einfluss auf das Laufzeitverhalten (nur auf die ve
 ![Pseudocode Bucket-Sort](images/sorting_bucket_sort.png)
 : Pseudocode Bucket-Sort
 
-Stabile Sort Eigenschaft
-Erweiterungen
 
 ## Lexographicshe Ordnung
 
@@ -262,7 +260,7 @@ i=1 (**2**, 1 , 4 ) (**2**, 4 , 6 ) (**3**, 2 , 4 ) (**5**, 1 , 5 ) (**7**, 4 , 
 
 ## Radix-Sort
 
-Spezialisierung des lexikographischen-Sort, welcher Bucket-Sort als stabilen Sortier- Algorithmus für jede Dimension benutzt.
+Spezialisierung des lexikographischen-Sort, welcher Bucket-Sort als stabilen Sortier- Algorithmus für jede Dimension benutzt. D ist die Anzahl elemente des tupels.
 
 ```
 Algorithm radixSort(Sequence-of-d-tupels S, MaxValue N)
