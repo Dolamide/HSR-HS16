@@ -1,6 +1,10 @@
 version: 1.0
 
-site_name: WED2 Dokumentation
+title: Web Engineering + Design 2
+subtitle: Herbstsemester 2016
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
+
 
 pages:
     - index.md
@@ -11,6 +15,7 @@ pages:
     - flexbox.md
     - responsive-layout.md
     - sass.md
+    - responsive-web-design.md
     - exam.md
     - lernplan.md
 
