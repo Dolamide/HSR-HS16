@@ -1,6 +1,9 @@
 version: 1.0
 
-site_name: MGE Dokumentation
+title: Mobile and GUI Engineering
+subtitle: Herbstsemester 2016
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
 
 pages:
     - index.md
@@ -13,6 +16,7 @@ pages:
     - android/hintergrundtasks.md
     - android/material_design.md
     - android/patterns.md
+    - android/etc.md
     - exam.md
     - lernplan.md
 
