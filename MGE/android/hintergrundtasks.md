@@ -56,6 +56,9 @@ class DownloadBitmapTask extends AsyncTask<String, Integer, Bitmap> {
 }
 
 new DownloadBitmapTask().execute("http://slow.hsr.ch/hsr_cat.bmp");
+// Evtl aufruf wie folgt, da sonst ClassCastException
+new DownloadBitmapTask().execute(new String[]{"http://slow.hsr.ch/hsr_cat.bmp"});
+
 ```
 
 ## Services
