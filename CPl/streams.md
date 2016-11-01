@@ -27,6 +27,10 @@ if(in >> lhs >> op >> rhs){
 in >> lhs
 in >> op
 in >> rhs
+
+// Leerzeichen beachten (nicht sticky!)
+std::istringstream("a b c") >> std::noskipws >> c1 >> c2 >> c3; //c1='a', c2=' ', c3='b'
+std::istringstream("a b c") >> c1 >> c2 >> c3; //c1='a', c2='b', c3='c'
 ```
 
 Es gibt auch die methoden ``get`` und ``put`` mit

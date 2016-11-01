@@ -2,22 +2,23 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="ostring" key="selection"/>
+		<item value="month" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="month"/>
+			<item value="Month"/>
+			<item value="cout"/>
+			<item value="w.getValue()"/>
+			<item value="std::os"/>
 			<item value="ostring"/>
 			<item value="stoi"/>
 			<item value="calcStream"/>
-			<item value="thr"/>
-			<item value="catthr"/>
-			<item value="cat"/>
-			<item value="istringstream"/>
-			<item value="Overflow"/>
 		</list>
 		<list key="replacehistory">
+			<item value="out.str()"/>
 			<item value="calc"/>
 		</list>
 	</section>

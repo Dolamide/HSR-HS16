@@ -1,6 +1,9 @@
 version: 1.0
 
-site_name: CPl Dokumentation
+title: C++
+subtitle: Herbstsemester 2016
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
 
 pages:
     - index.md
@@ -11,6 +14,7 @@ pages:
     - functions.md
     - error-handling.md
     - classes.md
+    - arithmetic-types.md
     - tips.md
     - pitfalls.md
     - cevelop.md

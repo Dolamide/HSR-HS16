@@ -26,15 +26,18 @@ int main(){}
 ```
 Die Kombination aus typ, name, parameter und klammern bildet die **function signature**. Für main wäre das `int main()`. Funktionen! nicht Methoden
 
-namespace
-: TODO:
-: Bsp: ``namespace std;`` Methoden können ohne std präfix aufgerufen werden
-
 translation unit
 : Jede .cpp-Datei kann unabhängig kompiliert werden und ist eine sogenannte translation unit. Ausgabe: Ein **object file**
 
+Argument Dependent Lookup
+: Wenn der Compiler eine unqualifizierte Funktion oder einen operator-call von einem benutzerdefinierten typ trifft, dann schlägt er in dem namespace nach, in welchem der typ
+definiert ist. Beispiel: `for_each(v.begin(), ...)` benötigt keinen `std::` prefix, da for_each im gleichen namespace definiert ist wie `vector (v)`.
 
-Daten auf dem Stack - heap muss selbstständig.
+!!! warning
+
+    ADL hat Vorrang gegenüber lokalen Funktionen!
+
+Daten auf dem Stack - heap muss manuell gemanaget werden.
 
 
 ## Header Files

@@ -5,6 +5,7 @@
 * Tut etwas gut und ist ensprechend benannt
 * Tief verschachtelte Kontrollstrukturen vermeiden
 * invarian: Garantiert einen State (spätestens nach dem Ablauf des Konstruktors)
+* Klasse sollten in namespace gepackt werden!
 
 ## Struktur
 
@@ -15,6 +16,7 @@ Klassen werden im typischerweise in den header-files definiert und in cpp-Dateie
 #ifndef DATE_H_
 #define DATE_H_
 
+namespace date {
 class Date { /*Class Head*/
 
     /*Member Variables*/
@@ -30,8 +32,10 @@ public: /*Public block*/
 
 private: /*Private block*/
     bool isValidDate() const;
-}; /*Semikolon NICHT VERGESSEN!*/
+}; /*Semikolon am ender der Klasse NICHT VERGESSEN!*/
+}
 #endif /* DATE_H_ */
+
 ```
 
 ```c++
@@ -131,6 +135,25 @@ explicit Date(std::string const &);
 Date d{"19/10/2016"s};
 ```
 
+Werte können direkt im Konstruktor initialisiert werden...
+
+```c++
+// Date.cpp
+Date::Date()
+ : year{9999}, month{12}, day{31} { }
+```
+
+oder um diplikation zu vermeiden mittels NSDMI (Non-Static Data Member Initializers)
+```c++
+// Date.h
+class Date {
+    int year{9999}, month{12}, day{31};
+    Date() = default; // Standardverhanten nicht erneut implementieren
+    // (geht mit allen Konstruktoren, die impliziter Konstruktor haben - also copy,move und auch destruktoren!!)
+}
+```
+Alle Werte werden dann damit initialisert falls nicht vom Konstruktor gesetzt!
+
 ## Destruktor
 
 Dient dazu, Ressourcen freizugeben. Ist implizit verfügbar und wird automatisch am ende eines Blocks für alle lokalen Instantzen aufgerufen.
@@ -214,7 +237,7 @@ Im Header-File:
 class Date {
     int year, month, day;
 
-    // (Inline ist nicht nötig, da alle Member implizit inline sind)
+    // Inline ist nicht nötig, da alle Member implizit inline sind
     bool operator<(Date const & rhs) const {
         return year < rhs.year || (year == rhs.year && (month < rhs.month ||    
                 (month == rhs.month && day == rhs.day)));
@@ -222,8 +245,7 @@ class Date {
 };
 ```
 
-Problem:
-* Nur ein Parameter (Linke Seite) - kann zu unnatürlichem Verhalten führen.
+Problem: Nur ein Parameter (Linke Seite) - kann zu unnatürlichem Verhalten führen.
 
 ### Best Practice
 Nur einmal Implementieren und dann mehrfach verwenden
@@ -270,9 +292,9 @@ Aber auch so müssen viele Operatoren überschrieben werden - darum können Libr
 Problem: Wenn implementierung als Member ist das Verhalten unnatürlich:
 
 ```c++
-// Unnatürlicher aufruf
+// unnatürlicher Aufruf
 Date::myBirthday << std::cout
-// Natürlich wäre
+// natürlich wäre
 std::cout << Date::myBirthday
 ```
 
@@ -284,12 +306,137 @@ class Date {
     int year, month, day;
 public:
     std::istream & read(std::istream & is) {
-        //Logic for reading values and verifying correctness
+        int year{-1}, month{-1}, day{-1};
+        char sep1, sep2;
+        //read values - skips spaces...
+        is >> year >> sep1 >> month >> sep2 >> day;
+        try {
+            Date input{year, month, day};
+            // overwrite content of this object (copy-ctor)
+            (*this) = input;
+            //clear stream if read was ok
+            is.clear();
+        } catch (std::out_of_range & e) {
+            // Es muss signalisiert werden, dass nicht erfolgreich! ➪ Failbit
+            is.setstate(std::ios::failbit | is.rdstate())
+        }
         return is;
     }
 };
 
+// Explizites inline nötig, da im header file
 inline std::istream & operator>>(std::istream & is, Date & date) {
     return date.read(is);
+}
+```
+
+<!-- ** Workaroud for atom bug..-->
+
+
+## Enums
+
+Es gibt scoped und unscoped Enums.
+
+Unscoped Enums haben kein `class` keyword und eignen sich am besten zu Verwendung als member auf einer Klasse. Grund dafür ist, dass die Enumeratoren in den umgebenen Scope "leaken", also via `namespace::Enumerator` aufgerufen werden knönnen.
+
+```c++
+enum day_of_week {
+    // enumerators
+    Mon, Tue, Wed, Thu, Fri, Sat, Sun
+};
+
+bool is_weekend(date::day_of_week day){
+    return day == date::Sat || day == date::Sun;
+}
+```
+
+Scoped Enums leaken nicht in den umgebenen Scope. Sie haben den Vorteil, dass der darunterliegende Typ (ein beliebiger Ganzzahltyp) angegeben werden kann.
+
+```c++
+enum class day_of_week : unsigned char {
+    // enumerators
+    Mon, Tue, Wed, Thu, Fri, Sat, Sun
+};
+bool is_weekend(date::day_of_week day){
+    return day == date::day_of_week::Sat ||
+    day == date::day_of_week::Sun;
+}
+```
+
+Die Werte werden standardmässig von 0 bis n hochgezählt.
+Man kann die Werte auch Manuell setzen - dann wird einfach ab dort hochgezählt.
+
+```c++
+enum Month{
+    jan = 1, feb, mar, apr, may, jun,
+    jul, aug, sep, oct, nov, dec,
+    january = jan, feburary, march, april,
+    june = jun, july, august, september, october,
+    november, december
+};
+```
+
+### Operator overloading
+Funktioniert auch mit overloading - speziell prefix und postfix sind hier interessant!
+
+```c++
+// Prefix
+dayOfWeek operator++(dayOfWeek & aday) {
+    int day= (aday+ 1) % (Sun+1);
+    aday = static_cast<dayOfWeek>(day); // expliziter cast int ➪ enum
+    return aday;
+}
+// Postfix (Int parameter dient nur der Unterscheidung)
+dayOfWeek operator++(dayOfWeek & aday,int) {
+    dayOfWeekret{aday};
+    if (aday== Sun)
+        aday= Mon;
+    else
+        aday=static_cast<dayOfWeek>(aday+ 1);
+    return ret;
+}
+```
+### Beispiel Statemachine
+```c++
+// Statemachine.h
+#ifndef STATEMACHINE_H_
+#define STATEMACHINE_H_
+
+struct Statemachine {
+	Statemachine();
+	void processInput(char c);
+	bool isDone() const;
+private:
+	enum class State : unsigned short;
+	State theState;
+};
+
+#endif /* STATEMACHINE_H_ */
+
+// Statemachine.cpp
+#include "Statemachine.h"
+#include <cctype>
+enum class Statemachine::State: unsigned short {
+	begin, middle, end
+};
+
+Statemachine::Statemachine()
+:theState{State::begin} {}
+
+void Statemachine::processInput(char c){
+	switch(theState){
+	case State::begin :
+		if (! isspace(c))
+			theState=State::middle;
+		break;
+	case State::middle :
+		if (isspace(c))
+			theState=State::end;
+		break;
+	case State::end : break;// ignore input
+	}
+}
+bool Statemachine::isDone()const{
+	return theState==State::end;
 }
 ```

@@ -6,7 +6,7 @@
 
 * string literals sind nicht vom typ std::string (but it's usually converted properly when needed)
     * kann mit s suffix erreicht werden (``using namespace std::string_literals`` nicht vergessen)
-* trigraphs: eg. "huu??!"; wird zu "huu|". Lösung: raw string: R"huu??!"
+* trigraphs: eg. "huu??!"; wird zu "huu|". Lösung: raw string: R"(huu??!)"
 
 ## Boolean Integral Promotion
 

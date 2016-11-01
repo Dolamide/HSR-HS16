@@ -1,0 +1,16 @@
+<testsuites>
+	<testsuite name="AllTests" tests="12">
+		<testcase classname="AllTests" name="testWordComplexSeuence"/>
+		<testcase classname="AllTests" name="testSimpleWord"/>
+		<testcase classname="AllTests" name="testEmptyWord"/>
+		<testcase classname="AllTests" name="testBrokenInStream"/>
+		<testcase classname="AllTests" name="testValidWordConstructor"/>
+		<testcase classname="AllTests" name="testEmptyWordConstructor"/>
+		<testcase classname="AllTests" name="testInvalidWordConstructor"/>
+		<testcase classname="AllTests" name="testWordComparisonEquals"/>
+		<testcase classname="AllTests" name="testWordComparisonUnequal"/>
+		<testcase classname="AllTests" name="testWordComparisonLowerGreater"/>
+		<testcase classname="AllTests" name="testWList"/>
+		<testcase classname="AllTests" name="testButton"/>
+	</testsuite>
+</testsuites>

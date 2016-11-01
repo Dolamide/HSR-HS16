@@ -3,6 +3,7 @@
 * Do NOT use global variables! (eg. std::cout) throughout your code
 * Test ALL THE code
 * Put everything into a library and call it from a "dumb" executable project
+* Variablen mit geschweiften Klammern `Date nice{};` initalisieren (weglassen und runde Klammern funktioniert nicht immer, bsp. `Date default();` ist eine Funktionsdeklaration)
 * Use const when ever possible
     * Also on member functions!
       ```c++
