@@ -202,7 +202,7 @@ horizontal(line(point(X,Y),point(Z,Y))).
 
 !!! note
 
-    Prollog executes "From top to bottom & left to right"
+    Prolog executes "From top to bottom & left to right"
     This allows us to give priority (which is not possible in *pure* logic)
 
 
@@ -223,6 +223,41 @@ This problem is analog to the graph traversal which was discussed before.
 
 **The order is critical** - an error would be thrown if we would swap `child` and `descend` in the recursive clause.
 
+### A Recipe for Recursion
+
+1. Write down the signature of the predicate you want to define
+
+    ```prolog
+    len(_, _) % First argument List, second argument the length
+    ```
+
+2. Choose the parameter(s) over which recursion shall be performed.
+
+    ➪ In the `len` example, the list.
+
+3. Identify the case distinctions for the recursion parameter(s) on the *left hand side* of the rules.
+
+    ```prolog
+    len([],  )             % Base Case
+    len([H|T], )          % Recursive Case
+    ```
+
+4.  On the *right hand side* of the Rule, write down the predicate
+applied to the input parameter(s) made “smaller”.
+
+    ```prolog
+    len([],  )             % Base Case
+    len([H|T],  ):-   ??? len(T, )     % Recursive Case
+    ```
+
+5. Complete Rules
+
+    ```prolog
+    len([], 0).                     % Base Case
+    len([H|T], L ):- len(T, LT),    % Recursive Case
+                     L is LT+1.
+    ```
+6. Check it
 
 ### Mismatches between declarative and procedural
 
@@ -321,7 +356,8 @@ len([_|L],N):- len(L,X), N is X + 1.
 
 ## Arithmetic
 Syntax: `<?> is [HERE SHOULD BE EVALUATED]`
-Recap: Equal sign **unifies**! Eg.  `X=3+2.` -> `X=3+2`
+
+Recap: Equal sign **unifies**! Eg.  `X=3+2.` ➪  `X=3+2`
 
 The right side of the `is` keyword is passed to the CPU. Therefore, prolog must be able to resolve it.
 
@@ -337,7 +373,135 @@ Expressions such as (`3+2` are ordinary Prolog terms - eg. the fuctor is `+`, ar
 
 Note, that calculations such as: `Result is 2+2+2+2+2.` work just fine! :tada:
 
+| Arithmetic | Prolog  |
+|------------|---------|
+| x < y      | X < Y   |
+| x ≤ y      | X =< Y  |
+| x = y      | X =:= Y |
+| x ≠ y      | X =/= Y |
+| x ≥ y      | X >= Y  |
+| x > y      | X > Y   |
+
+
+```prolog
+% Step 1
+max(_, _) % list of numbers, maximum number in list
+
+% Step 2: over the list
+
+% step 3
+max([H], H)   % Base case - exactly one element
+max([H|T], )  % Recursive case
+
+% step 4 & 5
+max([H], H).
+max([H|T], MT):-  max(T, MT),
+                  MT > H.
+ max([H|T], H):-  max(T, MT),
+                  H >= T.
+```
+
+
+## Accumulators
 
 !!! todo
 
-    * acclen vs. len?
+    (Arithmetic)
+    = Tail Recursion / Iteration
+
+    16 ➪ Not #20 but ~22
+
+    Recap AD1: Result is fully calculated in the base case
+
+## More Lists
+
+### Append
+
+```prolog
+% append(List1, List2, List1AndList2)
+% List1AndList2 is the *concatenation* of List1 and List2
+append([], L, L). % Base Case
+append([H|T], L, [H|R]) :-
+	append(T, L, R). % Recursive call
+```
+
+Append is not always a good choise because Concatenating a list is not done in one  simple action but by traversing down one of the lists.
+The order of the arguments can be crucial for performance - the first call is slower that the second one since the first list must be emptied.
+
+```prolog
+?-append([a,b,c,d,e,f,g,h,i],[j,k,l],R).
+?-append([j,k,l],[a,b,c,d,e,f,g,h,i],R).
+```
+
+Prolog "magic" enables to get all combinations of sublists ...
+
+```prolog
+?- append(X, Y, [a,b,c,d]).
+| X            | Y            |
+|--------------|--------------|
+| []           | [a, b, c, d] |
+| [a]          | [b, c, d]    |
+| [a, b]       | [c, d]       |
+| [a, b, c]    | [d]          |
+| [a, b, c, d] | []           |
+false                      
+```
+
+...or prefixes/suffixes
+
+```prolog
+suffix(S,L):-append(_,S,L).
+prefix(P,L) :- append(P,_,L).
+?-prefix(X,[a,b,c,d]).
+X=[];
+X=[a];
+X=[a,b];
+X=[a,b,c];
+X=[a,b,c,d];
+no
+```
+
+### Reversing a list
+```prolog
+accReverse([],L,L).
+accReverse([H|T],Acc,Rev) :-
+    accReverse(T,[H|Acc],Rev).
+
+% Wrapper
+reverse(L1,L2) :- accReverse(L1,[],L2).
+```
+
+## Under the hood aka Horn Clauses
+
+Prolog uses "resolution" to find proofs automatically and efficiently.
+
+Horn Clause
+: A Horn clause is a clause with at most one unnegated (aka positive) literal: $$A, (\lnot A \lor \lnot B \lor C), ...$$
+
+Horn formula
+: A Horn formula is a conjunctive normal form (CNF) formula whose clauses are all Horn clauses. $$(\lnot A \lor \lnot B \lor C) \land A \land B$$
+
+Goal clause
+: i.e. Horn clause with no positive literal (Prolog query)
+
+definite clause
+: i.e Horn clause with exactly one positive literal (Prolog rule)
+
+Horn Clause have better computational properties than normal clauses, because:
+
+* Resolution of two Horn clauses always results in a Horn clause.
+* Resolution of a goal clause and a definit clause is always a goal clause.
+
+## An Example
+
+Horn clause for query: `C` (The query is negated in order to
+attempt a proof by contradiction)
+
+\[
+\{\{ \lnot A, \lnot B, C \}, {A}, {B}, {\lnot C}\}
+\]
+
+
+!!! todo
+
+    Understand [Example on P. 10](https://moodle.hsr.ch/pluginfile.php/53417/mod_resource/content/0/PrFm_02-LP_13-Prolog_Under_the_Hood.pdf)
