@@ -1,6 +1,10 @@
 version: 1.0
 
-site_name: MsTe Dokumentation
+title: .Net Technologien
+subtitle: Herbstsemester 2016
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
+
 
 pages:
     - index.md
@@ -10,6 +14,8 @@ pages:
     - garbage_collection.md
     - delegatesEvents.md
     - generics.md
+    - iteratoren.md
+    - exceptions.md
     - tips.md
     - pitfalls.md
     - snippets.md
