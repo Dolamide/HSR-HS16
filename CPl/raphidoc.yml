@@ -15,6 +15,7 @@ pages:
     - error-handling.md
     - classes.md
     - arithmetic-types.md
+    - containers.md
     - tips.md
     - pitfalls.md
     - cevelop.md
