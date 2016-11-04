@@ -1,0 +1,8 @@
+<testsuites>
+	<testsuite name="AllTests" tests="4">
+		<testcase classname="AllTests" name="thisSimpleField5SubstractionWithSelf"/>
+		<testcase classname="AllTests" name="thisSimpleField5Substraction3Minus4"/>
+		<testcase classname="AllTests" name="thisSimpleField5Addition4Plus4"/>
+		<testcase classname="AllTests" name="thisSimpleField5MutationSubstraction3Minus4"/>
+	</testsuite>
+</testsuites>

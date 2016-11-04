@@ -30,8 +30,8 @@ public:
 
 std::set<Word> wlist(std::istream & in);
 
+std::ostream & operator<<(std::ostream & out, Word const & word);
 std::istream & operator>>(std::istream & in, Word & word);
-std::ostream & operator<<(std::ostream & out, Word & word);
 
 inline bool operator>(Word const & lhs, Word const & rhs) {
     return rhs < lhs;

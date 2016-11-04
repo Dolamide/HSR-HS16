@@ -20,7 +20,7 @@ Word::Word(){
 
 Word::Word(std::string in){
 	if(!isValid(in)){
-		throw std::out_of_range("Given string contains invalid characters!");
+		throw std::invalid_argument("Given string contains invalid characters!");
 	}
 	value = in;
 }
@@ -53,30 +53,37 @@ std::ostream & Word::print(std::ostream & out) const{
 }
 
 std::istream & Word::read(std::istream & in){
+	std::string parsed{};
 	char c{};
-		std::string parsed{};
-		while(in.get(c)){
-			if(std::isalpha(c)){
-				parsed += c;
-			}else if(parsed.size() > 0) {
+	while(in){
+		// If a word is already read - peek if the next
+		// word is a alphanumeric - if not - abort!
+		if(parsed.size() > 0){
+			if(!std::isalpha(in.peek())){
 				break;
 			}
 		}
 
-		// Do not override anything if nothing could be read.
-		// isValid could be called here - but it would be too redundant
-		if(parsed.size() == 0){
-			return in;
+		in.get(c);
+		if(std::isalpha(c)){
+			parsed += c;
 		}
-		value = parsed;
+	}
+
+	// Do not override anything if nothing could be read.
+	// isValid could be called here - but it would be too redundant
+	if(parsed.size() == 0){
 		return in;
+	}
+	value = parsed;
+	return in;
 }
 
 std::istream & operator>>(std::istream & in, Word & word){
 	return word.read(in);
 }
 
-std::ostream & operator<<(std::ostream & out, Word & word){
+std::ostream & operator<<(std::ostream & out, Word const & word) {
 	return word.print(out);
 }
 
