@@ -101,3 +101,176 @@ Code für Tests muss geschrieben und gepflegt werden. Garantiert trotzdem nicht,
 * Repeatable
 * Independent
 * Professional (Auch die Tests überprüfen)
+
+
+## Notizen: "Microtesting"
+
+Code Smells ➪ Identify hazards in code
+Refactoring ➪ Improve the design of existing code
+**Microtesting ➪ Test effectively at the object level**
+Test-Driven Development ➪ Design code by starting with tets
+Faking & Mocking ➪ Handle awkward collaborations
+Legacy Code ➪ Work with pre-existing code
+
+
+Microtesting
+: **writing (automated) unit tests** at the object level.
+: A microtest is a short, simple, automated test that probes **one behavior** of **a single object**.
+
+Kurz (<10-20 Zeilen!) und Präzise (macht genau etwas, hat ensprechender name und asserts und führt nur den minimal benötigten code aus.)
+
+> In microtesting, we never reach (but look) inside the box (encapsulate)
+
+> Tests should not depend on data from other tests.
+➪ avoid persistent state entirely - if not possible, clean it all up!
+➪ Keep the tests crips
+
+Code *Safety Net* = "This is how I expect it to work"
+
+Increase productivity and confidence
+
+Mehrere Dimensionen
+
+* Complexity (easy/hard)
+* Collaboration (solo/group) (solo = classes work largely alone, and have no awkward collaborations that we have to work with)
+* Timing (before/after)  (after means we're going to microtest classes that are already written.)
+
+Training focuses on easy, solo, after!
+
+### "Standard Micro Test"
+
+1. Happy Path: "callWilma" ➪ testcallWilma() "default condition"
+2. Test Execution Paths: Check for conditionals ➪ testCallWillmaPhoneBusy()
+
+Using expressive names helps to focus on on small, isolated behaviour - and is almost a table of contents.
+
+minimal example
+!!! todo
+
+    Write an example by myself
+
+!!! todo
+
+    >Test the interesting cases.
+    >Proceed one test at a time, getting it to green.
+    >One test corresponds to one behavior.
+    >Each test should work in a maximally controlled environment (data context).
+    >In each test, set up a minimal data context.
+    >The universal structure of microtests: Arrange, Act, Assert (and possibly Teardown).
+    >Keep test code from deterioration: refactor your test code after each test.
+    >Start with simple behaviors to gain confidence (they are important too!) Then move on to complex ones.
+    >DO NOT change the production code yet: We want to focus on writing microtests for now.
+
+#### AAA-Structure
+
+* **Arrange** the data and context. Objekte, die getestet werden sollen initialisieren und zusammenhängen. Hier werden auch Werte gesetzt, welche den Execution Path beeinflussen
+* **Act** on the code. Hier wird einfach die Methode, welche getestet wird aufgerufen.
+* **Assert** that the reuslts are as expected
+
+Am Schluss sollte (falls nötig) noch der kontext aufgeräumt werden - bsp. Datenbankverbindungen oder Dateien.
+
+```java
+@Test
+public void testSaleWithSingleItemAndMultipleQuantity() {
+   // arrange
+   Sale sale = new Sale();
+   Money total = new Money(42);
+   Money price = new Money(6);
+   Item item = new Item("Toy");
+   int quantity = 3;
+   // Act
+   sale.addItem(item, price, quantity)
+
+   // Assert
+   assertEquals(sale.getTotal(), total);
+   assertEquals(sale.getItems().size(), 1);
+   // Teardown
+   // No teardown required...
+}
+```
+
+### "Intersting" things to test
+test all interesting paths through a class ≠ 100% Test Coverage
+interesting = Worth investing time and energy
+
+* Basic code that's used everywhere
+* Things that can have potential damage(calculate bill amount)
+* Not fully confident
+* Complex operations
+* Anything we might break while coding elsewhere
+* ...
+
+100% Coverage does not say anything about what is tested and weather it actually works
+
+One-to-one mapping from methods to tests isn't a good idea as well - we don't care about methods but about *functionallity* and *behaviour*
+
+Not only execution path matters - but also the "Data Context" (data) which are tested
+
+### jUnit
+
+* Don't forget the `@Test` annotation
+* Test methods can throw Exceptions - but take no arguments.
+* additional failure message that explains the mismatch between actual and expected values (First Argument!)
+
+Test with floating-comma values:
+
+```java
+@Test
+public void doubleEquality() {
+   double expected  = 10.01;
+   double actual    = 10.01;
+   double precision = 0.000001;
+   assertEquals(expected, actual, precision);
+}
+```
+
+Test for same reference:
+```java
+@Test
+public void objectsSame() {
+    Integer anObject = new Integer(1);
+    Integer sameObject = anObject;
+    assertSame(anObject, sameObject);
+    assertNotSame(anObject, sameObject);
+    assertNull(null);
+    assertNotNull(anObject);
+}
+```
+
+Expected Exceptions
+```java
+@Test(expected=NumberFormatException.class)
+public void parseIntThrowsException() {
+   Integer.parseInt("trying to parse text instead of numbers");
+}
+```
+
+
+"Shared Setup"
+```java
+// Before and after every test
+@Before
+public void before() {
+    doStuff();
+}
+@After
+public void after() {
+    undoStuff();
+}
+
+// Before and after class
+@BeforeClass
+// ...
+@AfterClass
+// ...
+```
+#### Outcomes
+
+Failture
+: one of the assertions fails because different value
+
+Error
+: An Exception is thrown but not caught and handled properly
+
+Pass
+: No faliture and error
