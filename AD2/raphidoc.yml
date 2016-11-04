@@ -1,6 +1,9 @@
 version: 1.0
 
-site_name: AD2 Dokumentation
+title: Algorithmen und Datenstrukturen 2
+subtitle: Herbstsemester 2016
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
 
 pages:
     - index.md

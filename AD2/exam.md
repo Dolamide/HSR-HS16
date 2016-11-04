@@ -29,6 +29,7 @@
 * Brute-Force
 * Boyer-Moore ( ➪ Siehe Prüfung 2006)
 * KMP
+➪ Siehe Übungen Woche 7, Aufgabe 1 & 2
 
 
 ### Bei genügend Zeit

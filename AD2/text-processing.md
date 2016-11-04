@@ -51,6 +51,9 @@ Beispiel: Missmatch bei t ➪ lastOccurence('t') → 2, verschiebe Position um 2
 ![Ein Beispiel Ablauf mit Boyer-Moore](images/text-boyer-example.png)
 : Ein Beispiel Ablauf mit Boyer-Moore
 
+![Vollständiges BM Beispiel](images/text-boyer-example-exercise.png)
+: Ein vollständiger Ablauf mit Boyer-Moore - mit 12 Vergleichen
+
 Im Worst-Case (T=aaaa ... a, P: baaaaa) hat diese Methode eine Laufzeit von $$O(n \cdot m + s)$$ :disappointed:
 
 Ist bei Textanalysen aber typischerweise sehr schnell - kann aber in Ausnahmesituationen sehr langsam sein!
@@ -107,6 +110,10 @@ Diese "failture function" kann als Array Dargestellt werden, in $$O(m)$$
 
 ![Ein Beispiel Ablauf mit Knuth-Morris-Pratt](images/text-KMP-example.png)
 : Ein Beispiel Ablauf mit Knuth-Morris-Pratt
+
+![ineffizienter Ablauf mit Knuth-Morris-Pratt](images/text-KMP-example-exercise.png)
+: Ein ineffizienter Ablauf mit Knuth-Morris-Pratt - da ein keine interne Präfixe hat. (=Brute Force)
+
 
 ```java
 /*
