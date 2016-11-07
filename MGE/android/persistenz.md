@@ -1,11 +1,11 @@
-# Persistenz
+## Persistenz
 
 Zwei unterschiedliche Arten von Daten:
 
 * Zustandsdaten der Views (aktuelle Eingabewerte, Checkboxes, etc.)
 * Anwendungsdaten unserer Domain-Klassen
 
-## View-Daten Persistieren
+### View-Daten Persistieren
 
 * Im Bundle-Object von ``onCreate`` und ``onSaveInstanceState``
 * Geht nur mit Views, die eine ID haben
@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
 Vorsicht: onSaveInstance wird nicht immer ausgeführt (bsp. kill, Back-Button)
 
-## App-Daten Persistieren
+### App-Daten Persistieren
 
-### Shared Preferences
+#### Shared Preferences
 
 ```java
 SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -49,7 +49,7 @@ editor.commit();
 
 Listener kann registriert werden...
 
-### Files
+#### Files
 ```java
 // Auf interner / privater speicher schreiben
 FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
@@ -62,7 +62,7 @@ File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_
 File file = new File(path, "HSR_Cat.png");
 ```
 
-### SQLite
+#### SQLite
 
 ```java
 public class DBHelper extends SQLiteOpenHelper {
@@ -85,7 +85,7 @@ SQLiteDatabase db = helper.getReadableDatabase();
 db.execSQL("SELECT * FROM ...;");
 ```
 
-### Cloud
+#### Cloud
 
 * firebase.google.com
 * realm.io

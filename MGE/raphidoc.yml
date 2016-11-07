@@ -17,12 +17,15 @@ pages:
     - android/material_design.md
     - android/patterns.md
     - android/etc.md
+    - wpf/intro.md
+    - wpf/events.md
     - exam.md
     - lernplan.md
 
 
 assets:
     - android/images/
+    - wpf/images/
 
 # TODO: load from ../theme/ or default
 theme: /home/rzi/Desktop/demo/raphi_theme/

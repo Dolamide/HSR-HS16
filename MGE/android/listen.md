@@ -1,6 +1,6 @@
-# Listen
+## Listen
 
-## Einfache ListView
+### Einfache ListView
 
 ```xml
 <ListView
@@ -71,7 +71,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 }
 ```
 
-## Performance
+### Performance
 
 * Alte View bei getView wiederverwenden!
 * findViewById ist teuer! ➪ Zwischenspeichern
@@ -85,7 +85,7 @@ convertView.setTag(views); // Beliebiges Objekt kann hier gesetzt werden
 
 Damit das nicht immer "manuell" gemacht werden muss: RecyclerView
 
-## RecyclerView
+### RecyclerView
 
 Nachfolger von List- und GridView. Leicht anderes API - Recycling ist fest eingebaut.
 

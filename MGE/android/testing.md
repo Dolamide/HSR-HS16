@@ -1,6 +1,6 @@
-# Testing
+## Testing
 
-## Local unit tests
+### Local unit tests
 
 Laufen auf der lokalen JVM - ohne zugriff auf Android Framework APIs
 
@@ -11,7 +11,7 @@ umgangen werden (Bsp. mit Mockito)
 
 Verzeichnis: ``module-name/src/test/java/``
 
-## Instrumented tests
+### Instrumented tests
 
 Tests, welche auf einem Android Gerät (Hardware oder Emulator) laufen.
 

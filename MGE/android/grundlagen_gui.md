@@ -1,4 +1,4 @@
-# Grundlagen GUI Programmierung
+## Grundlagen GUI Programmierung
 
 !!! seealso
 
@@ -10,7 +10,7 @@
     * Welche XML-Attribute etc müssen auswendig gelernt bzw. in den Spick aufgenommen werden?
     * Merke: ``tools:`` namespace nur für GUI-Builder
 
-## Übersicht
+### Übersicht
 
 * Imperativ mit Java-Code
 * Deklarativ mit XML und GUI-Builder
@@ -21,7 +21,7 @@
     * Eigene Elemente können analog eingebunden werden.
     * Resourcen ermöglichen unterschiedliche Varianten je Gerät, Sprache usw. zu verwenden
 
-## Views
+### Views
 
 View ist Basisklasse um Userinterfaces zu bauen und verantwortlich für ...
 * ... Inhalt zu zeichnen
@@ -33,7 +33,7 @@ ViewGroups sind eine Unterklassen von View und beinhaltet andere Views (Composit
 
 Views, die in XML deklariert sind werden automatisch instantiiert ( Beispielsweise ``R.layout.activity_main``).
 
-## Widgets
+### Widgets
 
 Abgrenzung: Widgets für im GUI und nicht Widgets auf dem Home-Screen
 
@@ -51,7 +51,7 @@ Es gibt im SDK viele unterschiedliche Widgets - unter anderem:
 
 Vorteil: Optimale Eingabemethode.
 
-## Layouts
+### Layouts
 
 ![Verschiedene Layouts](images/layouts.png)
 : Verschiedene Layouts
@@ -65,19 +65,19 @@ Breite und Höhe eines Layouts:
 ![](images/layout_params.png)
 : match_parent und wrap_content
 
-## Linear Layout
+### Linear Layout
 * Alle gleich viel Platz
 * layout_weight: Gewichtung, für mehr Platz.
 
 ![](images/linear_layout.png)
 : layout_weight: Gewichtung, für mehr Platz.
 
-## Relative Layout
+### Relative Layout
 * Kinder werden relativ zu einander angeordnet
   Bsp: "unterhalb von X und neben Z"
 * sehr vielseitig
 
-# Ressourcen
+## Ressourcen
 
 * drawables (Bilder)
 * menu (Menus)
@@ -94,13 +94,13 @@ Breite und Höhe eines Layouts:
 </resources>
 ```
 
-## Dimensionen
+### Dimensionen
 * Einheit: dp/dip (Density-independent Pixels)
     * Werden Pixel werden mit der Auflösung skaliert.
 * in ``dimens.xml``
 * Für Schriften: sp
 
-## Events und Listeners
+### Events und Listeners
 * Eventloop - analog zu JS
 * Nur Main-Thread darf GUI verändern
 * Listener auf Objekt registrieren, bsp. ``OnTouchListener``, ``OnClickListener`` [usw.](https://developer.android.com/guide/topics/ui/ui-events.html)
@@ -129,7 +129,7 @@ public void onButtonClicked(View view)
     [The Android Event Loop](http://mattias.niklewski.com/2012/09/android_event_loop.html)
 
 
-## GUI-Objekte finden
+### GUI-Objekte finden
 
 ```java
 // Sucht im aktuellen Layout - das mit setContentView gesetzt wurde
@@ -137,7 +137,7 @@ Button button = (Button) findViewById(R.id.button);
 EditText editText = (EditText) findViewById(R.id.editTextA);
 ```
 
-## Inputvalidierung
+### Inputvalidierung
 
 ```java
 final EditText password = (EditText) findViewById(R.id.password);

@@ -1,6 +1,6 @@
-# Struktur
+## Struktur
 
-## Vorgehen
+### Vorgehen
 
 1. Domainmodell entwerfen
 2. Screens ableiten
@@ -15,7 +15,7 @@
     * [Designing Effective Navigation](https://developer.android.com/training/design-navigation/index.html)
     * [Navigation Patterns](https://developer.android.com/design/patterns/navigation.html)
 
-## Zurück ≠ Zurück
+### Zurück ≠ Zurück
 
 Zurück kann entweder *zum hierarchischen Parent* **up** (ancestral) oder aber zurück zum *vorherigen Element* **back** (temporal) bedeuten.
 
@@ -32,7 +32,7 @@ nicht "rückggängig".
 ![](images/ancestral-temporal-navigation.png)
 : Quelle: [Android Training design navigation](https://developer.android.com/training/design-navigation/ancestral-temporal.html))
 
-## Fragments
+### Fragments
 
 **Problem**: Je nach Formfaktor wäre es nützlich, mehrere Screens anzuzeigen
 aber es kann nur eine Activity aufs Mal angezeigt werden.
@@ -61,9 +61,9 @@ public class MainActivityFragment extends Fragment {
 }
 ```
 
-### Implementations Variaten
+#### Implementations Variaten
 
-#### Statisch
+##### Statisch
 
 Deklarativ mittels Fragment-Tag im Layout der Activity.
 
@@ -80,7 +80,7 @@ Deklarativ mittels Fragment-Tag im Layout der Activity.
 
 Der Code der Activity ändert sich nicht.
 
-#### Dynamisch
+##### Dynamisch
 
 Explizit wird ein Platzhalter im Layout der Activity (mit id!) hinzugefügt (Per Konvention
 FrameLayout)
@@ -127,7 +127,7 @@ public class MainActivity extends Activity {
     dürfen, muss man das bei dynamischen Fragments explizit machen!
 
 
-## Activity-Fragment Kommunikation
+### Activity-Fragment Kommunikation
 
 Fragments dürfen (sollten) keine Abhängigkeit auf Parent haben.
 
@@ -155,7 +155,7 @@ public class MainActivityFragment extends Fragment {
  }
 ```
 
-## Master-Detail Navigation
+### Master-Detail Navigation
 
 ![](images/master-detail-navigation.png)
 
@@ -201,7 +201,7 @@ public class ItemListActivity extends Activity
 }
 ```
 
-## Option Menu
+### Option Menu
 
 Implementation Deklarativ in XML (im bsp. menu/main.xml). Eine Imperative implementierung
 wäre auch möglich, deklarativ ist aber wann immer möglich vorzuziehen.
@@ -249,18 +249,18 @@ public class MainActivity extends Activity {
     analog zur Activity die onCreateOptionsMenu Methode überschrieben werden.
 
 
-## Settings-Page
+### Settings-Page
 
 !!! seealso
 
     Folie Nr. 37/38
 
 
-## Fragment Menu
+### Fragment Menu
 
 Analog
 
-## Toolbar
+### Toolbar
 
 Früher Action-Bar (deprecated seit Android 5.0)
 
@@ -285,12 +285,12 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-## Navigation Drawer
+### Navigation Drawer
 
 Der Navigation Drawer ist platzsparend - hat aber eine schlechte Usuability.
 Das Widget ist nicht Teil von Android und muss über eine Support-Library eingebunden werden.
 
-## Toast vs. Snack
+### Toast vs. Snack
 
 **Toast** ist eine kleine Feedback-Nachricht
 

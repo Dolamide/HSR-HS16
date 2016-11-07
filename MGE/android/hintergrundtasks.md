@@ -1,4 +1,4 @@
-# Hintergrundtasks
+## Hintergrundtasks
 
 Problem: Lang laufende Tasks blockieren den UI-Thread (bsp. Download).
 Der Main/UI-Thread koordiniert Events, zeichnet GUI (Event-Loop - siehe Grundlagen)
@@ -27,7 +27,7 @@ thread.start();
 }
 ```
 
-## AsyncTask
+### AsyncTask
 Schönere Variante als oben!
 
 ```java
@@ -61,7 +61,7 @@ new DownloadBitmapTask().execute(new String[]{"http://slow.hsr.ch/hsr_cat.bmp"})
 
 ```
 
-## Services
+### Services
 
 Services dienen dazu, Aufgaben im Hintergrund auszuführen, deren Abarbeitung das UI zu lange blockieren würde wie Abspielen von Musik oder Laden von Daten über das Netzwerk.
 
@@ -94,7 +94,7 @@ stopSelf();
 
     * IntentService
 
-### Bound Services
+#### Bound Services
 Beim Aufruf von `bindService()` erhält der Client ein Interface, um mit dem Service zu kommunizieren.
 
 Nachdem alle Clients unbindService() aufgerufen haben, wird der Service beendet
@@ -103,18 +103,18 @@ Nachdem alle Clients unbindService() aufgerufen haben, wird der Service beendet
 
     Einfaches Code-Sample aus den Übugen
 
-### Datenrückgabe
+#### Datenrückgabe
 
 * Variante Broadcast: Service verschickt und die Activity stellt einen Broadcast Receiver zur Verfügung, der Intent empfängt.
 * Variante `PendingIntent` (nicht prüfungsrelveant)
 
-### AsyncTask vs. Service
+#### AsyncTask vs. Service
 
 Mit dem AsyncTask kann eine Aufgabe *vom Main-Thread* entkopppelt werde
 
 Ein Service entkopelt *von Context*
 
-## Broadcasts
+### Broadcasts
 Das System verschickt Meldungen wie SMS empfangen, System wurde gebootet, Akku schwach, Power Connected usw. per Broadcast. Broadcast Receiver können registriert werden, um bestimmte Meldungenzu erhalten. Zudem können auch Apps Meldungen per Broadcast verschicken.
 
 Können statisch in der Manifast...
@@ -161,7 +161,7 @@ Weiteres:
 * Beim Intent können unter Extras zusätzliche Daten hinterlegt werden
 * LocalBroadcastManager um im selben Prozess zu senden
 
-## Content Provider
+### Content Provider
 
 Ein Content Provider stellt Daten prozessübergreifend zur Verfügung und stellt in der Regel Daten zur Verfügung, die in einer Datenbank abgelegt sind. Die Schnittstelle ähnelt stark der SQL-Syntax.
 

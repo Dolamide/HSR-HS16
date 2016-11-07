@@ -1,6 +1,6 @@
-# Weiterführende Themen
+## Weiterführende Themen
 
-## Sensoren
+### Sensoren
 > Sie können Sensoren in Android ansprechen und die verschiedenen Typen von Sensoren erklären
 
 * Unterstützung von Gerät zu Gerät verschieden
@@ -43,7 +43,7 @@ lightSensor = sensorManager.getSensorList(Sensor.TYPE_LIGHT).get(0);
 
 
 ```
-## Dependency- und View Injection
+### Dependency- und View Injection
 > Sie können Dependency- und View Injection in ihren Android-Projekten einsetzen
 
 Problem: Enge Koplung (Bsp. Library Service) - wird zudem mehrfach instantiiert.
@@ -65,7 +65,7 @@ Nachteile
 * Gute Tests sind sehr Wichtig ➪ Bei einer Fehlkonfiguration drohen NullPointerException
 
 
-### Dependency-Injection mit Dagger
+#### Dependency-Injection mit Dagger
 
 Modul
 : En Modul instanziert unsere Klassen
@@ -118,7 +118,7 @@ public class GadgeothekActivity extends AppCompatActivity {
 }
 ```
 
-### View-Injection mit Butter Knife
+#### View-Injection mit Butter Knife
 ```java
 class ExampleActivity extends Activity {
    @Bind(R.id.username) EditText username;
@@ -142,7 +142,7 @@ class ExampleActivity extends Activity {
 }
 ```
 
-## Data Binding
+### Data Binding
 > Sie haben das Konzept von Data Binding kennen gelernt und können dieses erkläutern
 
 Nachteile:

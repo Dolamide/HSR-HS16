@@ -1,6 +1,6 @@
-# Material Design
+## Material Design
 
-## Vision
+### Vision
 
 Einheitliche Design Language und "Human-Interface Guidelines" für Android (und mehr Applikationen von Google) zu etablieren.
 
@@ -39,7 +39,7 @@ Animationen helfen die Illusion aufrecht zu erhalten, dass wir die Materialien a
     * https://play.google.com/store/apps/details?id=com.bhphoto
 
 
-## Integration in die eigenen App
+### Integration in die eigenen App
 
 Das aussehen sollte nicht direkt auf den Elementen verändert werden sondern global (analog nicht inline in HTML sondern extern in CSS.)
 
@@ -94,7 +94,7 @@ Hier können dinge wie die [Primärpalette bestehend aus drei Farbtönen](https:
 
 
 
-## UI-Komponenten
+### UI-Komponenten
 
 FAB – Floating Action Button
 : Aktion nicht eindeutig ist, lieber keinen FAB nehmen
