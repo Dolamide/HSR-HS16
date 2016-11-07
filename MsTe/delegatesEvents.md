@@ -259,7 +259,7 @@ public class Button
 }
 ```
 
-## Anonyme methoden
+## Anonyme Methoden
 
 Anonyme Methoden können dann Verwendet werden, we die deklaration einer speziellen Methoden nicht sinnvoll ist (siehe Lambdas).
 

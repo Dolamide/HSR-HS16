@@ -104,7 +104,7 @@ foreach (int elem in list.Reverse) {}
 
 ## Erweiterungsmethoden
 Bestehende Klasse erweitern *aus Anwendersicht*.
-Signatur der Klasse wird nicht verändert Aufru, es sieht jedoch so aus, als wäre es eine Methode auf der Klasse.
+Signatur der Klasse wird nicht verändert Aufruf, es sieht jedoch so aus, als wäre es eine Methode auf der Klasse.
 
 Anwendung bsp. für Method Chaining/Fluent APIs.
 
