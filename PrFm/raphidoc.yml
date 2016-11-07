@@ -1,6 +1,10 @@
 version: 1.0
 
-site_name: PrFm Dokumentation
+title: Programmiersprachen und formale Methoden
+subtitle: Herbstsemester 2016
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
+
 
 pages:
     - index.md
@@ -9,6 +13,7 @@ pages:
     - propositional-calculus.md
     - predicate-calculus.md
     - prolog.md
+    - lambda.md
     - exam.md
     - lernplan.md
 
