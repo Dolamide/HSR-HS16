@@ -10,6 +10,7 @@ pages:
     - domain-model.md
     - requirements-engineering.md
     - software-testing.md
+    - clean-code.md
     - architektur.md
     - projektmanagement.md
     - exam.md
