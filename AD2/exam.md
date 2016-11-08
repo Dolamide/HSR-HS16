@@ -25,12 +25,13 @@
 
 ➪ Siehe Prüfung 2006
 
-### Manuelles Pattern-Matching
+### Manuelles Pattern-Matching (!)
 * Brute-Force
 * Boyer-Moore ( ➪ Siehe Prüfung 2006)
 * KMP
 ➪ Siehe Übungen Woche 7, Aufgabe 1 & 2
 
+(Good suffix heuristics nicht relevant)
 
 ### Bei genügend Zeit
 

@@ -14,7 +14,7 @@
     `P[i..j]` → i und j *inklusive* (bei Java *exklusive*)
 
 
-## Brute-Force
+### Brute-Force
 Die Brute-Force-Methode vergleicht das Pattern P mit dem Text T für jede mögliche Position von P relativ zu T bis eine Übereinstimmung gefunden wurde oder alle Möglichkeiten durchprobiert wurden.
 
 Im Worst Case (T=aaa....ah, P=aaaaah) benötigt die Brute-Force-Methode $$O(nm)$$
@@ -39,7 +39,7 @@ public static int findBrute(char[] text, char[] pattern) {
 }
 ```
 
-## Boyer-Moore
+### Boyer-Moore
 Basiert auf zwei Heuristiken
 
 1. Looking-Glass: Starte mit dem Vergleichen am Ende des Patterns
@@ -54,9 +54,13 @@ Beispiel: Missmatch bei t ➪ lastOccurence('t') → 2, verschiebe Position um 2
 ![Vollständiges BM Beispiel](images/text-boyer-example-exercise.png)
 : Ein vollständiger Ablauf mit Boyer-Moore - mit 12 Vergleichen
 
-Im Worst-Case (T=aaaa ... a, P: baaaaa) hat diese Methode eine Laufzeit von $$O(n \cdot m + s)$$ :disappointed:
+Im Worst-Case (T=aaaa ... a, P: baaaaa) hat diese Methode eine Laufzeit von $$O(n \cdot m + s)$$ :disappointed: (Best Case $$O(n/m)$$)
 
 Ist bei Textanalysen aber typischerweise sehr schnell - kann aber in Ausnahmesituationen sehr langsam sein!
+
+!!! todo
+
+    Lösung der Übungen besser lesbar?
 
 ```java
 /*
@@ -90,7 +94,7 @@ public static int findBoyerMoore(char[] text, char[] pattern) {
 }
 ```
 
-## Knuth-Morris-Pratt
+### Knuth-Morris-Pratt
 Der KMP Algorithms arbeitet von links nach rechts, versucht aber redundante vergleiche vermeiden.
 
 Im Vorfeld wird eine Tabelle erstellt, welche die Übereinstimmungen von Präfix im Muster selbst sucht:
@@ -114,6 +118,9 @@ Diese "failture function" kann als Array Dargestellt werden, in $$O(m)$$
 ![ineffizienter Ablauf mit Knuth-Morris-Pratt](images/text-KMP-example-exercise.png)
 : Ein ineffizienter Ablauf mit Knuth-Morris-Pratt - da ein keine interne Präfixe hat. (=Brute Force)
 
+!!! todo
+
+    Lösung der Übungen besser lesbar?
 
 ```java
 /*
@@ -160,3 +167,54 @@ private static int[] computeFailKMP(char[] pattern) {
 }
 
 ```
+
+## Tries
+
+
+!!! todo
+
+    Übung: JS volltext Suche vorbereitung: Trie vorbereiten
+
+    -> Did you mean? - Alg. finden für ändliche matches
+
+
+Ein Trie ist eine kompakte Datenstruktur für die Repräsentation einer Menge von Strings, wie z.B alle Wörter eines Textes
+
+Die Laufzeit des Pattern Matching ist ok für kleinere Text - bzw. wenn einmal etwas gesucht wird. Wenn aber grosse Texte mehrfach durchsucht & analysiert werden sollen ist das ganze nicht sehr pefromant. Darum **Preprocessing auf dem Text** statt auf dem Pattern.
+
+* n = Totale Länge des Strings
+* m = Länge des Query-Strings / Pattern
+* d = Grösse des Alphabeet
+
+### "Standard-Trie"
+
+* Root ist leer und gleich viele Child-Nodes wie Anfangsbuchstaben
+* Maximale Tiefe enspricht dem längsten Wort
+* Child nodes alphabeetisch geordnet
+* $$O(n)$$ Speicher
+* $$O(dm)$$ für suchen, einfügen und löschen (Könnte mit HashTable (für unicode) oder Array (für kleines Alphabeet wie bsp. ASCII) noch verbessert werden)
+* Die Position kommt ins Blatt
+
+![Standard-Trie](images/trie_standard.png)
+
+### Komprimierte Tries
+
+* Elemente, die nur einen ein Child haben in einem Node zusammenfassen.
+* Darf nicht zusammengefasst werden, wenn Position in Node - Bsp. Wenn die beiden Wörter `Apple` und `a` vorkommen
+
+![](images/trie_komprimiert.png)
+
+### Kompakte Repräsentation
+* Knoten speichert Indizes anstelle von Substrings
+* Benötigt $$O(s)$$ Speicher, wobei s die Anzahl Strings im Array ist
+
+![](images/trie_kompakt.png)
+: Der Erste Index ist der des Arrays - die anderen beiden markieren Anfang und Ende des Substrungs
+
+
+### Suffix Tree
+* Ermöglicht Suche von Teilstrings ("Contains" oder "Suffixes" können mit (komprimierten/kompakten) Standard-Trie nicht gefunden werden.
+* Lösung: Baum mit jedem möglichen Suffix aufbauen (und komprimieren)
+* Suffix Tree könnte in $$O(n)$$ erstellt werden
+* benötigt $$O(n)$$ Speicher
+* Pattern Matchin in $$O(dm)$$
