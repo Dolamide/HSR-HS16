@@ -10,6 +10,12 @@ std::vector         // #include <vector>
 std::setw(2)        // #include <iomanip>
 ```
 
+## Algorithms-Headers
+`<algorithm>`
+: Gut für die miesten Algorithmen - bsp. `all_of`, `for_each`, `transform`, `rotate` usw.
+
+`<numeric>`
+: Für generische numerische Funktionen (wobei einige funktionen auch auf nicht-numerischer context angewant werden kann - bsp. accumulate auf `std:string`) `accumulate`, `inner_product`, `partial_sum`, `adjacent_difference`, `iota`
 ## Stream-Headers
 
 `<iosfwd>`

@@ -1,11 +1,15 @@
+#include "Word.h"
+#include "Button.h"
+
 #include "cute.h"
 #include "ide_listener.h"
 #include "xml_listener.h"
 #include "cute_runner.h"
-#include "Word.h"
-#include "Button.h"
+
 #include <stdexcept>
 #include <set>
+#include <string>
+#include <sstream>
 
 using namespace testat;
 
@@ -156,13 +160,13 @@ void test_input_operator_skips_leading_non_alpha() {
 
 void test_input_operator_overwrites_word() {
 	std::istringstream input{"Kotlin"};
-	Word w{"JavaScript"};
+	Word w{"JavaScr ipt"};
 	input >> w;
 	ASSERT_EQUAL(Word{"Kotlin"}, w);
 }
 
 void test_exercise_example() {
-	std::istringstream input{"compl33tely ~ weird !!??!! 4matted in_put"};
+	std::istringstream input{R"(compl33tely ~ weird !!??!! 4matted in_put)"};
 	Word w{};
 	input >> w;
 	ASSERT_EQUAL(Word{"compl"}, w);
@@ -313,8 +317,9 @@ void testButton(){
 	btn.pressButton();
 	ASSERT(!btn.isBlinking());
 	ASSERT(!
-			btn.isOn());
+	btn.isOn());
 }
+
 
 bool runAllTests(int argc, char const *argv[]) {
 	cute::suite s { };

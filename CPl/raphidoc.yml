@@ -16,6 +16,7 @@ pages:
     - classes.md
     - arithmetic-types.md
     - containers.md
+    - algorithms.md
     - tips.md
     - pitfalls.md
     - cevelop.md

@@ -11,6 +11,10 @@
 #include <iterator>
 #include <sstream>
 #include <stdexcept>
+#include <string>
+#include <cctype>
+#include <set>
+#include <vector>
 
 namespace testat {
 
@@ -81,6 +85,11 @@ std::istream & Word::read(std::istream & in){
 
 std::istream & operator>>(std::istream & in, Word & word){
 	return word.read(in);
+}
+
+std::istream & operator>>(std::string & in, Word & word){
+	std::stringstream sin{in};
+	return word.read(sin);
 }
 
 std::ostream & operator<<(std::ostream & out, Word const & word) {

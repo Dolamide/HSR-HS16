@@ -160,56 +160,6 @@ int main(){
 }
 ```
 
-## algorithms
-
-``count``, ``distance``, ``for_each``, ``accumulate``
-
-
-```c++
-void print(int x){
-    std::cout << "print:" << x++ << '\n';
-}
-// ..
-for_each(crbegin(v), crend(v), print);
-```
-
-!!! todo
-
-    MORE EXAMPLES
-
-lambda
-------
-
-Labdas sind first class vaues!
-
-Closure im []
-
-```c++
-// TODO: does it work?
-for_each(crbegin(v), crend(v), [](auto x) -> void {
-    // ...
-});
-
-// Void can be omitted
-for_each(crbegin(v), crend(v), [](auto x) {
-    // ...
-});
-
-// Pass "captures" with &(reference) and =(copy, default if omitted)
-// Here, reference to out is passed
-for_each(crbegin(v), crend(v), [&out](auto x) {
-out << x
-});
-
-auto const g=[](char c) -> char{return std::toupper(c);};
-
-// A method, that takes a function (the above declared lambda)
-// as parameter
-void f(std::function<char(char)> function){
-std::cout << function('a');
-}
-```
-
 ## Weiters
 
 ```c++

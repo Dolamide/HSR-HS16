@@ -1,7 +1,6 @@
 #ifndef FIELD5_H_
 #define FIELD5_H_
 #include <iosfwd>
-#include <iostream>
 
 struct Field5 {
 	explicit constexpr Field5(unsigned x = 0u) :

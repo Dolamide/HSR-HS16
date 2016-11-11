@@ -1,12 +1,5 @@
-/*
- * Word.h
- *
- *  Created on: Oct 28, 2016
- *      Author: rzi
- */
-
-#ifndef SRC_WORD_H_
-#define SRC_WORD_H_
+#ifndef WORD_H_
+#define WORD_H_
 #include <string>
 #include <iosfwd>
 #include <vector>
@@ -32,6 +25,7 @@ std::set<Word> wlist(std::istream & in);
 
 std::ostream & operator<<(std::ostream & out, Word const & word);
 std::istream & operator>>(std::istream & in, Word & word);
+std::istream & operator>>(std::string & in, Word & word);
 
 inline bool operator>(Word const & lhs, Word const & rhs) {
     return rhs < lhs;
@@ -52,4 +46,4 @@ inline bool operator!=(Word const & lhs, Word const & rhs) {
 
 }
 
-#endif /* SRC_WORD_H_ */
+#endif /* WORD_H_ */
