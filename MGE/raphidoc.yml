@@ -18,6 +18,7 @@ pages:
     - android/patterns.md
     - android/etc.md
     - wpf/intro.md
+    - wpf/gui_entwurf.md
     - wpf/events.md
     - exam.md
     - lernplan.md
