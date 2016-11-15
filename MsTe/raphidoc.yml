@@ -16,6 +16,7 @@ pages:
     - generics.md
     - iteratoren.md
     - exceptions.md
+    - linq.md
     - tips.md
     - pitfalls.md
     - snippets.md
