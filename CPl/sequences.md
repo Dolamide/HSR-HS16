@@ -101,10 +101,6 @@ Statessen algorithms nutzen!
 cbegin = element im iterator ist KONSTANT
 begin = Element im iterator ist nicht konstant
 
-!!! todo
-
-
-    ➪ Kärtli!
 
 Folgender Code ist **PFUI**!
 
@@ -159,6 +155,49 @@ int main(){
     copy(in,eof,out);
 }
 ```
+
+
+## Eigene Iteratoren typen
+
+Boost bringt viele Wrapper mit, um einfache iteratoren zu implementieren. Beispielsweise:
+
+* counting iterator - Bsp. Zahlen von 1 bis 10
+* Filter Iteratoren - braucht auch ein Prädikat, bsp. oddNumbers
+* Transformations iteratoren - Bsp. square
+
+```c++
+// Functor for filtering
+struct odd {
+    bool operator()(int n) const {return n%2; }
+}
+
+int main() {
+    // Zahlen von 1 bis 10 in Vektor v abfüllen
+    using counter=boost::counting_iterator<int>;
+    std::vector<int> v(counter{1}, counter{11});
+
+    // Ausgabe der ungeraden zahlen von v mittels
+    // filter iterator
+    std::ostream_iterator<int> out{std::cout, ", "};
+    using boost::make_filter_iterator;
+    copy(make_filter_iterator(odd{}, v.begin(), v.end()),
+         make_filter_iterator(odd{}, v.end(), v.end()),
+         out);
+
+    // Ausgabe der quadrierten Zahlen von v mittels
+    // transformations iterator
+    using boost::make_transform_iterator;
+    auto square=[](auto x){return x*x;};
+    copy(make_transform_iterator(v.begin(), square),
+         make_transform_iterator(v.end(), square),
+         out);
+}
+```
+
+!!! seealso
+
+    [Boost Dokumentation](http://www.boost.org/doc/libs/1_59_0/libs/iterator/doc/
+)
 
 ## Weiters
 

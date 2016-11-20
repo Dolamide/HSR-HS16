@@ -96,9 +96,24 @@ Semikolon nach der Klassendefinition!
 
 ## lambda
 
-Labdas sind first class vaues!
+Labdas sind first class vaues - wobei aber nur der compiler weiss, welchen typ genau das ist - darum auto nutzen.
 
-Closure im []
+Closure/"Capture" mit `[]`. Es sollten alle Werte explizit angegeben werden.
+
+* `[=myvar]` capture by value (default)
+* `[&myvar]` capture by reference
+* `[key=value]` neue capture variable mit explizitem  Wert.
+* `[=]`, `[&]` capure alles im scope
+* `[=, &out]` Alle by value, aber out by reference
+* `[&, =x]` Alle by reference, aber x by value
+
+**`this` can not be captured by reference**
+
+Der Return-Type kannn mit `->` definiert werden (falls nicht vom Compiler bestimmbar).
+
+!!! warning
+
+    Keine lokalen Variablen per Referenz capturen, wenn das Lambda den Scope verlässt!
 
 ```c++
 // TODO: does it work?
@@ -124,4 +139,15 @@ auto const g=[](char c) -> char{return std::toupper(c);};
 void f(std::function<char(char)> function){
 std::cout << function('a');
 }
+```
+
+## Mutable keywords
+
+Variablen, welche by copy (`=`) gecaputred werden sind mutable by default - es sei denn, dass `mutable` keyword ist explizit angegeben.
+Dieses ermöglicht, dass `x` verändert werden darf (das geht implizip immer für Referenzen)
+
+```c++
+generate_n(std::back_inserter(v), 10, [x=0]() mutable {
+    return ++x, x*x;
+});
 ```

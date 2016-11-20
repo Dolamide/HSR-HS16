@@ -11,12 +11,6 @@ Der Vorteil von Algorithmen im Gegensatz zu klassischen For/While-Schleifen sind
 
 Recap: Last zeigt nicht auf das letzte, sondern das "beyond last" Element
 
-Predicate
-: Eine Funktion oder Lambda, welches 1 (unary), 2 (binary) oder n Parameter nimmt und ein boolean zurückliefert.
-
-UnaryFunction
-: Funktion, die genau einen Parameter akzeptiert
-
 ## Exkurs: Funktor
 Ein Funktor ist ein Typ (Klasse), welche "callable" ist.
 Dies kann mit der `operator()(...)`-Methode erreicht werden:
@@ -42,11 +36,6 @@ int average(std::vector<int> values) {
     return acc.average();
 }
 ```
-
-A  functor is a type (class) that provides a call operator: operator()
-➪ Siehe SUM() beispiel
-→ Operator kann beliebig überladen werden - je nach bedüfnis
-=> Operator = aufruf mit `()` → S Bsp. `average`
 
 Lambdas werden im hintergrund in funktoren abgebidet
 

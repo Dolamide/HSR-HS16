@@ -1,30 +1,26 @@
-#include "kwic.h"
-#include "Word.h"
-
 #include "cute.h"
 #include "ide_listener.h"
 #include "xml_listener.h"
 #include "cute_runner.h"
 
-#include <sstream>
-#include <string>
-#include <iostream>
 #include <vector>
-#include <set>
+#include <algorithm>
+#include <iostream>
 
-void testKWICExerciseExample() {
-	std::istringstream in{"this is a test\nthis is another test"};
-	std::ostringstream out{};
-	testat::kwic(in, out);
-	std::string expected = "a test this is \nanother test this is \nis a test this \nis another test this \ntest this is a \ntest this is another \nthis is a test \nthis is another test \n";
-	ASSERT_EQUAL(expected, out.str());
+void thisIsATest() {
+	std::vector<int> v{1,2,3,4};
+	int x{};
+	std::generate_n(std::back_inserter(v), 10, [&x](){
+		++x; return x*x;
+	});
+
+	ASSERT_EQUAL(14, v.size());
 }
-
 
 bool runAllTests(int argc, char const *argv[]) {
 	cute::suite s { };
 	//TODO add your test here
-	s.push_back(CUTE(testKWICExerciseExample));
+	s.push_back(CUTE(thisIsATest));
 	cute::xml_file_opener xmlfile(argc, argv);
 	cute::xml_listener<cute::ide_listener<>> lis(xmlfile.out);
 	auto runner { cute::makeRunner(lis, argc, argv) };
