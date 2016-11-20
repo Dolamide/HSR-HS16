@@ -204,6 +204,11 @@ Die Laufzeit des Pattern Matching ist ok für kleinere Text - bzw. wenn einmal e
 
 ![](images/trie_komprimiert.png)
 
+
+Ein Ansatz zur Implementation ist es, ein Komprimierter Node bei bedarf zu dekomprimieren bzw. beim aufräumen wider zu dekomprimieren.
+
+Hat gleiche Komplexität, aber kostet etwas performance.
+
 ### Kompakte Repräsentation
 * Knoten speichert Indizes anstelle von Substrings
 * Benötigt $$O(s)$$ Speicher, wobei s die Anzahl Strings im Array ist
