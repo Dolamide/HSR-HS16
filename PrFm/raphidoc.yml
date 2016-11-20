@@ -14,6 +14,7 @@ pages:
     - predicate-calculus.md
     - prolog.md
     - lambda.md
+    - haskell.md
     - exam.md
     - lernplan.md
 
@@ -22,3 +23,6 @@ assets:
 
 # TODO: load from ../theme/ or default
 theme: /home/rzi/Desktop/demo/raphi_theme/
+
+pdf:
+    file-name: PrFm_Zusammenfassung_RZ.pdf

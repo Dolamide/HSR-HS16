@@ -5,6 +5,7 @@
 
 * closed book
 * one double sided A4 "cheat sheet"
+* Proof-Rules werden angegeben - falls benötigt
 
 ## Aufgabentypen
 
