@@ -7,7 +7,7 @@ In contrast to math, function application in Haskell is is denoted using space.
 Custom functions are defined within a _script_ - a simple text file with the `.hs` extension.
 
 
-Haskell comes with many function in the standard library - many that we already know from prolog.
+Haskell comes with many function in the standard library (*standard prelude*) - many that we already know from prolog.
 
 * `head [1, 2, 3, 4, 5]` - `1`
 * `head [1, 2, 3, 4, 5]` - `[2, 3, 4, 5]`
@@ -26,13 +26,29 @@ Haskell comes with many function in the standard library - many that we already 
     * function appliaction binds stronger than all other operators
     `f a b + c * d` ➪ `f(a b) + c d`
     `f a + b` ➪ `(f a) + b`
+
+
+Any functions with two arguments can be written bewtwen its arguments by enclosuing the name of the function in singl eback quotes. This can improve readability
+
+```haskell
+average ns = sum ns `div` lenght ns
+-- equivalent to
+average ns = div (sum ns) (lenght ns)
+
+```
+
 ## Naming conventions
 
 * functions and arguments must be lowercase
 * list arguments have an s suffix (by convention)
 
 ## GHCi
-GHCi = Glasgow Haskell compiler.
+GHC = Glasgow Haskell compiler.
+
+```bash
+$ ghci
+$ ghci my_script.hs
+```
 
 ```haskell
 -- Load a file
@@ -41,6 +57,7 @@ GHCi = Glasgow Haskell compiler.
 
 -- reload the last loaded file (here: demo.hs)
 :reload
+:r
 
 -- set and open editor
 : set editor name
@@ -145,8 +162,8 @@ fibsN n = map fib [0..n]
 fibsN 12
 -- Output: [1,1,2,3,5,8,13,21,34,55,89,144,233]
 
--- or get ALL the fibonacci numbres using an infinite
--- implementation ...
+{- or get ALL the fibonacci numbres using an
+infinite implementation -}
 fibs = map fib [0..]
 -- Output: [1,1,2,3,5,8,13,21,34,55,89,144,233, ...
 
