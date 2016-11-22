@@ -1,37 +1,121 @@
-# Architektur / Design
+# Software Architektur
+In Diagramm sollte nur das rein, wass auch Sinn macht - Typischerweise Interfaces nach oben. Muss **kommunizierbar** sein! (Bsp. nur 4 von 5 Layern, nur 24 von 125 Klassen)
 
-!!! todo
+Wenn die Zuständigkeiten gut zugeteilt sind, ist die Kohäsion - wie gewünscht - hoch. Beispiel: "Visuelle Darstellung, (UC) Controllers, Game Logic, Domain Objects, Storage usw."
 
-    Lesen in Larman:
+## Designziele
 
-    * Kapitel 13. Logical Architecture and UML Package Diagr. (16S)
-    * Kapitel 14. On to Object Design (7S)
-    * Kapitel 15. UML Interaction Diagrams (27S)
-    * Kapitel 16. UML Class Diagrams (21S)
-    * Kapitel 17. Designing Objects with Responsibilities (49S)
-    * Kapitel 18. Object Design Examples with GRASP (42S)
-    * Kapitel 19. Designing for Visibility (6S)
-    * Kapitel 20. Mapping Design to Code (16S)
-    * Kapitel 22. UML Tools and UML as Blueprint (4S)
-    * Kapitel 24. Iteration 2—More Patterns (5S)
-    * Kapitel 25. GRASP: More Objects with Responsibilities (22S)
-    * Kapitel 26. Applying GoF Design Patterns (38S)
-    * Kapitel 35. More Object Design with GoF Patterns (33S)
-    * Kapitel 27. Iteration 3—Intermediate Topics (2S)
-    * Kapitel 33. Architectural Analysis (18S)
-    * Kapitel 34. Logical Architecture Refinement (19S)
-    * Kapitel 36 Package Design
-    * Kapitel 37. UML Deployment and Component Diagrams (4S)
-    * Kapitel 39. Documenting Architecture: UML & the N+1 View Model (16S)
+* **Hohe Kohäsion**: Gute Zusammenarbeit innerhalb der Klasse
+* **Tiefe Kopplung**: Minimierte Abhängigkeiten von anderen Klassen
+    * Ermöglicht Testing
+    * Debugging geht einfacher
+    * Austauschbar
 
-## Einführung Architektur, Design (OOD)
+Tiefe Kopplung wird erreicht durch
 
-## UML für ODD
+* Abhängigkeiten von oben nach Unten (Asymentrisch)
+* Je weiter nach oben, umso Anwendungsspezifisch.
+* Je weiter unten, umso eher wird das wiederverwendet.
 
-## Designprinzipien, Patterns
 
-## Designprinzipien – SOLID
+## Schichten / Layer
 
-## Design Patterns
+Vorteile:
 
-## Software Architektur
+* Schichten austauschbar
+* Strukturierung
+    * Eingrenzen von Problemen
+    * Aufteilen der Arbeit
+
+Sinnvolle Aufteilung in mehrere Schichten anhand von
+
+* Kohäsion: Zusammengehörigkeit
+* Zuständigkeit / Arbeitsteilung (Single Responsibility)
+
+Je höher die Schicht, desto eher eignen sich Integration Tests. Je tiefer die Schicht, desto eher eignen sich Micro Tests.
+
+Das Layer Konzept kann auch für besser lesbare UML-Diagramme angewant werden. Beispielsweise Vererbung von oben nach Unten aufzeichen. Auch die Kardinalitäten (n oben, 1 unten) machen so notiert mehr Sinn, denn so Greiffen obere Schichten nur auf Untere zu und nicht umgekehrt.
+
+![](images/uml-inheritance.png)
+: Vererbung sinnvoller Notiert
+
+![](images/uml-cardinality.png)
+: Kardinalitäten - Stichwort Primary Key, Foregin Key
+
+
+### 3 Schichten-Modell
+
+* GUI, Presentation, View
+* Geschäftslogik, domain layer, problem domain, Model
+* Bibliotheken, Services, Libraries
+
+!!! warning
+
+    Die Namen der Schichten sind nicht standardisiert.
+
+
+## Partitionen
+Partitionierung beschreibt die _vertikale_ Unterteilung -  also gleiche Höhe aber möglichst unabhängige Zuständigkeiten.
+
+Layering allein genügt nicht.
+
+* Änderungen können unerwartet weitreichende Folgen haben: verlängerte Entwicklungszeiten.
+* Updates der asissifotware
+* Fehlersuche schwehr
+* ALLEs muss getest werden nach Fehlerbehebung
+
+Beheben von gemeinsamen Funktionen derselben Schicht:
+
+1. Gemeinsamer Code isolieren
+2. Gemeinsamer Code extrahieren
+3. Code auf tieferen Layer verscheieben
+4. (Optional) Weiterleitungen aufrufen um Refactoring zu mimimieren (redirecting stub)
+
+
+## Regeln für Abhängigkeiten
+
+![](images/rules_for_dependencies.png)
+
+
+1. … von oben auf die nächste darunterliegende Schicht sind immer OK
+2.  … nach unten, die eine Schicht überhüpfen sind manchmal auch OK
+3.  … innerhalb einer Schicht und Partition sind OK, sollten aber minimiert werden
+4.  … in einer Schicht quer zu einer anderen Partition sollten dringend vermieden werden
+5.  … NIE von unten nach oben, ausser callbacks (z.B. Observer pattern)
+
+## Layers vs. Tiers
+
+In einem System werden n Schichten üblicherweise auf n-x Tiers abgebildet.
+
+Layer
+: "Wie der Code strukturiert ist" hierarchische Abhängigkeiten, klar, wer den Takt angibt  ➪ Horizontal. AUfrufe sind typischerweise **synchron**.
+
+Tiers
+: "Wo welcher Teil läuft" i.d.R. gleichberechtigte Partner, kein diktierter Takt ➪ Vertikal. Aufrufe sind immer **asynchron**.
+
+Geteilter Code kann auch auf mehreren Tiers laufen - bsp. Domainmodel.
+
+Selbst Partitionen können teileweise in eigenen Tier ausgelagert werden.
+
+## Datenmodell Ordnen
+
+Zweck:
+
+* Übersichtlich
+* Schichten absehbar
+* Implementierungs-Reihenfolge
+
+
+## Deployment Diagramme
+
+>Verteilungsdiagramme zeigen, welche Software (Komponenten, Objekte) auf welcher Hardware (Knoten) laufen, d.h. wie diese konfiguriert sind und welche Kommunikationsbeziehungen dort bestehen.
+>
+><cite>Bernd Oestereich "Analyse und Design mit UML 2.1", Oldenbourg 2006</cite>
+
+Knoten
+: Konten sind "Hardware" (meist Virtualisiert) und können etwas ausführen
+
+Verschiedene Ausführungs-Umgebungen werden in einander geschachtelt. Dabei werden typischerweise Stereotypen wie `<<OS>>`, `<<web server>>`, `<<web browser>>` usw. angegeben.
+
+![](images/deployment_dgrm.png)
+: Beispiel eines Deployment Diagramms - Quelle www.uml-diagrams.org

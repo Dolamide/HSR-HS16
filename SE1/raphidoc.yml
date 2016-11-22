@@ -1,6 +1,9 @@
 version: 1.0
 
-site_name: SE1 Dokumentation
+title: Software Engineering 1
+subtitle: Herbstsemester 2016
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
 
 pages:
     - index.md
@@ -11,6 +14,7 @@ pages:
     - requirements-engineering.md
     - software-testing.md
     - clean-code.md
+    - patterns.md
     - architektur.md
     - projektmanagement.md
     - exam.md
