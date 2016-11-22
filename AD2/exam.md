@@ -3,7 +3,7 @@
 ## Erlaubte Hilfsmittel
 
 * Open Book - also alles
-* Notizen AD1
+* Notizen AD1 (Mathematischer Anhang!)
 * Code Listings (Übungen)
     * BinarySearchTree.java (Übung 2)
 
