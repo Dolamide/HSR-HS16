@@ -19,3 +19,7 @@
 
 ### Aufgaben
 * Layouts: W2 - A1,A2
+
+### WPF
+* Must know: Reviews letzer Block in Folien
+* menus, toolbars etc nicht Prüfungsrelevant

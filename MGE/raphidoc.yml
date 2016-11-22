@@ -20,6 +20,7 @@ pages:
     - wpf/intro.md
     - wpf/gui_entwurf.md
     - wpf/events.md
+    - wpf/gui_design.md
     - exam.md
     - lernplan.md
 
