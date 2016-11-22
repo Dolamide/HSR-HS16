@@ -18,6 +18,8 @@ pages:
     - responsive-web-design.md
     - UCD.md
     - security.md
+    - layering.md
+    - js_oo.md
     - exam.md
     - lernplan.md
 
