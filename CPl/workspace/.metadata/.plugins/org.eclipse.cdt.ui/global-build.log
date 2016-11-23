@@ -58249,3 +58249,175 @@ Finished building target: W09
 10:30:01 **** Incremental Build of configuration Debug for project W09 ****
 make all 
 make: Nothing to be done for 'all'.
+10:46:23 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+10:46:48 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+10:47:06 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+10:47:09 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+make: Nothing to be done for 'all'.
+10:47:16 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+../play.cpp: In function ‘int main(int, char**)’:
+../play.cpp:13:14: error: no matching function for call to ‘min(int, const double&)’
+     min(2, pi); // Compile error!
+              ^
+In file included from ../play.cpp:1:0:
+../MyMin.h:14:10: note: candidate: template<class T> const T& MyMin::min(const T&, const T&)
+ T const& min(T const & a, T const & b){
+          ^~~
+../MyMin.h:14:10: note:   template argument deduction/substitution failed:
+../play.cpp:13:14: note:   deduced conflicting types for parameter ‘const T’ (‘int’ and ‘double’)
+     min(2, pi); // Compile error!
+              ^
+make: *** [subdir.mk:20: play.o] Error 1
+11:03:00 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+11:03:18 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+11:03:23 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+make: Nothing to be done for 'all'.
+11:03:56 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+../play.cpp: In function ‘int main(int, char**)’:
+../play.cpp:20:22: error: unable to find string literal operator ‘operator""s’ with ‘const char [5]’, ‘long unsigned int’ arguments
+     std::cout << min("Pete"s,"Toni"s); // Result: "Toni" (**)
+                      ^~~~~~~
+../play.cpp:20:30: error: unable to find string literal operator ‘operator""s’ with ‘const char [5]’, ‘long unsigned int’ arguments
+     std::cout << min("Pete"s,"Toni"s); // Result: "Toni" (**)
+                              ^~~~~~~
+make: *** [subdir.mk:20: play.o] Error 1
+11:04:15 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+11:09:19 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+11:09:40 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+11:09:42 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+make: Nothing to be done for 'all'.
+13:11:18 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+../play.cpp: In function ‘int main(int, char**)’:
+../play.cpp:18:15: error: call of overloaded ‘min(std::__cxx11::string&, std::__cxx11::string&)’ is ambiguous
+     min(s1, s2); // Compileerror: min ist mehrdeutig
+               ^
+In file included from ../play.cpp:1:0:
+../MyMin.h:15:10: note: candidate: const T& MyMin::min(const T&, const T&) [with T = std::__cxx11::basic_string<char>]
+ T const& min(T const & a, T const & b){
+          ^~~
+In file included from /usr/include/c++/6.2.1/bits/char_traits.h:39:0,
+                 from /usr/include/c++/6.2.1/string:40,
+                 from ../MyMin.h:11,
+                 from ../play.cpp:1:
+/usr/include/c++/6.2.1/bits/stl_algobase.h:195:5: note: candidate: constexpr const _Tp& std::min(const _Tp&, const _Tp&) [with _Tp = std::__cxx11::basic_string<char>]
+     min(const _Tp& __a, const _Tp& __b)
+     ^~~
+make: *** [subdir.mk:20: play.o] Error 1
+13:11:32 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+Building file: ../play.cpp
+Invoking: GCC C++ Compiler
+g++ -std=c++1y -O0 -g3 -Wall -c -fmessage-length=0 -Wno-attributes -MMD -MP -MF"play.d" -MT"play.o" -o "play.o" "../play.cpp"
+Finished building: ../play.cpp
+ 
+Building target: Playground
+Invoking: GCC C++ Linker
+g++  -o "Playground"  ./play.o   
+Finished building target: Playground
+ 
+13:11:39 **** Incremental Build of configuration Debug for project Playground ****
+make all 
+make: Nothing to be done for 'all'.
