@@ -33,6 +33,9 @@
 
 (Good suffix heuristics nicht relevant)
 
+### Graphen
+* Übung 10, A1-A4!
+
 ### Bei genügend Zeit
 
 * Übung 1 / Aufgabe 4:

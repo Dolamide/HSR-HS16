@@ -121,6 +121,9 @@ Dieser wird in einer Matrix wird die "Verkabelung" abgelegt - bsp. Vertex mit In
 | `removeVertex(v)`     | $$m$$   | $$deg(v)$$              | $$n^2$$ |
 | `removeEdge(e)`       | 1       | 1                       | 1       |
 
+$$n$$ Anzahl Vertizes
+$$m$$ Anzahl Kanten
+
 ## DFS
 
 ## BFS
