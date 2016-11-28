@@ -204,7 +204,7 @@ Wenn im Dialogfenster das Property `DialogResult` auf `True` bzw. `False` gesetz
 
     Mit den Attribute `isCancel="True"`  und `isDefault="True"` kann können Events wird Standartverhalten "Ender = OK" und "Escape = Abbruch" automatisch implementiert.
 
-```cs
+```csharp
 var win = new DialogWindow();
 if (win.ShowDialog() != true) { // BLOCKING AUFRUF!
     Debug.WriteLine("Cancelled :-(");
@@ -233,7 +233,7 @@ Hat gegenüber dem "klassischen" Event primär folgende Vorteile:
 Vorgehen:
 
 1. Eigenes Command erstellen
-    ```cs
+    ```csharp
     // Derszeit static :(
     public static RoutedUICommand MyCutCommand =
         new RoutedUICommand("Ausschneiden", "MyCut", typeof(WindowWithToolbar));
@@ -257,7 +257,7 @@ Vorgehen:
     </Window.InputBindings>
     ```
 5. Implementierung des Commands
-    ```cs
+    ```csharp
     private void MyCutCommand_Executed(object sender, ExecutedRoutedEventArgs e) {
         ///...
     }

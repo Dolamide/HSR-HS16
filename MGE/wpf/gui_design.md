@@ -59,7 +59,7 @@ Eine Resource wird Bottom-Up im _locical Tree_ (also dieselbe Struktur wie im XA
 
 In C# wird über die Methode `FindResource` zugegriffen, welche auf `FrameworkElement` deklariert ist.
 
-```cs
+```csharp
 var okText = (string)FindResource("OkText");
 var bgBrush = FindResource("DarkBrush") as Brush;
 ```

@@ -97,7 +97,7 @@ Type Converters
 `XXX.xaml` sind die Markup Dateien - `XXX.xaml.cs` die "Code Behind" Klassen.
 Diese Klassen könne mit "partials" ergänzt werden:
 
-```cs
+```csharp
 using System.Windows;
 namespace HelloWpf {
     public partial class App : Application {
@@ -135,7 +135,7 @@ Für weitere Operatoren wie `event`, `operator`, `out`, `override`, `readonly`, 
 #### Properties
 Getter/Setter-Paar als natives Sprach-Feature. Ermöglichen u.a Lazy Initialization. Change Tracking. Calculated Properties, Read-Only Properties usw.
 
-```cs
+```csharp
 private string _lastName;
 public string LastName {
     get { return _lastName; }
@@ -157,7 +157,7 @@ public string FullNameFirstLast => FirstName + " " + LastName;
 
 #### Delegates
 = "Function Pointers"
-```cs
+```csharp
 namespace DelegateExample {
     class Program {
         delegate int Calculation(int a, int b);
@@ -175,7 +175,7 @@ namespace DelegateExample {
 #### Events
 Observer-Patterns (Publish/Subscribe) als natives Sprach-Feature
 
-```cs
+```csharp
 public delegate void TickEventHandler (int ticks, int interval);
 public class Clock
 {
@@ -194,18 +194,18 @@ c1.onTickEvent += t1.OnTickEvent;
 ```
 
 #### Lambda Expressions
-```cs
+```csharp
 // Klammern, typ und return sind optional!
 Func<int, int> func6 = (int x) => { return x + 1; };
 ```
 
 #### String Interpolation
-```cs
+```csharp
 $"{a.OldName} changed name to {a.NewName}"
 ```
 #### Extension Methods
 statisch & erster parameter mit `this`
-```cs
+```csharp
 static string ToStringSafe(this object obj)
 { return obj == null ? string.Empty : obj.ToString(); }
 
@@ -220,7 +220,7 @@ public static void Test()
 #### LINQ
 **L** anguage **IN** tegrated **Q** uery - vergleichbar mit Java 8 Streams.
 
-```cs
+```csharp
 var q = students
     .Where(s => s.Grade < 4m)
     .Select(s => s.FirstName + " " + s.LastName);
