@@ -60,6 +60,32 @@ Einfacher Pfad
 (Einfacher) Zyklus
 : Analog zu Pfad, wobei der Zyklus im Ausgangsvertex endet. Das Letzte Element in der Sequenz ist eine Kante. Beispiel `Z=(V,b,X,e,W,c,U,a)`
 
+Subgraph
+: Ein Subgraph S eines Graphen G ist ein Graph, so die Kanten und Vertizes von S eine Teilmenge der Kanten respektive Vertizes von G sind.
+
+Spanning Subgraph
+: Ein spanning (aufspannender) Subgraph A des Graphen G ist ein Subgraph, welcher alle Vertizes von G enthält.
+
+Verbundener Graph
+Connectivity
+: Ein Graph ist verbunden, wenn zwischen **jedem Paar** ein Pfad besteht!
+
+Baum
+: Ein Verbundener ungerichteter Graph ohne Zykeln. Hat kein Root wie beim _Wurzelbaum_ da irelevant.
+
+![](images/tree.png)
+: Baum / Tree
+
+Wald
+: Ein Wald ist ein ungerichteter Graph ohne Zyklen
+
+![](images/forest.png)
+: Wald / Forest
+
+Aufgespannter Baum
+Spanning Tree
+: Ein aufspannender Subgraph (also alle Vertizes, aber nur Teilmenge der Kanten), welcher auch ein Baum ist.
+
 Anzahl Vretizes mit $$n$$, Anzahl Kanten mit $$m$$
 
 
@@ -124,9 +150,176 @@ Dieser wird in einer Matrix wird die "Verkabelung" abgelegt - bsp. Vertex mit In
 $$n$$ Anzahl Vertizes
 $$m$$ Anzahl Kanten
 
-## DFS
+Die Back-References in die Datenstruktur sowohl in der Adjazenz Liste als auch in der Adjazenz Matrix sind essentiel um gute Performance zu erreichen. Dies war auch schon in AD1 beim Heap der Fall.
 
-## BFS
+## Depth-First Search (DFS)
+
+Depth-First Search ist eine **Technik für die Traversierung** eines Graphen:
+
+* Besucht alle Vertizes und Kanten
+* Bestimmt, ob der Graph verbunden ist
+* Findet die verbundenen Komponenten eines Graphen
+* Berechnet einen aufgespannten Wald eines Graphen
+* **Rekursiv**
+
+Wenn es einen Pfad gibt, dann findet die Tiefensuche diesen garantiert, wobei dies nicht der Kürzeste sein muss!
+
+Der Algorithmus verwendet verschiedene Labels, welche er auf den Vertizes und den Kanten setzt. Dies kann effizient mit bsp. einer Hash-Map implementiert werden.
+
+Um den Algorithmus bsp. auf Papier auszuführen muss eine klare sortierung der Kanten/Vertizes beim Aufruf der Methoden `vertices`, `edges` und `incidentEdges`  definiert werden - bsp. aufsteigend sortiert. **Vorgehen:** Graph aufzeichen, Labels hinzufügen und durch den Code steppen.
+
+```
+Algorithm DFS(G)
+        Input graph G
+        Output labeling of the edges of G
+            as discovery edges and
+            back edges
+    for all u ∈ G.vertices()
+        setLabel(u, UNEXPLORED)
+    for all e ∈ G.edges()
+        setLabel(e, UNEXPLORED)
+    for all v ∈ G.vertices()
+        if getLabel(v) = UNEXPLORED
+            DFS(G, v)
+
+Algorithm DFS(G, v)
+        Input graph G and a start vertex v of G
+        Output labeling of the edges of G
+            in the connected component of v
+            as discovery edges and back edges
+    setLabel(v, VISITED)
+    for all e ∈ G.incidentEdges(v)
+        if getLabel(e) = UNEXPLORED
+            w ← opposite(v,e)
+            if getLabel(w) = UNEXPLORED
+                setLabel(e, DISCOVERY)
+                DFS(G, w)
+            else
+                setLabel(e, BACK)
+```
+
+Das Ergebniss ist ein aufgespannter Baum. Die Kanten mit dem Label `Back` sind Zykeln ("im Baum zurückschauen") - also die "ausgeblendeten" Kanten.
+
+!!! seealso
+
+    Beispiel in den Folien 4-5
+
+### Performance
+
+* Setzen von Kanten/Vertex-Labels $$O(1)$$. (Mit Hash-Tabelle)
+* Jeder Vertex wird 2x markiert (`unexpored`/`visited`)
+* Jede Kante wird 2x markiert (`unexplored`, `discovery`/`back`)
+* Methode `incidentEdges()` wird je Vertex 1x aufgerufen
+* Mit _Adjazenzlisten-Struktur_ $$O(n+m)$$( _Adjazenzmatrix-Struktur_ wäre $$O(n^2)$$)
+
+### Pfade finden
+Mit einer adaptierung des "normalen" DFS Algorithmus kann ein Pfad (bsp. Labyrinth) gesucht werden.
+
+Um diese Aufgabe auf Papier zu lösen am besten den Stack aufzeichnen werden.
+
+```
+Algorithm pathDFS(G, v, z)
+    setLabel(v, VISITED)
+    S.push(v)
+    if v = z
+        finish: result is S.elements()
+    for all e ∈ G.incidentEdges(v)
+        if getLabel(e) = UNEXPLORED
+            w ← opposite(v,e)
+            if getLabel(w) = UNEXPLORED
+                setLabel(e, DISCOVERY)
+                S.push(e)
+                pathDFS(G, w, z)
+                S.pop()
+            else
+                setLabel(e, BACK)
+    S.pop()
+```
+
+### Zyklen finden
+Mit einer adaptierung des "normalen" DFS Algorithmus können Zykeln gefunden werden.
+
+Um diese Aufgabe auf Papier zu lösen am besten den Stack aufzeichnen werden.
+
+```
+Algorithm cycleDFS(G, v)
+    setLabel(v, VISITED)
+    S.push(v)
+    for all e ∈ G.incidentEdges(v)
+        if getLabel(e) = UNEXPLORED
+            w ← opposite(v,e)
+            S.push(e)
+            if getLabel(w) = UNEXPLORED
+                setLabel(e, DISCOVERY)
+                cycleDFS(G, w)
+                S.pop()
+            else
+                T ← new empty stack
+                repeat
+                    o ← S.pop()
+                    T.push(o)
+                until o = w
+                finish: result is T.elements()
+    S.pop()
+```
+
+## Breadth-First Search (BFS)
+Depth-First Search ist eine **Technik für die Traversierung** eines Graphen:
+
+* Besucht alle Vertizes und Kanten (wie DFS)
+* Bestimmt, ob der Graph verbunden ist (wie DFS)
+* Findet die verbundenen Komponenten eines Graphen (wie DFS)
+* Berechnet einen aufgespannten Wald eines Graphen (wie DFS)
+* **Iterativ** - arbeitet mit Listen.
+
+Im Gegensatz zu DFS findet die BFS den kürzesten Pfad!
+
+**Vorgehen:** Graph aufzeichen: Root zu oberst, dann alle Kindknoten usw.
+![](images/bfs_skizze.png)
+
+
+
+```
+Algorithm BFS(G)
+        Input graph G
+        Output labeling of the edges
+        and partition of the
+        vertices of G
+    for all u ∈ G.vertices()
+        setLabel(u, UNEXPLORED)
+    for all e ∈ G.edges()
+        setLabel(e, UNEXPLORED)
+    for all v ∈ G.vertices()
+        if getLabel(v) = UNEXPLORED
+            BFS(G, v)
+
+Algorithm BFS(G, s)
+    L{0} ← new empty sequence
+    L{0}.insertLast(s)
+    setLabel(s, VISITED)
+    i←0
+
+    while ¬ L{i}.isEmpty()
+        L{i+1} ← new empty sequence
+        for all v ∈ L{i}.elements()
+            for all e ∈ G.incidentEdges(v)
+                if getLabel(e) = UNEXPLORED
+                    w ← opposite(v,e)
+                    if getLabel(w) = UNEXPLORED
+                        setLabel(e, DISCOVERY)
+                        setLabel(w, VISITED)
+                        L{i+1}.insertLast(w)
+                    else
+                        setLabel(e, CROSS)
+        i ← i +1
+```
+Im Gegensatz zu DFS nicht *back* sonder *cross-edge*.
+
+
+!!! seealso
+
+    Beispiel in den Folien 4-6
+
 
 ## Digraphs
 
