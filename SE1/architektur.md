@@ -117,7 +117,53 @@ Zweck:
 Knoten
 : Konten sind "Hardware" (meist Virtualisiert) und können etwas ausführen
 
+Assotiationen
+: Verbindungen mit ANgaben zum Protokoll und eventuell Multiplizitäten.
+
 Verschiedene Ausführungs-Umgebungen werden in einander geschachtelt. Dabei werden typischerweise Stereotypen wie `<<OS>>`, `<<web server>>`, `<<web browser>>` usw. angegeben.
 
 ![](images/deployment_dgrm.png)
 : Beispiel eines Deployment Diagramms - Quelle www.uml-diagrams.org
+
+
+Mit Deployment Diagrammen können Unterschiedliche Varianten eines Deployments disskutiert werden. Die Abstraktion ermöglicht auch Performance-Diskussionen, Visualisierungen von möglichen Angriffsvektoren oder komplexe Docker Setups zu verstehen.
+
+Deployment Diagramme können bereits relativ früh gezeichnet werden - inklusive verschiedenen Variationen.
+
+!!! todo
+
+    Screenshots aus Lösung aus Übungen W11 ergänzen
+
+# Sequenzdiagramme
+
+In Sequenzdiagrammen verläuft die Zeitlinie von oben nach unten. Sie dienen der Visualisierung von Abhängigkeiten und wie diese Zusammenspielen. Oft sind Sequenzdiagrammen nahe am Code, was nicht (immer) Sinn macht. Beispielsweise veralten soche Diagramme sehr schnell und bringen Dazu keinen effektiven Mehrwert, da ein Sequenzdiagramm schnell aus einem Codefragment generiert werden kann.
+
+
+Sequenzdiagramme können auf einer gewissen Abstraktionsebene verwendet werden (Beispiel Facebook-Authentisierung) oder aber um stabile Konzepte/Algorithmen zu visualisieren (Bsp. `java.io`)
+
+Auch für Sequenzdiagramme gil, dass sie kommunizierbar sein müssen (A3-Regel)!
+
+
+## Syntax-Elemente
+3,4
+alt(if then else)
+ref unterprogramm (wiederverwendbar..)
+interfaces, types, threads
+
+## System-Sequenzdiagramm
+
+System-Sequenzdiagramm sind eine Erfindung von Larman. Dabei gibt es genau 2 Akteure: Der Benutzer und ein Blackbox-System.
+
+Mit System-Sequenzdiagramm wird quasi die oberste testbare Schnittstelle dokumentiert.
+
+![](images/systemsequencediagram.png)
+
+!!! todo
+
+    Screenshots aus Lösung aus Übungen W11 ergänzen
+
+    Nachlesen in Larman
+
+!!! seealso
+
+    [developerWorks - The sequence diagram](http://www.ibm.com/developerworks/rational/library/3101.html)
