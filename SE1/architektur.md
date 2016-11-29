@@ -77,11 +77,11 @@ Beheben von gemeinsamen Funktionen derselben Schicht:
 ![](images/rules_for_dependencies.png)
 
 
-1. … von oben auf die nächste darunterliegende Schicht sind immer OK
-2.  … nach unten, die eine Schicht überhüpfen sind manchmal auch OK
-3.  … innerhalb einer Schicht und Partition sind OK, sollten aber minimiert werden
-4.  … in einer Schicht quer zu einer anderen Partition sollten dringend vermieden werden
-5.  … NIE von unten nach oben, ausser callbacks (z.B. Observer pattern)
+1. ... von oben auf die nächste darunterliegende Schicht sind immer OK
+2. ... nach unten, die eine Schicht überhüpfen sind manchmal auch OK
+3. ... innerhalb einer Schicht und Partition sind OK, sollten aber minimiert werden
+4. ... in einer Schicht quer zu einer anderen Partition sollten dringend vermieden werden
+5. ... NIE von unten nach oben, ausser callbacks (z.B. Observer pattern)
 
 ## Layers vs. Tiers
 
@@ -96,6 +96,8 @@ Tiers
 Geteilter Code kann auch auf mehreren Tiers laufen - bsp. Domainmodel.
 
 Selbst Partitionen können teileweise in eigenen Tier ausgelagert werden.
+
+Während Layers mit Klassendiagrammen bzw. Packages dargestellt werden werden Tiers mit Deployment-Diagrammen visualisiert.
 
 ## Datenmodell Ordnen
 
