@@ -204,7 +204,7 @@ public class MathFault
     public string ProblemType { get; set; }
 }
 
-// Implementation & Verwendung
+// Implementation im Service
 public class CalculatorService : ICalculator
 {
     public int Divide(int n1, int n2)
@@ -219,5 +219,21 @@ public class CalculatorService : ICalculator
             throw new FaultException<MathFault>(mf);
         }
     }
+}
+
+// Abfangen im Client
+try{
+    proxy.Divide(1, 0);
+catch (FaultException<MathFault> e)
+{
+    // ...
+}
+catch (FaultException e)
+{
+    // ...
+}
+catch (Exception e)
+{
+    // ...
 }
 ```
