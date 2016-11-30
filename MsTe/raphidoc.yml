@@ -17,6 +17,8 @@ pages:
     - iteratoren.md
     - exceptions.md
     - linq.md
+    - entity.md
+    - wcf.md
     - tips.md
     - pitfalls.md
     - snippets.md

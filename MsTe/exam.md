@@ -49,6 +49,10 @@ Grund: Bei den Zuweisungen von o1 und o2 wird geboxt. Wird o1 auf 4 gesetzt, dan
 ## Nullable Generics
 ➪ Übungen Woche 6 - Aufgabe 1.3
 
+
+## WCF
+An der Prüfung müssen diese Annotationen gesetzt werden (Siehe beispielcode im Kapitel WCF.)
+
 ## Weiteres
 
 * Mehr zu Generics in den Zusatzaufgaben der Woche 6.
