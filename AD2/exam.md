@@ -35,6 +35,7 @@
 
 ### Graphen
 * Übung 10, A1-A4!
+* Übung 11, A1 (DFS, BFS)
 
 ### Bei genügend Zeit
 
