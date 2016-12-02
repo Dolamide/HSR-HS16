@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<list key="workingset_selection_history">
+		<item value="W10"/>
+	</list>
 	<section name="WorkbenchPreferenceDialogSettings">
 		<item value="114" key="DIALOG_X_ORIGIN"/>
 		<item value="347" key="DIALOG_Y_ORIGIN"/>
@@ -22,9 +25,11 @@
 		</list>
 	</section>
 	<section name="NewWizardAction">
-		<item value="org.eclipse.cdt.ui.wizards.NewHeaderFileCreationWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<item value="org.eclipse.cdt.ui.wizards.NewCWizard1" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
 			<item value="org.eclipse.cdt.ui.newCWizards"/>
+			<item value="org.eclipse.team.cvs.ui.newWizards"/>
+			<item value="org.eclipse.ui.Other"/>
 		</list>
 	</section>
 	<section name="ImportExportAction">

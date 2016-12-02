@@ -44,6 +44,7 @@ muss der Stream clear (falls möglich) "repariert" werden,
 
 Es gibt das Fail-, Eof- und Bad-Bit (wobei Bad selten vorkommt.)
 
+![](images/states.png)
 
 ### Robustes einlesen von int-values
 
@@ -76,8 +77,21 @@ int inputAge(std::istream& in) {
 }
 ```
 
-IO Manipulator
---------------
+### Robustes einlesen von Alphanumerischen-Werten
+```c++
+// Eg. skip leading non-alphanumeric chars
+while (is.good() && !std::isalpha(is.peek())) {
+    is.ignore();
+}
+
+// Read in everything into a buffer as long as it's alphanumeric and not broken.
+std::string buffer{};
+while (is.good() && std::isalpha(is.peek())) {
+    buffer += is.get();
+}
+```
+
+## IO Manipulator
 
 Dienen dazu, den Output zu formatieren.
 

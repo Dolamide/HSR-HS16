@@ -53,8 +53,12 @@ Es werden include Guards benötigt um mehrfach inlcudes zu behandeln (mehrfache 
 #ifndef SRC_HELLO_H_
 #define SRC_HELLO_H_
 
+// Includes
 #include <ostream>
 
+// namespace
+
+// declarations
 struct Hello {
 	void sayHello(std::ostream &out) const;
 };

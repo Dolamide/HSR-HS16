@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1479910228585_1" label="W09" name="W09">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Playground" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wcount" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wordle" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/algorithm_trivia" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wfavorite" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wdiffcount" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/word" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/prime_numbers" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1480061843673_3" label="W10" name="W10"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1474446733528_0" label="Window Working Set" name="Aggregate for window 1474446733528"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1480062016914_6" label="Multiple Working Sets" name="Aggregate:W09:W10:">
+<workingSet IMemento.internal.id="W09"/>
+<workingSet IMemento.internal.id="W10"/>
+</workingSet>
+<mruList name="W10"/>
+<mruList name="W09"/>
 </workingSetManager>

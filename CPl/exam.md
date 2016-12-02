@@ -9,6 +9,7 @@
 ## Aufgabentypen
 
 * rvalue und lvalue
+* Welche headers? (W11, F8)
 * Element type as const as possible !!!! (garantiert Frage)
 * Don't use Loops - use algorithms
 * ADL:

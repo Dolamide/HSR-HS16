@@ -36,6 +36,10 @@ copy(input{std::cin}, eof, back_inserter(v));
 std::vector<int> const v{input{std::cin}, eof};
 ```
 
+!!! warning
+
+    `istream_iterator` ignroiert whitespace, `istreambuf_iterator` dagegen nicht.
+
 !!! todo
 
     Kärtli: vector<string> vs{6} bs vector<string> vs(6)

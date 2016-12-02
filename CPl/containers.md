@@ -217,3 +217,12 @@ q.push(42);
 std::cout << q.front();
 q.pop();
 ```
+## Ungültigkeit
+
+Ein Wert kann mehrfach aus einem iterator gelesen werden. Sobald eine von n Referenzen inkrementiert wird werden alle referenzen ungültig!
+
+```c++
+*it++
+```
+
+++ Als Postinkrement gibt als expression den vorherigen wert zurück. Muss sich also kopieren und diese Kopie zurückliefern. Da `++` alle kopien davon ungültig macht kann mit der Kopie nicht weitergearbeitet werden.

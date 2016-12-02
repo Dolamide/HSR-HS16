@@ -17,7 +17,8 @@ pages:
     - arithmetic-types.md
     - containers.md
     - algorithms.md
-    - templateFunctions.md
+    - parameterizing-stl.md
+    - templateFunction.md
     - tips.md
     - pitfalls.md
     - cevelop.md
