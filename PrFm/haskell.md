@@ -246,6 +246,8 @@ add = \ x -> (\ y -> x + y)
     * Function applications are **left associative** (eg. `add x y z` = `((add x)y)z`)
 
 
+**It is good practice to define the type of a function prior to starting to define the function itself**
+
 ### Polymorphic Functions
 
 Polymorphic Functions are Type Variables where the type is substituted wit a a placeholder. These type parameters must be lowercase and are usually a single character. Example `length :: [a] -> Int` or `zip :: [a] => [b] -> [(a,b)]`
@@ -386,3 +388,44 @@ positions x xs = [i | (k, i) <- zip xs [0 ..], k == x]
     Strings are nothing else than a list of Chars. Therefore, operations such as `zip`, `take` or `lenght` work on strings as well.
 
     ➪ "String comprehensions"
+
+## Recursion
+
+Recursion is pretty straight forward - as we know it from the non-functional World as well as from Prolog.
+
+```haskell
+-- Simple factorial recursive definition
+fac :: Int -> Int
+fac 0 = 1 -- base case
+fac n = n * fac (n-1) -- recursive case
+
+-- Lenght - analog zu Prolog
+length :: [a] -> Int
+length []= 0
+length (_:xs) = 1 + length xs
+
+-- Reverse - analog zu Prolog
+reverse :: [a] -> [a]
+reverse []= []
+reverse (x:xs) = reverse xs ++ [x] -- Append operator
+
+-- zip
+zip :: [a] -> [b] -> [(a,b)]
+zip [] _ = []
+zip _ [] = []
+zip (x:xs) (y:ys) = (x, y) : zip xs ys
+
+-- quicksort
+qsort :: Ord a => [a] -> [a]
+qsort [] = []
+qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
+                where
+                    smaller = [a | a <- xs, a <=x ]
+                    larger = [b | b <- xs, b > x]
+```
+
+1. Define the type (eg. `product :: [Int] -> Int`)
+2. Enumerate the cases (eg. `product [] = `, `product(n:ns) = `)
+3. Define the simple cases (`product [] = 1`)
+4. Define the other cases (eg. `product (n:ns) = n * product ns`)
+5. Generalise and simplify
