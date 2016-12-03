@@ -8,8 +8,8 @@ Die Idee von Dynamic Programming (Design-Paradigma) ist es, ein Problem in einfa
 
 ## Rucksack Problem (Knapsack-Problem)
 
-* Ansatz mit Brute force: ➪ $$O(2^n)$$ (ist *nicht* Fakultät, da die Position keine Rolle spielt)
-* Ansatz Greedy: Nimm wiederholend den Gegenstand mi grössten Verhältnis von Wert/Gewicht ➪ Kann misslingen → bsp. Wechselgeld
+* Ansatz mit Brute-Force: ➪ $$O(2^n)$$ (ist *nicht* Fakultät, da die Position keine Rolle spielt)
+* Ansatz Greedy: Nimm wiederholend den Gegenstand mit grösstem Verhältnis von Wert/Gewicht ➪ Kann misslingen → bsp. Wechselgeld
 
 Mit Dynamischer Programmierung
 
