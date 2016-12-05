@@ -22,6 +22,7 @@ pages:
     - wpf/events.md
     - wpf/gui_design.md
     - wpf/databinding.md
+    - wpf/benutzerinteraktion.md
     - wpf/etc.md
     - exam.md
     - lernplan.md

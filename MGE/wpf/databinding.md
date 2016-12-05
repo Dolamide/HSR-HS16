@@ -122,7 +122,7 @@ Standardmässig wird nichts gebunden - das muss alles manuell gemacht werden. Da
 
 ### Binding auf eigene Objekte
 
-Das Interface `INotifyPropertyChanged` ist von zentraler Bedeutung. Wird dieses implementiert, so kann sich das UI automagisch updaten indem sich WPF automatisch auf diesen Event abonniert und sofort aktualisiert wird, wenn der Event gefeuert wird. Alternativ kann ein Framework wie Fody genutzt werden.
+Das Interface `INotifyPropertyChanged` (Kurz INPC) ist von zentraler Bedeutung. Wird dieses implementiert, so kann sich das UI automagisch updaten indem sich WPF automatisch auf diesen Event abonniert und sofort aktualisiert wird, wenn der Event gefeuert wird. Alternativ kann ein Framework wie Fody genutzt werden.
 
 ```csharp
 public class PersonV2 : INotifyPropertyChanged {
@@ -157,6 +157,10 @@ public class PersonV2 : INotifyPropertyChanged {
         foreach (var n in otherNames) {
             OnPropertyChanged(n);
         }
+    }
+    
+    protected virtual void OnPropertyChanged(string propertyName = null) {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
 ```
