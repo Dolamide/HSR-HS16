@@ -20,6 +20,7 @@ pages:
     - security.md
     - layering.md
     - js_oo.md
+    - module.md
     - exam.md
     - lernplan.md
 
