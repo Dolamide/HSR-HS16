@@ -216,7 +216,6 @@ partial class MyClass {
 ```
 
 ## Konstruktor
------------
 
 ```cs
 public Book(string title, string author, bool available){}
