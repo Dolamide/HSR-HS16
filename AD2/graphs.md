@@ -200,6 +200,9 @@ Algorithm DFS(G, v)
 
 Das Ergebniss ist ein aufgespannter Baum. Die Kanten mit dem Label `Back` sind Zykeln ("im Baum zurückschauen") - also die "ausgeblendeten" Kanten.
 
+
+Im Gegensatz zum BFS können mit dem DFS Biconnected Komponenten gefunden werden ("Single Point of failture")
+
 !!! seealso
 
     Beispiel in den Folien 4-5
@@ -274,10 +277,13 @@ Depth-First Search ist eine **Technik für die Traversierung** eines Graphen:
 
 Im Gegensatz zu DFS findet die BFS den kürzesten Pfad!
 
+Für jeden Vertex v in L gilt:
+
+* der Pfad in _aufgespannten Baum_ von s nach v besitzt i Kanten.
+* jeder Pfad von s nach v _im Graph_ besitzt mindestens i Kanten.
+
 **Vorgehen:** Graph aufzeichen: Root zu oberst, dann alle Kindknoten usw.
 ![](images/bfs_skizze.png)
-
-
 
 ```
 Algorithm BFS(G)
@@ -320,8 +326,144 @@ Im Gegensatz zu DFS nicht *back* sonder *cross-edge*.
 
     Beispiel in den Folien 4-6
 
+### Performance
+Identisch zu DFS!
+
+* Setzen von Kanten/Vertex-Labels $$O(1)$$. (Mit Hash-Tabelle)
+* Jeder Vertex wird 2x markiert (`unexpored`/`visited`)
+* Jede Kante wird 2x markiert (`unexplored`, `discovery`/`cross`)
+* * Jeder Vertex wird einmal in eine Sequenz eingetragen.
+* Methode `incidentEdges()` wird je Vertex 1x aufgerufen
+* Mit _Adjazenzlisten-Struktur_ $$O(n+m)$$
+
+### Anwendung
+
+* bestimmen der verbundenen Komponenten in einem Graph
+* bestimmen eines aufspannenden Waldes in einem Graph
+* bestimmen eines einfachen Zyklus in einem Graph
+* bestimmen, ob ein Graph ein Wald ist.
+* Mit zwei Vertizes eines Graph G: finden eines Pfades in G zwischen den beiden Vertizes mit **minimaler Anzahl Kanten** oder bestimmen, **ob** ein solcher **Pfad existiert**.
 
 ## Digraphs
+
+Digraphs = Directed Graphs = Gerichteter Graph.
+In AD2 arbeiten wir nur mit Graphen, wo **alle** Kanten gerichtet sind.
+
+Eine mögliche Anwendungen ist u.a. Task Scheduling: Ein Task muss nach einem Anderen ausgführt werden - vgl. Systemd startup. Ein Anderes Beispiel ist eine Vererbungsstruktur in OO-Sprachen (Zykeln erkennen).
+
+### Eigenschaften
+* In einem ungerichteten, einfachen Graphen gilt: $$m \le n(n-1)$$ - kann also im Gegensatz zum ungerichteten Graphen Doppelt so viele Kanten haben (`/2` fällt weg).
+* Tiefensuche kennt nebst `discovery`, `back` und `cross` auch `forward` - eine Verbindung zu einem Nachfolger im Baum.
+* Der aufgebaute DFS-Baum ist je nach Anfangsknoten **unterschiedlich**!
+
+![](images/digraph-labels.png)
+: Neu *cross!* (D → C) und **back** (C → A) und **forward** (A → D) - Quelle: AD2-Vorlesung (HSR)
+
+Bei einem Digraph ergibt sich ein wesentlich anderer Tree (Bsp. mit DFS) im vergleich zum ungerichteten Graph.
+
+Erreichbarkeit
+: Vertizes im DFS Baum vom Wurzelknoten v sind durch gerichtete Pfade erreichbar.
+
+### Implementierung
+Adjazenzliste neu mit 2 Listen: Einmal für Incomming und einmal für Outgoing.
+
+### Strong Connectivity
+
+Strong Connectivity
+: In einem Graphen sind von jedem Vertex aus alle anderen Vertizes erreichbar - es ist also bei bsp. DFS egal, welcher Anfangsknoten genommen wird.
+
+Strong connected component
+: Ein Subgraph, der Streng verbunden ist.
+
+* 1x Teifensuche ab irgend einem Knoten
+* Wenn es keine nicht besuchten Vertizes gibt: Neuer Graph "erstellen" mit gleichen Vertizes aber umgekehrten Kanten
+* Wenn es keine nicht besuchten Vertizes gibt: Graph ist Strong connected.
+
+Laufzeit $$O(n+m)$$
+
+NB: "Wenn es keine nicht besuchten Vertizes gibt" kann in der for schleife der `DFS(G)` Methode evaluiert werden.
+
+### Transitiver Abschluss
+Transitiver Abschluss von G ist ein Graph G*, der _zusätzlich direkte Verbindungen_ zu allen Knoten hat, die transitiv erreichbar sind.
+
+**Ist nichts anderes als eine Performance Verbesserung** bei der Nutzung.
+
+Berechnung mit Floyd-Warshall: Idee Wenn vi und vk und vk und vj verbunden sind, so verbinde vi und vj (Dynamische Programmierung)
+
+Laufzeit:  $$O(n^3)$$ (FALLS: `areAdjacent` mit $$O(1)$$ läuft!). Dies ist nicht weniger Effizient als DFS im gerichteten Graph - das Ergebnis ist aber eine sehr effiziente Struktur $$(O(n(n+m))$$ mit m durch n ausgedrückt →  $$O(n(n+(n^2))) = O(n^3)$$
+
+```
+Algorithm FloydWarshall(G)
+    Input digraph
+    G Output transitive closure G* of G
+    i←1
+    for all v ∈ G.vertices()
+        denote v as vi
+        i←i+1
+    G{0} ← G
+    for k ← 1 to n do
+        G{k} ← G{k−1}
+        for i ← 1 to n (i ≠ k) do
+            if G{k} − 1.areAdjacent(v{i}, v{k})
+                for j ← 1 to n (j ≠ i, k) do
+
+                  if G{k} − 1.areAdjacent(v{k}, v{j}) ∧
+                     ¬G{k}.areAdjacent(v{i}, v{j})
+
+                     G{k}.insertDirectedEdge(v{i}, v{j} , k)
+    return Gn
+```
+
+Vorgehen: Papierpfeile i, k, k ➪ Kann sofort abbrechen, wenn 1. Bedinung nicht erfüllt. Check: Keine Gegenpfeile in Gegenrichtung.
+
+
+### DAGs & topologische Ordnung
+
+DAG
+Directed Acyclic Graph
+: Gerichteter Graph ohne Zykeln =  Gute Situation (Bsp. OO Vererbung: Wenn Zyklus → CompileError)
+
+Topologische Ordnung
+: Vertizes Nummeriern, so dass die Zahl der Startvertizes kleiner als die Endvertizes sind. Oft sind mehrere Lösungen möglich.
+
+Bsp. Buildtools wie Make, Maven usw. müssen topoligische Ordnung haben.
+
+```
+Algorithm topologicalDFS(G)
+    Input dag G
+    Output topological ordering of G
+    n ← G.numVertices()
+    for all u ∈ G.vertices()
+        setLabel(u, UNEXPLORED)
+    for all e ∈ G.edges()
+        setLabel(e, UNEXPLORED)
+    for all v ∈ G.vertices()
+        if getLabel(v) = UNEXPLORED
+            topologicalDFS(G, v)
+
+Algorithm topologicalDFS(G, v)
+    Input graph G and a start vertex v of G
+    Output labeling of the vertices of G
+        in the connected component of v
+    setLabel(v, VISITED)
+    for all e ∈ G.outgoingEdges(v)
+        if getLabel(e) = UNEXPLORED
+            w ← opposite(v,e)
+            if getLabel(w) = UNEXPLORED
+                setLabel(e, DISCOVERY)
+                topologicalDFS(G, w)
+            else
+                {e is a forward or cross edge}
+
+    Label v with topological number n    <- HIER
+    n←n-1
+```
+Laufzeit $$O(n+m)$$
+
+!!! seealso
+
+    Beispiel Folie 26ff
+
 
 ## Shortes Path
 
