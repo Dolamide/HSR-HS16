@@ -320,7 +320,9 @@ Algorithm BFS(G, s)
         i ← i +1
 ```
 Im Gegensatz zu DFS nicht *back* sonder *cross-edge*.
+Sequenz kann queue sein.
 
+Anzahl der Listen = "Längster kürzester Pfad"
 
 !!! seealso
 
