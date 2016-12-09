@@ -1,6 +1,0 @@
-<testsuites>
-	<testsuite name="AllTests" tests="2">
-		<testcase classname="AllTests" name="testHelloWorld"/>
-		<testcase classname="AllTests" name="testHelloWorldClass"/>
-	</testsuite>
-</testsuites>

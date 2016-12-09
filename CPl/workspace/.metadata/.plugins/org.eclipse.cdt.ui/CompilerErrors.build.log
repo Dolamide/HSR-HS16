@@ -1,7 +1,0 @@
-18:05:38 **** Clean-only build of configuration Debug for project CompilerErrors ****
-make clean 
-rm -rf  ./hello1.o  ./hello1.d  CompilerErrors
- 
-
-18:05:38 Build Finished (took 60ms)
-

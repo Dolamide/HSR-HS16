@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;ExW4/src/wlist.cpp&apos; to &apos;mixed.cpp&apos;" description="Rename resource &apos;wlist.cpp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/wlist.cpp" name="mixed.cpp" stamp="1477319929760" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;ExW4/src/wlist.h&apos; to &apos;mixed.h&apos;" description="Rename resource &apos;wlist.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/wlist.h" name="mixed.h" stamp="1477319933606" updateReferences="true"/>
-</session>
