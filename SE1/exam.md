@@ -19,3 +19,11 @@
 ### Use Cases
 
 * Übung "Videoverleih"
+
+
+## Testat 3 Review
+
+* Ich: Machen meine Decorator Klassen nichts mehr?
+* Ich: Delta als Konstante
+* Altersrabatt weniger Sache des Decorator Patterns: Gut!
+* Tests - exceptions und mehr als 1 Decorators testen

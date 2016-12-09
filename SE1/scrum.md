@@ -105,10 +105,3 @@ Review dokumentiert
 * Was wenn nicht fertig, und in nächter Iteration auch Fertig usw.
 * Wo ist "bootstraping" drinn? Einfach in den ersten Stories?
 * Wäre Mittelwert für Speed nicht sinnvoller?
-
-## Offene Fragen Testat
-
-* Ich: Machen meine Decorator Klassen nichts mehr?
-* Ich: Delta als Konstante
-* Altersrabatt weniger Sache des Decorator Patterns ?! -> Business Logik oder?!
-
