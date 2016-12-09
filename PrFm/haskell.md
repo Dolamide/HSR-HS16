@@ -424,8 +424,260 @@ qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
                     larger = [b | b <- xs, b > x]
 ```
 
+### Recipe
+
 1. Define the type (eg. `product :: [Int] -> Int`)
 2. Enumerate the cases (eg. `product [] = `, `product(n:ns) = `)
 3. Define the simple cases (`product [] = 1`)
 4. Define the other cases (eg. `product (n:ns) = n * product ns`)
 5. Generalise and simplify
+
+Alternative
+
+1. Write down type signature
+2. Choose parameter(s) over which to perform recursion
+3. Write down case distinctions on the left side
+4. For each recursive case, write the recursion
+5. Complete right side of the definition
+6. Check the inferred types agrees with the definition.
+
+## Higher-Order Functions
+
+Common programming patterns can be encapsulated within the language itself.
+
+> "A function that takes a fuction as an argument or returns a function as a result is called a higher-order function. In (Haskell) practice, the term is often used when taking functions as arguments." - <cite>Programming in Haskell by Graham Hutton</cite>
+
+
+```haskell
+-- Map: Apply the given method to all elements in the list.
+map :: ( a -> b) -> [a] -> [b]
+map f [] = []
+map f (x:xs) = f x : map f xs
+
+-- or use list comprehension for declaration
+-- not recommended for reasoning purpose
+map f xs = [f x | x <- xs]
+
+
+filter (a -> Bool) -> [a] -> [a]
+filter p [] = []
+filter p (x:xs) | p x       = x : filter p xs
+                | otherwise = filter p xs
+
+-- or use list comprehension for declaration
+-- not recommended for reasoning purpose
+filter p xs = [x | x <- xs, p x]
+
+
+-- The (.) Function returns a composition of
+-- two functions. eg. odd = not . even
+(.) :: (b -> c) -> (a -> b) -> (a -> c)
+f . g = \ x -> f (g x)
+
+-- True, if p is true for all elements of xs
+all :: (a -> Bool) -> [a] -> Bool
+all p xs = and [p x | x <- xs]
+
+-- True, if any of the elements of xs is true
+any :: (a -> Bool) -> [a] -> Bool
+any p xs = or [p x | x <- xs]
+
+-- Select elements from a list while the given
+-- predicate returns true
+-- eg. takeWhile (\x -> (x > 0)) [ 3,2,1,0,-1] -> [3,2,1]
+takeWhile :: (a -> Bool) -> [a] -> [a]
+takeWhile p [] = []
+takeWhile p (x : xs) | p x       = x : takeWhile p xs
+                     | otherwise = []
+
+-- Drops elements elements from a list while the given
+-- predicate returns true
+-- eg. drowWhile (\x -> (x > 0)) [ 3,2,1,0,-1] -> [0, -1]
+
+drowWhile :: (a -> Bool) -> [a] -> [a]
+drowWhile p [] = []
+drowWhile p (x : xs) | p x       = dropWhile p xs
+                     | otherwise = x : xs
+```
+
+### foldr / foldl (=reduce)
+The foldr function is a simple pattern of recursion on lists. Very useful, because if the performace of this pattern can be improved, all functions based on it get faster as well.
+
+```haskell
+f [] = v
+f (x:xs) = x # f xs
+-- Where # stands for any function
+
+-- example usage of this pattern
+sum [] = 0
+sum (x:xs) = x + sum xs
+
+or [] = False
+or (x:xs) = x || or xs
+```
+
+The foldr (short for fold right) encapsulates this pattern of recursion:
+
+```haskell
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr f v [] = v
+foldr f v (x:xs) = f x (foldr f v xs)
+
+sum = foldr (+) 0
+or = foldr (||) False
+lenght = foldr (\ _ n -> 1 + n) 0
+-- Note, the lambda function is called with 2 parameters: first, the current value and second, the result of the recursion.
+
+reverse = foldr snoc []
+-- snoc is cons backwards
+-- ...
+```
+
+## Declaring Types & Classes
+* Names of types **must always** start with an **upper case letter**.
+
+### Synonyms (`type`)
+Synonym types are new names for existing types, for example
+
+```haskell
+type String = [Char]
+```
+
+* Synonym types are just a tool to improve readability.
+* Synonym type declarations can have parameters
+
+    ```haskell
+    type Pair a = (a, a)
+    ```
+
+* Synonym type delcarations can be transitive but **NOT** recursive
+
+    ```haskell
+    -- Transitive delcaration - works just fine
+    type Pos = (Int, Int)
+    type Trans = Pos -> Pos
+
+    -- recursive declaration - does not work!
+    type Tree = (Int, [Tree])
+    ```
+
+### Data Declarations
+
+completely new type
+can be
+
+eg. `data Bool = False | True` ("Bool is a new type, with two new values False and True.")
+
+New values (False and True) of the type are called *constructors*
+
+Constructors must also start with an uppercase letter
+Same constructor name can not be used in more than one type.
+
+The definitions so far is not more than an enum.
+
+The Constructors in data declaration can have parameters - which are basically functions as well
+
+```haskell
+data Shape = Circle Float | Rect Float Float
+-- > :type Circle
+-- Circle :: Float -> Shape
+-- > :type Rect
+-- Circle :: Float -> Float -> Shape
+
+-- example usage
+square :: Float -> Shape
+square n = Rect n n
+```
+
+Data Declarations can be have parameters
+
+```haskell
+-- A data type like javas Optional class
+data Optional a = Nothing | Exactly a
+
+-- example usage
+safediv :: int -> int -> Optional Int
+safediv _ 0 = Nothing
+safediv m n = Exactly (m `div` n)
+```
+
+
+### Recursive Types
+
+```haskell
+-- Example "Natural numbers"
+data Nat = Zero | Suc Nat
+-- eg. Suc(Suc(Suc Zero)) represents 3
+```
+
+### Arithmetic Expressions
+
+?!
+
+### Binary Trees (Flatten = inorder traversal)
+
+```
+```
+
+```haskell
+data Tree a = Leaf a | Node (Tree a) a (Tree a)
+-- Exaple
+--      5
+--    /   \
+--   3     7
+--  / \   / \
+-- 1   4  6  9
+t :: Tree Int
+t = Node (Node (Leaf 1) 3 (Leaf 4)) 5 (Node (Leaf 6) 7 (Leaf 9))
+```
+
+This new data structure can now easily be queried
+
+```haskell
+-- Check if a value is in the tree
+occurs :: Ord a => a -> Tree a -> Bool
+occurs x (Leaf y) = x == y
+occurs x (Node l y r) = x == y || occurs x l || occurs x r
+
+-- convert the tree into a list - with the example
+-- above [1, 3, 4, 5, 6, 7, 9]
+flatten :: Tree a -> [a]
+flatten (Leaf x) = [x]
+flatten (Node l x r) = flatten l ++ [x] ++ flatten r
+```
+
+## Polymorphism
+
+* **Ad-hoc Polymorphism** -> Haskell uses type  classes (Eq, Num, etc) - is similar to interfaces in Java.
+* Parametric Polymorphim
+* Subtype Polymorphim (not supported in most functional languages)
+
+Classes - similar to an interface in Java.
+
+```haskell
+class Eq a where
+    (==), (/=) :: a -> a -> Bool
+
+    x /= y = not (x == y)
+```
+
+"For a type to be an instalce of the class `Eq`, it must support equality and inequality operators of the specified types."
+A default definiton for unequality is already provided - therefore, a type requires only a `==` operator.
+
+Here is an example instantiation
+
+```haskell
+instance Eq Bool where
+    Fals == False = True
+    True == True  = True
+    _    == _     = False
+```
+This does not work for synonym types!
+
+
+Can be simplified using the `deriving` Mechanism.
+
+```haskell
+data Bool = False | True
+            deriving (Eq, Ord, Show, Read)
+```
