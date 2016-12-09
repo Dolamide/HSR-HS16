@@ -18,7 +18,7 @@ pages:
     - containers.md
     - algorithms.md
     - parameterizing-stl.md
-    - templateFunction.md
+    - templates.md
     - tips.md
     - pitfalls.md
     - cevelop.md

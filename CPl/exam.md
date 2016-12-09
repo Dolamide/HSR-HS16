@@ -41,6 +41,7 @@ int main() {
     ::g(t2);                  // explizit global
 }
 ```
+* "Konzepte braucht T" - für template functions/classes
 
 ## Vorbereitung
 * [Optional exercises](https://wiki.ifs.hsr.ch/CPlusPlus/ExW2)

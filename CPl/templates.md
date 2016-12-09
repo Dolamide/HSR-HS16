@@ -149,8 +149,208 @@ out, z, []<- Tail ist leer
 out
 ```
 
+# Class Templates = Template Clases
+Class Templates funktionieren gleich wie function templates - einfach für Klassen und Structs.
+
+Ein wesentlicher Unterschied ist aber, dass im Gegensatz zu template Functions **der Typ immer angegeben werden muss** - auto-deduction funktioniert also nicht.
+
+Wie bei Function Templates können für Class Templates folgende "Dinge" als Parameter für Templates angegeben werden:
+
+* Typen (Klassen, int) mit `typename`
+* Ganzzahlige (Compile-Zeit)-Konstante (Bsp.`std::array<int, 3>`)
+* Andere Templates
+
+Die Template-Parameter Klasse können auch auf allen data members und function members verwendet werden.
+
+Type aliases
+: Ein einfacher alias auf einen andere typ - bsp. `using SackType=std::vector<T>`. Benötigt für *dependent Types* das `typename` Keyword `using size_type=typename SackType::size_type;`
+
+Template definition
+: `template <typename T> class Sack {...};`
+
+Template deklaration
+: `template <typename T> class Sack;` (Vorwärtsdeklaration)
+
+Template Klasse explizite Spezialisierung
+: `template<> class Sack<char const *> {...};`
+
+Partielle Template Spezialisierung
+: `template<typename T> class Sack<T *> {...};`
+
+Template Klasse Member Spezialisierung
+: `template <> void Sack<char const *>::putInto(char const *p) {...}`
+
+![](images/template_terminology.png)
+
+Eine Implementation könnte wie folgt aussehen:
+
+```c++
+#ifndef SACK_H_
+#define SACK_H_
+#include <vector>   // Implementation specific
+#include <random>
+#include <stdexcept>
+
+template <typename T,
+    template<typename...> class container=std::vector>  // Optional: container Typ
+class Sack
+{
+	using SackType=container<T>;     // Type alias
+	using size_type=typename SackType::size_type; // dependent type alias- needs `typename` keyword
+	SackType theSack{};
+public:
+	bool empty() const { return theSack.empty() ; }
+	size_type size() const { return theSack.size();}
+	void putInto(T const &item) { theSack.push_back(item);}
+	T getOut() ;           // Member function forward declaration
+};
+
+// Member deklaration ausserhalb der class template
+template <typename T>
+inline T Sack<T>::getOut(){
+		if (! size()) throw std::logic_error{"empty Sack"};
+		auto index = static_cast<size_type>(rand()%size());
+		T retval{theSack.at(index)};
+		theSack.erase(theSack.begin()+index);
+		return retval;
+}
+
+// Simple Factory Method - type deduction works 🎉
+#include <initializer_list>
+template <typename T>
+Sack<T> makeSack(std::initializer_list<T> list){
+	Sack<T> sack;
+	for (auto it=list.begin(); it != list.end(); ++ it)
+		sack.putInto(*it);
+	return sack;
+}
+#endif /*SACK_H_*/
+```
+
+Für `T` gelten folgende Concepts:
+
+* Typ `T` muss in einen **Vector** passen → `CopyAssignable` und  `CopyConstructible`
+* `T` darf nicht `void` sein. Es werden **Referenzen** übergeben, und weil es von `void` keine Objekte gibt, kann es folglich keine Referenzen darauf geben.
+* **Kopierbar** sein, da es returns gibt, wo keine Referenz überegeben wird. Movebar wäre hier auch eine Option.
+* Die Methode `at` liefert eine Objektreferenz zurück → T einen **Kopierkonstruktor haben** (nicht movable)
+
+
+## Regeln
+
+* Müssen komplett im Header-File implementiert werden
+    * Grund: Compiler muss Typ kennen um effizienter code generiern zu können
+    * Direkt als member Funktionen in der Klasse
+    * Alternativ als inline Funktionen im header file (etwas hässlicher)
+* Für Typen Aliase, die die direkt oder indirekt auf Template-Parametern basieren muss das `typename` Keyword nagegeben werden.
+* Statische Member-Varibalen (`static`) einer Template-Klasse können problemlos definiert werden (ohne gegen One-Definition-Rule zu verstossen.)
+* Zugriff auf Members der Parent-Klasse immer mit `this` (oder class name::) damit immer das richtige Passiert - bsp. nicht variablen aus dem globalen namespace verwendet werden (Siehe Folie 12, Vorlesung W12)
+
+Vorsicht: Template methoden, die nicht aufgerufen werden werden nicht kompiliert - kann zu Fehler führen, bsp. dass ein Template Parameter nicht movable sein muss.
+
+
+## (partielle) Template Spezialisierung
+
+Beispiel: Pointer verbienten aber Strings zulassen. Problematisch, weil Strings character Pointer sind.
+
+
+```c++
+#ifndef SACKSPECIALIZATIONS_H_
+#define SACKSPECIALIZATIONS_H_
+
+template <typename T> class Sack; // forward declaration
+
+// Pointer verbienten
+template <typename T>
+struct Sack<T*>
+{
+	~Sack()=delete;    // Destruktor löschen = Konstruktoren löschen
+};
+
+#include <vector>
+#include <string>
+#include <stdexcept>
+template <>
+class Sack<char const *> {
+	typedef std::vector<std::string> SackType;
+	typedef SackType::size_type size_type;
+	SackType theSack;
+public:
+	// Specific implementation....
+	bool empty() { return theSack.empty() ; }
+	size_type size() { return theSack.size();}
+	void putInto(char const *item) { theSack.push_back(item);}
+	std::string getOut() {
+		if (! size()) throw std::logic_error{"empty Sack"};
+		std::string result=theSack.back();
+		theSack.pop_back();
+		return result;
+	}
+};
+#endif /*SACKSPECIALIZATIONS_H_*/
+```
+
+### Regeln
+
+* Das nicht-spezialisierte template muss zuerst deklariert werden (Vorwärtsdeklaration).
+* Die spezifischste Version wird verwendet
+
+
+## Factory-Methoden
+
+Factory-Methoden können genutzt werden, um argument deduction mit Class Templates zu nutzen.
+
+```c++
+#include <initializer_list>
+template<template<typename...> class container, typename T>
+Sack<T> makeSack(std::initializer_list<T> list){
+    return Sack<T>{list};
+    // oder wenn kein initializer_list konstruktor
+    Sack<T> sack;
+    for (auto const & elt : list){
+        sack.putInto(*elt);
+    }
+    return sack;
+}
+// Usage
+// Nur das Template, welches ganz rechts ist kann mit auto-deduction evaluiert werden.
+auto setsack = mySack<std::set>({'a', 'b', 'c'})
+```
+
+## Vererbung - Von Standard Containern ableiten
+
+```c++
+template<typename T>
+struct safeVector:std::vector<T> {
+
+// Alle Konstruktoren erben
+using std::vector<T>::vector;
+using size_type=typename std::vector<T>::size_type;
+
+decltype(auto) operator[](size_type i){ // or T & als return type
+	return this->at(i);
+}
+decltype(auto) operator[](size_type i) const { // or T const &
+	return this->at(i);
+}
+
+};
+```
+
+Vorsicht: Mit`decltype` funktionierne `auto` auch mit Referenzen.
+
+## Tips:
+
+Initializer list
+
+```c++
+// in der definition
+Sack(std::initializer_list<T> il):theSack(il){}
+
+// Verwendung
+Sack<char> aSack{'a', 'b', 'c'};
+```
+
+
 !!! todo
 
-    * Aber head und Tail sind nicht identisch!
-    * Wo ist nun der Head?!
-    * Das kann aber nicht gut gehen...?! Keine Abbruchbedinnung
+    * Recap Klammern Konstruktor: `()` vs. `{}`
