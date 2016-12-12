@@ -23,6 +23,7 @@ pages:
     - wpf/gui_design.md
     - wpf/databinding.md
     - wpf/benutzerinteraktion.md
+    - wpf/architekturmodelle.md
     - wpf/etc.md
     - exam.md
     - lernplan.md

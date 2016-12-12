@@ -1,16 +1,5 @@
 ## Benutzerinteraktion
 
-!!! todo
-
-    Testat: W11 - (WPF 04) - Data Binding DEMO App 2 - Transform With Binding.zip 
-    
-    Modales Fenster:
-
-    > Did you try showing your window using the ShowDialog method?
-    > Don't forget to set the Owner property on the dialog window. This will avoid weird behavior when Alt+Tabbing, etc.
-
-
-
 ### Review C# Events
 * Events sind ein in .NET Sprachen eingebauter Publish/Subscribe-Mechanismus.
 * Events werden typischerweise in einer Klasse ausgelöst. Externe Klassen können sich von Aussen subscriben.
@@ -25,13 +14,13 @@ public event PropertyChangedEventHandler PropertyChanged;
 // folgt (als Delegate) definiert
 public delegate void PropertyChangedEventHandler(object sender,
                                       PropertyChangedEventArgs e);
-// Wobei PropertyChangedEventArg in .NET vordefiniert ist. 
+// Wobei PropertyChangedEventArg in .NET vordefiniert ist.
 ```
 
 ### Events in WPF
 
 * In WPF gibt es ganz viele Events - können in Dokumentation oder mittels IntelliSense (Blitz Symbol) gefunden/gesucht werden.
-* WPF liefert diverse vordefinierte Event Handler Methoden (`OnStartup`, `OnClosing` etc.) - 
+* WPF liefert diverse vordefinierte Event Handler Methoden (`OnStartup`, `OnClosing` etc.) -
 
 Ob die vordefinierten Event Handler Methoden oder manuelles Eventhandling genutzt werden soll bleibt dem Entwickler überlassen.
 
@@ -64,7 +53,7 @@ public partial class App : System.Windows.Application {
 }
 ```
 
-![App Startup Ablauf](images/app_startup.png) 
+![App Startup Ablauf](images/app_startup.png)
 : App Startup Ablauf - Quelle: MGE-Vorlesung (HSR)
 
 Welches Fenster gestartet wird kann entwerde in der `App.xaml` über das Attribut `StartupUri="MyMainWindow.xaml"` oder direkt in der Methode `OnStartup` im Code Behind manuell gemacht werden:
@@ -78,12 +67,12 @@ protected override void OnStartup(StartupEventArgs e) {
 
 #### Window Close
 
-![Window Close Ablauf](images/window_close.png) 
+![Window Close Ablauf](images/window_close.png)
 : Window Close Ablauf - Quelle: MGE-Vorlesung (HSR)
 
 #### App Shutdown
 
-![App Shutdown Ablauf](images/app_shutdown.png) 
+![App Shutdown Ablauf](images/app_shutdown.png)
 : App Shutdown Ablauf - Quelle: MGE-Vorlesung (HSR)
 
 ### Routed Events
@@ -111,7 +100,7 @@ Routed Events können auf zwei Varianten behandelt werden:
             MouseDown="SaveButton_OnMouseDown"
             PreviewMouseDown="SaveButton_OnPreviewMouseDown">Save</Button>
     ```
-    
+
     ```csharp
     private void SaveButton_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
     { ... }
@@ -119,7 +108,7 @@ Routed Events können auf zwei Varianten behandelt werden:
     { ... }
     ```
 
-![](images/routed_events.png) 
+![](images/routed_events.png)
 : Keyboard: Taste `B` wird gedrückt und wieder losgelassen - Standardverhalten. Quelle MGE-Vorlesung (HSR)
 
 Typischerweise werden Events relativ weit unten behandelt, weil dort entsprechend spezifisch gehandelt werden kann.
@@ -135,7 +124,7 @@ RoutedEvents bringen aber durch dieses EventBubbling auch Fallstricke mit sich:
 ```csharp
 private void MainTabControl_SelectionChanged(object sender,
     SelectionChangedEventArgs e) {
-    
+
     if (this.MainTabControl.SelectedIndex == 0) {
         // (Re-)Populate ListBox
         this.ListBox1.Items.Clear();
@@ -152,7 +141,7 @@ Um dies zu umgehen muss auf die Quelle des Events geprüft werden:
 ```csharp
 private void MainTabControl_SelectionChanged(object sender,
     SelectionChangedEventArgs e) {
-    
+
     if (e.OriginalSource == this.MainTabControl) { ... }
 }
 ```
@@ -163,6 +152,19 @@ private void MainTabControl_SelectionChanged(object sender,
 * Keyboard: KeyDown, KeyUp, TextInput
 * Touch: TouchDown, TouchUp, TouchMove
 
-### Hintergrund-Operationen (nächste Woche)
+### Hintergrund-Operationen
+Problem wie bei Android: Wenn lange Operationen gleichen Thread laufen wird das UI blockiert - ein Effekt, den man nie will! (Bsp. Download, DB-Zugriff usw.)
 
+Vorgehen:
 
+1. Visuelles Feedback geben
+    * Spinner, Overlay, Popup
+    * Beispiel Button:
+        * Eigenes ContolTemplate für Button mit Spinner
+        * Spinner Visibility an IsEnabled von Button binden
+        * Dafür ist ein eigener Converter nötig
+        * Nach Klick wird Button deaktiviert - und und somit wird gleich der Spinner angezeigt.
+2. Starten eines Background-Threads als Reaktion auf ein Event + Kontrolle an UI Thread zurückgeben
+    * `Task.Run(() => { /* Code läuf im Background-Tread */ } );`
+    * Wenn Berechnung komplett, zurück in UI-Tread mit `Displatcher.Invoke(() => { /* Code läuft im UI Thread */});`
+    * NB: Dispatcher ist Property auf UI-Control. Wenn nicht in Code-Behind Statische Variante `System.Windows.Threading.Dispatcher.DurrentDispatcher` verwenden (Bsp. in ViewModel)
