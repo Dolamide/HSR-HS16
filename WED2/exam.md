@@ -31,6 +31,9 @@ function createLion(name) {
 }
 ```
 
+* MVC Beispiele - bsp. Skripteserver Vorlesung W12
+* TS -> ES6 -> ES5 Klassen (https://www.typescriptlang.org/play/index.html)
+
 ## Aufgabentypen
 ### Typ A
 
