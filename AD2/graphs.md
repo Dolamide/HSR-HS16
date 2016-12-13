@@ -466,7 +466,97 @@ Laufzeit $$O(n+m)$$
 
     Beispiel Folie 26ff
 
+```
+tsort << END
+heredoc> A C
+heredoc> B C
+heredoc> B D
+heredoc> C D
+heredoc> D E
+heredoc> END
+A
+B
+C
+D
+E
+```
 
-## Shortes Path
+## Shortes Path Trees SPT
+Für den Shortest Path hat der Graph zusätzlich einen numerischer Wert, das **Gewicht**, auf der Kante (beispielswiese Distanz, Zeit, Kosten usw.).
+
+Ziel: Finden des Weg mit dem kleinsten totalen Gewicht zwischen zwei Vertizes. Bsp. für SBB Fahrplan: Jeder Knoten bedeutet umsteigen: Dann kann mit BFS die Anzahl Umstiege optimiert werden - nicht aber die Zeit. Mit SPT wird die Fahrzeit minimiert.
+
+### Eigenschaften
+
+* Ein **Teilweg** eines kürzesten Weges **ist selbst auch ein kürzester Weg**
+* Es existiert ein Baum von kürzesten Wegen von einem Start-Vertex zu allen anderen Vertizes.
+
+!!! todo
+
+    Grafik aus Übungen
+
+Distanz
+: Die Länge des kürzesten Pfad zwischen Start und Zeilvertex.
+
+
+###  Dijkstra’s Algorithmus
+Der Dijkstra’s Algorithmus berechnet die Distanzen zu _allen_ Vertizes von _einem Start-Vertex_ `s` aus.
+
+Annahmen:
+
+* Graph ist verbunden
+* Kanten sind **ungerichtet**
+* Gewichte sind **nicht negativ**
+
+Idee: Bilden einer **Wolke** von Vertizes, in welche nach und nach alle Vertizes eingefügt werden.
+
+1. Suche nach Vertex u ausserhalb der Wolke, der die kleinste Distanz `d(u)` ab Root hat.
+2. Aktualiseren aller Distanzen der Nachbar-Vertizes von u
+
+Es gitl: Was in der Wolke ist muss zwingend Gelten und darf keine Änderungen erfahren
+
+Dijkstra’s Algorithmus ist ist Greedy - immer kleinster Wert.
+
+Entspannung
+Relaxation
+: Kosten all derern Nachbar-Vertizes von `u` aktualisieren, die neu kleiner sind, falls der Pfad über `u` führt.
+
+```
+Algorithm DijkstraDistances(G, s)
+    Q ← neue Heap-basierte Priority Queue
+    for all v ∈ G.vertices()
+       if v = s
+           setDistance(v, 0)
+       else
+           setDistance(v, ∞)
+       l ← Q.insert(getDistance(v), v)
+       setLocator(v,l)
+    while ¬Q.isEmpty()
+        u ← Q.removeMin().getValue()
+        for all e ∈ G.incidentEdges(u)
+            { relax edge e }
+            z ← G.opposite(u,e)
+            r ← getDistance(u) + weight(e)
+            if r < getDistance(z)
+                setDistance(z,r)
+                Q.replaceKey(getLocator(z),r)
+```
+
+Vorgehen: Schritt für Schritt aufzeichnen oder PQ aufzeichen.
+
+Nutzung von Adaptabe Priority queue (Recap: Priority kann sich ändern und retourniert Locator, also Link in Datenstruktur) wobei Key = Distanz und Element = Vertex.
+
+#### Performance
+
+* `incidentEdges` für jeden Vertex:  $$O(n)$$
+* Setzen/Lesen des Distanz- und Locator-Label eines Vertex z-Mail: $$O(deg(z))$$ (Annahme: Setzen $$O(1)$$)
+* Jeder Vertex wird 1x in PQ eingefügt und 1x gelöscht - braucht jeweils $$O(log\ n)$$ - also $$2 \cdot O(log\ n) = O(log\ n)$$
+* Der Schlüssel in der PQ wird max. `deg(w)` mal geändert - und das dauert jeweils $$O(log\ n)$$
+
+Da gilt $$\sum_v deg(v) = 2m$$ gilt  ➪ $$O((n+m)\ log\ n)$$
+
+Wei der Graph verbunden ist: $$O(m\ log\ n)$$
+
+
 
 ## Minimum Spanning Trees
