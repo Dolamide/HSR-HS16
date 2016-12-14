@@ -181,7 +181,7 @@ Wie der Service effektiv gehosted wird kann in der `App.config` angegeben werden
 ```
 
 ### Faults
-Exception-Klassen sind nicht serialisierbar (Ausnahme `FaultException<T>`). Für die Übertragung von Fehlern werden darum Faults-Klassen (nicht von Exception abgeleitet!) definiert und im Fehlerfall abgefüllt. = Fehlerinfo.
+Exception-Klassen sind nicht serialisierbar (Ausnahme `FaultException<T>` (generisch, nicht generisch)). Für die Übertragung von Fehlern werden darum Faults-Klassen (nicht von Exception abgeleitet!) definiert und im Fehlerfall abgefüllt. = Fehlerinfo.
 
 ```csharp
 // Service definition
@@ -237,3 +237,144 @@ catch (Exception e)
     // ...
 }
 ```
+
+## Kommunikations-Muster
+
+Gibt verschiedene Kommunikations-Muster:
+
+* One Way (Fire-and-Forget) - wird asynchron im Hintergrund abgefeuert. Keine Return value - folglich funzen Server-Seitige Exceptions auch nicht.
+
+    ```
+    [OperationContract(IsOneWay = trye)]
+    void StoreProblem(ComplexProblem p);
+    ```
+* Request-Reply (synchron)(default)
+* Duplex (asynchron) - analog zu OneWay - aber braucht auch CallbackContrackt.
+    * Vorsicht: ICalcCallback: Hat KEINE attribute!
+    * Client implementiert Callback Interface - server arbeitet gegen dieses Interface.
+    * TODO: F45-F46
+
+    ```
+    // Server
+    [ServiceContract(
+        SessionMode = SessionMode.Required,
+        CallbackContract = typeof(ICalcCallback))]
+    public interface ICalculatorDuplex
+    {
+        [OperationContract(IsOneWay = true)]
+        void Clear();
+
+        [OperationContract(IsOneWay = true)]
+        void AddTo(double n);
+
+    }
+
+    // Client
+    public interface ICalcCallback {
+        [OperationContract(IsOneWay = true)]
+        void Result(double result);
+    }
+    ```
+
+## Address
+Ganz normale URIs: `[transport]://[domain][:port][path]`
+
+## Binding
+
+* Definition des Übertragungskanal
+   * Reliability: End-to-End, keine, ordered/unordered
+   * Security: Transport-Security, Message Security, Authentication/Authorisation
+   * Transport-Protokolle (HTTP, TCP/UDP, P2p etc.)
+   * Encoding
+* Kommunikationsmuster
+* Transaktions-Management (Server oder Client Seite)
+* Security
+* Interoerabilität (WS-*, WCF, REST etc.)
+
+Typischer Fehler: Server und Client haben nicht das gleiche Binding!
+
+Binding wird via im Metadata Exchange (MEX) publiziert.
+
+Mehrere Bindings pro Service und eigene Bindings sind möglich.
+
+Evtl. Aus Folien ergänzen.
+
+## Data Contract v2 (oben ergänzen)
+* WCF kann mit allen CLR Typen arbeiten.
+* Data Contract: Wie Serialisiere ich meine Klasse
+
+Ganz normale Klasse - mit den Aspekten (Attributen).
+
+Vorsicht: Wenn kein DataContract definiert: Alles wird serialiser (böse)
+-> Whitelisting
+
+Generierung von WSDL:
+
+* Suche alle public Service-Interfaces.
+* Suche nach exponierten, komplexen Typen auf ServiceContracts.
+    * werden rekursiv abgeackert
+
+Problem Vererbung:
+
+* Abgeleitete Klassen nicht sichtbar => Siehe Folien F16. (CommunicationException)
+
+```csharp
+[ServiceContract]
+public interface IClassroomService
+{
+    [OperationContract]
+    List<Student> GetStudents();
+}
+
+[DataContract]
+public class Student { }
+
+[DataContract]
+public class TiredStudent : Student { }
+
+[DataContract]
+public class BoredStudent : Student { }
+```
+
+Darum:
+
+```csharp
+[KnownType(typeof(TiredStudent))]
+[KnownType(typeof(BoredStudent))]
+[DataContract]
+public class Student { }
+```
+
+(Alternativ: Methode: `IEnumerable<Type> GetKnownTypes() {}`) oder in der App.config.
+
+Gleiches gilt für nicht-Generische listen etc. bzw. halt object...
+
+Problem: Typ hinter Interface - auf Operation contract. F18, F19ff
+
+## Serialisierung
+
+23
+Wird 2x separat serialisiert
+
+24
+Wenn mehrere -> Linke mit id/Ref - Problem: Zyklisch!
+
+25 (NB)
+
+26 -> Version Tolerant (neue Propertiues)
+
+27 sonst default...
+
+## Behaviors
+
+Instanzmodell: Mit welcher Objekt-Instanz wird in einer Response beim Service-Host gearbeitet: 1. Single (geteilte instaz), Per Call, Per Session.
+
+=> INteressiert logischerweise NUR den Server, nicht den client.
+
+Evtl. Code F30
+
+F31: Spezialfall Per Session
+
+..
+
+Concurrency: Skip Transaktionen

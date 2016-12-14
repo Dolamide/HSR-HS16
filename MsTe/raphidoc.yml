@@ -19,6 +19,7 @@ pages:
     - linq.md
     - entity.md
     - wcf.md
+    - reflection.md
     - tips.md
     - pitfalls.md
     - snippets.md
