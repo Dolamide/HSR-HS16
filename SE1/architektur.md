@@ -167,3 +167,19 @@ Mit System-Sequenzdiagramm wird quasi die oberste testbare Schnittstelle dokumen
 !!! seealso
 
     [developerWorks - The sequence diagram](http://www.ibm.com/developerworks/rational/library/3101.html)
+
+## Vom Domainmodell zu Datenmodell
+
+Domainmodell (Was machen wir im Idealfall)
+Datenmodell (Was wir machen können - pragmatisch)
+
+Einflussfaktoren
+
+* Art der Applikation: Web/Mobile - online/offline usw.
+* Performance (NF)
+* Security (NF)
+* Erweiterbarkeit (NF)
+* Anwendungsschwerpunkt:
+* Usability (NF)
+
+Vorsicht: Nicht-Funktionale Anforderungen haben grossen Einfluss
