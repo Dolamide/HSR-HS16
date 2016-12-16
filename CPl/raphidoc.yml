@@ -19,6 +19,7 @@ pages:
     - algorithms.md
     - parameterizing-stl.md
     - templates.md
+    - heap.md
     - tips.md
     - pitfalls.md
     - cevelop.md
@@ -29,4 +30,4 @@ assets:
     - images/
 
 # TODO: load from ../theme/ or default
-theme: /home/rzi/Desktop/demo/raphi_theme/
+theme: /home/rzi/Desktop/raphidoc/raphi_theme/

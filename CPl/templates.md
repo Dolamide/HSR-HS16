@@ -354,3 +354,30 @@ Sack<char> aSack{'a', 'b', 'c'};
 !!! todo
 
     * Recap Klammern Konstruktor: `()` vs. `{}`
+
+## Übungsfragen
+* Wo Template Definition?
+
+  Im header (Folien "Define template class completely in header files")
+
+* If you have type depending on a template parameter,
+  how do you have to refer to that type?
+
+  Hat mit using `size_type=typename SackType::size_type;` zu tun.
+  SackType::size_type kann ja unterschiedlich sein, je nach dem was inistantiiert wird.
+  Darum muss typename angegeben werden, damit klar ist,welcher typ verwenet wird.
+
+* How do you refer to inherited members within a class template?
+
+  mit `this->member`
+
+* Is it neccessary for a (partial) specialization of a
+ class template to provide the same
+ interface as the unspecialized template?
+
+ Nein, bsp. kein Destruktor?!
+
+
+
+ Konstruktoren erbem mit: `using std::vector<T>::vector;`
+ 
