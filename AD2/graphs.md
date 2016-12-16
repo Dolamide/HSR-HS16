@@ -366,6 +366,10 @@ Bei einem Digraph ergibt sich ein wesentlich anderer Tree (Bsp. mit DFS) im verg
 Erreichbarkeit
 : Vertizes im DFS Baum vom Wurzelknoten v sind durch gerichtete Pfade erreichbar.
 
+!!! todo
+
+    Code Übungen W13: Kind of Node
+
 ### Implementierung
 Adjazenzliste neu mit 2 Listen: Einmal für Incomming und einmal für Outgoing.
 
@@ -531,20 +535,64 @@ Algorithm DijkstraDistances(G, s)
            setDistance(v, ∞)
        l ← Q.insert(getDistance(v), v)
        setLocator(v,l)
+       setParent(v, null)
     while ¬Q.isEmpty()
         u ← Q.removeMin().getValue()
         for all e ∈ G.incidentEdges(u)
-            { relax edge e }
+            // Hier erfolgt die effektive relexation von Kante e
             z ← G.opposite(u,e)
             r ← getDistance(u) + weight(e)
             if r < getDistance(z)
                 setDistance(z,r)
+                setParent(z, e)
                 Q.replaceKey(getLocator(z),r)
 ```
+
+Der Tree kann über Parent abgefragt werden.
 
 Vorgehen: Schritt für Schritt aufzeichnen oder PQ aufzeichen.
 
 Nutzung von Adaptabe Priority queue (Recap: Priority kann sich ändern und retourniert Locator, also Link in Datenstruktur) wobei Key = Distanz und Element = Vertex.
+
+Java Implementation:
+
+```java
+public void distances(AdjacencyListGraph<V, E> graph, Vertex<V> s) {
+
+	AdaptablePriorityQueue<Integer, Vertex<V>> apq = new HeapAdaptablePriorityQueueGVS<>();
+	Map<Vertex<V>, Integer> distances = new LinkedHashMapGVS<>();
+	Map<Vertex<V>, Entry<Integer, Vertex<V>>> locators = new LinkedHashMap<>();
+	Map<Vertex<V>, Edge<E>> parents = new LinkedHashMapGVS<>();
+	gvs.set(apq, distances, parents);
+
+	for (Vertex<V> v : graph.vertices()) {
+		if (v == s) {
+			distances.put(v, 0);
+		} else {
+			distances.put(v, Integer.MAX_VALUE);
+		}
+		Entry<Integer, Vertex<V>> l = apq.insert(distances.get(v), v);
+		locators.put(v, l);
+		parents.put(v, null);
+	}
+
+	while (!apq.isEmpty()) {
+		AdjacencyListGraph<V, E>.MyVertex<V> u =
+            (AdjacencyListGraph<V, E>.MyVertex<V>) (apq.removeMin().getValue());
+		for (Edge e : u.incidentEdges()) {
+			// RELAX
+			Vertex z = graph.opposite(u, e);
+			int r = distances.get(u) + (Integer)(e.get(WEIGHT));
+			if (r < distances.get(z)){
+				distances.put(z, r);
+				apq.replaceKey(locators.get(z), r);
+				parents.put(z, e);
+			}
+		}
+
+	}
+}
+```
 
 #### Performance
 
