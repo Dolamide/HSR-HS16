@@ -15,6 +15,7 @@ pages:
     - prolog.md
     - lambda.md
     - haskell.md
+    - scala.md
     - exam.md
     - lernplan.md
 
@@ -22,7 +23,7 @@ assets:
     - images/
 
 # TODO: load from ../theme/ or default
-theme: /home/rzi/Desktop/demo/raphi_theme/
+theme: /home/rzi/Desktop/raphidoc/raphi_theme/
 
 pdf:
     file-name: PrFm_Zusammenfassung_RZ.pdf
