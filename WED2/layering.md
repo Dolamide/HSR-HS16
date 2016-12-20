@@ -23,8 +23,14 @@ window.onload=function () {
     }
 
     // controller / EventListener
-    btnUp.addEventListener("click", function () {counter.countUp(); updateView()});
-    btnDown.addEventListener("click", function () {counter.countDown(); updateView()});
+    btnUp.addEventListener("click", function () {
+        counter.countUp();
+        updateView()
+    });
+    btnDown.addEventListener("click", function () {
+         counter.countDown();
+         updateView()
+    });
 
     // init
     updateView();

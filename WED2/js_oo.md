@@ -339,8 +339,10 @@ const str3 = Array.from(str1)
 function duplicateEncode(word){
     return word.toLowerCase()
             .split('')  // String in ein Array
-            .map(function (element, index, array) { // Wenn einmal in string: 1, sonst n
-                return array.indexOf(element) == array.lastIndexOf(element) ? '1' : 'n'
+            // Wenn einmal in string: 1, sonst n
+            .map(function (element, index, array) { 
+                return array.indexOf(element) == 
+			array.lastIndexOf(element) ? '1' : 'n'
             })
             .join(''); // In String konkatinieren
 }

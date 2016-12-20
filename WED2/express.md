@@ -128,7 +128,7 @@ res.jsonp({user: 'Peter'});
 
 // Syntax:
 router.all(path, [callback, ...] callback)
-router.get(path, [callback, ...] callback) / router.post / router.put / router.delete
+router.get(path, [callback, ...] callback) / router.post/.put/.delete
 router.route(path)
 
 // Example:

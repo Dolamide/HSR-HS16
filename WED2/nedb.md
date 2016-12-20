@@ -20,7 +20,8 @@ db.findOne({ _id: id }, function (err, doc) {
 });
 
 // Update the state on all fileds with _id id to deleted
-db.update({_id: id}, {$set: {"state": "DELETED"}}, {}, function (err, numReplaced, affectedDocuments) {
+db.update({_id: id}, {$set: {"state": "DELETED"}}, {},
+	  function (err, numReplaced, affectedDocuments) {
     // Load the entry (if it shall be returend) since we only get the numReplaced
     // from the update method back
     publicGet(id,callback);

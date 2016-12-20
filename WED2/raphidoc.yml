@@ -22,6 +22,7 @@ pages:
     - js_oo.md
     - module.md
     - typescript.md
+    - testing.md
     - exam.md
     - lernplan.md
 
@@ -29,4 +30,4 @@ assets:
     - images/
 
 # TODO: load from ../theme/ or default
-theme: /home/rzi/Desktop/demo/raphi_theme/
+theme: /home/rzi/Desktop/raphidoc/raphi_theme/

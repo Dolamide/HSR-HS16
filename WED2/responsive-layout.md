@@ -32,7 +32,8 @@ Media Queries können mit Operatoren kominiert werden:
 /* AND */
 @media (min-width: 20em) and (max-width: 30em) {}
 /* OR */
-@media (max-width: 10em), (min-width: 20em) and (max-width: 30em), (min-width: 40em) {}
+@media (max-width: 10em), (min-width: 20em) and 
+       (max-width: 30em), (min-width: 40em) {}
 /* NOT */
 @media not screen {}
 @media not screen and (min-width: 20em) {}
@@ -67,9 +68,11 @@ Diese Anweisung ist wichtig um die "Intelligenz“" Mobiler Browser zu unterbind
 > Die Teilnehmer können den Code von responsive Image Definitionen interpretieren und erklären wofür responsive Images eingesetzt werden
 
 ```html
-<img src="" srcset="300.png 300w, 600.png 600w" alt="" sizes="(max-width: 320px) 49vw, 100vw">
+<img src="" srcset="300.png 300w, 600.png 600w" alt=""
+     sizes="(max-width: 320px) 49vw, 100vw">
 
-<img src="image-src.png" srcset="image-1x.png 1x, image-2x.png 2x, image-3x.png 3x, image-4x.png 4x">
+<img src="image-src.png"
+     srcset="image-1x.png 1x, image-2x.png 2x, image-3x.png 3x, image-4x.png 4x">
 ```
 
 * src ist das fallback

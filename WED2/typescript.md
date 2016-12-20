@@ -95,7 +95,8 @@ let myNum2: number = numberApplicator(
 // VERBOTEN
 myStr: string = sumFunction(1, 2);
 sumFunction(1, 'hi');
-function concatFunction(s1: string, s2: string): string { return s1+s2; } numberApplicator([1, 2, 3, 4], concatFunction);
+function concatFunction(s1: string, s2: string): string { return s1+s2; }
+numberApplicator([1, 2, 3, 4], concatFunction);
 ```
 
 ### Komplexe Typen: Klassen
@@ -159,7 +160,8 @@ class DescribableItem {
 class PointOfInterest extends DescribableItem
     implements Point, LikableItem {
 
-        constructor(public x: number, public y: number, description: string, public likes?:number) {
+        constructor(public x: number, public y: number,
+                    description: string, public likes?:number) {
             super(description);
         }
 }
@@ -177,4 +179,125 @@ export default class Counter
 
 // counterDetails.ts
 import Counter from './Counter';
+```
+
+Auf prototyp des konstruktors kommen alle properties, auf die quasi mit `this` zugegriffen werden soll. Static Properties werde auf dem Konstruktor gesetzt....
+
+```typescript
+class Counter {
+  private _doors: number;
+  private _wood: string;
+  private _basePrice: number;
+  public static readonly WOOD_FACTORS = {'oak': 80, 'pine': 20,
+                                        'beech': 50, 'maple': 60,
+                                        'walnut': 90, 'cherry': 100};
+  public static readonly DOOR_FACTOR = 2;
+  public static readonly MIN_DOOR_COUNT = 2;
+  public static readonly MAX_DOOR_COUNT = 7;
+
+  constructor({doors = 2, wood = 'oak', basePrice = 40}:
+              {doors?: number, wood?: string,
+              basePrice?: number} = {}) {
+    this.doors = doors;
+    this.wood = wood;
+    this._basePrice = basePrice;
+  }
+
+  set wood(newWood: string) {
+    if (Counter.WOOD_FACTORS[newWood]) {
+      this._wood = newWood;
+    } else {
+      throw "Counters not avaiable with wood=" + newWood;
+    }
+  }
+
+  get wood() {
+    return this._wood;
+  }
+  set doors(newDoorCount: number) {
+    if (newDoorCount >= Counter.MIN_DOOR_COUNT
+        && newDoorCount <= Counter.MAX_DOOR_COUNT) {
+      this._doors = newDoorCount;
+    } else {
+      throw `Counter can only have between ${Counter.MIN_DOOR_COUNT}
+               and ${Counter.MAX_DOOR_COUNT} not
+               supported ${newDoorCount}`;
+    }
+  }
+  get doors() {
+    return this._doors;
+  }
+  get price() {
+    let priceFactor = Counter.WOOD_FACTORS[this.wood] * Counter.DOOR_FACTOR
+                        * this.doors / 100;
+    return priceFactor * this._basePrice;
+  }
+}
+```
+
+Kompiliert zu
+
+
+```javascript
+var Counter = (function () {
+    function Counter(_a) {
+        var _b = _a === void 0 ? {} : _a, _c = _b.doors,
+		 doors = _c === void 0 ?
+ 		 2 : _c, _d = _b.wood, wood = _d === void 0 ?
+ 		'oak' : _d, _e = _b.basePrice,
+ 		basePrice = _e === void 0 ? 40 : _e;
+        this.doors = doors;
+        this.wood = wood;
+        this._basePrice = basePrice;
+    }
+    Object.defineProperty(Counter.prototype, "wood", {
+        get: function () {
+            return this._wood;
+        },
+        set: function (newWood) {
+            if (Counter.WOOD_FACTORS[newWood]) {
+                this._wood = newWood;
+            }
+            else {
+                throw "Counters not avaiable with wood=" + newWood;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Counter.prototype, "doors", {
+        get: function () {
+            return this._doors;
+        },
+        set: function (newDoorCount) {
+            if (newDoorCount >= Counter.MIN_DOOR_COUNT
+		&& newDoorCount <= Counter.MAX_DOOR_COUNT) {
+                this._doors = newDoorCount;
+            }
+            else {
+                throw "Counter can only have between " +
+			Counter.MIN_DOOR_COUNT + " and " +
+			Counter.MAX_DOOR_COUNT + 
+			" not supported "+ newDoorCount;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Counter.prototype, "price", {
+        get: function () {
+            var priceFactor = Counter.WOOD_FACTORS[this.wood]
+			    * Counter.DOOR_FACTOR * this.doors / 100;
+            return priceFactor * this._basePrice;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Counter;
+}());
+Counter.WOOD_FACTORS = { 'oak': 80, 'pine': 20, 'beech': 50,
+			 'maple': 60, 'walnut': 90, 'cherry': 100 };
+Counter.DOOR_FACTOR = 2;
+Counter.MIN_DOOR_COUNT = 2;
+Counter.MAX_DOOR_COUNT = 7;
 ```

