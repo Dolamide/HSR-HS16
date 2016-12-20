@@ -51,7 +51,8 @@ Wichtigste Regeln:
 * ViewModel kennt die View nicht (keine einzige Referenz!!)
 * ViewModel erstellt neue Views nicht direkt selber.
 * Commands und allenfalls CommandParamter nutzen.
-
+* Startup Code in `App.xaml.cs` (`StartupUri`-Attribut aus `App.xaml` löschen)
+* View-Model der View via Dependency-Injection mitgeben.
 
 #### Implementierung von Commands
 `RelayComand` übernimmt ein Action swoie eine Funktion `canExecute`.
@@ -108,4 +109,3 @@ TODO;::: F48
     * F51: Erstellen aus der View?
 ```
 
-# Projekt Layout

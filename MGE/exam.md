@@ -1,7 +1,8 @@
 # Prüfungsdetails
 
 * Zwei Teile a 1 Stunde
-* Miniprojekte als Voraussetzungen für
+* Miniprojekte als Voraussetzungen
+* Übungen relevant!
 
 ## Erlaubte Hilfsmittel
 
@@ -22,4 +23,8 @@
 
 ### WPF
 * Must know: Reviews letzer Block in Folien
-* menus, toolbars etc nicht Prüfungsrelevant
+* menus, toolbars etc nicht Prüfungsrelevanti
+* Review: `W14 - (WPF 07) - XAML auf anderen Plattformen (Xamarin).pdf` Ab Folie 36 bzw. Seite 34
+* Nur wenige Stellen, wo code geschrieben werden muss. Aber muss plus-minus auskennen, was es gibt
+
+

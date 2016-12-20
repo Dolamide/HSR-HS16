@@ -9,3 +9,13 @@
 * `{RelativeSource ...}` Setzt die Data Binding Source auf eine relativen Bezug im Logical Tree
 * `{TemplateBinding ...}` Bindet Wert an Eigenschaft des mittels Template dargestellten Controls
 * `{x:Reference ...}` Abkürzung für `{Binding ElementName=...}`
+
+## XAML ausserhalb von WPF
+
+* Ab Windows-10: Gleiches Binary läuft auf allen Plattformen
+* Universal Windows Plattform ergänzt .NET um weitere Konzepte
+* Alle .NET-Sprachen
+* HTLML und XAML
+* XAMARIN: Shared C# Backend - Natives UI für iOS, Android usw.
+* Xamarin Forms: Günstig & gut für Prototypen.
+    
