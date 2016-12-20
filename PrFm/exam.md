@@ -4,8 +4,9 @@
 ## Erlaubte Hilfsmittel
 
 * closed book
-* one double sided A4 "cheat sheet"
+* one double sided A4 "cheat sheet" (WITH NAME - must be handed in at end of exam)
 * Proof-Rules werden angegeben - falls benötigt
+* Exercises as in the exercise session are probably how the exam looks like.
 
 ## Aufgabentypen
 
