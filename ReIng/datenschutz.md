@@ -31,7 +31,7 @@ Datenschutzverletzung ist immer auch Persönlichkeitsverletzung: Art. 28, 28a un
 
 !!! todo
     Wie weit geht das? Daten werden nicht gelöscht = Persönlichkeitsverletzung?
-    
+
 Entstehung: Aufgrund von Aufkommen von "neuen Technologien"
 
 Geltungsbereich:
@@ -46,7 +46,7 @@ Personenbezogen?
 
 * Einwohnerstatistik: (NEIN) Typ. sind Resultate anonym - daher eher unproblematisch (Ausnahme: Wenn sehr spezifisch/genau).
 * Kreditkartennummer: (JA) Zusammen mit Verknüpfung mit anderen Daten
-* Autokennzeichen: Ja - Strassengesetz ermöglicht das - Daten sind nicht (Halter != Fahrer) 
+* Autokennzeichen: Ja - Strassengesetz ermöglicht das - Daten sind nicht (Halter != Fahrer)
 * Patientendossier: JA! (Besonders schützenswert)
 * IP-Adresse: JA - Aber im Gegensatz zu Autokennzeichen gilt "Störerhaftung"
 * DNA: JA (Erbkrankheiten, )
@@ -59,18 +59,60 @@ Personenbezogen?
 * Prüfung der Kreditwürdigkeit des Konsument durch Kreditgeber: gesetzliche Grundlage (Betreibungsregister, Zentrale Kreditauskunft).
 
 
-
 ## Datenschutzrechtliche Prinzipien
 
-* Rechtfertigung: 
+* Rechtfertigung:
 * Zweckgebundenheit: Dürfen nur zur Abwicklung des Auftrags abgewickelt werden (oder wenn andere Zwecke spezifiziert)
-* Verhältnismässigkeit: Bsp. für Kauf von Kaugummi ist Religion nicht relevant 
+* Verhältnismässigkeit: Bsp. für Kauf von Kaugummi ist Religion nicht relevant
 * Integrität: "Betreiber" muss sicherstellen, dass Daten vollständig und sicher
 * Sicherheit: "Betreiber" muss Daten vor Missbrauch schützen. Je heikler die Daten, umso höher muss die Sicherheit sein.
 * Transparenz: Muss erkennbar sein für Betroffener (Bsp. in AGB)
 * Verantwortung
 
+
+* Anmeldeformular für Mietwohnungen fragt nach bestehenden chronischen Krankheiten: Verhältnissmässigkeit
+* Auswertung des Konsumverhaltens aufgrund von Kreditkartenbezügen: Rechtfertigung, Zweckgebundenheit
+* Computervirus löscht die gesamte Festplatte der Unternehmung Y: Sicherheit
+* Fitnessstudio X überwacht die Umkleidekabinen mittels versteckter Videokamera:
+
 ## Rechte der betroffenen Person
+
+* Auskunftsrecht:
+    * Grunsätzlich Konstenlos
+    * Höchstpersönlich: Nur wirklich ich - mit Kopie von ID
+* Berichtigung, Korrektur, Sperrung
+* Schadenersatz / Genugtuung
+* Persönlichkeitsverletzung
+
+➪ Strafbetsand: Verletzung der Auskunfts-, Melde- und Mitwir- kungspflichten: Art. 34 DSG
 
 ## Zuständigkeiten
 
+* Bund
+    * Öffentlichkeitsprinzip - grundsätzlich alles Öffentlich
+    * Aufsicht über Beratung von Privaten/Bundesorganen
+* Kanton
+    * teilweise öffentlichkeitsprinzip
+    * Aufsicht über Beratung von Behörden und Private im öfffentlichen Auftrag (spitex)
+
+Wer ist zuständig?
+
+* Steueramt: Kanton
+* Migros: Bund
+* Arbeitgeber: Bund / Kanton (wenn Zuständig)
+* SBB: Bund
+* Spital: Kanton wenn den Kanton gehört / Bund wenn privat
+* Kantonalbank: Bund
+
+## Aktuelle Entwicklungen
+
+## Anwendungsfälle
+
+1. Prüfen, ob Rechtfertigungsgrund vorhanden
+2. Sind alle Prinzipien erfüllt
+
+### Überwachung am Arbeitsplatz
+
+* Überwachung des Internetverkehrs nicht verhältnissmässig
+* Grundsätzlich verboten "um des Überwachungswillen"
+* Personenbezogene Überwachnung nur nach Informieren und konkretem Verdacht.
