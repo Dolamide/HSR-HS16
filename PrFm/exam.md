@@ -21,3 +21,6 @@
 * Übungen "Prolog Lists Exercise"
 * Übungen "Prolog Arithmetic Exercise"
 * Übungen "More Lists Exercise"
+
+## Scala
+* Lernziele Durchgehen

@@ -113,7 +113,7 @@ A function with several arguments can be thought of as a series of higher-order 
 
 This makes function definitions more concise, modular and reusable - eg. $$addFive = (+\ 5)$$ is much clearer than $$addFive = (\lambda x. +(5, x))$$.
 
-## Definitions & 𝛿-Reduction
+## Definitions & $\delta$-Reduction
 Definitions are not necessary, but sometimes convenient.
 
 example:
@@ -122,7 +122,7 @@ example:
 square = \lambda x . \ \cdot\  x\  x
 \]
 
-𝛿-Reduction is the substitution of a defined symbol with its definition.
+$\delta$-Reduction is the substitution of a defined symbol with its definition.
 
 ## Higher-Order Functions
 
@@ -134,7 +134,7 @@ They require no special treatment since functions are first-class citizens in la
 Lambda calculus does not place any constraints on the order, in which redexes are reduced. However, the evaluation strategy is crucial in lenght of derivation and especially their _termination_.
 
 redex
-: Reducable Expression - every 𝛿 and β reducable subterm.
+: Reducable Expression - every $\delta$ and β reducable subterm.
 
 ### Innermost-first
 The innermost redex is reduced first.
