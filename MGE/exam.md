@@ -9,6 +9,13 @@
 * Je Teil (Android/WPF) je 10 Seiten (also 5 A4 Seiten duplex)
 * Teil Android: XML Lesen (primär der ersten 2 Wochen) *lesen* aber nicht *schreiben* können.
 
+## todo
+
+* Tree Controls
+* Kärtli aus Falschen Multipe Choise Fragen oder einfach Repetieren
+* margin="Left, Top, right, bototm"?
+* Zusammenfassungen Drucken und mit Rotstift durch!
+
 ## Aufgabentypen
 
 ### Android
@@ -26,5 +33,3 @@
 * menus, toolbars etc nicht Prüfungsrelevanti
 * Review: `W14 - (WPF 07) - XAML auf anderen Plattformen (Xamarin).pdf` Ab Folie 36 bzw. Seite 34
 * Nur wenige Stellen, wo code geschrieben werden muss. Aber muss plus-minus auskennen, was es gibt
-
-

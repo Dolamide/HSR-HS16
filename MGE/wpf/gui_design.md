@@ -1,15 +1,13 @@
-## GUI-Design
+# GUI-Design
 
 
 !!! todo
 
     Ergänzungen Übungen?
     Basis für N: #80
-    http://mahapps.com
 
 
-
-### Resources
+## Resources
 
 WPF-Resources sind im XAML hinterlegte Elemente wie Brush, Style, Color, String usw. Das Konzept ist _entfernt_ vergleichbar mit CSS im Browser.
 
@@ -43,8 +41,10 @@ Recap: Der `x` Namespace ist für allgemeine XAML Eigenschaften/Elemente, währe
 
 Eine Resource wird Bottom-Up im _locical Tree_ (also dieselbe Struktur wie im XAML) gesucht.
 
-![](images/resolve_resource_key_tree.png)
-: Zugriff auf Ressource - Reihenfolge wird im XAML-Code entschieden!
+<figure>
+    <img src="images/resolve_resource_key_tree.png" style="max-width: 50%;"/>
+    <figcaption>Zugriff auf Ressource - Reihenfolge wird im XAML-Code entschieden!</figcaption>
+</figure>
 
 ```xml
 <!-- Zugriff auf Resource - 1x mit static binding -->
@@ -64,7 +64,7 @@ var okText = (string)FindResource("OkText");
 var bgBrush = FindResource("DarkBrush") as Brush;
 ```
 
-#### Dynamische vs. Statische Resources
+### Dynamische vs. Statische Resources
 
 Statische Resourcen
 
@@ -82,7 +82,7 @@ Dynamic Resource
 
 Ein Theme Switch wie in VisualStudio geht also nur mit Dynamic Resource.
 
-#### Resource Dictionary
+### Resource Dictionary
 
 Resource Dictionary
 : Behälter, um Resources zu speichern - einfacher Key-Value-Store. Bsp. `Application.Resources` `Window.Resources` `Button.Resources`
@@ -129,7 +129,7 @@ Varianten für Package-URIs sind
     Image ohne `{DynamicResource MyButtonBackground}` aber bei Color schon?!
 
 
-### Styles & Themes
+## Styles & Themes
 Styles sind vom Konzept fast analog zu CSS Klassen.
 
 Generelle Definition. Macht nur für Spezielle Styles - wie bsp. `DangerButton` Sinn.
@@ -185,7 +185,7 @@ Dies ist Quasi das HTML der Control - während das Style dem CSS entspricht.
 
 !!! todo
 
-    38: Code relevant? ➪ Falls in Übungen, Copy-Paste aus Folien.
+    38: Code relevant? -> Falls in Übungen, Copy-Paste aus Folien.
 
 
 ### Trigger
@@ -201,6 +201,16 @@ Style Trigger sind analog zu Pseudo-Klassen in CSS.
             <Setter Property="Background" Value="#2672EC" />
             <Setter Property="Foreground" Value="White" />
         </Trigger>
+    </Style.Triggers>
+</Style>
+```
+
+```xml
+<Style TargetType="ListBoxItem">
+    <Style.Triggers>
+        <DataTrigger Binding="{Binding InStock}" Value="0">
+            <Setter Property="Foreground" Value="Red" /> 
+        </DataTrigger>
     </Style.Triggers>
 </Style>
 ```
@@ -221,7 +231,7 @@ Style Trigger sind analog zu Pseudo-Klassen in CSS.
 * Grössere Projekte:
     * Eigene Assemblies mit Resource Dictionaries und Image-Resources pro Design/Theme
 
-### GUI Design Principles
+## GUI Design Principles
 
 * Es gibt keine Design Guidelines wie bei Android
 * Grobe Grundsätze (Design Principles):

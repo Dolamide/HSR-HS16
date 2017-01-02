@@ -100,7 +100,7 @@ Binding im XAML
         CommandParameter="{Binding SelectedGadget}" />
 ```
 
-➪ Events müssen in Commands "gemappt" werden.
+-> Events müssen in Commands "gemappt" werden.
 
 TODO;::: F48
 

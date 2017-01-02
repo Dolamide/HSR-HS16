@@ -1,5 +1,7 @@
-# WPF
+<div style="font-weight: bold;font-size: 2em;page-break-before: always;">Inhalt</div>
+{{TOC}}
 
+# Einführung
 Desktop Apps haben immer noch eine gewisse Existenzberechtigung.
 
 * Kosten
@@ -7,8 +9,6 @@ Desktop Apps haben immer noch eine gewisse Existenzberechtigung.
 * Hohe Performance
 * Grosse Datenmengen beherrschbar
 * Breiter Technologiemix
-
-## WPF-Einführung
 
 WPF
 : Windows Presentation Foundation
@@ -21,13 +21,13 @@ WPF
 * Hardware-nah (DirextX)
 * Programmierbar mit VB.NET, C#, Python ...
 * Pixel = device-independent pixels/units:
-    * ➪ Fixe Physische Grösse: 1/96 Zoll (Fix im Gegensatz zu Android)
+    * -> Fixe Physische Grösse: 1/96 Zoll (Fix im Gegensatz zu Android)
     * Problem: "Rundungsfehler", darum etwas "schwammig" (=aliasing - siehe `UseLayoutRounding` und `SnapsToDevicePixels`)
 * Code Behind → XML wird mit Klasse *verschmolzen*
-* UI Thread ➪ Blockiert - daher Multi-Threading nutzen!
+* UI Thread -> Blockiert - daher Multi-Threading nutzen!
 
 
-### Logical Tree vs Visual Tree
+## Logical Tree vs Visual Tree
 Logical Tree
 : Entspricht der Struktur der XAML-Elemente
 
@@ -40,14 +40,16 @@ Unterscheidung relevant, wenn Bsp. durch Tree navigiert wird.
 
     Vorlesung "EINFÜHRUNG WPF & XAML" - Folie Nr. 25
 
-### XAML
+## XAML
 
-![XAML vs. C#](images/xaml_vs_csh.png)
-: Alles, was in XAML implementiert werden kann, kann auch in Code (z.B. C#) ausgedrückt werden.
+<figure>
+    <img src="images/xaml_vs_csh.png" style="max-width: 70%;"/>
+    <figcaption>Alles, was in XAML implementiert werden kann, kann auch in Code (z.B. C#) ausgedrückt werden.</figcaption>
+</figure>
 
 XML und XML sollte gegenüber Code bevorzugt werden, da es einfacher zu warten und wesentlich weniger Schreibarbeit ist. Zudem gibt es Tools wie Form Designer.
 
-Property Element Syntax ➪ Ermöglicht komplexer Inhalt
+Property Element Syntax -> Ermöglicht komplexer Inhalt
 
 ```xml
 <!-- Attribute Syntax - kein zusammengesetzter Inhalt möglich!-->
@@ -57,7 +59,7 @@ Property Element Syntax ➪ Ermöglicht komplexer Inhalt
     <Button.Content>
         <StackPanel>
             <TextBlock Text="Watch Now" FontSize="20" />
-            <TextBlock Text="Duration: 50m" FontSize="12"   
+            <TextBlock Text="Duration: 50m" FontSize="12"
                 Foreground="#888888" />
         </StackPanel>
     </Button.Content>
@@ -106,33 +108,52 @@ namespace HelloWpf {
  }
 ```
 
-### C-Sharp
+## C-Sharp Mini-Intro
 
 !!! seealso
 
     MsTe Vorlesung
 
-#### Keywords
+### Keywords
 
 Keywords im Vergleich zu Java
 
-| Java          | C#          |
-|---------------|-------------|
-| extends       | :           |
-| implements    | :           |
-| final         | sealed      |
-| for           | for/foreach |
-| import        | using       |
-| instanceof    | is          |
-| package       | namespace   |
-| protected     | internal    |
-| super         | base        |
-| throws        | n/a         |
-| ... (varargs) | params      |
+<table style="font-size: 0.8em;">
+<tbody>
+   <tr>
+    <th>Java</th>
+    <td>extends</td>
+    <td>implements</td>
+    <td>final</td>
+    <td>for</td>
+    <td>import</td>
+    <td>instanceof</td>
+    <td>package</td>
+    <td>protected</td>
+    <td>super</td>
+    <td>throws</td>
+    <td>... (varargs)</td>
+  </tr>
+  <tr>
+    <th>C#</th>
+    <td>:</td>
+    <td>:</td>
+    <td>sealed</td>
+    <td>for/foreach</td>
+    <td>using</td>
+    <td>is</td>
+    <td>namespace</td>
+    <td>internal</td>
+    <td>base</td>
+    <td>n/a</td>
+    <td>params</td>
+  </tr>
+</tbody>
+</table>
 
 Für weitere Operatoren wie `event`, `operator`, `out`, `override`, `readonly`, `ref`, `struct` und `virtual` gibt es kein Äquivalent in Java.
 
-#### Properties
+### Properties
 Getter/Setter-Paar als natives Sprach-Feature. Ermöglichen u.a Lazy Initialization. Change Tracking. Calculated Properties, Read-Only Properties usw.
 
 ```csharp
@@ -155,7 +176,7 @@ public string FullNameFirstLast => FirstName + " " + LastName;
 
 ```
 
-#### Delegates
+### Delegates
 = "Function Pointers"
 ```csharp
 namespace DelegateExample {
@@ -170,9 +191,9 @@ namespace DelegateExample {
     }
 }
 ```
-➪ Vordefinierte Delegate-Typen wie `Action` und `Func` nutzen!
+-> Vordefinierte Delegate-Typen wie `Action` und `Func` nutzen!
 
-#### Events
+### C# Events
 Observer-Patterns (Publish/Subscribe) als natives Sprach-Feature
 
 ```csharp
@@ -193,17 +214,17 @@ ClockObserver t1 = new ClockObserver("O1");
 c1.onTickEvent += t1.OnTickEvent;
 ```
 
-#### Lambda Expressions
+### Lambda Expressions
 ```csharp
 // Klammern, typ und return sind optional!
 Func<int, int> func6 = (int x) => { return x + 1; };
 ```
 
-#### String Interpolation
+### String Interpolation
 ```csharp
 $"{a.OldName} changed name to {a.NewName}"
 ```
-#### Extension Methods
+### Extension Methods
 statisch & erster parameter mit `this`
 ```csharp
 static string ToStringSafe(this object obj)
@@ -217,7 +238,7 @@ public static void Test()
 }
 ```
 
-#### LINQ
+### LINQ
 **L** anguage **IN** tegrated **Q** uery - vergleichbar mit Java 8 Streams.
 
 ```csharp
@@ -225,23 +246,4 @@ var q = students
     .Where(s => s.Grade < 4m)
     .Select(s => s.FirstName + " " + s.LastName);
 
-```
-
-### Visual Studio
-#### App.config
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-    <appSettings>
-        <add key="upload.folder" value="E:/test/daupload/files"/>
-        <add key="costunit" value="1030"/>
-    </appSettings>
-    <connectionStrings>
-        <add name="contents"
-             connectionString="server=localhost;user id=hw77gx6;password=...;database=db1;" providerName="MySql.Data.MySqlClient"/>
-     </connectionStrings>
-     <startup>
-         <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
-     </startup>
-</configuration>
 ```

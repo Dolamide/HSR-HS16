@@ -1,6 +1,6 @@
-## Benutzerinteraktion
+# Benutzerinteraktion
 
-### Review C# Events
+## Review C# Events
 * Events sind ein in .NET Sprachen eingebauter Publish/Subscribe-Mechanismus.
 * Events werden typischerweise in einer Klasse ausgelöst. Externe Klassen können sich von Aussen subscriben.
 
@@ -17,7 +17,7 @@ public delegate void PropertyChangedEventHandler(object sender,
 // Wobei PropertyChangedEventArg in .NET vordefiniert ist.
 ```
 
-### Events in WPF
+## Events in WPF
 
 * In WPF gibt es ganz viele Events - können in Dokumentation oder mittels IntelliSense (Blitz Symbol) gefunden/gesucht werden.
 * WPF liefert diverse vordefinierte Event Handler Methoden (`OnStartup`, `OnClosing` etc.) -
@@ -34,10 +34,10 @@ public partial class App : Application {
 }
 ```
 
-### WPF App Lifecycle
+## WPF App Lifecycle
 Eine WPF-App hat keine Lifecycle in gleichem Ausmass wie Android, da WPF nicht auf Single-App-Betrieb ausgelegt its.
 
-#### App Startup
+### App Startup
 .NET generell: `Main`-Methode wird automatisch beim Ausführen der EXE ausgeführt.
 
 Bei WPF wird im Hintergrund (im `obj`-Ordner) eine Teil der App-Klasse (Partial) generiert, welche die `Main`-Methode definiert & implementiert.
@@ -65,17 +65,21 @@ protected override void OnStartup(StartupEventArgs e) {
 }
 ```
 
-#### Window Close
+### Window Close
 
-![Window Close Ablauf](images/window_close.png)
-: Window Close Ablauf - Quelle: MGE-Vorlesung (HSR)
+<figure>
+    <img src="images/window_close.png" style="max-width: 70%;"/>
+    <figcaption> Window Close Ablauf - Quelle: MGE-Vorlesung (HSR)</figcaption>
+</figure>
 
-#### App Shutdown
+### App Shutdown
 
-![App Shutdown Ablauf](images/app_shutdown.png)
-: App Shutdown Ablauf - Quelle: MGE-Vorlesung (HSR)
+<figure>
+    <img src="images/app_shutdown.png" style="max-width: 70%;"/>
+    <figcaption>App Shutdown Ablauf - Quelle: MGE-Vorlesung (HSR)</figcaption>
+</figure>
 
-### Routed Events
+## Routed Events
 
 Routed Events: Events, welche durch den **Visual Tree** gereicht.
 
@@ -146,13 +150,13 @@ private void MainTabControl_SelectionChanged(object sender,
 }
 ```
 
-#### Nützliche Events
+### Nützliche Events
 
 * Maus: MouseDown, MouseUp, MouseMove
 * Keyboard: KeyDown, KeyUp, TextInput
 * Touch: TouchDown, TouchUp, TouchMove
 
-### Hintergrund-Operationen
+## Hintergrund-Operationen
 Problem wie bei Android: Wenn lange Operationen gleichen Thread laufen wird das UI blockiert - ein Effekt, den man nie will! (Bsp. Download, DB-Zugriff usw.)
 
 Vorgehen:

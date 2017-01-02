@@ -1,0 +1,22 @@
+version: 1.0
+
+title: Mobile and GUI Engineering
+subtitle: Teil WPF
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
+
+pages:
+    - index.md
+    - gui_entwurf.md
+    - events.md
+    - gui_design.md
+    - databinding.md
+    - benutzerinteraktion.md
+    - architekturmodelle.md
+    - etc.md
+
+assets:
+    - images/
+
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/raphidoc/raphi_theme/

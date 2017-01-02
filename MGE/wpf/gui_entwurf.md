@@ -1,17 +1,17 @@
-## GUI Entwurf
+# GUI Entwurf
 
-### Controls
+## Controls
 FrameworkElement
 : Darstellbare elemente
 
 Control
 : Konkrete Interaktion
 
-### Grössenangaben
+## Grössenangaben
 
 Grössenangaben werden über die Attribute Width/Height auf `System.Windows.FrameworkElement` definiert.
 
-Wird keine Einheit angegeben, so werden Pixel verwendet. Pixel = Device Independent Pixels ➪ 1px = 1/96".
+Wird keine Einheit angegeben, so werden Pixel verwendet. Pixel = Device Independent Pixels -> 1px = 1/96".
 
 Alternativ können Einheiten wie px, in, cm und pd definiert werden.
 
@@ -20,17 +20,18 @@ Weitere relevante Attribute zur Grösse
 * MinWidth/MaxWidth (Priorität: 1. MinWidth, 2. MaxWidth, 3. Width)
 * ActualWidth (Read-Only Property) zum Abruf der tatsächlichen Breite zur Laufzeit
 
-### Ausrichtung.
+## Ausrichtung.
+<img src="images/ausrichtung.png" style="max-width: 50%;float: right;" />
 
 Die Ausrichtung wird gleich wie Grössenangaben auf `System.Windows.FrameworkElement` definiert.
 
 Ein Element kann sowohl horizontal als auch vertikal ausgerichtet werden. Die Ausrichtung hat tiefere Priorität als explizite Width/Height-Angaben.
 
-![](images/ausrichtung.png)
-
 Typischerweise ist "Stretch/Stretch" der Standardwert - wobei dies je nach Control abweichen kann.
 
-### Ränder & Rahmen
+## Ränder & Rahmen
+<img src="images/controls.control.png" style="max-width: 50%; float: right;" />
+
 Der Aufbau eines `System.Windows.Controls.Control` ist vergleichbar mit dem CSS-BoxModel mit `box-sizing: border-box;`.
 
 Die Dimensionen können mittels expizit (`l,t,r,b`), partiel (`l,t`, wobei `r=l` und `b=t`) und für alle (`x`) angegeben werden.
@@ -44,9 +45,7 @@ Die Dimensionen können mittels expizit (`l,t,r,b`), partiel (`l,t`, wobei `r=l`
         Content="Element" />
 ```
 
-![](images/controls.control.png)
-
-### Weitere Eigenschaften
+## Weitere Eigenschaften
 
 * `Name` = Name des Elements (für Zugriff im Code-Behind)
 * `Resources` = Lokal definierte Ressourcen
@@ -57,35 +56,35 @@ Die Dimensionen können mittels expizit (`l,t,r,b`), partiel (`l,t`, wobei `r=l`
 * `SnapsToDevicePixels` = Rundet Pixelangaben auf physische Gerätepixelwerte (Rendering)
 * `Visibility` = Collapsed, Hidden, Visible (Standard)
 
-#### Brush
+### Brush
+<img src="images/brushes.png" style="max-width: 50%;float: right;" />
+
 Brushes werden für die Ausfüllung von Bsp. `Background`, `BorderBrush`, `Foreground` verwendet.
 
 Es gibt 6 unterschiedliche Pinseltypen:
-
-![](images/brushes.png)
-: Verschiedene Pinseltypen
 
 Wenn im XML für `Background` ein Hex-Wert angegeben wird, dann wird dieser Wert mittels ValueConverter in einen `SolidColorBrush` umgewandelt.
 
 Vorsicht: Bei Shapes heissen die Attribute etwas anders: `Stroke` ist die  Linienfarbe und `Fill` die Ausfüllfarbe
 
-#### Clipping
-Mit dem Attribut `ClipToBounds` kann angegeben werden, ob das Kind-Control an den Rändern des Parents abgeschnitten werden sollen - Default ist `False`.
+### Clipping
+<img src="images/clipping.png" style="max-width: 50%;float: right;" />
 
-![](images/clipping.png)
-: Beispiel ClipToBounds
+Mit dem Attribut `ClipToBounds` kann angegeben werden, ob das Kind-Control an den Rändern des Parents abgeschnitten werden sollen - Default ist `False`.
 
 Mit `Clip` können Elemente "Ausgeschnitten" werden
 
-![](images/clip_ellipse.png)
-: Beispiel Clip mit Ellipse
+<figure>
+    <img src="images/clip_ellipse.png" style="max-width: 70%;"/>
+    <figcaption>Beispiel Clip mit Ellipse</figcaption>
+</figure>
 
-### Layouts
+## Layouts
 
-#### StackPanel (=LinearPanel in Android)
+### StackPanel (=LinearPanel in Android)
 Child Elements werden vertikal oder horizontal aufgelistet.
 
-![](images/stackpanel.png)
+<img src="images/stackpanel.png" style="max-width: 70%;"/>
 
 ```xml
 <StackPanel Margin="240,120,0,0">
@@ -97,12 +96,12 @@ Child Elements werden vertikal oder horizontal aufgelistet.
 </StackPanel>
 ```
 
-#### Wrap Panel
+### Wrap Panel
 Child Elements werden vertikal oder horizontal aufgelistet und automatisch umgebrochen, wenn Zeilen-/Spaltenumbruch. Wird in der Praxis für Layouting nur noch selten verwendet.
 
-![](images/wrappanel.png)
+<img src="images/wrappanel.png" style="max-width: 70%;"/>
 
-#### DockPanel
+### DockPanel
 Child Elements werden an einer Seite oder dem Zentrum "angedockt".
 
 Vorsicht: Was zu erst definiert ist, füllt am meisten Platz aus!
@@ -117,7 +116,7 @@ Vorsicht: Was zu erst definiert ist, füllt am meisten Platz aus!
 </DockPanel>
 ```
 
-![](images/dockpanel1.png)
+<img src="images/dockpanel1.png" style="max-width: 25%;"/>
 
 ```xml
 <DockPanel>
@@ -129,9 +128,10 @@ Vorsicht: Was zu erst definiert ist, füllt am meisten Platz aus!
 </DockPanel>
 ```
 
-![](images/dockpanel2.png)
+<img src="images/dockpanel2.png" style="max-width: 25%;"/>
 
-#### Grid
+
+### Grid
 Wie eine Tabelle, wobei die Elemente explizit in Zeile / Spalte abgelegt werden müssen. Die Breiten- und Höhenangaben können entweder fix in Pixel, mit `auto` automatisch verteilen oder mit `*` gewichten. Je Mehr sterne, umso höher die Gewichtung (Praktisch für 1/3 oder 1/6  - mühsam in %)
 
 Elemente werden bei Überschneidungen übereinander gestapelt!
@@ -154,30 +154,29 @@ Elemente werden bei Überschneidungen übereinander gestapelt!
 </Grid>
 ```
 
-#### Container ohne Layout
+### Container ohne Layout
 
-##### Canvas
+#### Canvas
 * Absolute Positionierung
 * Keinerlei Layout-Logik
 * Gleiche Geometrieklassen wie bei Clipping
 
-➪ Mehr FYI - nicht prüfungsrelevant
+#### ScrollViewer
 
-##### ScrollViewer
 !!! todo
 
-    Ist da was im Appendix?
+    ergänzen
 
-##### ViewBox
-Skalliert einzelnes Child Control ➪ Transformation - alles wird grösser!
+#### ViewBox
+<img src="images/viewbox.png" style="max-width: 25%; float: right"/>
 
-![](images/viewbox.png)
+Skalliert einzelnes Child Control -> Transformation - alles wird grösser!
 
-##### Image
+#### Image
 * Attribut "Source" für Angabe der Datenquelle
 * Verhalten wie ViewBox (Stretch=…)
 
-##### Border
+#### Border
 * Zeichnet Rahmen um ein Child Control
 * Kann mit Panels kombiniert werden
 
@@ -193,7 +192,7 @@ Skalliert einzelnes Child Control ➪ Transformation - alles wird grösser!
 </Border>
 ```
 
-#### Dialogfenster
+### Dialogfenster
 
 Dialogfenster sind meistens Modal, also blocking. Dialogfenster sind normale Fenster, welche mit der Methode `ShowDialog` gestartet werden. Diese Methode ist Blocking!
 
@@ -214,15 +213,15 @@ Debug.WriteLine("OK :-)");
 // ...
 ```
 
-### Event-Handling & Commands
+## Event-Handling & Commands
 
-#### Klassischer Event
+### Klassischer Event
 
 1. Im XAML-Code name des Handlers angeben, bsp. ein `Click="SayHelloButton_Click"`
 2. Event-Handler im Code ergönzen
 3. Namenskonvention `[NAME]_On[Event]`
 
-#### Command
+### Command
 
 Hat gegenüber dem "klassischen" Event primär folgende Vorteile:
 
@@ -263,14 +262,12 @@ Vorgehen:
     }
     ```
 
-!!! todo
+!!! note
 
-    Ergänzen nach Block MVVM
-
-    ➪ Ohne statische commands
+    Besser mit MVVM lösen!
 
 
-### UI-Testing
+## UI-Testing
 
 ![](images/testing.png)
 : Verschiedene Test-Varianten
@@ -283,4 +280,3 @@ Vorgehen:
 !!! todo
 
     Appendix zu Block 2
-    http://mahapps.com/ für Mimiprojekt?
