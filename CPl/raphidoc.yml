@@ -20,6 +20,7 @@ pages:
     - parameterizing-stl.md
     - templates.md
     - heap.md
+    - inheritance.md
     - tips.md
     - pitfalls.md
     - cevelop.md
