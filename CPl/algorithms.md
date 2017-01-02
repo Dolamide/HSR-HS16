@@ -77,6 +77,11 @@ std::vector<std::string> combined{};
 auto times = [](int i, char c){return std::string(i, c);};
 std::transform(begin(counts), end(counts), begin(letters),
                std::back_inserter(combined), times);
+// with sets
+std::transform(input.cbegin(), input.cend(),
+               std::inserter(s, s.begin()),
+               [](char x){return std::toupper(x);});
+
 ```
 
 ### merge

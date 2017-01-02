@@ -96,6 +96,8 @@ while (is.good() && std::isalpha(is.peek())) {
 Dienen dazu, den Output zu formatieren.
 
 ```c++
+#include <ios>
+//...
 std::cout << 42 << '\t'
           << std::oct << 42 << '\t'
           << std::hex << 42 << '\n';

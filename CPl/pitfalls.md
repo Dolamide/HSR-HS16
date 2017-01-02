@@ -135,3 +135,11 @@ std::vector<unsigned> values{3, 0, 1, 4, 0, 2};
 auto f = [&values](unsigned v) { values.push_back(v); };
 std::for_each(begin(values), end(values), f);
 ```
+
+## Copy in OS
+```c++
+using out=std::ostream_iterator<int>;
+set<int> s{1, 2, 3, 4};
+std::copy(s.begin(), s.end(), out{cout, "-"});
+```
+➪ OUTPUT IST: `1-2-3-4-` mit trailing `-`

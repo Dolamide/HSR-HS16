@@ -1,12 +1,24 @@
 # Prüfungsdetails
 
+* Dauer: 2 Stunden
 
 ## Erlaubte Hilfsmittel
 
 * Beliebige Papierunterlagen erlaubt
 * Ausnahme: Alte Prüfungen
 
+## todo
+
+* Iterator-Typen (vgl. Prüfung HS13 - Aufgabe 2b)
+    * Testate Drucken (mit Syntax Highlighting!): http://jaredpetersen.github.io/codeprinter/index.html
+* Safely read ints?
+
+
 ## Aufgabentypen
+
+### Iteratoren
+* Tabellarisches Schema aufschreiben!
+
 
 * rvalue und lvalue
 * Welche headers? (W11, F8)

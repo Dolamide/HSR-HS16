@@ -133,7 +133,7 @@ int main(){
     cout << "(a)----------------------------\n";
     Hummingbird hummingbird;
     Bird bird = hummingbird;
-    Animal &    animal = hummingbird;
+    Animal & animal = hummingbird;
 
     cout << "(b)-----------------------------\n";
     hummingbird.makeSound();
@@ -153,7 +153,7 @@ int main(){
 Vorsicht im a)
 
 * Impliziter Aufruf des Default Konstruktors des Parents
-* Kopie mit Slicing -> KEIN Output - weil Copy-Konstruktor!
+* Kopie mit Slicing -> **KEIN Output - weil Copy-Konstruktor!**
 
 Vorsicht im b)
 
@@ -169,10 +169,12 @@ Vorsicht d)
 
 Probleme:
 
-* virtual erst in subklasse
+* virtual nicht in Basisklasse: Function Hiding / Kein Dynamic Dispatch
 * slicing
 * (destruktor `virtual` (wenn virtual member hat ist))
 * Initialisierung von Hummingbird nicht offensichtlich - weil geschweifte Klammern fehlen.
+* Output nur im Default-Konstruktor - nicht aber im Copy-Konstruktor!
+* Funktionen, die auf dem Objekt selber nichts ändern sollten `const` sein!
 
 !!! warning
 
@@ -205,4 +207,4 @@ Frage:
 How can you store shapes (shape is the base class an can have derived classes like square and diamond, see exercise below) in a std::vector without producing memory leaks or object slicing?
  > Shared Pointer in den Vektor!
 
-Slicing verhindern ➪  Copy-Konstruktor löschen.
+Slicing verhindern ➪ Copy-Konstruktor löschen.

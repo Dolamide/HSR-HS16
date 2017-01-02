@@ -95,6 +95,8 @@ for (cont auto &j : v){
 
 ### C++ Iteratoren
 
+![](images/begin_end.png)
+
 "Dümmer als in Java" - wissen nicht, wann fertig!
 Darum: Merke begin iterator und end iterator
 Wenn iterator = end iterator - fertig!
