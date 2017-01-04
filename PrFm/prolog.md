@@ -31,8 +31,8 @@ Example: "All humans are mortal. Socrates is human. Therfore, Socrates is mortal
     H(x): x is human
     M(x): x is mortal
     s: Sokrates
-    ∀x.H(x) => (x), H(s) ⊢  M(s)
-    $$\forall x.H(x) \Rightarrow M(x), H(s) ⊢  M(s)$$
+    ∀x.H(x) => (x), H(s) $$\vdash$$  M(s)
+    $$\forall x.H(x) \Rightarrow M(x), H(s) $$\vdash$$  M(s)$$
 !!! TODO
 
     Sth. wrong here!
@@ -233,7 +233,7 @@ This problem is analog to the graph traversal which was discussed before.
 
 2. Choose the parameter(s) over which recursion shall be performed.
 
-    ➪ In the `len` example, the list.
+    -> In the `len` example, the list.
 
 3. Identify the case distinctions for the recursion parameter(s) on the *left hand side* of the rules.
 
@@ -357,7 +357,7 @@ len([_|L],N):- len(L,X), N is X + 1.
 ## Arithmetic
 Syntax: `<?> is [HERE SHOULD BE EVALUATED]`
 
-Recap: Equal sign **unifies**! Eg.  `X=3+2.` ➪  `X=3+2`
+Recap: Equal sign **unifies**! Eg.  `X=3+2.` ->  `X=3+2`
 
 The right side of the `is` keyword is passed to the CPU. Therefore, prolog must be able to resolve it.
 
@@ -409,7 +409,7 @@ max([H|T], MT):-  max(T, MT),
     (Arithmetic)
     = Tail Recursion / Iteration
 
-    16 ➪ Not #20 but ~22
+    16 -> Not #20 but ~22
 
     Recap AD1: Result is fully calculated in the base case
 
@@ -444,7 +444,7 @@ Prolog "magic" enables to get all combinations of sublists ...
 | [a, b]       | [c, d]       |
 | [a, b, c]    | [d]          |
 | [a, b, c, d] | []           |
-false                      
+false
 ```
 
 ...or prefixes/suffixes

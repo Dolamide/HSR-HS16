@@ -8,7 +8,7 @@ reverse([X|Xs], Rs, Ys, [_|Bound]) :-
 	reverse(Xs, [X|Rs], Ys, Bound).
 
 ```
-➪
+->
 ```
 palindrome(L):- reverse(L, L).    
 ```

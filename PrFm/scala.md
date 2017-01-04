@@ -227,11 +227,6 @@ class Person(no_member:String,  val name: String, var age : Int) {
 * Abstract optional: Wenn implementierung Fehlt, automatisch abstract
 * Überschreiben explizit mit `override`-Keyword
 
-!!! todo
-
-    Frage: Wo werden setter/getter genierert?
-    Private Members?!
-
 ### Funktion-Klassen
 * Funktionen sind Objekte - leiten von FunctionN ab.
     * Apply-Methode enspricht aufruf mit `(...)` - Analog zu Funktionen in C++
@@ -357,7 +352,7 @@ using(new BufferedReader(...)) { reader =>
 
 * Rückgabetypen sind **Covariant**
 * Parameter sind **Contravariant**
-* ➪ Parameter/Rückgabetypen können in Subklassen nicht spezialisert bzw. generalisiert werden.
+* -> Parameter/Rückgabetypen können in Subklassen nicht spezialisert bzw. generalisiert werden.
 
 Gererics sind by default in Scala invariant. Mit einem `+` können diese Covariant und mit `-` Contravariant gemacht werden.
 
@@ -365,7 +360,7 @@ Problem: Wenn Generic Covariant gehen Setter Kaputt (analog zu Java!)
 
 
 ## Implizite Typkonvertierung
-➪ Prüfungsrelevant?!
+-> Prüfungsrelevant?!
 
 * Scala sucht nach einem Weg, eine implizite Typenkonverierung zu machen. Wird kein Weg gefunden, wird eine Exception geworfen.
 * Eine Methode kann mit dem Keyword `implicit` fetstgelegt werden - welcher vom Compiler immer aufgerufen wird.

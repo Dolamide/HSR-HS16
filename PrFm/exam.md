@@ -8,6 +8,10 @@
 * Proof-Rules werden angegeben - falls benötigt
 * Exercises as in the exercise session are probably how the exam looks like.
 
+## TODO
+* Übungen 2ff in Kapitel FoPCe
+* Lambda Calculus + Übungen
+
 ## Aufgabentypen
 
 * Recursion

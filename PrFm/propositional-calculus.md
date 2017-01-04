@@ -1,8 +1,5 @@
 # Propositional Calculus (PC)
 
-!!! todo
-    * Latexify all Formulas
-
 ## Proposition vs. Predicate
 
 

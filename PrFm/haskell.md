@@ -24,8 +24,8 @@ Haskell comes with many function in the standard library (*standard prelude*) - 
 
     * function application is denoted using space
     * function appliaction binds stronger than all other operators
-    `f a b + c * d` ➪ `f(a b) + c d`
-    `f a + b` ➪ `(f a) + b`
+    `f a b + c * d` -> `f(a b) + c d`
+    `f a + b` -> `(f a) + b`
 
 
 Any functions with two arguments can be written bewtwen its arguments by enclosuing the name of the function in singl eback quotes. This can improve readability
@@ -184,7 +184,7 @@ Basic Types
 
 * `Bool` - contains `True` and `False`
 * `Char` - `a`, `b`, ...
-* `String` (which is actually a list of char `:type "foo"` ➪ `"foo" :: [Char]`)
+* `String` (which is actually a list of char `:type "foo"` -> `"foo" :: [Char]`)
 * `Int` - fixed size
 * `Integer` - No fixed size
 * `Float`
@@ -228,7 +228,7 @@ Examples
 * `even :: Int -> Bool`
 * `add :: (Int, Int) -> Int`
 
-Note, that the `:type` command in GHCi will return the Curryed version of it - eg: `:type (+)` ➪ `(+) :: Num a => a -> a -> a` Which means that it takes two arguments (one at a time) of type `a` and returns a result of type `a` as well.
+Note, that the `:type` command in GHCi will return the Curryed version of it - eg: `:type (+)` -> `(+) :: Num a => a -> a -> a` Which means that it takes two arguments (one at a time) of type `a` and returns a result of type `a` as well.
 
 Currying enables _partially applying a curried function_, for example `double = (* 2)`, `double 15`.
 
@@ -387,7 +387,7 @@ positions x xs = [i | (k, i) <- zip xs [0 ..], k == x]
 
     Strings are nothing else than a list of Chars. Therefore, operations such as `zip`, `take` or `lenght` work on strings as well.
 
-    ➪ "String comprehensions"
+    -> "String comprehensions"
 
 ## Recursion in Haskell
 

@@ -74,9 +74,9 @@ It's much easier to apply in the equational style syntax
 
 Multiple execution strategies can be used here - but it does not matter since the result remains the same.
 
-$$(\lambda x.sq \ \ x)(sq \ 5)$$ ➪ $$sq(sq(5))$$
+$$(\lambda x.sq \ \ x)(sq \ 5)$$ -> $$sq(sq(5))$$
 or
-$$sq((\lambda y.sq \ y)5)$$ ➪ $$sq(sq(5))$$
+$$sq((\lambda y.sq \ y)5)$$ -> $$sq(sq(5))$$
 
 The computation would not be deterministic without this property! (Many programming languages do not have this property and  therefore need to restrict their execution order)
 
@@ -102,7 +102,7 @@ Computation is achieved by repeatedly apply the beta rule until the term is in t
 | x + y       | + x y         |
 | $$x^y$$     | power x y     |
 
-➪ We currently don't have infix parameters - therefore use prefix form
+-> We currently don't have infix parameters - therefore use prefix form
 
 
 ## Currying
@@ -158,10 +158,6 @@ Function arguments are reduced as often as they are needed. To improve performan
 In case an **normal form** exist, outermost-first will find it.
 
 Tiebreaker:  If there are more than one outermost redex, the leftmost-innermost redex is reduced first.
-
-!!! todo
-
-    add example
 
 ### Non-Terminating Evaluation
 
