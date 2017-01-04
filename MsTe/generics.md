@@ -9,8 +9,8 @@ Folgendes kann generisch sein:
 
 Deklaration immer nach Name des Elementes
 
-Eine Typenprüfung auf Generics erfolg t "wie gewohnt"
-```cs
+Eine Typenprüfung auf Generics erfolgt "wie gewohnt"
+```csharp
 if(myVar is Type<T>){/*do sth...*/}
 ```
 
@@ -21,7 +21,7 @@ Der Parametertyp wird vom Compiler ermittelt.
 
 → Mehrere können spezifiziert werden:
 
-```cs
+```csharp
 class ExamplesCombiningConstraints<T1, T2>
     where T1 : struct
     where T2 : Buffer,
@@ -29,25 +29,25 @@ class ExamplesCombiningConstraints<T1, T2>
                new() { /* ... */ }
 ```
 
-## Vererbung
+## Vererbung mit Generics
 Normale Klassen
-```cs
+```csharp
 class MyList<T> : List { }
 ```
 Weitergabe des Typparameters an generische Basisklasse
-```cs
+```csharp
 class MyList<T> : List<T> { }
 ```
 Konkretisierte generische Basisklasse
-```cs
+```csharp
 class MyIntList : List<int> { }
 ```
 Mischform
-```cs
+```csharp
 class MyIntKeyDict<T> : Dictionary<int, T> { }
 ```
 
-```cs
+```csharp
 public void Work<T, TBase>(T a, TBase b)
     where T : TBase {
         T t1 = a;
@@ -65,7 +65,7 @@ Abhilfe schafft das `default` keyword. Dieses retouriert ensprechende Werte je n
 
 Eine Praktische Anwendung:
 
-```cs
+```csharp
 T temp = default(T);
 
 Node current = head;
@@ -81,7 +81,7 @@ return temp;
 
 Nullable ist analog zu Javas "Optional" - ein Wert, welcher also null sein kann. Könnte von Hand wie folgt implementiert werden:
 
-```cs
+```csharp
 public struct Nullable<T>
     where T : struct
 {
@@ -92,7 +92,7 @@ public struct Nullable<T>
 ```
 
 Es gibt eine bequeme "T?-Syntax", welche Nullable einfach verwendbar macht:
-```cs
+```csharp
 int? x = 123;
 double? y = 1.0;
 int? j = null;
@@ -103,7 +103,7 @@ Nullable<int> j = null;
 ```
 
 Das Lesen und Casten übernimmt der Compiler auch:
-```cs
+```csharp
 int i = GetNullableInt() ?? -1;
 // Compiler-Output
 int? iTemp = GetNullableInt();
@@ -122,7 +122,7 @@ int j = x.Value;
 ```
 
 ### Null-Conditional Operator
-```cs
+```csharp
 // Sicheres Method Chaninig
 string s = GetNullableInt()?.ToString();
 // Compiler-Output
@@ -150,7 +150,7 @@ if (action != null) action();
 Kovarianz
 : Erlaubt die Zuweisung von stärker abgeleiteten Typen als ursprünglich angegeben - es darf also nur *abstrakter* sein.
 
-```cs
+```csharp
 public interface IBuffer<out T> { }
 public class Buffer<T> : IBuffer<T> { }
 // [...]
@@ -163,7 +163,7 @@ IBuffer<object> b2 = b1;
 Kontravarianz
 : Erlaubt die Zuweisung von weniger stark abgeleiteten Typen als ursprünglich angegeben - es also nur *genauer* sein
 
-```cs
+```csharp
 public interface IComparer<in T> {};
 public class Comparer<T> : IComparer<T> {}
 
@@ -172,9 +172,9 @@ IComparer<string> c2 = c1;
 ```
 > Wenn `string` an `object` zuweisbar ist Dann kann `IComparer<object>` an `IComparer<string>` zugewiesen werden.
 
-### Delegates
+### Generic Delegates
 Delegate Kovarianz:
-```cs
+```csharp
 public delegate TResult Func<out TResult>();
 
 class Examples {
@@ -190,7 +190,7 @@ class Examples {
 
 ### Arrays
 Sind unsafe - könnte mit eigenem Typ nicht möglich!
-```cs
+```csharp
 object[] obj = new string[10];
 // Laufzeitfehler
 obj[0] = 5;

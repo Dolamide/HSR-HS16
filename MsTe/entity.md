@@ -66,7 +66,7 @@ Complex Types
 
 DB mit Default-Werten initialisieren
 
-```cs
+```csharp
 namespace CodeFirst.Data {
     class SeedShopDB: DropCreateDatabaseAlways<ShopDB> {
         protected override void Seed(ShopDB context)
@@ -94,7 +94,7 @@ Conventions können explizit deaktiviert werden.
 
 Das mapping kann auch explizit mittels Annotationen überschrieben/angegeben werden.
 
-```cs
+```csharp
 [Table("orders")]
 class Order
 {
@@ -111,7 +111,7 @@ class Order
 
 Mapping kann auch in code manuell "zusammengeklebt" werden
 
-```cs
+```csharp
 modelBuilder.Entity<T>.ToTable("name")
 modelBuilder.ComplexType<T>()
 .Ignore(x => x.Property)
@@ -132,7 +132,7 @@ modelBuilder.ComplexType<T>()
 
 PK-FK kann mittels LINQ & Naviagion Properties implementiert werden.
 
-```cs
+```csharp
 from o in Order
 from od in o.OrderDetails
 where od.unitPrice > 20     // navigation property
@@ -141,7 +141,7 @@ select o;
 
 und umgekehrt
 
-```cs
+```csharp
 from d in OrderDetails
 where d.Order.orderID == 1
 select new {d.Order.OrderDate}
@@ -151,7 +151,7 @@ select new {d.Order.OrderDate}
 
 Der Default ist Lazy loading, wbei explizit eager loading unterstützt ist.
 
-```cs
+```csharp
 var query = from c in context.Customers
             where c.CustomerID == "ALFKI"
             select c;
@@ -188,7 +188,7 @@ using (var context = new NorthwindEntities()) {
 CUD
 : Create Update Deleate
 
-```cs
+```csharp
 using (var context = new NorthwindEntities() ) {
 
     // CREATE
@@ -222,7 +222,7 @@ using (var context = new NorthwindEntities() ) {
 
 DbContext Trackt alle entities über das `ObjectStateManager` Objekt. Dabei werden beim Ladevorgang alle Werte aus der DB gelesen und in die Entity-Instanzen geschrieben. Alle Änderungen werden getrackt(added, unchanged, modified, deleted, detached) und dann mit `db.SaveChanges()` in update/insert/delete SQL Statements übersetzt.
 
-```cs
+```csharp
 //NorthwinEntities derives from DbContext
 using (var context = new NorthwindEntities()) {
     var iPad = new Product { ProductName = "iPad", UnitPrice = 700 };
@@ -238,7 +238,7 @@ Identitymap ist eigentlich ein Cache - damit gleiche Daten nicht in mehreren Obj
 
 Die Identity Map wird vom DbContext verwaltet.
 
-```cs
+```csharp
 var cust = context1.Customers
             .Where(c => c.CustomerID == "ALFKI").First();
 cust.Fax = "12345";
@@ -256,7 +256,7 @@ Assert(cust1.Fax.Equals("12345"));
 
 Beziehungen können entweder über Navigation Property oder über Foregin Key Ids aufgelöst werden.
 
-```cs
+```csharp
 // With navigation properties
 order.Customer = customer;
 customer.Orders.Add(order);

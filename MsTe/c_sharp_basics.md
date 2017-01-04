@@ -37,18 +37,21 @@ Für Literale werden folgende Typen verwendet:
 
 ## Struct vs. Object
 
-Ein Struct ist keine Referenz, es lebt direkt auf dem Stack
+Ein Struct ist keine Referenz, es lebt direkt auf dem Stack.
+
+**STRUCT KANN FOLGLICH NICHT NULL SEIN**
 
 ## Sichtbarkeitsattribute
 
-![](images/visibility.png)
+
+<img src="images/visibility.png" style="max-width: 80%;" />
 
 Defaults:
 
-![](images/default-visibility.png)
+<img src="images/default-visibility.png" style="max-width: 80%;" />
 
 ## Operator Rangfolge
 
-![](images/operator-rang.png)
+<img src="images/operator-rang.png" style="max-width: 80%;" />
 
-![](images/operator-rang2.png)
+<img src="images/operator-rang2.png" style="max-width: 80%;" />

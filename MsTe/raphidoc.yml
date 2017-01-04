@@ -23,8 +23,8 @@ pages:
     - tips.md
     - pitfalls.md
     - snippets.md
-    - exam.md
-    - lernplan.md
+    # - exam.md
+    # - lernplan.md
 
 assets:
     - images/

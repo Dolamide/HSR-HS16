@@ -14,29 +14,22 @@ Wichtige Attribute sind `InnerException`, `Message`, `Source`, `StackTrace` und 
 
     Alle Exceptions sind unchecked
 
-```cs
+```csharp
 FileStream s = null;
-try
-{
+try {
     s = new FileStream(@"C:\Temp\Test.txt", FileMode.Open);
     /* ... */
-}
-catch (FileNotFoundException e)
-{
+} catch (FileNotFoundException e) {
     Console.WriteLine("{0} not found", e.FileName);
 }
 // Variable kann weggelassen weden - falls nicht benötigt
-catch (IOException)
-{
+catch (IOException) {
     Console.WriteLine("IO exception occurred");
 }
 // Catch 'em all! (= catch(System.Exception))
-catch
-{
+catch {
     Console.WriteLine("Unknown error occurred");
-}
-finally
-{
+} finally {
     if (s != null) s.Close();
 }
 ```
@@ -45,7 +38,7 @@ Wird bei einem Multicast-Delegates eine Exception ausgeführt, so wird
 die Ausführung weiterer Delegates unterbrochen!
 
 ## Exception Filters (C# 6)
-```cs
+```csharp
 try
 {
   /* ... */

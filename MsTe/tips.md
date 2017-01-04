@@ -1,7 +1,7 @@
 # Tips
 
 ## Konsolenfester offen halten
-```cs
+```csharp
 Console.ReadLine(); // weiter mit \n
 Console.ReadLine(); // weiter mit beliebiger Taste
 ```

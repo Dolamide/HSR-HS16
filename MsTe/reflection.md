@@ -20,8 +20,10 @@ Ist selbstbeschreibend - `obj.GetType().GetType()` retourniert Type `Type`
 
 Mit Reflection kann auf private Felder zugegriffen werden: Sehr mächtig (Bsp. Dependency Injection kann private Fleder setzen) ist aber auch gefährlich (man arbeitet am public API vorbei)
 
-![](images/reflection_type_hierarchy.png)
-: C# Types Typenhierarchie (Befinden sich in `mscorelib`)
+<figure>
+    <img src="images/reflection_type_hierarchy.png" style="max-width: 70%;"/>
+    <figcaption>C# Types Typenhierarchie (Befinden sich in `mscorelib`)</figcaption>
+</figure>
 
 
 Hinweise zu Namen von Flags:
@@ -39,7 +41,6 @@ Erweitern bestehender Attribute wie public, static abstract oder sealed für bps
 
 Abfragbar über Reflection - sind auch parameterisierbar.
 
-## Beispiel
 ```csharp
 
 public class CsvNameAttribute : Attribute

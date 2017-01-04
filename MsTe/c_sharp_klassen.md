@@ -1,17 +1,5 @@
 # Klassen & Structs
 
-!!! todo
-
-    Recap class:
-
-    TODO: Flow chart zu vererbung, versiegeln, interfaces/abstrakte klasse,
-
-    * new: dynamic dispatch wird unterbrochen
-
-    von oben nach aben ab kasse bis zur spezifisten methode
-
-    Übungen: Repetition (archiv)
-
 Default Werte bei der Initialisierung
 
 ![](images/default-values.png)
@@ -21,7 +9,7 @@ Default Werte bei der Initialisierung
 * Reference Type = wird also auf dem Heap angelegt
 * Vererbung & Interfaces
 
-```cs
+```csharp
 class Stack {
     int[] values;
     int top = 0;
@@ -33,7 +21,7 @@ class Stack {
 Stack s = new Stack(10);
 ```
 
-## Partials
+## Partials Klassen
 
 Methoden und Klassen
 
@@ -46,6 +34,7 @@ Aufteilen einer Klasse / Methode in mehrere Dateien.
 * Interfaces implementierbar
 * Keine Felderinitialisierung
 * Mindestens 1 Parameter im Konstruktor
+* **STRUCT KANN FOLGLICH NICHT NULL SEIN**
 
 Structs sollten verwendet werden, wenn:
 
@@ -53,7 +42,7 @@ Structs sollten verwendet werden, wenn:
 * Immutable gewünscht ist
 * Kurzlebig / Eingebetted
 
-```cs
+```csharp
 struct Point {
     int x;
     int y;

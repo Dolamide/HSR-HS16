@@ -244,17 +244,18 @@ Gibt verschiedene Kommunikations-Muster:
 
 * One Way (Fire-and-Forget) - wird asynchron im Hintergrund abgefeuert. Keine Return value - folglich funzen Server-Seitige Exceptions auch nicht.
 
-    ```
+    ```csharp
     [OperationContract(IsOneWay = trye)]
     void StoreProblem(ComplexProblem p);
     ```
+
 * Request-Reply (synchron)(default)
 * Duplex (asynchron) - analog zu OneWay - aber braucht auch CallbackContrackt.
     * Vorsicht: ICalcCallback: Hat KEINE attribute!
     * Client implementiert Callback Interface - server arbeitet gegen dieses Interface.
     * TODO: F45-F46
 
-    ```
+    ```csharp
     // Server
     [ServiceContract(
         SessionMode = SessionMode.Required,
@@ -296,8 +297,6 @@ Typischer Fehler: Server und Client haben nicht das gleiche Binding!
 Binding wird via im Metadata Exchange (MEX) publiziert.
 
 Mehrere Bindings pro Service und eigene Bindings sind möglich.
-
-Evtl. Aus Folien ergänzen.
 
 ## Data Contract v2 (oben ergänzen)
 * WCF kann mit allen CLR Typen arbeiten.

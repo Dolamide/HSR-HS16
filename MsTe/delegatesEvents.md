@@ -18,7 +18,7 @@ Multicast-Delegates
 
 ### Deklaration
 
-```cs
+```csharp
 
 // 1. Deklaration eines Delegate-Typs
 public delegate void Notifier(string sender);
@@ -44,7 +44,7 @@ class Examples {
 Bei der Zuweisung kann irgend eine Methode (statisch oder auf einem Objekt) angegben werden, auf die die Signatur des Delegates passt. Im Beispiel also
 eine Methode mit Rückgabewert void und einem String als Parameter.
 
-```cs
+```csharp
 greetings = SayHello;
 greetings = Console.WriteLine;
 ```
@@ -72,7 +72,7 @@ Jeder Delegatey-Typ ist ein Mutlicast Delegate, was bedeutet, dass jeder Delegat
 
 Die Ausführung erfolgt in gleicher Reihenfolge des Hinzufügens.
 
-```cs
+```csharp
 Notifier greetings = SayHello;
 greetings += SayHello;
 greetings += SayGoodBye;
@@ -92,13 +92,13 @@ Hat ein Delegate einen Rückgabewert, so wird derjenige Rückgababewert des Letz
 
 Das Delegate merkt sich das target (das Objekt/die Klasse, auf dem die Methode deklariert ist), die Methode sowie das Vorherige Element (prev) (analog LinkedList). Prev ermöglicht also, dass mehrere Methoden einem Delegate zugewiesen werden können.
 
-```cs
+```csharp
 public delegate void Notifier(string sender);
 ```
 
 wird vom Compiler zu
 
-```cs
+```csharp
 public sealed class Notifier : MulticastDelegate {
     public Notifier(object obj, int method) { }
     public virtual void Invoke( string sender) { }
@@ -112,40 +112,33 @@ public sealed class Notifier : MulticastDelegate {
 
 Aus dem Aufruf
 
-```cs
+```csharp
 greetings("John");
 ```
 
 macht der Compiler:
 
-```cs
+```csharp
 foreach(Delegate del in greetings.GetInvocationList())
 {
     ((Notifier)del)("John");
 }
 ```
 
+* Pro: Statische methoden
+* Contra: Nur genau eine Methode (bei Interface meherer)
+* Da null sein kann: Null-Check "Pattern" - bzw. delegatevar?.Invoke(params);
+
 !!! seealso
 
     * Vergleich Interfaces vs. Delegates - Vorlesung Woche 5, Folie Nr. 11
     * Beispiele von Delegates - Vorlesung Woche 5, Folie Nr. 22-31
 
-!!! todo
-    * Zeige auf, dass Delegate reines compiler feature ist
-    * Evt. Schema wie delegate aussieht
-    * ANwendungsfälle: sort usw
-    * Typscher Suffix: EventHandler
-    * Pro: Statische methoden
-    * Contra: Nur genau eine Methode (bei Interface meherer)
-    * Da null sein kann: Null-Check "Pattern" - bzw. delegatevar?.Invoke(params);
-
-    Nr. 22
-    * Delegates mit + kombinieren ?
 
 ### Weiteres
 Delegates können auch zusammengefügt werden:
 
-```cs
+```csharp
 Notifier n1 = SayHello;
 Notifier n2 = SayGoodBye;
 Notifier c1 = n1 + n2;
@@ -153,7 +146,7 @@ Notifier c1 = n1 + n2;
 Notifier c1 = (Notifier)Delegate.Combine(n1, n2);
 ```
 
-### Generic Delegates
+### Vordefinierte Generic Delegates
 
 Action: 0-n Parameter mit void als Rückgabewert.
 
@@ -167,7 +160,7 @@ public delegate void Action<in T1, ..., in T16>(T1 obj1,..., T16 obj16);
 
 `Func`: Funktion mit 0 – n Parametern - `TResult` als Rückgabewert
 
-```cs
+```csharp
 public delegate TResult Func<out TResult>();
 public delegate TResult Func<in T, out TResult>(T arg);
 public delegate TResult Func<in T1, in T2, out TResult>(T1 arg1, T2 arg2);
@@ -177,7 +170,7 @@ public delegate TResult Func<in T1, ..., in T16, out TResult>(T1 arg1,..., T16 a
 
 `Predicate`: Prädikat mit 1 Parameter «bool» als Rückgabewert
 
-```cs
+```csharp
 public delegate bool Predicate<in T>(T obj);
 ```
 
@@ -193,7 +186,7 @@ Event
 
 Beispiel:
 
-```cs
+```csharp
 public delegate void TickEventHandler (int ticks, int interval);
 public class Clock
 {
@@ -209,7 +202,7 @@ public class Clock
 
 macht der Compiler zu:
 
-```cs
+```csharp
 public delegate void TickEventHandler (int ticks, int interval);
 public class Clock
 {
@@ -232,7 +225,7 @@ public class Clock
 
 Somit kann man ganz bequem events wie folgt hinzufügen (und analog dazu entfernen)
 
-```cs
+```csharp
 ClockObserver t1 = new ClockObserver("O1");
 c1.onTickEvent += t1.OnTickEvent;
 ```
@@ -245,7 +238,7 @@ Um in Frameworks gute wartbarkeit zu erlangen sollte:
 * der 1. Parameter der Sender des Events sein
 * der 2. Parameter der Event typ EventArgs sein, welche von EventArgs ableitet
 
-```cs
+```csharp
 public delegate void ClickEventHandler(object sender, ClickEventArgs e);
 
 public class ClickEventArgs : EventArgs
@@ -261,12 +254,11 @@ public class Button
 
 ## Anonyme Methoden
 
-Anonyme Methoden können dann Verwendet werden, we die deklaration einer speziellen Methoden nicht sinnvoll ist (siehe Lambdas).
+Anonyme Methoden können dann Verwendet werden, we die deklaration einer speziellen Methoden nicht sinnvoll ist (siehe Lambdas). Closure sind auch möglich - sind aber auch ein reines Compiler Feature.
 
-```cs
+
+```csharp
 list.ForEach(delegate(int i)
     { Console.WriteLine(i); }
 );
 ```
-
-Closure sind auch möglich - sind aber auch ein reines Compiler Feature.

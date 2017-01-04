@@ -20,8 +20,7 @@ Der GC gibt alle Ojekte frei, die nicht mind. über eine Root-Refernz erreichbar
     * Spezifischer (dynamischer) Schwellwert überschritten wird
     * Falls Anwendung nicht aktiv (nicht deterministisch)
 
-
-![](images/gc_overview.png)
+<img src="images/gc_overview.png" style="max-width: 80%" />
 
 Der Zugriff auf den Heap ist sehr schnell, da der heap kompakt (gemanaged) ist.
 
@@ -38,14 +37,11 @@ da wird wohl am meisten Memory frei.
 
 ## Finalization
 
-GC gibt Speicher von nicht mehr referenzierten Objekte frei - nicht aber *Referenzen auf Fremdresourcen*
-wie beispielsweise Datenbank-Verbindungen oder geöffnete Datein. Diese werden manuell verwaltet - müssen
-also auch manuell aufgeräumnt werden.
+GC gibt Speicher von nicht mehr referenzierten Objekte frei - nicht aber *Referenzen auf Fremdresourcen* wie beispielsweise Datenbank-Verbindungen oder geöffnete Datein. Diese werden manuell verwaltet - müssen also auch manuell aufgeräumnt werden.
 
-Die Aufrufreihenfolge der Destruktoren ist genau umgekehrt zu der der Konstruktor - also von der
-Untersten zur Obersten Klasse..
+Die Aufrufreihenfolge der Destruktoren ist genau umgekehrt zu der der Konstruktor - also von der Untersten zur Obersten Klasse..
 
-```cs
+```csharp
 class MyClass {
     ~MyClass() { /* ... */ }
 }
@@ -66,36 +62,42 @@ Der Destruktor hat zwei entschidene Nachteile:
 1. Es ist nicht exakt vorhersagbar, wann der Destruktor ausgefürt wird
 2. Der Destruktor ist nicht explizit aufrufbar
 
-Der zweite Punkt ist speziell wichtig, da man wertvolle Ressourcen so schnell wie möglich freigegeben
-möchte und nicht erst warten möchte bis kein Speicher mehr vorhanden ist und endlich der GC aufräumt.
+Der zweite Punkt ist speziell wichtig, da man wertvolle Ressourcen so schnell wie möglich freigegeben möchte und nicht erst warten möchte bis kein Speicher mehr vorhanden ist und endlich der GC aufräumt.
 
-Darum wird eine spezielle Methode implementiert, die diese Resourcen aufräumt. Dies könnte eine beliebige
-Methode sein - nach C#-Konvention implementiert man aber das IDisposable-Interface und überschreibt deren Methode `Dispose`.
+Darum wird eine spezielle Methode implementiert, die diese Resourcen aufräumt. Dies könnte eine beliebige Methode sein - nach C#-Konvention implementiert man aber das IDisposable-Interface und überschreibt deren Methode `Dispose`.
 
 Damit sich aber Destruktor und die Disposable-Methode nicht in die Quere kommen muss deren Verhalten abgestimmt werden.
 Dafür gibt es das Dispose-Pattern:
 
-```cs
-~DataAccess() { Dispose(false); }
-public void Dispose()
-{
-    Dispose(true);
-    System.GC.SuppressFinalize(this);
-}
+Managed = Nur Speicher in C# Heap, also mit `new` erzeugt.
 
-protected virtual void Dispose(bool disposing)
-{
-    if (disposing)
+Unmanaged = Andere Resourcen, Bsp. Treiber, DB usw.
+
+Wenn nur managed ressourcen verwendet werden macht dieses Pattern typischerweise keinen Sinn, ausser bsp. Abmelden von Callback-Handlern.
+
+```csharp
+public class DataAccess : IDisposable {
+    ~DataAccess() { Dispose(false); }
+    public void Dispose()
     {
-            if (resource != null)
-            {
-                // Managed = objekte, die auch Dispose haben...
-                resource.Dispose();
-            }
+        Dispose(true);
+        System.GC.SuppressFinalize(this);
     }
-    // Lokale dinge aufräumen...
-    foo = null;
-    ReleaseBuffer(buffer);
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+                if (resource != null)
+                {
+                    // Andere disposable Objekte aufräumen (managed)
+                    resource.Dispose();
+                }
+        }
+        // Lokale dinge aufräumen (falls nötig) (auch unmanaged)
+        foo = null;
+        ReleaseBuffer(buffer);
+    }
 }
 ```
 
@@ -112,7 +114,7 @@ Das Pattern löst folgende Probleme:
 
 Alternativ (für wenige unmanaged Resourcen) kann mit dem using Statement gearbeitet werden (analog try-with-resources in Java):
 
-```cs
+```csharp
 using (DataAccess dataAccess = new DataAccess()) {
     /* ... */
 }
@@ -122,7 +124,7 @@ using (DataAccess dataAccess = new DataAccess()) {
 
 Falls mit Pointern gearbeitet wird, möchte man verhindern, dass Objekte abgeräumt werden:
 
-```cs
+```csharp
 // point unpinned
 Point point = new Point();
 point.x = 5;

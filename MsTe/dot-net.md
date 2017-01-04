@@ -8,8 +8,10 @@
 
 Die CLS von .NTE ist ein offener Standard.
 
-![](http://openbook.rheinwerk-verlag.de/visual_csharp_2012/bilder/01_02.png)
-: (c) Rheinwerk Verlag
+<figure>
+    <img src="images/dot-net-architektur.png" style="max-width: 40%;"/>
+    <figcaption>(c) Rheinwerk Verlag</figcaption>
+</figure>
 
 ## Common Type System (CTS)
 
@@ -126,7 +128,7 @@ Um den Code zu Kompilieren muss wie folgt vorgegangen werden:
     csc.exe /target:exe /r:ClassA.dll ClassB.cs
     ```
 
-```cs
+```csharp
 // File ClassA.cs
 namespace A {
         public class ClassA {
@@ -144,4 +146,4 @@ namespace A {
          }
      }
  }
- ```
+```

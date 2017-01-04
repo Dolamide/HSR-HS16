@@ -1,7 +1,7 @@
 # Snippets
 
-## Namespaces
-```cs
+## Namespace Syntax
+```csharp
 // Namespace deklarieren
 namespace A
 {
@@ -13,7 +13,7 @@ namespace A
 ```
 
 ## Enums
-```cs
+```csharp
 // Werte werden implizit mit dem Wert des Vorgängers+1 oder explizit gesetzt
 // leitet by default von int32 ab
 enum Days { Sunday = 10, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday };
@@ -34,8 +34,8 @@ Days day2;
 Enum.TryParse("Monday", out day2); // Generic
 ```
 
-## Arrays
-```cs
+## Arrays Syntax
+```csharp
 int[] elements = new int[]{23, 9, 7};
 elements[1]
 
@@ -55,7 +55,7 @@ Console.WriteLine(elements.Length);
 ```
 
 ## Switch
-```cs
+```csharp
 // geth für:
 //sbyte, short, int, long (signed)
 // byte, ushort, uint, ulong (unsigned)
@@ -74,7 +74,7 @@ switch(Ausdruck) {
 }
 ```
 ## for / foreach
-```cs
+```csharp
 // Normal For
 for(int counter = 0; counter < 10; counter++) {
   Console.WriteLine("Zählerstand = {0}",counter);
@@ -96,7 +96,7 @@ foreach (string name in Enum.GetNames(typeof(Days))) {
 ```
 
 ## Main
-```cs
+```csharp
 class Program {
   static void Main(string[] args) {
 
@@ -119,7 +119,7 @@ class Program {
 ```
 
 ## Strings
-```cs
+```csharp
 // Länge des Strins
 string.Length
 
@@ -141,7 +141,7 @@ bool result2 = string.ReferenceEquals(s1, s2);
 ```
 
 ## GoTo
-```cs
+```csharp
 for (int i = 0; i < 10; i++) {
     if (i == 1) { continue; }
     if (i == 3) { goto myLabel; }
@@ -151,7 +151,7 @@ myLabel: ;
 }
 ```
 ## Indexer
-```cs
+```csharp
 class MyClass {
     private string[] internalArr = new string[10];
 
@@ -177,7 +177,7 @@ class MyClass {
 ```
 
 ## Partials
-```cs
+```csharp
 // File1.cs
 partial class MyClass {
     public void Test1() { }
@@ -192,7 +192,7 @@ mc.Test1();
 mc.Test2();
 ```
 
-```cs
+```csharp
 // File1.cs
 partial class MyClass {
     public void Test1() {
@@ -217,7 +217,7 @@ partial class MyClass {
 
 ## Konstruktor
 
-```cs
+```csharp
 public Book(string title, string author, bool available){}
 public Book(string title, string author, bool available) : base(){}
 public Book(string title, string author) : this(title, author, true) { }
@@ -228,34 +228,37 @@ public Book() : this("untitled", "anonymous", true) { }
 
 ## Dispose Pattern
 
-```cs
-~DataAccess() { Dispose(false); }
-public void Dispose()
-{
-    Dispose(true);
-    System.GC.SuppressFinalize(this);
-}
+```csharp
+public class DataAccess : IDisposable {
 
-protected virtual void Dispose(bool disposing)
-{
-    if (disposing)
+    ~DataAccess() { Dispose(false); }
+    public void Dispose()
     {
-            if (connection != null)
-            {
-                connection.Dispose();
-            }
-    } // Dispose unmanaged resources
+        Dispose(true);
+        System.GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+                if (connection != null)
+                {
+                    connection.Dispose();
+                }
+        } // Dispose unmanaged resources
+    }
 }
-```    
+```
 
 ## Optionale Parameter
 
-```cs
+```csharp
 privat void Sort(int from=-1, int to=-1){};
 ```
 
 ## Operator-Overloading
-```cs
+```csharp
 class MyClass {
     private int x, y;
     public MyClass(int x, int y) {
@@ -275,9 +278,9 @@ class MyClass {
 }
 ```
 
-## Vererbung
+## Vererbung Syntax
 
-```cs
+```csharp
 class Base
 {
     int a;

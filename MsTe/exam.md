@@ -6,6 +6,26 @@
 * Open Book: Alles erlabut
 * Ausnahme: Alte Prüfungen / Probeprüfungen
 
+# MERKE
+
+* Structs können nicht null sein! Bsp. Array von Structs
+* NullpointerException in C# heisst **NullReferenceExcepiton**
+* VERERBUNG
+* Ergänzen zu Reflection (Folien durchgehen!)
+
+    ```csharp
+    var ass=Assembly.LoadFrom("Tiere.dll");
+    var t = ass.GetType("Tiere.Katze");
+    var k = Activator.CreateInstance(t, new object[] {"Mitzi"});
+    var m = t.GetMethod("MausFangen");
+    m.Invoke(k, new object[]{});
+    ```
+
+Todo:
+* LINQ üben
+* Prüfungslösnugen nochmals durchgehen
+* Folien Drucken
+
 # Aufgabentypen
 
 * Bei Zeit und Bedarf: Übung 2 - Aufgabe 2 (Rekursion)
@@ -20,7 +40,7 @@ Car - welche methode wird ausgeführt. Siehe Folien **Repetiton Vererbung**.
 
 Was ist die Ausgabe des folgenden Programms?
 
-```cs
+```csharp
 public static void Print(ArrayList list) {
     foreach (object o in list) {
         Console.Write("{0}", o);
@@ -52,7 +72,7 @@ Grund: Bei den Zuweisungen von o1 und o2 wird geboxt. Wird o1 auf 4 gesetzt, dan
 → Übungen Woche 6 - Aufgabe 1.3
 
 
-## WCF
+## Aufgaben zu WCF
 An der Prüfung müssen diese Annotationen gesetzt werden (Siehe beispielcode im Kapitel WCF.)
 
 ## Weiteres

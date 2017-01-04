@@ -1,7 +1,7 @@
 # Iteratoren
 
 ## foreach-Loop
-```cs
+```csharp
 foreach (ElementType elem in collection) { statement }
 ```
 → "Collection" muss `IEnumerable<T>` bzw `IEnumerable` implementieren.
@@ -10,7 +10,7 @@ foreach (ElementType elem in collection) { statement }
 * e hat eine Methode `MoveNext()` mit Rückgabewert bool
 * e hat ein Property "Current"
 
-```cs
+```csharp
 int[] list = new int[] { 1, 2, 3, 4, 5, 6 };
 foreach (int i in list)
 {
@@ -36,7 +36,7 @@ finally
 {
     IDisposable disposable = enumerator as System.IDisposable;
     if (disposable != null) disposable.Dispose();
-}   
+}
 ```
 
 ## Iteratoren
@@ -60,7 +60,7 @@ finally
 * Analog python generators?
 * yield break
 
-```cs
+```csharp
 class MyIntList
 {
    public IEnumerator<int> GetEnumerator()
@@ -73,7 +73,7 @@ class MyIntList
 ```
 
 ## Spezifische Iteratoren
-```cs
+```csharp
 class MyIntList
 {
     //...
@@ -121,7 +121,7 @@ Regeln:
 * Hätte "object" eine Methode mit gleicher Signatur, würde immer diese aufgerufen
 * Anwendbar auf Klassen / Structs, Interfaces, Delegates, Enumeratoren, Arrays
 
-```cs
+```csharp
 public static class ExtensionMethods
 {
     // **static** und **this**
@@ -147,26 +147,20 @@ public static class ExtensionMethods
 }
 ```
 ## Deferred Evaluation
-→ GetEnumeration ist ja "lazy-evaluated"
+Recap: GetEnumeration ist ja "lazy-evaluated". Kann genutzt werden - für bsp. Query-Operationen - analog zu Java Streams.
 
-Kann genutzt werden - für bsp. Query-Operationen - analog zu Java Streams.
-
-```cs
+```csharp
 static class HsrExtensions
 {
     public static IEnumerable<T> HsrWhere<T>(
         this IEnumerable<T> source,
-        Predicate<T> predicate)
-        {
-            foreach (T item in source)
-            {
+        Predicate<T> predicate) {
+            foreach (T item in source) {
                 if (predicate(item))
                     yield return item;
             }
         }
 }
-
-// ...
 int[] list = { 4, 3.5, 3, 4.5, 6 };
 IEnumerable<int> res = list.HsrWhere(delegate (int k) { return k % 2 == 0; });
 // Bis hier wurde noch kein einziger `next` auf einem iterator IEnumerable aufgerufen.
@@ -176,7 +170,7 @@ foreach (int i in res) {
 ```
 ## Beispiele
 ### Fibonacci
-```cs
+```csharp
 public static IEnumerable<int> Fibonacci(int n)
 {
    int prev = -1;
@@ -191,7 +185,7 @@ public static IEnumerable<int> Fibonacci(int n)
 }
 ```
 
-```cs
+```csharp
 public static IEnumerable<T> HsrWhere<T>(this IEnumerable<T> source, Predicate<T> predicate)
 {
    foreach (T x in source)
