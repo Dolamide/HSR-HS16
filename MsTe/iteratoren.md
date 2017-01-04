@@ -4,7 +4,7 @@
 ```cs
 foreach (ElementType elem in collection) { statement }
 ```
-➪ "Collection" muss `IEnumerable<T>` bzw `IEnumerable` implementieren.
+→ "Collection" muss `IEnumerable<T>` bzw `IEnumerable` implementieren.
 
 * collection hat Methode GetEnumerator() mit Rückgabewert e
 * e hat eine Methode `MoveNext()` mit Rückgabewert bool
@@ -147,7 +147,7 @@ public static class ExtensionMethods
 }
 ```
 ## Deferred Evaluation
-➪ GetEnumeration ist ja "lazy-evaluated"
+→ GetEnumeration ist ja "lazy-evaluated"
 
 Kann genutzt werden - für bsp. Query-Operationen - analog zu Java Streams.
 

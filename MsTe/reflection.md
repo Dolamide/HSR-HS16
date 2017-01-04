@@ -26,8 +26,8 @@ Mit Reflection kann auf private Felder zugegriffen werden: Sehr mächtig (Bsp. D
 
 Hinweise zu Namen von Flags:
 
-* NonPublic ➪ Alles, was nicht Public ist.
-* Instance ➪ Gegenteil vonn `static`
+* NonPublic → Alles, was nicht Public ist.
+* Instance → Gegenteil vonn `static`
 * DeclaredOnly -> Nur was auf code deklariert ist.
 
 

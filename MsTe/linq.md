@@ -319,7 +319,7 @@ Group Joins
 Left Outer Join
 
 let
-➪ Hilfsvariablen
+→ Hilfsvariablen
 ```cs
 var result = from s in Students
              let year = s.Id / 1000

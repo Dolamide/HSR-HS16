@@ -4,7 +4,7 @@
 
 .NET-Anwendungen sind nicht Sprachgebunden (Bsp. Java dagegen schon).
 
-➪ Kann nur Funktionieren, wenn gemeinsame Regeln fetsgelegt: Die Common Language Specification.
+→ Kann nur Funktionieren, wenn gemeinsame Regeln fetsgelegt: Die Common Language Specification.
 
 Die CLS von .NTE ist ein offener Standard.
 
@@ -16,7 +16,7 @@ Die CLS von .NTE ist ein offener Standard.
 Sprachübergreiffendes Typensystem für die .NET Plattform.
 CLS wäre ohne CTS nicht möglich.
 
-➪ Das Typensystem wandert aus der Sprache in die .NET-Umgebung.
+→ Das Typensystem wandert aus der Sprache in die .NET-Umgebung.
 Hat zur folge, dass keine Konvertierung von Typen unterschiedlicher
 Sprachen notwendig ist.
 
@@ -73,7 +73,7 @@ Beispiele von Namespaces aus dem .NET-Framework sind ``System.Collections`` und 
 
 Macht .NET Plattformunabhängig (vgl. Mono-Projekt)
 
-➪ Bei der ersten Ausführung des betreffenden Codes wird
+→ Bei der ersten Ausführung des betreffenden Codes wird
 dieser just in time in nativen code übersetzt und gecached
 
 ## Assembly

@@ -19,7 +19,7 @@ Der Parametertyp wird vom Compiler ermittelt.
 ## Type Constraints
 ![](images/type-constraint.png)
 
-➪ Mehrere können spezifiziert werden:
+→ Mehrere können spezifiziert werden:
 
 ```cs
 class ExamplesCombiningConstraints<T1, T2>

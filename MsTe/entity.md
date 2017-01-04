@@ -34,7 +34,7 @@ Logical (Storage) Model
 
 Mit Mapping wird das Konzeptionelle Modell (.NET Klassen) mit dem Storage Modell (Effektive DB) verlinkt. Dieses Mapping wird in XML definiert.
 
-Mapping ➪ Table zu Class und Foreign Key zu Referenzen.
+Mapping → Table zu Class und Foreign Key zu Referenzen.
 
 ### Model based Mapping
 
@@ -44,7 +44,7 @@ Kann bsp. in VisualStudie editor zusammengeklickt werden.
 
 !!! todo
 
-    Welches Inheritance Mapping wird by default verwendet?! ➪ Folie 23
+    Welches Inheritance Mapping wird by default verwendet?! → Folie 23
 
 Complex Types
 : Complex types do not have keys and therefore cannot exist independently. Complex types can only exist as properties of entity types or other complex types. Damit kann quasi ein Teild er Tabelle ausgelagert werden
