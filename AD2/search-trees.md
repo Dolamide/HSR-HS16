@@ -13,7 +13,7 @@ Beispiel ``find(7)`` in einer Array-Basierten Multimap:
     * ``find`` benötigt ``O(log n)``
     * ``insert`` benötigt ``O(n)``
     * ``remove`` benötigt ``O(n)``
-    * ➪ Nur bei kleinen Multimaps praktikabel, da shifting nötig (teuer)
+    * → Nur bei kleinen Multimaps praktikabel, da shifting nötig (teuer)
 * **Binary-Search-Tree** (Siehe unten)
     * Mit "Placeholders" (Guards/Sentinels)
     * Mit null
@@ -46,9 +46,9 @@ Beispiel ``find(7)`` in einer Array-Basierten Multimap:
 
 ###Suche
 
-* Ist der Key k gleich den key des Knotens ➪ Suche beendet.
-* Ist der Key k kleiner als der key des Knotens ➪ Linker Subtree
-* Ist der Key k grösser als der key des Knotens ➪ Rechter Subtree
+* Ist der Key k gleich den key des Knotens → Suche beendet.
+* Ist der Key k kleiner als der key des Knotens → Linker Subtree
+* Ist der Key k grösser als der key des Knotens → Rechter Subtree
 * Ist der Knoten ein Blattknoten, so wurde der Eintrag nicht gefunden
 * Performance: ``O(h)``, wobei h die höhe ist.
     * ist der Baum balanciert: ``O(log n)``
@@ -179,7 +179,7 @@ eine logarithmische Laufzeit garantiert.
 
 Ein AVL-Tree ist "balanciert", wenn:
 
-* ``b(k) = Höhe(links) – Höhe(rechts)``
+* ``b(k) = Höhe(links) – Höhe(rechts)`` (LINKS MINUS RECHTS!)
 * es muss gelten: ``b(k)`` ist ``–1``, ``0`` oder ``+1``
 
 ### Höhenbeweis
@@ -270,13 +270,16 @@ Man kann 4 generell mögliche Fälle unterscheiden
 
 Vorgehen zur Wiederherstellung der AVL-Balance:
 
-####Trinode Umstrukturierung
+#### Trinode Umstrukturierung
 
 "Search and Repair" Strategie.
 
-* Wandere von neu eingefügten Knoten aus aufwärts und Prüfe bei jedem Koten, ob ALV_Balance verletzt wird
-* Tritt eine Verletzung ein, muss der Baum rotiert werden.
-   Die betroffenen Knoten müssenn nun so umgehängt werden, dass die **Inorder Reihenfolge** gleich bleibt.
+1. Wandere (von neu eingefügten Knoten aus) **aufwärts** und Prüfe bei jedem Koten, ob ALV_Balance verletzt wird
+2. Tritt eine Verletzung ein, muss der Baum rotiert werden, wbei gilt
+    * z = unbalancierter Knoten
+    * y, x = Kind bzw. Grosskind mit dem Grössten Subtree
+    * Rotiere so, dass T1, T2, T3 und T4 in der **inorder** Reihenfolge unverändert bleiben
+    * x, y und z müssen bei inorder traversierung **aufsteigend sortiert** sein (Wie bei BinaryTree).
 
 ![ALV ROTATE](images/alv_insert_rotate.png)
 
@@ -291,7 +294,7 @@ eine grössere Differenz als 2 ist je Einfügeoperation nicht möglich.
     Vorlesungsfolien `D_11_3_ALVTrees` Folien Nr. 11, 15 und 16.
 <hr>
 
-####Cut/Link Restrukturierungs-Algorithmus
+#### Cut/Link Restrukturierungs-Algorithmus
 
 Vorteil: Keine Fallunterscheidung
 
@@ -299,11 +302,11 @@ Nachteil: Komplexer
 
 Methode `restructure(x)` wird mit dem neu Angefügten Knoten x aufgerufen.
 
-1. z, y, x und T0, T1, T2, T3 festlegen
+1. z, y, x und T0, T1, T2, T3 festlegen (z ist der unterste unbalancierte Knoten - zumindest bei remove)
 
     ![](images/alv_insert_cutlink1.png)
 
-2. Die Sieben Teile gemäss inorder Reihenfolge nummerieren
+2. Die Sieben Teile gemäss **inorder Reihenfolge nummerieren**
 
     ![](images/alv_insert_cutlink2.png)
 
@@ -311,18 +314,18 @@ Methode `restructure(x)` wird mit dem neu Angefügten Knoten x aufgerufen.
 
     ![](images/alv_insert_cutlink3.png)
 
-4. Schrittweise neuer Baum a der Mitte des Arrays aufbauen:  #25/#26
+4. Schrittweise neuer Baum a der Mitte des Arrays aufbauen: **NUR INORDER REIHENFOLGE RELEVANT**
 
     ![](images/alv_insert_cutlink4.png)
 
-###Löschen
+### Löschen
 
 Löschen kann mit hilfe der Methode `restructure(x)` vom Cut/Link Restrukturierungs-Algorithmus
 implementiert werden:
 
 * Lösche das Kind k
-* Prüfe Tree von unten nach oben - sobald unbalanciert:
-* z ist der Unbalanciert Knoten - y das Kind von z mit der grösseren Höhe und x das kind von y mit der grösseren Höhe.
+* Prüfe Tree von unten **nach oben** - **sobald unbalanciert**:
+* z ist der Unbalanciert Knoten - y das Kind von z **mit der grösseren Höhe** und x das Kind von y mit der **grösseren Höhe**.
 * Rufe restructure(x) auf
 * Zurück zu Schritt 2.
 * Falls komplett balanciert - fertig!

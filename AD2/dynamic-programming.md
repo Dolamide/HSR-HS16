@@ -8,8 +8,8 @@ Die Idee von Dynamic Programming (Design-Paradigma) ist es, ein Problem in einfa
 
 ## Rucksack Problem (Knapsack-Problem)
 
-* Ansatz mit Brute-Force: ➪ $$O(2^n)$$ (ist *nicht* Fakultät, da die Position keine Rolle spielt)
-* Ansatz Greedy: Nimm wiederholend den Gegenstand mit grösstem Verhältnis von Wert/Gewicht ➪ Kann misslingen → bsp. Wechselgeld
+* Ansatz mit Brute-Force: → $$O(2^n)$$ (ist *nicht* Fakultät, da die Position keine Rolle spielt)
+* Ansatz Greedy: Nimm wiederholend den Gegenstand mit grösstem Verhältnis von Wert/Gewicht → Kann misslingen → bsp. Wechselgeld
 
 Mit Dynamischer Programmierung
 
@@ -63,7 +63,7 @@ Longest Common Subsequence
 * Filtern, aller Subsequenzen, welche auch für Y Subsequenzen sind.
 * Längste Subsequenz ist das Resultat
 
-➪ Hat eine exponentielle Laufzeit ($$O(2^n)$$)!
+→ Hat eine exponentielle Laufzeit ($$O(2^n)$$)!
 
 ### Lösung mit dynamischer Programmierung
 
@@ -88,16 +88,28 @@ e   h i   q   k r x y
     +   - +   -   + + + +
 ```
 
+Vorgehen Aufbauen der Tabelle:
+
+* Nimm nächste Zelle (Horizontal, rechts)
+    * Stimmen die Buchstaben überein?
+        * Ja -> Max. Wert `[m-1][m-1]` (diagonal!) um 1 erhöhen.
+        * Nein -> Max. Wert von links oder oben übernehmen.
+    * Weiter mit nächster Zelle
+
 Vorgehen Auslesen:
 
 * Die Lösung ist in L[n,m] enthalten
 * Die gesuchte Subsequenz kann von der L-Tabelle ausgelesen werden:
     *  beginne am Ende: $$i=m-1$$, $$j=n-1$$
-        * wenn Zeichen für i und j gleich
+        * wenn Zeichen für i und j gleich (**SPRUNG ZWINGEND!**)
             * füge L[i,j] in LCS ein
-            * wechsle auf Position L[i-1, j-1]
+            * wechsle auf Position L[i-1, j-1]
         * sonst
             * folge der Kolonne oder Reihe mit dem selben Wert
+            * Mehrere varianten möglich (einmal horizontal, einmal vertikal)
+
+![](images/lcs_table.png)
+
 
 ```java
 // Rekusive Suche nach allen möglichen LCS

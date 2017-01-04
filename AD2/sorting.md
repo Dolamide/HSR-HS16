@@ -3,7 +3,7 @@
 ![Sorting Übersicht](images/sorting_sumary.png)
 
 Stabile Sortierungseigenschaft
-: Die relative Ordnung von zwei Elementen mit dem selben Schlüssel werden durch den Algorithmus **nicht verändert**. Bsp `7:a 1:a 7:b 1:b` ➪ `1:a 1:b 7:a 7:b`
+: Die relative Ordnung von zwei Elementen mit dem selben Schlüssel werden durch den Algorithmus **nicht verändert**. Bsp `7:a 1:a 7:b 1:b` → `1:a 1:b 7:a 7:b`
 
 ## Merge-Sort
 
@@ -222,13 +222,13 @@ Die Optimierung hat aber kein Einfluss auf das Laufzeitverhalten (nur auf die ve
 
 → Jeder vergleichsbasierte Algorithmus hat eine min. Laufzeit von $$log(n!)$$, also floglich $$\frac{n}{2} \cdot log(\frac{n}{2})$$
 
-**➪ Alle vergleichsbasierten Sortier-Algoritmen haben eine (worst-case) Mindestlaufzeit von** $$n \cdot log(n)$$
+**→ Alle vergleichsbasierten Sortier-Algoritmen haben eine (worst-case) Mindestlaufzeit von** $$n \cdot log(n)$$
 
 ## Bucket-Sort
 
 * Sequenz mit n Elemnten mit Werten im Breich von 0 bis N-1
 * Erreicht eine Laufzeit von $$O(n+N)$$ - **da nicht vergleichsbasiert**
-* Bsp PLZ: Range von 1000 - 9999 ➪ N: 9000
+* Bsp PLZ: Range von 1000 - 9999 → N: 9000
 * Da die Keys als Index im Array verwendet werden müssen diese Integer-Werte sein. (Wobei mit Hilfsfunktion auch mit bsp. Strings möglich)
 * ist stabil
 
@@ -241,7 +241,7 @@ Die Optimierung hat aber kein Einfluss auf das Laufzeitverhalten (nur auf die ve
 
 Bei lexographicshe Ordnung sortieren wir nicht nur nach einem Key, sonder nach mehrer verglichen & sortiert.
 
-➪ Geordnetes Tupel mit d Keyes $$(k_1, k_2, ..., k_d)$$.
+→ Geordnetes Tupel mit d Keyes $$(k_1, k_2, ..., k_d)$$.
 
 ```
 Algorithm lexicographicSort(Sequence-of-d-tupels S)
@@ -269,4 +269,4 @@ Algorithm radixSort(Sequence-of-d-tupels S, MaxValue N)
     return S
 ```
 
-➪ Laufzeit $$O(d( n + N))$$
+→ Laufzeit $$O(d( n + N))$$

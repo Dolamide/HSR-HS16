@@ -199,7 +199,7 @@ Examples
 * `Bool` contains `True` and `False`
 * `Bool -> Bool` Contains all Functions, that map Bool-Arguments to a resulting Bool (eg. `not`)
 
-### Lists
+### Lists in Haskell
 
 Sequence of elements **of the same type**. The type only defines the type and nothing else (eg. lenght). Lists don't have to be finite.
 
@@ -389,7 +389,7 @@ positions x xs = [i | (k, i) <- zip xs [0 ..], k == x]
 
     ➪ "String comprehensions"
 
-## Recursion
+## Recursion in Haskell
 
 Recursion is pretty straight forward - as we know it from the non-functional World as well as from Prolog.
 
@@ -441,7 +441,7 @@ Alternative
 5. Complete right side of the definition
 6. Check the inferred types agrees with the definition.
 
-## Higher-Order Functions
+## Higher-Order Functions in Haskell
 
 Common programming patterns can be encapsulated within the language itself.
 

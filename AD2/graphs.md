@@ -135,7 +135,7 @@ Dieser wird in einer Matrix wird die "Verkabelung" abgelegt - bsp. Vertex mit In
 * `edges()`
 
 
-### Performance
+### Performance (Graphen)
 
 |                       | Kanten Liste | Adjazenz Liste | Adjazenz Matrix |
 |-----------------------|---------|-------------------------|---------|
@@ -207,7 +207,7 @@ Im Gegensatz zum BFS können mit dem DFS Biconnected Komponenten gefunden werden
 
     Beispiel in den Folien 4-5
 
-### Performance
+### Performance DFS
 
 * Setzen von Kanten/Vertex-Labels $$O(1)$$. (Mit Hash-Tabelle)
 * Jeder Vertex wird 2x markiert (`unexpored`/`visited`)
@@ -328,7 +328,7 @@ Anzahl der Listen = "Längster kürzester Pfad"
 
     Beispiel in den Folien 4-6
 
-### Performance
+### Performance BFS
 Identisch zu DFS!
 
 * Setzen von Kanten/Vertex-Labels $$O(1)$$. (Mit Hash-Tabelle)
@@ -420,7 +420,7 @@ Algorithm FloydWarshall(G)
     return Gn
 ```
 
-Vorgehen: Papierpfeile i, k, k ➪ Kann sofort abbrechen, wenn 1. Bedinung nicht erfüllt. Check: Keine Gegenpfeile in Gegenrichtung.
+Vorgehen: Papierpfeile i, k, k → Kann sofort abbrechen, wenn 1. Bedinung nicht erfüllt. Check: Keine Gegenpfeile in Gegenrichtung.
 
 
 ### DAGs & topologische Ordnung
@@ -519,7 +519,7 @@ Idee: Bilden einer **Wolke** von Vertizes, in welche nach und nach alle Vertizes
 
 Es gitl: Was in der Wolke ist muss zwingend Gelten und darf keine Änderungen erfahren
 
-Dijkstra’s Algorithmus ist ist Greedy - immer kleinster Wert.
+Dijkstra’s Algorithmus ist ist Greedy - immer kleinster Wert. Darum geht Dijkstra **nicht mit negativ gewichteten Kanten**. (S. Bellmann-Ford)
 
 Entspannung
 Relaxation
@@ -550,7 +550,16 @@ Algorithm DijkstraDistances(G, s)
 
 Der Tree kann über Parent abgefragt werden.
 
-Vorgehen: Schritt für Schritt aufzeichnen oder PQ aufzeichen.
+Dijkstra funktioniert, weil die Distanz immer, denn ...
+
+* ..solange der Vorgehende Knoten der kürzeste Pfad ist
+* und d(aktuell) >= d(vorhergehend)...
+
+...kann der neue Pfad nicht falsch sein.
+
+!!! vorgehen
+
+    Schritt für Schritt aufzeichnen oder PQ aufzeichen.
 
 Nutzung von Adaptabe Priority queue (Recap: Priority kann sich ändern und retourniert Locator, also Link in Datenstruktur) wobei Key = Distanz und Element = Vertex.
 
@@ -594,17 +603,91 @@ public void distances(AdjacencyListGraph<V, E> graph, Vertex<V> s) {
 }
 ```
 
-#### Performance
+#### Performance Dijkstra
 
 * `incidentEdges` für jeden Vertex:  $$O(n)$$
 * Setzen/Lesen des Distanz- und Locator-Label eines Vertex z-Mail: $$O(deg(z))$$ (Annahme: Setzen $$O(1)$$)
 * Jeder Vertex wird 1x in PQ eingefügt und 1x gelöscht - braucht jeweils $$O(log\ n)$$ - also $$2 \cdot O(log\ n) = O(log\ n)$$
 * Der Schlüssel in der PQ wird max. `deg(w)` mal geändert - und das dauert jeweils $$O(log\ n)$$
 
-Da gilt $$\sum_v deg(v) = 2m$$ gilt  ➪ $$O((n+m)\ log\ n)$$
+Da gilt $$\sum_v deg(v) = 2m$$ gilt  → $$O((n+m)\ log\ n)$$
 
 Wei der Graph verbunden ist: $$O(m\ log\ n)$$
 
+## Bellman-Ford (nicht im Buch)
+
+* Ist Wesentlich langsamer als Dijkstra
+* Funktioniert auch mit negativen Gewichten
+* Vorsicht: es wird NICHT über incidentEdges iteriert - sodern über alle **Kanten**
+    * Darum s. Nummerierung F15. (Annahme: Reihenfolge von edges...)
+    * ist erst am Schluss gültig (während bei Dijkstra alles in der Wolke OK ist.)
+
+```
+Algorithm BellmanFord(G, s)
+    for all v ∈ G.vertices()
+        if v = s
+            setDistance(v, 0)
+        else
+            setDistance(v, ∞)
+        for i ← 1 to n-1 do
+            for each e ∈ G.edges()
+            // relax edge e
+            u ← G.origin(e)
+            z ← G.opposite(u,e)
+            r ← getDistance(u) + weight(e)
+            if r < getDistance(z)
+                setDistance(z,r)
+```
+
+![](images/bellmannFord.png)
+
+
+## DAG basierte Distanz
+* DAG = gerichteter Graph ohne Zyklen (Directed acyclic Graph)
+* basiert auf topologischer sortierung
+
+Algorithm DagDistances(G, s)
+    for all v ∈ G.vertices()
+        if v = s
+            setDistance(v, 0)
+        else
+            setDistance(v, ∞)
+    Perform a topological sort of the vertices
+    for u ← 1 to n do
+    // in topologischer Reihenfolge
+        for each e ∈ G.outEdges(u)
+        // relax edge e
+        z ← G.opposite(u,e)
+        r ← getDistance(u) + weight(e)
+        if r < getDistance(z)
+            setDistance(z,r)
+
+![](images/dagDistance.png)
 
 
 ## Minimum Spanning Trees
+* Aufgespannter Subgraph
+* Wo kabel durchziehen, dass kabellänge minimal
+* recap CN1
+* schlaufen und Aufteilungseigenschaft
+
+
+### Kuskal
+* Wolke - vergleichbar mit Dijkstra.
+*
+
+tood: code F5
+
+
+### PrimJarnik
+* Leicht modifizierter Dijkstra (weight und nicht distance + weight)
+
+-> Performance analog zu incidentEdges
+
+### Boruvka
+
+
+### ...
+Gewicht des Trees = Summe aller Gewichte im Tree
+
+SPT (Shortest Path Tree) vs. MST (Minimal Spannig Tree)

@@ -6,6 +6,15 @@
 * Notizen AD1 (Mathematischer Anhang!)
 * Code Listings (Übungen)
     * BinarySearchTree.java (Übung 2)
+* Bleistift erlaubt -> Vorallem für Bäume!
+* Punkte sollten proportional zum Aufwand sein.
+
+### todo
+
+* Bellman-Ford verstehen (0.5h)
+* Minimal Spanning Tree nachberetiten (2h)
+* Dokument "Formatieren"
+* Probeprüfungen
 
 ## Aufgabentypen
 
@@ -23,17 +32,17 @@
 
 ### Manuelle lexikographische Sortierung
 
-➪ Siehe Prüfung 2006
+→ Siehe Prüfung 2006
 
 ### Manuelles Pattern-Matching (!)
 * Brute-Force
-* Boyer-Moore ( ➪ Siehe Prüfung 2006)
+* Boyer-Moore ( → Siehe Prüfung 2006)
 * KMP
-➪ Siehe Übungen Woche 7, Aufgabe 1 & 2
+→ Siehe Übungen Woche 7, Aufgabe 1 & 2
 
 (Good suffix heuristics nicht relevant)
 
-### Graphen
+### Dinge mit Graphen
 * Übung 10, A1-A4!
 * Übung 11, A1 (DFS, BFS)
 

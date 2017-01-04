@@ -46,7 +46,7 @@ Basiert auf zwei Heuristiken
 2. Character Jump: falls P das Zeichen c enthält, verschiebe P bis das letzte Auftreten von c in P mit T[i] übereinstimmt.
 
 Im Vorfeld muss dafür eine "Last-Occurence" Funktion implementiert werden:
-Beispiel: Missmatch bei t ➪ lastOccurence('t') → 2, verschiebe Position um 2 nach rechts.
+Beispiel: Missmatch bei t → lastOccurence('t') → 2, verschiebe Position um 2 nach rechts.
 
 ![Ein Beispiel Ablauf mit Boyer-Moore](images/text-boyer-example.png)
 : Ein Beispiel Ablauf mit Boyer-Moore

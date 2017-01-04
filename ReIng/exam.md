@@ -1,6 +1,18 @@
 # Prüfungsdetails
 
 
+# ToDo
+* Vertragsrecht
+* Gesellschaftsrecht
+* Strafrecht (Notizen ergänzen)
+* Datenrecht (Notizen ergänzen)
+* PROBEPRÜFUNGEN
+
+# Recap
+* Urteilsfähigkeit
+*  Mündigkeit
+
+
 ## Erlaubte Hilfsmittel
 
 * open book

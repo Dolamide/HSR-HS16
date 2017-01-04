@@ -8,6 +8,7 @@ Program = sequence of commands
 computation = change of state
 
 Common building blocks
+
 * Assignment (x := x +1)
 * Conditional execution (if...then...else)
 * Repetition (while...do...)
