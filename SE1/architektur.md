@@ -36,12 +36,15 @@ Je höher die Schicht, desto eher eignen sich Integration Tests. Je tiefer die S
 
 Das Layer Konzept kann auch für besser lesbare UML-Diagramme angewant werden. Beispielsweise Vererbung von oben nach Unten aufzeichen. Auch die Kardinalitäten (n oben, 1 unten) machen so notiert mehr Sinn, denn so Greiffen obere Schichten nur auf Untere zu und nicht umgekehrt.
 
-![](images/uml-inheritance.png)
-: Vererbung sinnvoller Notiert
+<figure>
+    <img src="images/uml-inheritance.png" style="max-width: 70%;"/>
+    <figcaption>Vererbung sinnvoller Notiert</figcaption>
+</figure>
 
-![](images/uml-cardinality.png)
-: Kardinalitäten - Stichwort Primary Key, Foregin Key
-
+<figure>
+    <img src="images/uml-cardinality.png" style="max-width: 70%;"/>
+    <figcaption>Kardinalitäten - Stichwort Primary Key, Foregin Key</figcaption>
+</figure>
 
 ### 3 Schichten-Modell
 
@@ -74,8 +77,7 @@ Beheben von gemeinsamen Funktionen derselben Schicht:
 
 ## Regeln für Abhängigkeiten
 
-![](images/rules_for_dependencies.png)
-
+<img src="images/rules_for_dependencies.png" style="max-width: 55%" />
 
 1. ... von oben auf die nächste darunterliegende Schicht sind immer OK
 2. ... nach unten, die eine Schicht überhüpfen sind manchmal auch OK
@@ -88,10 +90,10 @@ Beheben von gemeinsamen Funktionen derselben Schicht:
 In einem System werden n Schichten üblicherweise auf n-x Tiers abgebildet.
 
 Layer
-: "Wie der Code strukturiert ist" hierarchische Abhängigkeiten, klar, wer den Takt angibt  ➪ Horizontal. AUfrufe sind typischerweise **synchron**.
+: "Wie der Code strukturiert ist" hierarchische Abhängigkeiten, klar, wer den Takt angibt  → Horizontal. AUfrufe sind typischerweise **synchron**.
 
 Tiers
-: "Wo welcher Teil läuft" i.d.R. gleichberechtigte Partner, kein diktierter Takt ➪ Vertikal. Aufrufe sind immer **asynchron**.
+: "Wo welcher Teil läuft" i.d.R. gleichberechtigte Partner, kein diktierter Takt → Vertikal. Aufrufe sind immer **asynchron**.
 
 Geteilter Code kann auch auf mehreren Tiers laufen - bsp. Domainmodel.
 
@@ -101,12 +103,9 @@ Während Layers mit Klassendiagrammen bzw. Packages dargestellt werden werden Ti
 
 ## Datenmodell Ordnen
 
-Zweck:
-
 * Übersichtlich
 * Schichten absehbar
 * Implementierungs-Reihenfolge
-
 
 ## Deployment Diagramme
 
@@ -122,8 +121,10 @@ Assotiationen
 
 Verschiedene Ausführungs-Umgebungen werden in einander geschachtelt. Dabei werden typischerweise Stereotypen wie `<<OS>>`, `<<web server>>`, `<<web browser>>` usw. angegeben.
 
-![](images/deployment_dgrm.png)
-: Beispiel eines Deployment Diagramms - Quelle www.uml-diagrams.org
+<figure>
+    <img src="images/deployment_dgrm.png" style="max-width: 60%;"/>
+    <figcaption>Beispiel eines Deployment Diagramms - Quelle www.uml-diagrams.org</figcaption>
+</figure>
 
 
 Mit Deployment Diagrammen können Unterschiedliche Varianten eines Deployments disskutiert werden. Die Abstraktion ermöglicht auch Performance-Diskussionen, Visualisierungen von möglichen Angriffsvektoren oder komplexe Docker Setups zu verstehen.
@@ -156,7 +157,7 @@ System-Sequenzdiagramm sind eine Erfindung von Larman. Dabei gibt es genau 2 Akt
 
 Mit System-Sequenzdiagramm wird quasi die oberste testbare Schnittstelle dokumentiert.
 
-![](images/systemsequencediagram.png)
+<img src="images/systemsequencediagram.png" style="max-width: 40%" />
 
 !!! todo
 

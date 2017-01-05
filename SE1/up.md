@@ -10,8 +10,10 @@ Dieses Vorgehen ist auch nicht natürlich. Wir arbeiten auf grosse Ziele immer i
 
 ## 4 Phasen
 
-![](images/up_phasen.png)
-: 4 Phasen von UP - nach Larman
+<figure>
+    <img src="images/up_phasen.png" style="max-width: 70%;"/>
+    <figcaption>4 Phasen von UP - nach Larman</figcaption>
+</figure>
 
 Inception
 : Zielsetzung des Produkts - ein "Mission Statement" (Bsp. "Die Beste Todo-App. Maximal Budget 2 Mio")
@@ -32,10 +34,10 @@ Die Inception und Elaborationsphasen (Scaffolding) finden in kleinem Team (Scout
 * die Tool Chain steht
 
 ## Disciplines
-
-![](images/up_disciplines.png)
-: Unified Process Disciplines - Quelle HSR-Vorlesung
-
+<figure>
+    <img src="images/up_disciplines.png" style="max-width: 70%;"/>
+    <figcaption>Unified Process Disciplines - Quelle HSR-Vorlesung</figcaption>
+</figure>
 
 ## Wichtigst Punkte
 

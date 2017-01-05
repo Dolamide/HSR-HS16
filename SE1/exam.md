@@ -4,6 +4,17 @@
 
 * Keine (closed Book)
 
+## TODO
+* Syntax UC-Diagramm
+    * Actor zu UC: Kein Pfeil - nur Assotiation
+    * Systeme als Klasse mit Stereotyp `<<actor>>`
+    * Include mit einfachem gestricheltem Pfeil
+* UC und UC-Diagramme: ÜBEN!
+    * VORSICHT: ACTOR MACHT ...., SYSTEM MACHT ...
+* Klassendiagramme üben
+* Use Case Diagnose Synatx
+    * Operation Contract?!
+
 ## Aufgabentypen
 
 ### Domainmodell nach Larman
@@ -14,7 +25,7 @@
 * Übung Nutzfahrzeugverleih
 * Probeprüfung Aufgabe 3
 
-➪ Vorgenen in OOA.rst
+→ Vorgenen in OOA.rst
 
 ### Use Cases
 

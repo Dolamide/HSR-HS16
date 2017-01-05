@@ -30,10 +30,10 @@ Nichtfunktionale Anforderungen wie Leistung und Usability sind schwerer zu teste
 
 Je nach Abstraktionsebene gibt es andere Tests:
 
-* Anforderungen ➪ Abnahmetest (Validierung)
-* Architektur ➪ Systemtest
-* Entwurf ➪ Integrationstest
-* Detailentwurf/Implementation ➪ Modultest (Unit Test)
+* Anforderungen → Abnahmetest (Validierung)
+* Architektur → Systemtest
+* Entwurf → Integrationstest
+* Detailentwurf/Implementation → Modultest (Unit Test)
 
 Je nach Ebene sind auch andere Tester am Werk - so können bsp. Abnahmetest vom Kunden durchgeführt werden.
 
@@ -49,7 +49,7 @@ für welche der Prüfling voraussichtlich das gleiche Verhalten zeigt.
 
 Beispiel Steuerberechnung: "für einkommensklasse von 80'000 bis 110'000 sei der Steuersatz 25%, darunter 20% und darüber 30%. Negative Einkommen gibt es nicht".
 
-➪ 4 Äquivalenzklassen: ungültig (<1, 0-80'000, 80'000-110'000 und >110'000). Aus den ensprechenden Äquivalenzklassen kann ein beliebiger Wert zum testen genommen werden.
+→ 4 Äquivalenzklassen: ungültig (<1, 0-80'000, 80'000-110'000 und >110'000). Aus den ensprechenden Äquivalenzklassen kann ein beliebiger Wert zum testen genommen werden.
 
 Vorsicht: Oft Fehler am Rand von Äquivalenzklassen → Grenzwertanalyse.
 
@@ -75,7 +75,7 @@ Kenntnis der Kontrollstrukturen als Basis für Testfälle
 
 Spezifikationsorientiertes Testen, denn Grundsätzlich gilt: Use Cases sind Test Cases!
 
-![Beispiel von Use Cases als Test Cases](images/uc-test-case.png)
+<img src="images/uc-test-case.png" style="max-width: 80%" />
 
 ## Testautomatisierung
 
@@ -105,12 +105,12 @@ Code für Tests muss geschrieben und gepflegt werden. Garantiert trotzdem nicht,
 
 ## Notizen: "Microtesting"
 
-Code Smells ➪ Identify hazards in code
-Refactoring ➪ Improve the design of existing code
-**Microtesting ➪ Test effectively at the object level**
-Test-Driven Development ➪ Design code by starting with tets
-Faking & Mocking ➪ Handle awkward collaborations
-Legacy Code ➪ Work with pre-existing code
+Code Smells → Identify hazards in code
+Refactoring → Improve the design of existing code
+**Microtesting → Test effectively at the object level**
+Test-Driven Development → Design code by starting with tets
+Faking & Mocking → Handle awkward collaborations
+Legacy Code → Work with pre-existing code
 
 
 Microtesting
@@ -122,8 +122,8 @@ Kurz (<10-20 Zeilen!) und Präzise (macht genau etwas, hat ensprechender name un
 > In microtesting, we never reach (but look) inside the box (encapsulate)
 
 > Tests should not depend on data from other tests.
-➪ avoid persistent state entirely - if not possible, clean it all up!
-➪ Keep the tests crips
+→ avoid persistent state entirely - if not possible, clean it all up!
+→ Keep the tests crips
 
 Code *Safety Net* = "This is how I expect it to work"
 
@@ -139,27 +139,10 @@ Training focuses on easy, solo, after!
 
 ### "Standard Micro Test"
 
-1. Happy Path: "callWilma" ➪ testcallWilma() "default condition"
-2. Test Execution Paths: Check for conditionals ➪ testCallWillmaPhoneBusy()
+1. Happy Path: "callWilma" → testcallWilma() "default condition"
+2. Test Execution Paths: Check for conditionals → testCallWillmaPhoneBusy()
 
 Using expressive names helps to focus on on small, isolated behaviour - and is almost a table of contents.
-
-minimal example
-!!! todo
-
-    Write an example by myself
-
-!!! todo
-
-    >Test the interesting cases.
-    >Proceed one test at a time, getting it to green.
-    >One test corresponds to one behavior.
-    >Each test should work in a maximally controlled environment (data context).
-    >In each test, set up a minimal data context.
-    >The universal structure of microtests: Arrange, Act, Assert (and possibly Teardown).
-    >Keep test code from deterioration: refactor your test code after each test.
-    >Start with simple behaviors to gain confidence (they are important too!) Then move on to complex ones.
-    >DO NOT change the production code yet: We want to focus on writing microtests for now.
 
 #### AAA-Structure
 

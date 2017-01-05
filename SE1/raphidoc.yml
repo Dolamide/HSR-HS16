@@ -10,7 +10,6 @@ pages:
     - intro.md
     - OOA.md
     - konfigurationsmanagement.md
-    - domain-model.md
     - requirements-engineering.md
     - software-testing.md
     - clean-code.md
@@ -19,8 +18,8 @@ pages:
     - up.md
     - scrum.md
     - projektmanagement.md
-    - exam.md
-    - lernplan.md
+    # - exam.md
+    # - lernplan.md
 
 
 
@@ -28,4 +27,4 @@ assets:
     - images/
 
 # TODO: load from ../theme/ or default
-theme: /home/rzi/Desktop/demo/raphi_theme/
+theme: /home/rzi/Desktop/raphidoc/raphi_theme/

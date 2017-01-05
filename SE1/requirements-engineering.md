@@ -1,18 +1,7 @@
-# Einführung in Requirements Engineering
-
-!!! todo
-
-    Lesen in Larman:
-
-    * Kapitel 8. Iteration 1 - Basics (8S)"
-    * Kapitel 10. System Sequence Diagrams (8S)
-    * Kapitel 11. Operation Contracts (14S)"
-    * Kapitel 28. UML Activity Diagrams and Modeling (10S)
-    * Kapitel 29. UML State Machine Diagrams and Modeling (8S)
-    * Kapitel 12. Requirements to Design - Iteratively (2S)
+# Einführung in Requirements Engineering
 
 Funktional
-: "**WAS** soll das System machen" ➪ Use Cases
+: "**WAS** soll das System machen" → Use Cases
 
 Nicht-Funktional
 : "**WIE gut**  soll das System etwas machen"
@@ -21,7 +10,7 @@ Unterscheidung der Anforderungen an das **Projekt**  (Project Management) und an
 
 Requirements Working Product: Software Requirements Specification (SRS)
 
-Problem: Anforderungen ändern sich! Die Anforderungen können nicht am Anfang im Detail erfasst werden ➪ Iteratives vorgehen. Vorsicht: Systematische Erfassung und Verwaltung wichtig ➪ Requirements Management
+Problem: Anforderungen ändern sich! Die Anforderungen können nicht am Anfang im Detail erfasst werden → Iteratives vorgehen. Vorsicht: Systematische Erfassung und Verwaltung wichtig → Requirements Management
 
 ## Use Cases
 
@@ -137,12 +126,13 @@ Bsp: *Text visible from 1m, Colors used with symbols* oder *Authorization takes 
 
 
 ## Anforderungsspezifikation
-![](images/srs.png)
-
+<img src="images/srs.png" style="max-width: 80%" />
 ## Zustandsdiagramme
 
-![Beispiel UC](images/state-diagram-example.png)
-: SE1: Testat 2 Musterlösung
+<figure>
+    <img src="images/state-diagram-example.png" style="max-width: 45%;"/>
+    <figcaption>SE1: Testat 2 Musterlösung</figcaption>
+</figure>
 
 UC-Zustandsdiagramm
 : Systemereignisse, Zustände und Übergänge für UCs.
@@ -154,23 +144,23 @@ Ereignis
 Event
 : passiert zu einem Zeitpunkt - typischerweise von Aussen. Das System wird darüber benachrichtigt und reagiert darauf.
 
-![UML Notation: Event](images/state-diagram-event.png)
+<img src="images/state-diagram-event.png" style="max-width: 40%" />
 
 Zustand
 State
 : Zustand eines Objektes, wobei nur Zustände unterschieden werden sollten, die unterschiedliches Verhalten aufweisen (100FR oder 20000FR auf Sparkonto sind kein unterschied - 100Fr und -1'000 FR dagegen schon!)
 
-![UML Notation: State](images/state-diagram-state.png)
+<img src="images/state-diagram-state.png" style="max-width: 30%" />
+
 
 Zustandübergang
 Transition
 : Übergang von einem Zustand in einen andere, ausgelöst durch Ereignisse. Zustandsübergänge erfolgen augenblicklich - wobei beim Übergang Aktivitäten ausgeführt werden können.
 
-![UML Notation: Transition](images/state-diagram-transition.png)
+<img src="images/state-diagram-transition.png" style="max-width: 40%" />
 
 Guard
 : Vorbedingung für Transition - muss eine boolesche Bedinnung sien.
-
 
 !!! warning
 
@@ -182,8 +172,12 @@ Guard
 ## Aktivitätsdiagramme
 Aktivitätsdiagramme zeigen sequentielle und parallele Aktivitäten (Flussdiagramme). Anwendung in Analyse und Design für Modellierung von Geschäftsprozessen und Use Cases.
 
-![Basisnotation für Aktivitätsdiagramme](images/activity-diagram-notation.png)
-: Basisnotation für Aktivitätsdiagramme
+<figure>
+    <img src="images/activity-diagram-notation-2.png" style="max-width: 70%;"/>
+    <figcaption>Zusätzliche Notation für Aktivitätsdiagramme</figcaption>
+</figure>
 
-![Zusätzliche Notation für Aktivitätsdiagramme](images/activity-diagram-notation-2.png)
-: Zusätzliche Notation für Aktivitätsdiagramme
+<figure>
+    <img src="images/activity-diagram-notation.png" style="max-width: 70%;"/>
+    <figcaption>Basisnotation für Aktivitätsdiagramme</figcaption>
+</figure>

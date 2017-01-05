@@ -1,12 +1,5 @@
 # Projektmanagement
 
-!!! todo
-
-    Lesen in Larman:
-
-    Kapitel 40. More on Iterative Development and Agile Project Management (10S)
-
-
 * Tätigkeiten F3
 * Tugenden von Projektleiter: F4
     * mehrere Listen führen (Backlog, Todos usw.)

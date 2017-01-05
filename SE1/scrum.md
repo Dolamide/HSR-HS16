@@ -61,9 +61,10 @@ meine zuletzt bearbeitetes Dokument sehen, um Zeit zu sparen.
 
 ## Ablauf
 
-![](images/scrum.png) 
-: Scrumprozess Visualisiert - Quelle [innolution.com](http://www.innolution.com/blog/economically-sensible-scrum-visualized)
-
+<figure>
+    <img src="images/scrum.png" style="max-width: 70%;"/>
+    <figcaption>Scrumprozess Visualisiert - Quelle <a href="http://www.innolution.com/blog/economically-sensible-scrum-visualized" />innolution.com</a></figcaption>
+</figure>
 
 Sprints in Scrum sind wie die Iterationen im UP. Typischerweise dauert ein Sprint 2-3 Wochen. (Tipp: Sprints nicht von Montag bis Freitag machen sondern von beispielsweise Mittwoch bis Dienstag)
 
@@ -80,12 +81,12 @@ Stark vereinfachter Ablauf:
 
 Der _Team-Speed_ ist eine Zahl, welche die Anzahl Punkte/Stunden eines Teams angibt, das dieses in einer Iteration schafft. Bsp. 3 100% Entwickler, 2 Wochen Sprint -> 22 "Stunden".  Dieser Team-Speed wird nach jeder Iteration angepasst. Ziel ist es, dass die Schätzungen ziemlich genau dem Speed entsprechen.
 
-Die Anzahl der Iterationen hängt vom Budget, dem Projekt und dem Funktionsumfang ab. 
+Die Anzahl der Iterationen hängt vom Budget, dem Projekt und dem Funktionsumfang ab.
 
 Team soll entscheiden können, wer ein Task ausführt.
 
 ## Definition of Done
-Fixe Deadline! Gibt nur 100% fertig oder unfertig. 
+Fixe Deadline! Gibt nur 100% fertig oder unfertig.
 
 Eine "definition of done" ist eine Vereinbarung zwischen Product-Owner und Team, welche Definiert, wann etwas fertig ist. Beispielsweise:
 
@@ -95,9 +96,9 @@ Eine "definition of done" ist eine Vereinbarung zwischen Product-Owner und Team,
 * Kein unaufgeräumter (z.B. auskommentierter) Code
 * Alles Unfertige ist markiert mit 'TODO:'
 * Code ist wo nötig & richtig mit Kommentaren versehen
-* metrics, findbugs, ReSharper, structure101, STAN und andere 
+* metrics, findbugs, ReSharper, structure101, STAN und andere
 eingesetzte Analysetools geben grünes Licht
-* Vier-Augen-Prinzip: entweder pair programming oder gereviewt und 
+* Vier-Augen-Prinzip: entweder pair programming oder gereviewt und
 Review dokumentiert
 
 ## Offene Fragen

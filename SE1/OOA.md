@@ -3,10 +3,10 @@
 ## Überblick
 
 Analyse = Abklärung / Konzept ≠ Lösung
-➪ *"do the right thing"*
+→ *"do the right thing"*
 
 Design = konzeptionelle Lösung, Erfüllt die Anforderungen
-➪ *"do the thing right"*
+→ *"do the thing right"*
 
 * Methodische Analyse des Problembereichs
 * Blackbox- und Whitebox-Sicht
@@ -95,10 +95,12 @@ Als Hilfsmittel mit Sätzen überprüfen:
     Klassen können so sortiert werden, dass n über 1 Multiplizitäten
     sind.
 
-    ➪ Komplexere Objekte oben, einfachere unten
+    → Komplexere Objekte oben, einfachere unten
 
 
 ### UML-Notation
 
-![](images/uml_cheat_sheet.png)
-: Abstrakte Klassen *kursiv*
+<figure>
+    <img src="images/uml_cheat_sheet.png" style="max-width: 40%;"/>
+    <figcaption>Abstrakte Klassen *kursiv*</figcaption>
+</figure>
