@@ -22,7 +22,7 @@ XSS
 
 ## Cross-Site-Scripting (XSS)
 > drei wirksame Massnahmen,um Webapp abzusichern
-> ➪ Umsetzen können: PRÜFUNG?!
+> → Umsetzen können: PRÜFUNG?!
 
 Bei XSS wird der Server Server bzw. die Daten des Servers so manupuliert, dass Schadcode (JavaScript) eines Angreifers an Nutzer (Opfer) ausgeliefert wird und im Browser dieser Nutzer ausgeführt wird.
 
@@ -112,7 +112,7 @@ res.end(require('fs').readdirSync('.').toString())
 Bei Problemen bei der Authentisierung und dem Session Management können externe Angreifer oder **Angreifer** mit einem validen Login **auf Informationen zugreifen welche nicht für sie bestimmt sind**.
 
 ### Beispiele
-* Passwort oder Token wird nicht verschlüsselt übertragen (Unabhängig  GET/POST) ➪ Mit Sniffer auslesbar.
+* Passwort oder Token wird nicht verschlüsselt übertragen (Unabhängig  GET/POST) → Mit Sniffer auslesbar.
 * Session Timeout ist zu lang
 * Kennwörter unverschlüsselt in DB
 

@@ -5,7 +5,7 @@
 
     * Repetition ISO 9241-11 (Effektiv, Effizient, Zufrieden)
     * Garrett Ebenen
-    * ➪ Siehe Folie 4/5 Woche 7
+    * → Siehe Folie 4/5 Woche 7
 
 
 ## Accessibility Regeln / Kriterien
@@ -106,7 +106,7 @@ Ebene: Raster-Design mit Interaktionsdesign.
 
 ### Schritte der Interaktion nach Norman
 * Handeln (Ausführung) und Beobachten/Bewerten (Evaluation) wechseln sich ab.
-* Sind Sichtbarkeit (Visibilit), Affordance (Begreifbarkeit) und Feedback nicht (ausreichend) vorhanden, so kann Interaktion nicht durchlaufen weden ➪ "Kluft der Ausführung" und "Kluft der Evaluation"
+* Sind Sichtbarkeit (Visibilit), Affordance (Begreifbarkeit) und Feedback nicht (ausreichend) vorhanden, so kann Interaktion nicht durchlaufen weden → "Kluft der Ausführung" und "Kluft der Evaluation"
 
 ![Schritte der Interaktion nach Norman](images/norman.png)
 : Abbildung aus Preim & Dachselt Band 1, Kapitel 4 Seite 158 (adaption: Stolze)

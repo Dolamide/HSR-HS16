@@ -93,4 +93,4 @@ Jede Source verhält sich wie ein `<img>`-Tag, wobei das Media-Query nicht optim
 
 Problem: Wie können moderne Feature wie Picture in alten Browser genutzt werden.
 
-➪  Polyfill/Modernizr
+→  Polyfill/Modernizr

@@ -278,7 +278,7 @@ Animal.prototype.foodRequired = function () {
 * Properties werden enumerable auf der Instanz gespeichert
 * Methoden werden nicht-enumerable auf dem gemeinsamen Prototyp-Objekt für alle Instanzen zugreiffbar abgelegt.
 * Kein colsure auf umgebener scope möglich.
-* ➪ ES6-Klassen sind etwas mehr als ES5 Konstruktoren mit "Syntactic Sugar"
+* → ES6-Klassen sind etwas mehr als ES5 Konstruktoren mit "Syntactic Sugar"
 * Vereinfacht Unterklassen
     * Zugriff auf parent mit `super` bzw. `super.methodenname`
 
@@ -340,8 +340,8 @@ function duplicateEncode(word){
     return word.toLowerCase()
             .split('')  // String in ein Array
             // Wenn einmal in string: 1, sonst n
-            .map(function (element, index, array) { 
-                return array.indexOf(element) == 
+            .map(function (element, index, array) {
+                return array.indexOf(element) ==
 			array.lastIndexOf(element) ? '1' : 'n'
             })
             .join(''); // In String konkatinieren

@@ -29,7 +29,7 @@
     * sichtbare, begreifbare (affordance) und bedienbare controls
 * **Struktur**
     * einfache, effiziente und sichtbare Navigation
-* **Umfang** ➪ Sollte nicht abhängig von der Screen-Grösse sein
+* **Umfang** → Sollte nicht abhängig von der Screen-Grösse sein
 * **Strategie**
     * Unterschiedliche Apps für unterschiedliche Aufgaben/Zielgruppen (≠ Screen-Grösse)
 

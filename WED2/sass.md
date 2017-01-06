@@ -49,7 +49,7 @@ nav {
 
 `&` wird durch den Parent Selektor ersetzt
 
-➪ Nicht mehr als 3 Ebenen!
+→ Nicht mehr als 3 Ebenen!
 
 ### Partials / Import
 
