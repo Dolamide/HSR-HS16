@@ -1,0 +1,15 @@
+version: 1.0
+
+title: C++ - Testate
+subtitle: Herbstsemester 2016
+author:
+institute: HSR Hochschule für Technik Rapperswil
+
+pages:
+    - testat1.md
+    - testat2.md
+    - testat3.md
+assets:
+    - bug/
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/raphidoc/raphi_theme/
