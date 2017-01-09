@@ -100,7 +100,7 @@ sayGreeting(inputName(std::cin), inputName(std::cin));
 
 ## Ungleiches Iteratoren-Paar
 
-➪ undefined behaviour!
+→ undefined behaviour!
 ```c++
 std::for_each(begin(values1), end(values2), f);
 ```
@@ -142,4 +142,4 @@ using out=std::ostream_iterator<int>;
 set<int> s{1, 2, 3, 4};
 std::copy(s.begin(), s.end(), out{cout, "-"});
 ```
-➪ OUTPUT IST: `1-2-3-4-` mit trailing `-`
+→ OUTPUT IST: `1-2-3-4-` mit trailing `-`

@@ -131,13 +131,13 @@ std::cout << *it << ' ' << *nx << '\n'; // 3 4
 ## Sequence Containers
 
 * Geordnet in Reihenfolge des Einfügens
-* Lists sind Gut für splicing / Einfügen in der Mitte ➪ Recap AD1
+* Lists sind Gut für splicing / Einfügen in der Mitte → Recap AD1
 * Zugriff in $$O(n)$$
 * `std::vector` (analog zu Javas ArrayList)
 * `std::deque`
     * Wie `std::vector` aber mit effizientem Einfügen am Anfang und Ende
 * `std::list` (Doubly-Linked-List)
-* `std::forward_list` (Singly-Linked-List) ➪ Nur
+* `std::forward_list` (Singly-Linked-List) → Nur
 
 ![Sequence Container API](images/stl_container_sequence_api.png)
 : Sequence Container API - Quelle CPl Vorlesung
@@ -160,7 +160,7 @@ std::array<int,6> a{{1,1,2,3,5,8}};
 * `std::set`, (`std::set<int> s{7,1,4,3,2,5,6};`)
     * `find()`
     * `count()`
-    * `count(x)`: Kann nur 0 oder 1 zurückgeben ➪ Überprüft, ob X im set ist
+    * `count(x)`: Kann nur 0 oder 1 zurückgeben → Überprüft, ob X im set ist
 * `std::map` (`std::map<char,size_t> vowels {{'a',0},{'e',0}, ...;`)
     * Intern nach Key soritert
     * Zugriff mit index Operator: `++vowels[c];`

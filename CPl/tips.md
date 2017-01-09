@@ -57,6 +57,18 @@ std::string name{}
 in >> name;
 ```
 
+## Sequence ausgeben
+
+```c++
+#include <iterator> // for ostream_iterator
+#include <algorithm> // for copy
+#include <iostream> // if using std::cout
+
+using out_itr = std::ostream_iterator<int>;
+// using out_itr = std::ostreambuf_iterator<int>;
+std::copy(v.begin(), v.end(), out_itr{std::cout, ", "});
+```
+
 ## Elemente zählen
 Um die Elemente einer Sequence zu zählen kann der Algorithmus `distance` verwendet werden.
 

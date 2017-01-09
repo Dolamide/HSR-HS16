@@ -239,7 +239,7 @@ class Date {
 
     // Inline ist nicht nötig, da alle Member implizit inline sind
     bool operator<(Date const & rhs) const {
-        return year < rhs.year || (year == rhs.year && (month < rhs.month ||    
+        return year < rhs.year || (year == rhs.year && (month < rhs.month ||
                 (month == rhs.month && day == rhs.day)));
     }
 };
@@ -317,7 +317,7 @@ public:
             //clear stream if read was ok
             is.clear();
         } catch (std::out_of_range & e) {
-            // Es muss signalisiert werden, dass nicht erfolgreich! ➪ Failbit
+            // Es muss signalisiert werden, dass nicht erfolgreich! → Failbit
             is.setstate(std::ios::failbit | is.rdstate())
         }
         return is;
@@ -383,7 +383,7 @@ Funktioniert auch mit overloading - speziell prefix und postfix sind hier intere
 // Prefix
 dayOfWeek operator++(dayOfWeek & aday) {
     int day= (aday+ 1) % (Sun+1);
-    aday = static_cast<dayOfWeek>(day); // expliziter cast int ➪ enum
+    aday = static_cast<dayOfWeek>(day); // expliziter cast int → enum
     return aday;
 }
 // Postfix (Int parameter dient nur der Unterscheidung)

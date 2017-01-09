@@ -88,7 +88,7 @@ Im Falle von `min` sind die Concepts:
 !!! todo
 
     Was für andere Kozepte für `max`?!
-    ➪ Muss kopierbar / "movebar" sein. (Rückgabetyp)
+    → Muss kopierbar / "movebar" sein. (Rückgabetyp)
     Folie 11
 
 ## Overloading
@@ -215,7 +215,7 @@ inline T Sack<T>::getOut(){
 		return retval;
 }
 
-// Simple Factory Method - type deduction works 🎉
+// Simple Factory Method - type deduction works
 #include <initializer_list>
 template <typename T>
 Sack<T> makeSack(std::initializer_list<T> list){
@@ -380,4 +380,3 @@ Sack<char> aSack{'a', 'b', 'c'};
 
 
  Konstruktoren erbem mit: `using std::vector<T>::vector;`
- 

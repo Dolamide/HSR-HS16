@@ -19,7 +19,7 @@ Dies kann mit der `operator()(...)`-Methode erreicht werden:
 Ein Funktor ist ein Typ (Klasse), welche den call-Operator implementiert.
 
 Operator kann beliebig überladen werden - je nach Bedüfnis
-➪ Operator = aufruf mit `()` → S Bsp. `average`
+→ Operator = aufruf mit `()` → S Bsp. `average`
 
 
 ## Function Objects (Funktoren)

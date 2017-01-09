@@ -6,7 +6,7 @@
 * "Gutes" C++ zu schreiben benötigt viel Erfahrung und Wissen.
 * ISO-Standardisiert
 
-Declare before use**
+Declare before use
 : Alle Entities in C++ müssen vor deren Benützung deklariert werden.
 : Da C++ kein gutes modul konzept für imports hat, wird ein preprocessor verwendet.
 : Deklarationen werden in *header files* gemacht (header, da diese typischerweise im Kopf eines Programms inkludiert werden.) Mehrfach Definition: Guards
@@ -147,7 +147,7 @@ std::cout << function('a');
 
 ## Mutable keywords
 
-Variablen, welche by copy (`=`) gecaputred werden sind mutable by default - es sei denn, dass `mutable` keyword ist explizit angegeben.
+Variablen, welche by copy (`=`) gecaputred werden sind immutable by default - es sei denn, dass `mutable` Keyword ist explizit angegeben.
 Dieses ermöglicht, dass `x` verändert werden darf (das geht implizip immer für Referenzen)
 
 ```c++

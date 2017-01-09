@@ -136,7 +136,7 @@ module->addDependency(anotherModule);
 
 ## Übungsfragen
 Which C++ mechanism can you use to deduce a dimension of an array passed as function parameter?
-➪ Templates
+→ Templates
 ```c++
 template <typename T, unsigned N>
 void printArray(stD::ostream &out, T const (&x)[N]){

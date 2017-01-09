@@ -207,4 +207,4 @@ Frage:
 How can you store shapes (shape is the base class an can have derived classes like square and diamond, see exercise below) in a std::vector without producing memory leaks or object slicing?
  > Shared Pointer in den Vektor!
 
-Slicing verhindern ➪ Copy-Konstruktor löschen.
+Slicing verhindern → Copy-Konstruktor löschen.
