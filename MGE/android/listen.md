@@ -74,7 +74,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
 ### Performance
 
 * Alte View bei getView wiederverwenden!
-* findViewById ist teuer! ➪ Zwischenspeichern
+* findViewById ist teuer! → Zwischenspeichern
 
 ```java
 ...

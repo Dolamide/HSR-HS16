@@ -209,7 +209,7 @@ Style Trigger sind analog zu Pseudo-Klassen in CSS.
 <Style TargetType="ListBoxItem">
     <Style.Triggers>
         <DataTrigger Binding="{Binding InStock}" Value="0">
-            <Setter Property="Foreground" Value="Red" /> 
+            <Setter Property="Foreground" Value="Red" />
         </DataTrigger>
     </Style.Triggers>
 </Style>
@@ -241,6 +241,4 @@ Style Trigger sind analog zu Pseudo-Klassen in CSS.
     * Do more with less
     * Win as one
 
-!!! seealso
-
-    [UX checklist for desktop applications](https://msdn.microsoft.com/en-us/library/windows/desktop/dn742479.aspx)
+→ See [UX checklist for desktop applications](https://msdn.microsoft.com/en-us/library/windows/desktop/dn742479.aspx)

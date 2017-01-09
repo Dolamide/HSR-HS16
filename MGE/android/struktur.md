@@ -16,6 +16,10 @@
     * [Navigation Patterns](https://developer.android.com/design/patterns/navigation.html)
 
 ### Zurück ≠ Zurück
+<figure style="float: right;max-width: 40%;">
+    <img src="images/ancestral-temporal-navigation.png" style=""/>
+    <figcaption></figcaption>
+</figure>
 
 Zurück kann entweder *zum hierarchischen Parent* **up** (ancestral) oder aber zurück zum *vorherigen Element* **back** (temporal) bedeuten.
 
@@ -28,16 +32,11 @@ Typischerweise muss der Back-Button nicht manuell gemanaged werden - das Default
 meistens dem, was der User erwartet. Tabs, Filter, Zoom, Sorting usw. macht der Back-Button
 nicht "rückggängig".
 
-
-![](images/ancestral-temporal-navigation.png)
-: Quelle: [Android Training design navigation](https://developer.android.com/training/design-navigation/ancestral-temporal.html))
-
 ### Fragments
+<img src="images/activity-fragment-communication.png" style="max-width: 30%; float:right;" />
 
 **Problem**: Je nach Formfaktor wäre es nützlich, mehrere Screens anzuzeigen
 aber es kann nur eine Activity aufs Mal angezeigt werden.
-
-![](images/activity-fragment-communication.png)
 
 **Fragment** Modularer Teil einer Activity mit eigenem Lebenszyklus (analog Activity - aber umfangreicher!)
 
@@ -157,8 +156,7 @@ public class MainActivityFragment extends Fragment {
 
 ### Master-Detail Navigation
 
-![](images/master-detail-navigation.png)
-
+<img src="images/master-detail-navigation.png" style="float: right; max-width: 60%" />
 Für unterschiedliche Screens werden unterschiedliche XML Layouts entworfen, welche
 1..n Fragments nutzen (Hier 1 oder 2).
 
@@ -206,6 +204,12 @@ public class ItemListActivity extends Activity
 Implementation Deklarativ in XML (im bsp. menu/main.xml). Eine Imperative implementierung
 wäre auch möglich, deklarativ ist aber wann immer möglich vorzuziehen.
 
+!!! note
+
+    Auch Fragments können Einträge dem Menu der Activity hinzufügen. Dafür muss
+    in der ``onCreate`` die Methode ``setHasOptionsMenu(true);`` aufgerufen werden und
+    analog zur Activity die onCreateOptionsMenu Methode überschrieben werden.
+
 ```xml
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
@@ -242,12 +246,6 @@ public class MainActivity extends Activity {
 }
 ```
 
-!!! note
-
-    Auch Fragments können Einträge dem Menu der Activity hinzufügen. Dafür muss
-    in der ``onCreate`` die Methode ``setHasOptionsMenu(true);`` aufgerufen werden und
-    analog zur Activity die onCreateOptionsMenu Methode überschrieben werden.
-
 
 ### Settings-Page
 
@@ -261,10 +259,9 @@ public class MainActivity extends Activity {
 Analog
 
 ### Toolbar
+<img src="images/actionbar.png" style="max-width: 30%; float:right" />
 
 Früher Action-Bar (deprecated seit Android 5.0)
-
-![](images/actionbar.png)
 
 1. App Icon und ev. Up- / Home-Navigation
 2. Name der App oder View-Switcher

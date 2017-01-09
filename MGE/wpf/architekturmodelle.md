@@ -36,11 +36,13 @@ Alternativ könnte man auch eingene lösungen mit Hilfe von bsp. Static Binding 
     "{Binding MinPwLenth, StringFormat={x:Static resx:Resources.MIN_PASSWORD_LENGHT_ERROR}}"
     ```
 
+ (page break)
+
 ## MVVM
 
 Dient dazu, die View und das Modell sauber zu "verleimen".
 
-![](images/mvvm.png)
+<img src="images/mvvm.png" style="max-width: 80%" />
 
 Wichtigste Regeln:
 
@@ -108,4 +110,3 @@ TODO;::: F48
 * F50: DataContext von aussen setzen.
     * F51: Erstellen aus der View?
 ```
-

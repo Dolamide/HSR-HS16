@@ -1,5 +1,5 @@
-<div style="font-weight: bold;font-size: 2em;page-break-before: always;">Inhalt</div>
-{{TOC}}
+<!-- <div style="font-weight: bold;font-size: 2em;page-break-before: always;">Inhalt</div>
+{{TOC}} -->
 
 # Einführung
 Desktop Apps haben immer noch eine gewisse Existenzberechtigung.

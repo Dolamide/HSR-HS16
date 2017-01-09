@@ -29,7 +29,10 @@ Java-Grundgerüst:
 * Konstruktor nicht nutzbar für "Initialisierung" - sondern "on"-Methoden nutzen
 * Die On-Methoden werden beim Zustandwechsel vom System aufgerufen (Template-Method Pattern).
 
-![](images/lifecycle.png)
+<figure>
+    <img src="images/lifecycle.png" style="max-width: 70%;"/>
+    <figcaption>Der Lifecycle einer Activity</figcaption>
+</figure>
 
 * Vorsicht: on-stop wird nicht garantiert aufgerufen. Darum sollten Daten unbedingt bei on-pause gesichert werden.
 * Jegliche "Konfigurationsänderung" (auch wenn man den Viewport dreht) hat einen Reset zur Folge

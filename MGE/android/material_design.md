@@ -22,7 +22,7 @@ Materia "Metapher" - 3D-Raum mit Licht und Schatten, Angelehnt an physikalische 
 
 Animationen helfen die Illusion aufrecht zu erhalten, dass wir die Materialien auf dem Screen (durch eine Glasscheibe) direkt manipulieren
 
-![](https://material-design.storage.googleapis.com/publish/material_v_9/0Bzhp5Z4wHba3VG9SaVpNbkpHb2s/whatismaterial_3d_elevation2.png)
+<img src="images/whatismaterial_3d_elevation2.png" style="max-width: 80%" />
 
 !!! remember
 

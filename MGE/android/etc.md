@@ -36,7 +36,7 @@ lightSensor = sensorManager.getSensorList(Sensor.TYPE_LIGHT).get(0);
  }
  @Override
  public void onSensorChanged(SensorEvent event) {
-     // Event values enthält je nach sensor unterschiedliche Werte  
+     // Event values enthält je nach sensor unterschiedliche Werte
      textView.setText(String.format("Helligkeit: %.0f", event.values[0]));
  }
 }
@@ -62,7 +62,7 @@ Vorteile
 Nachteile
 
 * Nicht weniger Schreibaufwand bei kleinen Projekten
-* Gute Tests sind sehr Wichtig ➪ Bei einer Fehlkonfiguration drohen NullPointerException
+* Gute Tests sind sehr Wichtig → Bei einer Fehlkonfiguration drohen NullPointerException
 
 
 #### Dependency-Injection mit Dagger
@@ -84,25 +84,20 @@ public class LibraryServiceModule {
        return new LibraryService();
    }
 }
-
 @Singleton
 @Component(modules = {LibraryServiceModule.class})
 public interface GadgeothekComponent {
     // Für jede Klasse, in die wir den LibraryService injizieren wollen
    void inject(GadgeothekActivity activity);
 }
-
 public class Application extends android.app.Application {
    GadgeothekComponent component;
-
    public void onCreate() {
        // In der Application erstellen wir die Komponente
        component = DaggerGadgeothekComponent.builder().build();
    }
-
    public GadgeothekComponent getComponent() {  return component;  }
 }
-
 public class GadgeothekActivity extends AppCompatActivity {
 
    // Mit @Inject annotierte Felder werden von der Komponente gesetzt

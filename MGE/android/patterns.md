@@ -31,7 +31,7 @@ Zweck: Um Zyklen zu vermeiden (Presentation-Schicht kennt Domain-Schicht aber ni
 * Observer melden sich beim Subject an
 * Wird der Observer benachrichtigt kann dieser den aktuellen Zustand abholen
 
-➪ Observer kennt Subject sehr gut aber das Subject weiss nichts über den konkreten Observer.
+→ Observer kennt Subject sehr gut aber das Subject weiss nichts über den konkreten Observer.
 
 Java bringt bereits das Observer-Pattern mit:
 
@@ -44,7 +44,7 @@ Java bringt bereits das Observer-Pattern mit:
 
 ### Model-View-Controller
 
-![Model-View-Controller (Activity)](images/mvc.png)
+<img src="images/mvc.png" style="max-width: 50%;float:right;" />
 
 Model
 : beinhaltet die Daten

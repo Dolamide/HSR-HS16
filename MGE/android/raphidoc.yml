@@ -1,0 +1,24 @@
+version: 1.0
+
+title: Mobile and GUI Engineering
+subtitle: Teil Android
+author: Raphael Zimmermann
+institute: HSR Hochschule für Technik Rapperswil
+
+pages:
+    - konzepte.md
+    - grundlagen_gui.md
+    - struktur.md
+    - testing.md
+    - listen.md
+    - persistenz.md
+    - hintergrundtasks.md
+    - material_design.md
+    - patterns.md
+    - etc.md
+
+assets:
+    - images/
+
+# TODO: load from ../theme/ or default
+theme: /home/rzi/Desktop/raphidoc/raphi_theme/

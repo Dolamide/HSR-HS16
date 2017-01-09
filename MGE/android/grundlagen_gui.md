@@ -62,15 +62,19 @@ Breite und Höhe eines Layouts:
 * wrap_content: Nur so viel platz wie nötig.
 * Absolute Grössen: nur selten empfehlenswert
 
-![](images/layout_params.png)
-: match_parent und wrap_content
+<figure>
+    <img src="images/layout_params.png" style="max-width: 70%;"/>
+    <figcaption>match_parent und wrap_content</figcaption>
+</figure>
 
 ### Linear Layout
 * Alle gleich viel Platz
 * layout_weight: Gewichtung, für mehr Platz.
 
-![](images/linear_layout.png)
-: layout_weight: Gewichtung, für mehr Platz.
+<figure>
+    <img src="images/linear_layout.png" style="max-width: 70%;"/>
+    <figcaption>layout_weight: Gewichtung, für mehr Platz.</figcaption>
+</figure>
 
 ### Relative Layout
 * Kinder werden relativ zu einander angeordnet
