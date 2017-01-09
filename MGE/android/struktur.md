@@ -9,12 +9,6 @@
 5. Wireframe/Storyboard für die Gesamtübersicht erstellen
 6. Usability Test mit einem Paper-Prototypen des Wireframes
 
-!!! seealso
-
-    * [Visualisierungen in den Vorlesungsfolien Nr. 6 ff.](https://docs.google.com/presentation/d/1ulzBi2fpOOTSRnb-nIdhZ7DC6khVDUPl24L9DaOS8Jc/edit#slide=id.gc4a87769a_0_6)
-    * [Designing Effective Navigation](https://developer.android.com/training/design-navigation/index.html)
-    * [Navigation Patterns](https://developer.android.com/design/patterns/navigation.html)
-
 ### Zurück ≠ Zurück
 <figure style="float: right;max-width: 40%;">
     <img src="images/ancestral-temporal-navigation.png" style=""/>
@@ -33,25 +27,14 @@ meistens dem, was der User erwartet. Tabs, Filter, Zoom, Sorting usw. macht der 
 nicht "rückggängig".
 
 ### Fragments
-<img src="images/activity-fragment-communication.png" style="max-width: 30%; float:right;" />
+<img src="images/activity-fragment-communication.png" style="max-width: 20%;float: left;" />
 
 **Problem**: Je nach Formfaktor wäre es nützlich, mehrere Screens anzuzeigen
-aber es kann nur eine Activity aufs Mal angezeigt werden.
-
-**Fragment** Modularer Teil einer Activity mit eigenem Lebenszyklus (analog Activity - aber umfangreicher!)
-
-Sollten immer dann verwendet werden, wenn die Ansicht kein möglicher Eintrittspunkt in die App ist (sonst Activity).
-
-
-Implementierung eines Fragments mehrheitlich analog zu einer Activity, mit dem Unterschied, dass die
-View explizit erstellt werden muss.
+aber es kann nur eine Activity aufs Mal angezeigt werden. **Fragment** Modularer Teil einer Activity mit eigenem Lebenszyklus (analog Activity - aber umfangreicher!). Sollten immer dann verwendet werden, wenn die Ansicht kein möglicher Eintrittspunkt in die App ist (sonst Activity). Implementierung eines Fragments mehrheitlich analog zu einer Activity, mit dem Unterschied, dass die **View explizit erstellt/inflated werden muss.**
 
 ```java
 public class MainActivityFragment extends Fragment {
-
-   public MainActivityFragment() {
-   }
-
+   public MainActivityFragment() {}
    @Override
    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                             Bundle savedInstanceState) {
@@ -61,10 +44,8 @@ public class MainActivityFragment extends Fragment {
 ```
 
 #### Implementations Variaten
-
 ##### Statisch
-
-Deklarativ mittels Fragment-Tag im Layout der Activity.
+Deklarativ mittels Fragment-Tag im Layout der Activity. Der Code der Activity ändert sich nicht.
 
 ```xml
 <LinearLayout ...>
@@ -76,25 +57,20 @@ Deklarativ mittels Fragment-Tag im Layout der Activity.
        tools:layout="@layout/fragment_main" />
 </LinearLayout>
 ```
-
-Der Code der Activity ändert sich nicht.
-
 ##### Dynamisch
-
-Explizit wird ein Platzhalter im Layout der Activity (mit id!) hinzugefügt (Per Konvention
+Explizit wird ein **Platzhalter im Layout** der Activity (mit id!) hinzugefügt (Per Konvention
 FrameLayout)
 
 ```xml
 <LinearLayout ...>
-   <FrameLayout
-      android:id="@+id/fragment_container"
+   <!-- ID nicht vergessen! -->
+   <FrameLayout android:id="@+id/fragment_container"
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
 </LinearLayout>
 ```
 
-In der Activity kann nun mit dem FragmentManager das ensprechende Fragment geladen und
-der Placeholder damit überschrieben werden.
+Zugriff in der Activity mit dem `FragmentManager`: Überschrieben des Platzhalters werden. Müssen explizit **inflated** werden (Während Activities nie "von Hand" instantiert werden)
 
 ```java
 public class MainActivity extends Activity {
@@ -102,52 +78,32 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_main);
-
-       // Starte Transaktion auf FragmentManager
-       FragmentManager fragmentManager = getFragmentManager();
-       FragmentTransaction fragmentTransaction =
-                               fragmentManager.beginTransaction();
-
+       FragmentManager fragmentManager = getFragmentManager(); // Starte Transaktion auf FragmentManager
+       FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
        // Instantiere Fragment und dem FragmentManager übergeben
        MainActivityFragment fragment = new MainActivityFragment();
        fragmentTransaction.add(R.id.fragment_container, fragment);
-
        // mehrere Fragments können hier hinzugefügt / entfernt werden
-
        // Transaktion abschliessen
        fragmentTransaction.commit();
     }
 }
 ```
-
-!!! note
-
-    Während Activities nie "von Hand" mittels ``new`` instantiert werden
-    dürfen, muss man das bei dynamischen Fragments explizit machen!
-
+<img src="images/fragment-lifecycle.png" style="max-width: 70%; float: right;" />
 
 ### Activity-Fragment Kommunikation
 
-Fragments dürfen (sollten) keine Abhängigkeit auf Parent haben.
-
-**Best Practice**: Implementiere Interface auf dem Parent zur Kommunikation.
-
+Fragments dürfen (sollten) keine Abhängigkeit auf Parent haben. **Best Practice**: Implementiere Interface auf dem Parent zur Kommunikation.
 
 ```java
 public class MainActivityFragment extends Fragment {
-
-    public interface OnItemSelectedListener {
-        void onItemSelected(String item);
-    }
-
+    public interface OnItemSelectedListener { void onItemSelected(String item); }
     OnItemSelectedListener parentActivity;
-
     @Override
     public void onAttach(Context activity) {
         super.onAttach(activity);
         if (!(activity instanceof OnItemSelectedListener)) {
-            throw new AssertionError(
-             "Activity must implement View.OnClickListener!");
+            throw new AssertionError( "Activity must implement View.OnClickListener!");
          }
          parentActivity = (OnItemSelectedListener) activity;
      }
@@ -156,29 +112,43 @@ public class MainActivityFragment extends Fragment {
 
 ### Master-Detail Navigation
 
-<img src="images/master-detail-navigation.png" style="float: right; max-width: 60%" />
+<img src="images/master-detail-navigation.png" style="float: right; max-width: 40%" />
 Für unterschiedliche Screens werden unterschiedliche XML Layouts entworfen, welche
 1..n Fragments nutzen (Hier 1 oder 2).
 
-Die Activity list zur Laufzeit aus, welche Fragments vorhanden sind und reagiert ensprechend.
+Die Activity liest zur Laufzeit aus, welche Fragments vorhanden sind und reagiert ensprechend.
+
+```xml
+<!-- 2 Panes in Bsp. layout-sw600dp/activity_main.xml -->
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <fragment
+            android:id="@+id/notesListFragment"
+            android:name="ch.hsr.mge.masterdetailflow.presentation.NotesListFragment"/>
+        <FrameLayout
+            android:id="@+id/notesDetailContainer"/>
+</LinearLayout>
+<!-- 1 Pane in layout/activity_main.xml  -->
+<fragment
+        android:id="@+id/notesListFragment"
+        android:name="ch.hsr.mge.masterdetailflow.presentation.NotesListFragment"/>
+```
 
 ```java
 public class ItemListActivity extends Activity
                 implements ItemListFragment.Callbacks {
-
     private boolean twoPane;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_item_list);
-
        // Gibt es das 2te Fragment? Falls ja: Tablet mode
        if (findViewById(R.id.item_detail_container) != null) {
            twoPane = true;
        }
     }
-    // ...
     @Override
     public void onItemSelected(String id) {
         if (twoPane) {
@@ -202,61 +172,33 @@ public class ItemListActivity extends Activity
 ### Option Menu
 
 Implementation Deklarativ in XML (im bsp. menu/main.xml). Eine Imperative implementierung
-wäre auch möglich, deklarativ ist aber wann immer möglich vorzuziehen.
-
-!!! note
-
-    Auch Fragments können Einträge dem Menu der Activity hinzufügen. Dafür muss
-    in der ``onCreate`` die Methode ``setHasOptionsMenu(true);`` aufgerufen werden und
-    analog zur Activity die onCreateOptionsMenu Methode überschrieben werden.
+wäre auch möglich, deklarativ ist aber wann immer möglich vorzuziehen. Nutzung mit Fragments: in ``onCreate`` die Methode ``setHasOptionsMenu(true);`` aufrufen und `onCreateOptionsMenu`-Methode überschrieben.
 
 ```xml
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-   xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android" ...>
    <item android:id="@+id/action_search"
        android:title="@string/action_search"
        android:icon="@drawable/ic_action_search"
        android:orderInCategory="100"
        android:showAsAction="never" />
-
    <item android:id="@+id/action_settings"
        android:title="@string/action_settings"
-       android:orderInCategory="100"
        android:showAsAction="never" />
 </menu>
 ```
 ```java
 public class MainActivity extends Activity {
-
    public boolean onCreateOptionsMenu(Menu menu) {
        // Inflate the menu; this adds items to the action bar if it is present.
        getMenuInflater().inflate(R.menu.menu_main, menu);
        return true;
    }
-
    public boolean onOptionsItemSelected(MenuItem item) {
        switch (item.getItemId()) {
        case R.id.action_search: // ID aus main.xml
-           // handle start
-           ...
-       }
-   }
-   ...
-}
+           // ....
+    }}}
 ```
-
-
-### Settings-Page
-
-!!! seealso
-
-    Folie Nr. 37/38
-
-
-### Fragment Menu
-
-Analog
 
 ### Toolbar
 <img src="images/actionbar.png" style="max-width: 30%; float:right" />
@@ -268,6 +210,13 @@ Früher Action-Bar (deprecated seit Android 5.0)
 3. Actions (Teil des Options Menu)
 4. Action-Overflow mit dem Rest des Menus
 
+```xml
+<android.support.v7.widget.Toolbar
+       android:id="@+id/toolbar"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+   </android.support.v7.widget.Toolbar>
+```
 ```java
 public class MainActivity extends AppCompatActivity {
 
@@ -285,8 +234,8 @@ public class MainActivity extends AppCompatActivity {
 ### Navigation Drawer
 
 Der Navigation Drawer ist platzsparend - hat aber eine schlechte Usuability.
-Das Widget ist nicht Teil von Android und muss über eine Support-Library eingebunden werden.
-
+Das Widget ist nicht Teil von Android und muss über eine Support-Library eingebunden werden. (Implementation mit `DrawerLayout`)
+---
 ### Toast vs. Snack
 
 **Toast** ist eine kleine Feedback-Nachricht

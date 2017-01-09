@@ -1,38 +1,32 @@
 ## Persistenz
 
-Zwei unterschiedliche Arten von Daten:
-
-* Zustandsdaten der Views (aktuelle Eingabewerte, Checkboxes, etc.)
-* Anwendungsdaten unserer Domain-Klassen
+Zwei unterschiedliche Arten von Daten: **View-Daten Persitenz** (aktuelle Eingabewerte/Checkboxen) und **App-Daten Persistenz** (Domain-Klassen)
 
 ### View-Daten Persistieren
 
 * Im Bundle-Object von ``onCreate`` und ``onSaveInstanceState``
 * Geht nur mit Views, die eine ID haben
+* Vorsicht: onSaveInstance wird nicht immer ausgeführt (bsp. kill, Back-Button)
 
 ```java
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
-
        // Restore state...
+       mCurrentScore = savedInstanceState.getInt(STATE_SCORE);
     }
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         // Save state...
        savedInstanceState.putInt(STATE_SCORE, mCurrentScore);
-       savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
-
        super.onSaveInstanceState(outState);
     }
 }
 ```
 
-Vorsicht: onSaveInstance wird nicht immer ausgeführt (bsp. kill, Back-Button)
-
 ### App-Daten Persistieren
+App-Daten immer in onPause sichern, da `onSaveInstanceState` nicht immer ausgeführt(bsp. kill, Back-Button)
 
 #### Shared Preferences
 
@@ -40,28 +34,10 @@ Vorsicht: onSaveInstance wird nicht immer ausgeführt (bsp. kill, Back-Button)
 SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 SharedPreferences.Editor editor = settings.edit();
 editor.putBoolean("disabled", false);
-
 // Nur boolean, float, int, long, String, Set möglich
 boolean isDisabled = settings.getBoolean("disabled", false); // False als default
-
 editor.commit();
 ```
-
-Listener kann registriert werden...
-
-#### Files
-```java
-// Auf interner / privater speicher schreiben
-FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-fos.write("File Content".getBytes());
-fos.close();
-
-// Auf "shared" Storage
-// Braucht permission in manifest!
-File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-File file = new File(path, "HSR_Cat.png");
-```
-
 #### SQLite
 
 ```java
@@ -84,9 +60,17 @@ DBHelper helper = new DBHelper(this);
 SQLiteDatabase db = helper.getReadableDatabase();
 db.execSQL("SELECT * FROM ...;");
 ```
+#### Files
+```java
+// Auf interner / privater speicher schreiben (Methode openFileOutput auf Context (Activity extends Context))
+FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+fos.write("File Content".getBytes());
+fos.close();
+// Auf "shared" Storage (Braucht permission in manifest!)
+File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+File file = new File(path, "HSR_Cat.png");
+```
+
 
 #### Cloud
-
-* firebase.google.com
-* realm.io
-* ...
+firebase.google.com, realm.io usw. Nicht imer Verfügbar - braucht zwischenspeicher.

@@ -13,8 +13,10 @@
 
 * Tree Controls
 * Kärtli aus Falschen Multipe Choise Fragen oder einfach Repetieren
-* margin="Left, Top, right, bototm"?
-* Zusammenfassungen Drucken und mit Rotstift durch!
+* margin="Left, Top, right, bototm" (JA!)
+* Android: Navigation drawer relevant?
+* Android: Übungen
+* Ableich mit Spick auf studentenportal
 
 ## Aufgabentypen
 

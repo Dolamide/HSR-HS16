@@ -1,74 +1,54 @@
 ## Weiterführende Themen
 
 ### Sensoren
-> Sie können Sensoren in Android ansprechen und die verschiedenen Typen von Sensoren erklären
-
-* Unterstützung von Gerät zu Gerät verschieden
-* Qualität sehr unterschiedlich
-
-Kategorien
-
-* Bewegungssensoren
-* Umgebungssensoren (Temperatur, Beleuchtung)
-* Lagesensoren (Neigung, Kompass)
+* Unterstützung und Qualität von Gerät zu Gerät verschieden
+* Kategorien:
+    * Bewegungssensoren (Beschleunigung)
+    * Umgebungssensoren (Temperatur, Beleuchtung)
+    * Lagesensoren (Neigung, Kompass)
 
 ```java
-// Implementieren von SensorEventListener für onSensorChanged
-public class MainActivity extends AppCompatActivity implements SensorEventListener {
-
-// ...
-protected void onCreate(Bundle savedInstanceState) {
-// ...
-lightSensor = sensorManager.getSensorList(Sensor.TYPE_LIGHT).get(0);
-// TODO: Check, ob sensor vorhanden!
+public class MainActivity extends AppCompatActivity
+    implements SensorEventListener { // Listener für onSensorChanged
+    private Sensor lightSensor;
+    private SensorManager sensorManager;
+    protected void onCreate(Bundle savedInstanceState) {
+        // ...
+        sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        lightSensor = sensorManager.getSensorList(Sensor.TYPE_LIGHT).get(0); // evtl. OutOfBound!
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // nur Sensordaten empfangen wenn die App im Vordergrund läuft
+        sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // nur Sensordaten empfangen wenn die App im Vordergrund läuft
+        sensorManager.unregisterListener(this);
+    }
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        // Event values enthält je nach sensor unterschiedliche Werte
+        textView.setText(String.format("Helligkeit: %.0f", event.values[0]));
+    }
 }
-@Override
- protected void onResume() {
-     super.onResume();
-     // nur Sensordaten empfangen wenn die App im Vordergrund läuft
-     sensorManager.registerListener(this, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
- }
- @Override
- protected void onPause() {
-     super.onPause();
-      // nur Sensordaten empfangen wenn die App im Vordergrund läuft
-     sensorManager.unregisterListener(this);
- }
- @Override
- public void onSensorChanged(SensorEvent event) {
-     // Event values enthält je nach sensor unterschiedliche Werte
-     textView.setText(String.format("Helligkeit: %.0f", event.values[0]));
- }
-}
-
-
 ```
-### Dependency- und View Injection
-> Sie können Dependency- und View Injection in ihren Android-Projekten einsetzen
 
+### Dependency- und View Injection
 Problem: Enge Koplung (Bsp. Library Service) - wird zudem mehrfach instantiiert.
 
-Möglichkeiten:
-
-* Konstruktor mit Parametern und final-Attributen
-* Setter Methoden (unschön - da Benutzer aufpassen muss)
-
-Vorteile
-
-* keine statischen Methoden mehr
-* zentrale Konfiguration in Modul und Komponente
-* Einfache Testbarkeit: Modul oder Applikation austauschen
-
-Nachteile
-
-* Nicht weniger Schreibaufwand bei kleinen Projekten
-* Gute Tests sind sehr Wichtig → Bei einer Fehlkonfiguration drohen NullPointerException
-
+* `+` keine statischen Methoden mehr
+* `+` zentrale Konfiguration in Modul und Komponente
+* `+` Einfache Testbarkeit: Modul oder Applikation austauschen
+* `-` Nicht weniger Schreibaufwand bei kleinen Projekten
+* `-` Gute Tests sind sehr Wichtig → Bei einer Fehlkonfiguration drohen NullPointerException
 
 #### Dependency-Injection mit Dagger
-
 Modul
-: En Modul instanziert unsere Klassen
+: Ein Modul instanziert unsere Klassen (z.B. LibraryService) die wir injecten wollen
 
 Komponente
 : Eine Komponente fasst Module zusammen und ist zuständig für die Injection
@@ -138,46 +118,31 @@ class ExampleActivity extends Activity {
 ```
 
 ### Data Binding
-> Sie haben das Konzept von Data Binding kennen gelernt und können dieses erkläutern
-
-Nachteile:
-
-* Aufpassen, dass nicht zu viel Logik ins XML wandert
-* Android generiert noch mehr zusätzlichen Code
-* Code schwieriger zu lesen und zu debuggen
-* Data Binding ist eine Extra Library und ist nicht der Default
-
+* `-` Aufpassen, dass nicht zu viel Logik ins XML wandert
+* `-` Android generiert noch mehr zusätzlichen Code
+* `-` Code schwieriger zu lesen und zu debuggen
+* `-` Data Binding ist eine Extra Library und ist nicht der Default
 
 In der View können Variablen, die zu "Binden" sind angegeben werden:
 ```xml
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-   <data >
-       <variable name="user" type="ch.hsr.mge.databindingdemo.User"/>
-   </data>
-   <RelativeLayout
-       ... >
+   <data><variable name="user" type="ch.hsr.mge.databindingdemo.User"/></data>
+   <RelativeLayout ... >
        <TextView android:text="@{user.firstName}" ... />
        <TextView android:text="@{String.valueOf(index + 1)}"
                 android:visibility="@{age < 13 ? View.GONE : View.VISIBLE}"
-                android:transitionName='@{"image_" + id}'
-      ... />
+                android:transitionName='@{"image_" + id}' ... />
 
       <!-- EVENT wird gebunden -->
-      <Button
-       android:text="Save"
-       android:onClick="@{controller.onButtonSaveClicked}"/>
-
+      <Button android:text="Save" android:onClick="@{controller.onButtonSaveClicked}"/>
    </RelativeLayout>
 </layout>
 ```
 
 Das Binding erfolg in der Activity, im onCreate:
 ```java
-
 // Generierte Klasse anhand des Layouts
-ActivityMainBinding binding =
-    DataBindingUtil.setContentView(this, R.layout.activity_main);
-
+ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 User user = new User("Peter", "Packet");
 binding.setUser(user);
 ```
@@ -193,6 +158,6 @@ public class User {
           if (!Objects.equals(lastName.get(), s.toString())) {
               lastName.set(s.toString());
           }
-   }
-};
+   };
+}
 ```

@@ -1,37 +1,38 @@
 ## Patterns
 
-* Design-Patterns die in UIs sehr verbreitet sind: Observer und MVC
+## Multitier Architecture
 
-### Multitier Architecture
+* Jede Schicht hat Zugriff auf die Darunterliegende - aber nicht umgekehrt.
+* Es gibt verschiedenste variationen davon.
 
-Jede Schicht hat Zugriff auf die Darunterliegende - aber nicht umgekehrt.
+**Presentation-Schicht**
 
-Es gibt verschiedenste variationen davon.
-
-#### Presentation-Schicht
 * Darstellung
 * Interaktion mit dem Benutzer
 * stark an UI-Toolkit gebunden
 
-#### Domain-Schicht
+**Domain-Schicht**
+
 * Businesslogik
 * Domainklassen
 * Wenig externe Abhängigkeiten
 * Gut Testbar
 
-#### Data-Schicht
+**Data-Schicht**
+
 * Speicherung der Daten
 * Stellt diese Dienste der Domain zur Verfügung (z.B. DB, Cloud)
 
+<img src="images/observer.svg" style="max-width: 60%; float: right;" />
 ### Observer
 
-Zweck: Um Zyklen zu vermeiden (Presentation-Schicht kennt Domain-Schicht aber nicht umgekehrt)
+Zweck: Um **Zyklen zu vermeiden** (Presentation-Schicht kennt Domain-Schicht aber nicht umgekehrt)
 
 * Zwei Rollen: Subject (wird beobachtet) und Observer (welcher beobachtet)
 * Observer melden sich beim Subject an
 * Wird der Observer benachrichtigt kann dieser den aktuellen Zustand abholen
 
-→ Observer kennt Subject sehr gut aber das Subject weiss nichts über den konkreten Observer.
+→ Observer kennt Subject sehr gut aber das **Subject weiss nichts über den konkreten Observer**.
 
 Java bringt bereits das Observer-Pattern mit:
 
@@ -40,7 +41,6 @@ Java bringt bereits das Observer-Pattern mit:
 * notify in zwei Schritten
     * `setChanged()`
     * `notifyObservers()` → Ruft `update(Observable o, Object arg)` auf allen Observern auf.
-
 
 ### Model-View-Controller
 
