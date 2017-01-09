@@ -5,6 +5,28 @@
 
 * 1 A4 Seite einseitig bedruckt.
 * Sonst: Closed Book
+* Prüfungen!
+* Spick mit Testat (Mein JS + SESSION + CSS/SASS von anderen testaten)
+    * Node APIs? (Methoden/Attribute clientrequest, serverersponse, streams, )
+    * events.EventEmitter
+    * Eigene Middleware
+    * `res.format`
+    * Grafik flex-flow directions
+        * Flex Attribute aus DOKU
+    * Ganz kurz syntax media queries
+    * Garret Ebenen
+    * ISO 9241-11
+    * Accessibility Regeln/Kriterien in Spick
+    * Schritte der Interaktion nach Norman + evtl. Grafik?
+    * Ablauf Card Sorting
+    * Responsive Patterns?! (Mostly Fluid, )
+    * Beispiel JS OO / Prototype / ES6 bzw. Typescript result (getter/seter)
+    * Beispiel destructing
+    * Beispiel Functional JS
+
+* (Flexbox üben → Froggy)
+* Functiona JS übungen
+* OO / manuelles übersetzen von ES6 -> ES5 (TS -> ES5) üben
 
 ## Vorbereitung
 

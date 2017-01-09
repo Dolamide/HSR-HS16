@@ -42,8 +42,10 @@
 ### Mostly Fluid
 Einfaches Multi-Column layout, welches bei grösseren Screens mehr margin (whitespace) hinzufügt und stapelt die Spalten vertikal in der schmalsten Variante.
 
-![Mostly-Fluid Pattern](http://static.lukew.com/md-patterns1.png)
-: Quelle: [Multi-Device Layout Patterns - lukew.com](http://www.lukew.com/ff/entry.asp?1514)
+<figure>
+    <img src="images/md-patterns1.png" style="max-width: 70%;"/>
+    <figcaption> Quelle: <a href-"http://www.lukew.com/ff/entry.asp?1514">Multi-Device Layout Patterns - lukew.com</a></figcaption>
+</figure>
 
 !!! seealso
 
@@ -54,8 +56,10 @@ Einfaches Multi-Column layout, welches bei grösseren Screens mehr margin (white
 ### Comlum Drop
 Multi-Spalten-Layout, welches einzelne Spalten "dropped", wenn der Bildschirm schmaler wird.
 
-![](http://static.lukew.com/md-patterns2.png)
-: Quelle: [Multi-Device Layout Patterns - lukew.com](http://www.lukew.com/ff/entry.asp?1514)
+<figure>
+    <img src="images/md-patterns2.png" style="max-width: 70%;"/>
+    <figcaption> Quelle: <a href-"http://www.lukew.com/ff/entry.asp?1514">Multi-Device Layout Patterns - lukew.com</a></figcaption>
+</figure>
 
 !!! seealso
 
@@ -68,8 +72,10 @@ Multi-Spalten-Layout, welches einzelne Spalten "dropped", wenn der Bildschirm sc
 
 Da unterschiedliche Layouts verwendet werden benötigt dieses Pattern mehr Arbeit.
 
-![](http://static.lukew.com/md-patterns3.png)
-: Quelle: [Multi-Device Layout Patterns - lukew.com](http://www.lukew.com/ff/entry.asp?1514)
+<figure>
+    <img src="images/md-patterns3.png" style="max-width: 70%;"/>
+    <figcaption> Quelle: <a href-"http://www.lukew.com/ff/entry.asp?1514">Multi-Device Layout Patterns - lukew.com</a></figcaption>
+</figure>
 
 !!! seealso
 
@@ -103,8 +109,10 @@ Eine Spalte für den kleinsten Screen - mehrere für breitere Screens
 
 ### Of Canvas
 
-![](http://static.lukew.com/md-patterns7.png)
-: Quelle: [Multi-Device Layout Patterns - lukew.com](http://www.lukew.com/ff/entry.asp?1514)
+<figure>
+    <img src="images/md-patterns7.png" style="max-width: 70%;"/>
+    <figcaption> Quelle: <a href-"http://www.lukew.com/ff/entry.asp?1514">Multi-Device Layout Patterns - lukew.com</a></figcaption>
+</figure>
 
 ### Off Screen menu
 ![](images/off-screen-menu.png)

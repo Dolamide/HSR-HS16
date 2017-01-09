@@ -39,8 +39,10 @@ Alle Kinder des Elements (flex-items) sind automatisch betroffen. Diese verhalte
 
 Die Elemente ordnen sich entweder entlang der Main-Achse oder der Cross-Achse an (wobei die Main-Achse nicht zwingend horizontal sein muss.)
 
-![](https://cdn.css-tricks.com/wp-content/uploads/2011/08/flexbox.png)
-: flex-flow directions - aus [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+<figure>
+    <img src="images/flexbox.png" style="max-width: 70%;"/>
+    <figcaption>flex-flow directions - aus <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/">A Complete Guide to Flexbox</a></figcaption>
+</figure>
 
 Main axis
 : Die Primärachse, an welche die flex Elemente angeordnet werden. *Nicht unbedingt horizontal!* - hängt von der flow-direction ab.
@@ -56,7 +58,7 @@ cross-axis
 
 ## Attribute auf dem Container
 * `display: flex;` oder `display: inline-flex;`
-* `flex-direction: row | row-reverse | column | column-revere` legt die Ausrichtung fest
+* `flex-direction: row | row-reverse | column | column-reverse` legt die Ausrichtung fest
 * `flex-wrap: nowrap | wrap | wrap-reverse;` Wrap ermöglicht, dass Elemente umgebrochen werden (default: alles auf eine Zeile.).
 * `flex-flow: [flex-direction] [flex-wrap]` (shorthand)
 * `justify-content: flex-start | flex-end | center | space-between | space-around`: Definiert, wie die Elemente entlang der Main-Achse verteilt werden.
@@ -65,7 +67,7 @@ cross-axis
 ## Attribute auf den Elementen
 * `order: <integer>`: Ändert die Sortierung der Elemnte (default: Wie im Code)
 * `flex-grow: <integer>` Gewichtung, wie und ob gewachsen werden soll.
-* `flex-grow: <integer>` Gewichtung, wie und ob geschrumpft werden soll.
+* `flex-shrink: <integer>` Gewichtung, wie und ob geschrumpft werden soll.
 * `flex-basis: ` Grösse des Elements - kann in beliebiger Einheit (%, rem, usw) angegeben werden (auto ist erlaubt)
 * `flex: [flex-grow] [flex-shrink] [ flex-basis]` (shorthand)
 * `align-self: ` damit kann der  `align-items`-Wert vom Parent überschrieben werden

@@ -32,7 +32,7 @@ Media Queries können mit Operatoren kominiert werden:
 /* AND */
 @media (min-width: 20em) and (max-width: 30em) {}
 /* OR */
-@media (max-width: 10em), (min-width: 20em) and 
+@media (max-width: 10em), (min-width: 20em) and
        (max-width: 30em), (min-width: 40em) {}
 /* NOT */
 @media not screen {}
@@ -54,6 +54,21 @@ Media Queries können mit Operatoren kominiert werden:
 
 
 ## Viewports
+
+* Ursprung: Wie können Desktop optimierte webseiten mobile angeschaut werden?
+* Layout Viewport: Eine Grösse wie auf dem Desktop, also breiter als der eigentliche Phone-Screen
+* Visual Viewport: Die eigentliche Grösse auf dem Phone (was der User sieht)
+* Desktop: Visual Viewport = Layout Viewport
+* Ideal Viewport: Die ideale Grösse (Höhe und Breite) für ein speifisches Phone, damit die Website "optimal" aussieht (responsive)
+* Responsive: Layout Viewport = Ideal Viewport
+    * Mit: `<meta name="viewport" content="width=device-width,initial-scale=1"`
+
+* Mobile Zooming: CSS Pixel werden grösser - der  Layout Viewport verändert sich aber nicht - also muss auch nichts neu berechnet werden.
+* Desktop Zooming: Die Grösse des Viewport ändert sich - dadurch haben weniger Pixel auf dem Viewport platz → Alles wird grösser
+
+
+Viewport = Size Browser Window (Desktop)
+
 
 > Die Teilnehmer können erklären warum das Setzen des Viewports im Meta Tags für responsive Seiten wichtig ist.
 

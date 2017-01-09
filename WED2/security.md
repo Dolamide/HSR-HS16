@@ -157,6 +157,46 @@ Der Nutzer ist aktuell bei RetireEasy eingelogged, er wird aber (z.B. über eine
 
 ## Top Overlooked Security Threats To NodeJS Web Applications
 
+* Enable CSRF Protection
+    * Cross Site Request Forgery
+
+    ```js
+    app.use(express.csrf());
+
+    app.use(function(req, res, next) {
+        res.locals.csrftoken = req.csrfToken();
+        next();
+    });
+    ```
+
+    ```
+    <input type="hidden" name="_csrf" value="{{csrftoken}}" />
+    ```
+
+    * Problem: Express CSRF middleware ignoreirt  GET, Option und HEAD requests → Was ja gut ist, aber man muss sichertellen, dass GET kein mutable state verursacht.
+
+* Preventing Internal implementation disclosure
+    * Response headers (Bsp. `X-Powered-By: Express`) nicht sensen (`app.disable("x-powered-y")`)
+    * Auch session keys können infos leaken.
+* Cross Site Scripting
+    * Allows attacker to execute code in victims browser
+        * Force redrects to malicious sites
+        * access cookies, session tokes or sensitive information
+    * Template libraries with automagic escaping don't solve te problem entierly!
+    * Different encoding logic depending on where (eg. links require different encoding)
+    * Don't forget data in the URL (eg. in Hash or ther query parameters!)
+    * Secure cookie: With `httpOnly` (can't be accessed from JS in Browser) and `secure` (https only)
+    * Add content security policy header
+* HTTP Prameter Pollution
+    * Multiple paramters with the same name → array! (eg. `req.body.firstname`)
+    * Generates Type erros -> uncaught errors in async code could crash the http server (DoS)!
+    * If passed directly into a DB: Modify application behaviour or bypass validation (eg. `['foo', 'baa'] + 'x'` macht js stillschweigend zu `'foo,baax'`)
+    * Fix: Typecheck, test with input fuzzing, robust error handling
+* Regular Expressions DoS
+    * Can take exponential execution time for specific inputs.
+    * Fix: Review regexes!
+
+
 !!! seealso
 
     * http://nodegoat.herokuapp.com/tutorial
