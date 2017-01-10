@@ -2,7 +2,7 @@
 
 Mit dem Shifting Operatoren kann in in ein Stream geschrieben
 bzw. gelesen werden. Nicht Signifikante Zeichen (Spaces etc) werden
-beim lesen übersprungen.
+beim Lesen übersprungen.
 
 ```c++
 std::cin >> x;

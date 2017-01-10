@@ -18,7 +18,7 @@ int const zero{}
 Java *final*: Variable ist unveränderlich - nicht neu zuweisbar
 (aber Werte können verändert werden)
 
-C++ *const*: Zustand bleibt genau so bestehen - also *imutable*
+C++ *const*: Zustand bleibt genau so bestehen - also *immutable*
 
 Const sollte wann immer möglich verwendet werden, da
 
@@ -121,7 +121,7 @@ verwendet werden:
 * .31 vs .3l
 * 0XFULL vs 0xFull
 * "String literal" sind **nicht vom Typ std::string**, sondern Character Arrays (legacy)
-* Mit dem s-Suffix ("Real string"s) wird ein String literal der Klasse ein std::string{} erstellt.
+* Mit dem s-Suffix ("Real string"s) wird ein String literal der Klasse std::string{} erstellt.
 * *Raw-String-Literal*: R"(\root.hsr\skripte\)" (Runde klammern zwingend!)
   alternativ mit dientifier R"kqqkqq(\root.hsr\skripte\)kqqkqq"
 
@@ -169,10 +169,10 @@ double x = 45/8; // =5.0, da konvertierung erst nachher
 
 !!! warning
 
-    Divison durch null ist **undefined behavior**
-    Modulo null ist auch division durch null!
+    Divison durch Null ist **undefined behavior**,
+    Modulo null ist auch division durch Null!
 
-    String sind value containers!
+    Strings sind value containers!
 
 ## Strings
 

@@ -4,7 +4,7 @@
 
 * Tut etwas gut und ist ensprechend benannt
 * Tief verschachtelte Kontrollstrukturen vermeiden
-* invarian: Garantiert einen State (spätestens nach dem Ablauf des Konstruktors)
+* invariant: Garantiert einen State (spätestens nach dem Ablauf des Konstruktors)
 * Klasse sollten in namespace gepackt werden!
 
 ## Struktur
@@ -32,12 +32,13 @@ public: /*Public block*/
 
 private: /*Private block*/
     bool isValidDate() const;
-}; /*Semikolon am ender der Klasse NICHT VERGESSEN!*/
+}; /*Semikolon am Ende der Klasse NICHT VERGESSEN!*/
 }
 #endif /* DATE_H_ */
 
 ```
 
+Date.cpp:
 ```c++
 #include "Date.h"
 
@@ -60,8 +61,8 @@ bool isValidDate() const
 
 Bestehend aus:
 
-* **Include Guards** - um nicht gegen die one definition rule zu verstossen
-* **Class Head** - kann entwerde `class` oder `struct` sein. Einziger Unterschied:
+* **Include Guards** - um nicht gegen die One Definition Rule (ODR) zu verstossen
+* **Class Head** - kann entweder `class` oder `struct` sein. Einziger Unterschied:
     * `class`: Default Sichtbarkeit der Members ist `private`
     * `struct`: Default Sichtbarkeit der Members ist `public`
 * **Access Specifier** - Sichtbarkeit. Alle Members, welche unter einem Access Specifier definiert werden haben die ensprechende Sichtbarkeit. Die Sichtbarkeiten dürfen mehrfach vorkommen.
@@ -93,10 +94,10 @@ void foo() {
 
 ## Konstruktoren
 
-**Konstruktoren dürfen nur valide Instantzen produzieren** - sonst sollte eine Exception geworfen werden!
+**Konstruktoren dürfen nur valide Instanzen produzieren** - sonst sollte eine Exception geworfen werden! - Garantiert Invarianz
 
 Default Constructor
-: Hat keine parameter. Initialisiert die Member-Variablem mit default Werten.
+: Hat keine parameter. Initialisiert die Member-Variablen mit default Werten.
 : Implizit verfügbar, wenn keine expliziten Konstruktoren deklariert sind.
 
 ```c++
@@ -195,7 +196,7 @@ Daher muss mittels `->` auf members zugegriffen werden:
 this->day
 ```
 
-Ist eine Methode `const`, darf diese auf members von this zugreiffen aber nichts setzen.
+Ist eine Methode `const`, darf diese auf members von this zugreifen, aber nichts setzen.
 
 ## static
 Wenn ein Member static ist kann er nicht auch const sein. Das `this` Object ist analog zu Java nicht verfügbar. Der Aufruf erfolgt über `::`.
@@ -213,7 +214,7 @@ Mächtig, sollte aber nur dann verwendet werden, wenn sinnvoll und "natürlich".
 ![Überladbare Operatoren](images/overloadable_operators.png)
 : Überladbare Operatoren
 
-`::`, `.*`, `.` und `?:` können nicht überladen werden.s
+`::`, `.*`, `.` und `?:` können nicht überladen werden.
 
 ### Freies Operator-Overloading
 Im Header-File:

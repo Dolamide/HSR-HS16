@@ -1,13 +1,13 @@
 # Algorithms
 
-Algorhtmen nehmen ein oder mehrere Ranges in der Form von Iteratoren entgegen und führen darauf eine oder mehrere Aktionen wie Sortierung, Transformation, Ausgabe in einen Stream etc. aus.
+Algorithmen nehmen ein oder mehrere Ranges in der Form von Iteratoren entgegen und führen darauf eine oder mehrere Aktionen wie Sortierung, Transformation, Ausgabe in einen Stream etc. aus.
 
 Der Vorteil von Algorithmen im Gegensatz zu klassischen For/While-Schleifen sind primär:
 
 * Minimieren von Fehlern (bsp. bei swap)
     * Vermeiden von OutOfBound ("one off error")
 * Lesbarkeit
-* Effizientere Implementiernug als wenn "von hand" - da diese auf bestimmte Iteratoren optimiert sind.
+* Effizientere Implementierung als wenn "von hand" - da diese auf bestimmte Iteratoren optimiert sind.
 
 Recap: Last zeigt nicht auf das letzte, sondern das "beyond last" Element
 
@@ -37,7 +37,7 @@ int average(std::vector<int> values) {
 }
 ```
 
-Lambdas werden im hintergrund in funktoren abgebidet
+Lambdas werden im Hintergrund in funktoren abgebildet
 
 ## Streams & Algorithmen
 Um Streams und Algorithms zu kombinieren, müssen die Streams gewrapt werden:
@@ -54,7 +54,7 @@ void redirect(std::istream & in, std::ostream & out) {
 ## Häufig verwendete Algorithmen
 ### for_each
 
-* Die übergebene Operation ist eine Funktion ein Lambda oder ein Funktor.
+* Die übergebene Operation ist eine Funktion, also ein Lambda oder ein Funktor.
 * Die übergebene Operation wird für jedes Element aufgerufen.
 * Der Rückgabewert von `for_each` ist die Übergebene Operation.
 
@@ -86,7 +86,7 @@ std::transform(input.cbegin(), input.cend(),
 
 ### merge
 
-* Vereint zwei **sortiert** ranges
+* Vereint zwei **sortierte** ranges
 
 ```c++
 std::vector<int> r1{9, 12, 17, 23, 54, 57, 85, 95};
@@ -106,7 +106,7 @@ auto removed = std::remove_if(begin(values), end(values), is_prime);
 values.erase(removed, values.end());
 ```
 
-### `accumulate`
+### accumulate
 
 * Ist eigentlich für numerische Werte geadcht - geht aber auch bsp. mit Strings
 * Benötigt immer einen Start-Wert
@@ -126,12 +126,12 @@ Mit den Heap-Algorithmen kann auf einem Random-Access-Iterator ein Heap simulier
 
 Garantiert:
 
-* Das erste Element ist immer dsa grösste (max)
+* Das erste Element ist immer das grösste (max)
 * Garantierte Performance-Garantien
-    * `make_heap` $$3N$$ Vergleiche
-    * `pop_heap` $$2 \cdot log(N)$$ Vergleiche
-    * `push_heap` $$log(N)$$ Vergleiche
-    * `sort_heap` $$N*log(N)$$ Vergleiche
+    * `make_heap`: $$3N$$ Vergleiche
+    * `pop_heap`: $$2 \cdot log(N)$$ Vergleiche
+    * `push_heap`: $$log(N)$$ Vergleiche
+    * `sort_heap`: $$N*log(N)$$ Vergleiche
 
 !!! warning
 

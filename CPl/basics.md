@@ -1,22 +1,22 @@
 # Basics
 
 * C++ kompiliert in sehr effizienten maschienencode
-* Beitet mächtige abstracktion
+* Bietet mächtige Abstraktion
 * Schneller und wartbarer code.
 * "Gutes" C++ zu schreiben benötigt viel Erfahrung und Wissen.
 * ISO-Standardisiert
 
 Declare before use
 : Alle Entities in C++ müssen vor deren Benützung deklariert werden.
-: Da C++ kein gutes modul konzept für imports hat, wird ein preprocessor verwendet.
+: Da C++ kein gutes Modul-Konzept für imports hat, wird ein preprocessor verwendet.
 : Deklarationen werden in *header files* gemacht (header, da diese typischerweise im Kopf eines Programms inkludiert werden.) Mehrfach Definition: Guards
 
 Undefined behaviour
 : TBD (bsp. division durch 0, falscher Zugriff) => alles kann passieren
-: Wors case: es läuft!
+: Worst case: es läuft!
 
 One-Definition-Rule
-: Jeder Typ, Funktion, object, template oder translation unit darf nur genau eine definition haben.
+: Jeder Typ, Funktion, object, template oder translation unit darf nur genau eine Definition haben.
 : Für jede Definition kann es aber mehrere Deklarationen geben.
 
 function
@@ -37,17 +37,17 @@ definiert ist. Beispiel: `for_each(v.begin(), ...)` benötigt keinen `std::` pre
 
     ADL hat Vorrang gegenüber lokalen Funktionen!
 
-Daten auf dem Stack - heap muss manuell gemanaget werden.
+Daten auf dem Stack - heap muss manuell gemanaged werden.
 
 
 ## Header Files
 
-Braucht es, da *declaration first*. Grund dafür ist, dass die einerseits die Deklaratonen
+Braucht es, da *declaration first*. Grund dafür ist, dass die einerseits die Deklarationen
 bequem Inkludiert werden können, andererseits kann die implementation gewechselt weden.
 
-Headers der Standard Library (bsp. iostream) benötigen keinen .h Endung.
+Headers der Standard Library (bsp. iostream) benötigen keine .h Endung.
 
-Es werden include Guards benötigt um mehrfach inlcudes zu behandeln (mehrfache deklaration)
+Es werden include Guards benötigt um mehrfach inlcudes zu behandeln (mehrfache Deklaration verhindern)
 
 ```c++
 #ifndef SRC_HELLO_H_
@@ -82,7 +82,7 @@ Liefert code, welcher effektiv die main methode aufruft.
 
 
 ## int
-int ist *implementation defined* - sprich Compiler oder dessen Einstellungen definieren wie gross (16, 32 64 Bit) ein int sein kann.
+int ist *implementation defined* - sprich Compiler oder dessen Einstellungen definieren wie gross (16, 32, 64 Bit) ein int sein kann.
 Es gibt also keine garantie, dass ein int bsp. 32 Bits gross ist (wie in Java).
 Dies ist insbesondere mühsam, wenn portabler code geschrieben werden soll.
 
@@ -147,7 +147,7 @@ std::cout << function('a');
 
 ## Mutable keywords
 
-Variablen, welche by copy (`=`) gecaputred werden sind immutable by default - es sei denn, dass `mutable` Keyword ist explizit angegeben.
+Variablen, welche by copy (`=`) gecaptured werden sind immutable by default - es sei denn, dass `mutable` Keyword ist explizit angegeben.
 Dieses ermöglicht, dass `x` verändert werden darf (das geht implizip immer für Referenzen)
 
 ```c++
