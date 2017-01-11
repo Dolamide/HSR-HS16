@@ -1,14 +1,14 @@
 # Template Function
 
-Template Functions ermöglichen Typsichere Container und Funktionen ähnlich wie Generics in Java. Dies ermöglicht, Funktionen und Typen für Typen wiederzuverwenden, welche erst später definiert werden (Bsp. `std::vector` wurde von `MyClass` geschrieben, kann aber trotzdem zusammen verwendet werden: `std::vector<MyClass>`)
+Template Functions ermöglichen Typsichere Container und Funktionen ähnlich wie Generics in Java. Dies ermöglicht, Funktionen und Typen für Typen wiederzuverwenden, welche erst später definiert werden (Bsp. `std::vector` wurde vor `MyClass` geschrieben, kann aber trotzdem zusammen verwendet werden: `std::vector<MyClass>`)
 
 Im Gegensatz zu Generics in Java wird der Typenname implizit bei der Benützung bestimmt.
 
-In der Vergangenheit gab es Probleme wie verwirrende Compiermeldungen. Diese Probleme sind heute aber behoben.
+In der Vergangenheit gab es Probleme wie verwirrende Compilermeldungen. Diese Probleme sind heute aber behoben.
 
 ## Kontext (Lambdas)
 
-Lambdas können Definiert werden, ohne dass ein Typ für die Parameter oder den Rückgabewert angegeben werden muss. Alle Werte werden am "Ort des Geschehens" zur Laufzeit bestimmt.
+Lambdas können definiert werden, ohne dass ein Typ für die Parameter oder den Rückgabewert angegeben werden muss. Alle Werte werden am "Ort des Geschehens" zur Laufzeit bestimmt.
 
 ```c++
 [x=1](auto y){return x*y;}
@@ -16,7 +16,7 @@ Lambdas können Definiert werden, ohne dass ein Typ für die Parameter oder den 
 
 ## Definition
 
-Eine Template-Funktion wird einmal definiert und kann beliebig oft mit unterschiedlichen typen instantiiert werden.
+Eine Template-Funktion wird einmal definiert und kann beliebig oft mit unterschiedlichen Typen instanziert werden.
 
 Für die Definition wird das Keyword `template` zusammen mit Eckigen Klammern verwendet `<>`. Oft werden Template-Funktionen inline definiert.
 
@@ -68,13 +68,9 @@ int main(int argc, char **argv) {
 }
 ```
 
-*: TODO
+*: Weil beide Parameter `std::string` sind, sucht die type deduction zuerst im Namespace `std` nach einer `min()`-Funktion. Da eine solche `std::min()` existiert, ist der Aufruf mehrdeutig
 
 **: String-Literals sind `char arrays`! Darum wird hier der Pointer mitgegeben - und dann werden die Pointer verglichen - daher das falsche Resultat.
-
-!!! todo
-
-    * Warum ist min(s1, s2) mehrdeutig?
 
 ## Concepts
 
@@ -163,13 +159,13 @@ Wie bei Function Templates können für Class Templates folgende "Dinge" als Par
 Die Template-Parameter Klasse können auch auf allen data members und function members verwendet werden.
 
 Type aliases
-: Ein einfacher alias auf einen andere typ - bsp. `using SackType=std::vector<T>`. Benötigt für *dependent Types* das `typename` Keyword `using size_type=typename SackType::size_type;`
+: Ein einfacher alias auf einen anderen Typ - bsp. `using SackType=std::vector<T>`. Benötigt für *dependent Types* das `typename` Keyword `using size_type=typename SackType::size_type;`
 
 Template definition
 : `template <typename T> class Sack {...};`
 
-Template deklaration
-: `template <typename T> class Sack;` (Vorwärtsdeklaration)
+Template deklaration (Vorwärtsdeklaration)
+: `template <typename T> class Sack;`
 
 Template Klasse explizite Spezialisierung
 : `template<> class Sack<char const *> {...};`
@@ -232,17 +228,17 @@ Für `T` gelten folgende Concepts:
 * Typ `T` muss in einen **Vector** passen → `CopyAssignable` und  `CopyConstructible`
 * `T` darf nicht `void` sein. Es werden **Referenzen** übergeben, und weil es von `void` keine Objekte gibt, kann es folglich keine Referenzen darauf geben.
 * **Kopierbar** sein, da es returns gibt, wo keine Referenz überegeben wird. Movebar wäre hier auch eine Option.
-* Die Methode `at` liefert eine Objektreferenz zurück → T einen **Kopierkonstruktor haben** (nicht movable)
+* Die Methode `at` liefert eine Objektreferenz zurück → T muss einen **Kopierkonstruktor haben** (nicht movable)
 
 
 ## Regeln
 
 * Müssen komplett im Header-File implementiert werden
-    * Grund: Compiler muss Typ kennen um effizienter code generiern zu können
+    * Grund: Compiler muss Typ kennen um effizienter code generieren zu können
     * Direkt als member Funktionen in der Klasse
     * Alternativ als inline Funktionen im header file (etwas hässlicher)
-* Für Typen Aliase, die die direkt oder indirekt auf Template-Parametern basieren muss das `typename` Keyword nagegeben werden.
-* Statische Member-Varibalen (`static`) einer Template-Klasse können problemlos definiert werden (ohne gegen One-Definition-Rule zu verstossen.)
+* Für Typen Aliase, die direkt oder indirekt auf Template-Parametern basieren muss das `typename` Keyword angegeben werden.
+* Statische Member-Variablen (`static`) einer Template-Klasse können problemlos definiert werden (ohne gegen One-Definition-Rule zu verstossen.)
 * Zugriff auf Members der Parent-Klasse immer mit `this` (oder class name::) damit immer das richtige Passiert - bsp. nicht variablen aus dem globalen namespace verwendet werden (Siehe Folie 12, Vorlesung W12)
 
 Vorsicht: Template methoden, die nicht aufgerufen werden werden nicht kompiliert - kann zu Fehler führen, bsp. dass ein Template Parameter nicht movable sein muss.
@@ -250,7 +246,7 @@ Vorsicht: Template methoden, die nicht aufgerufen werden werden nicht kompiliert
 
 ## (partielle) Template Spezialisierung
 
-Beispiel: Pointer verbienten aber Strings zulassen. Problematisch, weil Strings character Pointer sind.
+Beispiel: Pointer verbieten aber Strings zulassen. Problematisch, weil Strings character Pointer sind.
 
 
 ```c++
@@ -336,7 +332,7 @@ decltype(auto) operator[](size_type i) const { // or T const &
 };
 ```
 
-Vorsicht: Mit`decltype` funktionierne `auto` auch mit Referenzen.
+Vorsicht: Mit `decltype` funktioniert `auto` auch mit Referenzen.
 
 ## Tips:
 
