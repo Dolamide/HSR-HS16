@@ -27,6 +27,7 @@ std::string inputName(std::istream &in, std::string const &def="anonymous") {
 **throw by value, catch by const reference**
 
 Immer unchecked - also müsen/können nicht spezifiziert werden
+
 Keine Meta-info verfügbar (kein stack trace usw.)
 
 ```c++
@@ -40,7 +41,7 @@ try {
 }
 ```
 
-In <stdexcept> der stdlib gibt es eineige vordefinierte Exceptions, die abgefangen werden können.
+In <stdexcept> der stdlib gibt es einige vordefinierte Exceptions, die abgefangen werden können.
 Bsp: logic_error, invalid_argument, out_of_range - bsp. `throw std::invalid_argument{"too small"};`
 
 ```c++

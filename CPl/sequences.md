@@ -38,7 +38,7 @@ std::vector<int> const v{input{std::cin}, eof};
 
 !!! warning
 
-    `istream_iterator` ignroiert whitespace, `istreambuf_iterator` dagegen nicht.
+    `istream_iterator` ignoriert whitespace, `istreambuf_iterator` dagegen nicht.
 
 !!! todo
 
@@ -52,7 +52,7 @@ std::vector<int> const v{input{std::cin}, eof};
 Bad iterator style:
 
 ```c++
-for (size_t i=0l i < v.size(); ++i){
+for (size_t i=0l; i < v.size(); ++i){
     std::count << "v[" <<i<<"] = " << v[i] << '\n';
 }
 ```
@@ -89,7 +89,7 @@ for (auto &j : v){
 // Wenn nicht verändert
 // USE CONST AS MUCH AS POSSIBLE
 for (cont auto &j : v){
-    std::cout << i
+    std::cout << j
 }
 ```
 
@@ -102,7 +102,7 @@ Darum: Merke begin iterator und end iterator
 Wenn iterator = end iterator - fertig!
 
 Vorsicht! So wenig schleifen wie möglich Nutzen!
-Statessen algorithms nutzen!
+Statdessen algorithms nutzen!
 
 cbegin = element im iterator ist KONSTANT
 begin = Element im iterator ist nicht konstant
@@ -203,7 +203,7 @@ int main() {
 !!! seealso
 
     [Boost Dokumentation](http://www.boost.org/doc/libs/1_59_0/libs/iterator/doc/
-)
+
 
 ## Weiters
 

@@ -1,6 +1,6 @@
 # STL Containers
 
-Die STL bietet diverse Container an - daher ist es wichtig zu Wissen *wann* *welcher* container genutzt werden soll.
+Die STL bietet diverse Container an - daher ist es wichtig zu wissen, *wann* *welcher* Container genutzt werden soll.
 
 Vorsicht: Generell sollten die Memberfunktionen der Container den Algorithmen aufgrund besserer Performance vorgezogen werden - bsp. `v.count()` statt `std::count(v.begin(), v.end())`
 
@@ -56,7 +56,7 @@ Derzeit können "Anforderungen" an Iterator noch nicht als bsp. Typ bei der Funk
 
 ### Forward Iterator
 
-* **Ist "multipass" - der Wert kann als nur ein mehrfach gelesen werden**
+* **Ist "multipass" - der Wert kann mehrfach gelesen werden**
 * Aktuelles Element lesen/schreiben `*it`
 * Präfix increment `it++`
 * Postfix increment `++it`
@@ -64,7 +64,7 @@ Derzeit können "Anforderungen" an Iterator noch nicht als bsp. Typ bei der Funk
 
 ### Bidirectional Iterator
 
-* Ist **"multipass"** - der Wert kann als nur ein mehrfach gelesen werden
+* Ist **"multipass"** - der Wert kann mehrfach gelesen werden
 * **Präfix decrement** `it--`
 * **Postfix decrement** `--it`
 * Aktuelles Element lesen/schreiben `*it`
@@ -74,7 +74,7 @@ Derzeit können "Anforderungen" an Iterator noch nicht als bsp. Typ bei der Funk
 
 ### Random access iterators
 
-* Ist **"multipass"** - der Wert kann als nur ein mehrfach gelesen werden
+* Ist **"multipass"** - der Wert kann mehrfach gelesen werden
 * **Präfix decrement** `it--`
 * **Postfix decrement** `--it`
 * **Index Zugriff** `it[4]`
@@ -83,11 +83,10 @@ Derzeit können "Anforderungen" an Iterator noch nicht als bsp. Typ bei der Funk
 * Postfix increment `++it`
 * Prüfen auf (un-)gleichheit `==`,
 
-# Output Iterator
+### Output Iterator
 
 * Spezialfall: Man darf *genau einmal* schreiben (analog `std::cout`)
-* Nur einmal schreiben (analog ostream_iterator)
-* Die meisten Iteratoren können auch als Output Iteratoren verwendet werden, wenn diese nict `const` sind.
+* Die meisten Iteratoren können auch als Output Iteratoren verwendet werden, wenn diese nicht `const` sind.
 * Keine Vergleiche
 * Ende nicht abfragbar
 
@@ -193,7 +192,7 @@ std::array<int,6> a{{1,1,2,3,5,8}};
 
 ### Stack
 
-* `pop()` IST void
+* `pop()` hat Rückgabewert void!
 * `top()`
 * `push(x)`
 * Keine Iteration möglich
