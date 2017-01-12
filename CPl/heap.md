@@ -1,12 +1,12 @@
 # "Naked" Arrays
-Nakte Arrays = nakter Pointer auf das erste Element wie in C. Dies ist Problematisch, da gleich wie in C die Dimension verlohrengeht (Bsp. `int a[5]`). Folglich muss die Dimension spearat (Bsp. `argc` bei `main`) bergeben werden - oder eine Konvention etablieren, wann ein Array "zu einde ist" (bsp. `\0`).
+Nakte Arrays = nakter Pointer auf das erste Element wie in C. Dies ist Problematisch, da gleich wie in C die Dimension verloren geht (Bsp. `int a[5]`). Folglich muss die Dimension spearat (Bsp. `argc` bei `main`) bergeben werden - oder eine Konvention etablieren, wann ein Array "zu Ende ist" (bsp. `\0`).
 
 Die Dimension eines Arrays kann auch mit Hilfe von Templates herausgefunden werden:
 
 ```c++
 template <typename T, unsigned N>
 void printArray(stD::ostream & out, T const ( & x )[N]){
-    copy(x, x=N, std::ostream_iterator<T>{out, ", "});
+    copy(x, x+N, std::ostream_iterator<T>{out, ", "});
 }
 // ...
 int a[]={1,2,3};
@@ -30,7 +30,7 @@ Grund: Zugriff Kann mit falscher Grösse = Undefined Behaviour
 
 !!! warning
 
-    * Arrays ohne initializer values = Undefined behaviour
+    * Arrays ohne initializer `{}` = Undefined behaviour
     * Zugriff auf multidimensionale Arrays mit mehreren Klammern: `m[0][1]` und **nicht **mit Komma
 
 # Die Main-Methode
@@ -52,7 +52,7 @@ Mögliche Anwendungsfälle sind u.a.
 * Class-Members, die nicht pass by reference übergeben werden können
 
 
-Heap-Management muss manuell gemacht werden - geht sehr schnell scheif!
+Heap-Management muss manuell gemacht werden - geht sehr schnell schief!
 
 * memory leaks
 * dangling pointers
@@ -63,16 +63,16 @@ Darum: `new` und `delete` **nicht** brauchen sondern Hilfskonstrukte der Std-Lib
 * `std::unique_ptr<T>`
     * **nicht kopierbar**
     * only returned by value
-    * Für einen polymirphisitische Referenz bei einer Klasse
+    * Für eine polymorphistische Referenz bei einer Klasse
     * can not transfer ownership -> can not leak!
-    * Erstellen mit `make_unique<T>(param1, param2)` wobei die Parameter demjeniged des Public-Konstruktors von T ensprechen
+    * Erstellen mit `make_unique<T>(param1, param2)` wobei die Parameter demjenigen des Public-Konstruktors von T ensprechen
 * `std::shared_ptr<T>` kopierbar
     * Mehr wie Javas Referenzen
     * Können Kopiert werden
     * Letzte existierende Referenz löscht das objekt.
     * Erstellen mit `make_shared<T>(param1, param2)` wobei die Parameter demjeniged des Public-Konstruktors von T ensprechen
     * Zykeln möglich → Dann `weak_ptr` nutzen!
-        * Inkrementiert den Counter nicht - kann alo auf ein gelöschtes Objekt zeigen. - Check mit bsp. `if(!myWeakPtr.expired()){ ... }`
+        * Inkrementiert den Counter nicht - kann also auf ein gelöschtes Objekt zeigen. - Check mit bsp. `if(!myWeakPtr.expired()){ ... }`
         * Für zugriff auf darunterliegender `shared_ptr` muss `lock()` aufgerufen werden:
 
         ```c++
@@ -91,7 +91,7 @@ Darum: `new` und `delete` **nicht** brauchen sondern Hilfskonstrukte der Std-Lib
 
 ## Beispiel
 
-* Rekursive Definition (Attribut Person auf Klsase Person) geht nicht (`incomplete`)
+* Rekursive Definition (Attribut Person auf Klasse Person) geht nicht (`incomplete`)
 * Vorwärtsdeklaration von Person - für PersonPtr
 
 ```c++
@@ -150,6 +150,6 @@ How do you delete the instance created on the heap? It will be removet automagic
 
 What problem arises if you have loops in your object structure and how do you solve this?
 
-It works, but not with references. Eg. a vecotr of `Person` on the Object `Person` contains the objects themselfes - not their references. To use refernces, (shared) Pointers can be used.
+It works, but not with references. E.g. a vector of `Person` on the Object `Person` contains the objects themselfes - not their references. To use references, (shared) Pointers can be used.
 
  How can you access to a shared pointer from within the this object? `this->pointer`!?

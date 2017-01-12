@@ -12,7 +12,9 @@
 
 Unbedingt auf klammern achten, da sonst bool werte als 0(false) bzw. 1(true) behandelt werden.
 
+```c++
 x != 0 & 42 % x;
+```
 
 ## Undefined behaviour
 
@@ -27,7 +29,7 @@ Beispiel:
 #include <iostream>
 int main() {
 	int a {4};
-  // odd, da ! stärker indet als %
+  // odd, da ! stärker bindet als %
 	std::cout << (!a % 2 ? "even": "odd");
 }
 
@@ -130,7 +132,7 @@ std::copy_if(begin(numbers), end(numbers), begin(top5), in_top5);
 
 ```c++
 std::vector<unsigned> values{3, 0, 1, 4, 0, 2};
-// BÖSE! CONTAINER WIRD WÄHREND DEM DRÜBER ITERIERT WIRD VERÄNDERT
+// BÖSE! CONTAINER WIRD WÄHREND DEM DRÜBER ITERIEREN VERÄNDERT
 // und damit ungültig
 auto f = [&values](unsigned v) { values.push_back(v); };
 std::for_each(begin(values), end(values), f);

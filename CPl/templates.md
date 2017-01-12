@@ -145,7 +145,7 @@ out, z, []<- Tail ist leer
 out
 ```
 
-# Class Templates = Template Clases
+# Class Templates = Template Classes
 Class Templates funktionieren gleich wie function templates - einfach für Klassen und Structs.
 
 Ein wesentlicher Unterschied ist aber, dass im Gegensatz zu template Functions **der Typ immer angegeben werden muss** - auto-deduction funktioniert also nicht.
