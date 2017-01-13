@@ -17,7 +17,7 @@
         ```
     * const means constant and ≠ final in Java (where the object can change)
     * Gehört zur "natur"/Signatur einer Funktion (also bsp. in Klasse)
-    * Use `counst &` for potentially big Data (eg. Strings)
+    * Use `const &` for potentially big Data (eg. Strings)
 * Define variables **as local as possible**
 * Don't use Friends!
 
@@ -25,20 +25,20 @@
 ## Just good style
 
 * Include your header files first
-* Use``#include <>`` for libraries from the stdlib and ``#include "..."`` otherwise
+* Use ``#include <>`` for libraries from the stdlib and ``#include "..."`` otherwise
 * Never forget the semicolon after a class declaration.
 
 ## General C++ Zen
 
 * All entities in a C++ program must be declared before they can be used
     => Put all declarations for a module exported functionality into a coresponsing header file
-* Only on Definition is allowed (but multiple deklaration) - therefore use Guards in the header files.
+* Only One Definition is allowed (but multiple deklaration) - therefore use Guards in the header files.
 * The range of values of int, long usw. is *implementation defined*
 * Be aware of undefined behaviour and stay away from it!
 
-## Undifined Behaviour
+## Undefined Behaviour
 
-* Mehrere funktionsaufrufe als Parameter für einen Funtionsaufruf:
+* Mehrere funktionsaufrufe als Parameter für einen Funtionsaufruf - Reihenfolge ist nicht garantiert!:
     ```c++
     foo(baa(1), baa(2), baa(3));
     ```
@@ -74,7 +74,7 @@ public:
 Wann immer möglich die **Initialisierungsliste** nutzen. Vorsicht: Die Initialisierunsreihenfolge ist gleich der Reihenfolge der Member (oben nach unten) in der Klasse!
 
 
-Das `explicit` verhindet implizite umwandlung
+Das `explicit` verhindert implizite umwandlung
 
 ## Wann inline?
 

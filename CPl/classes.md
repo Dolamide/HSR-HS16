@@ -127,7 +127,7 @@ Date d2{std::move(d)};
 ```
 
 Typeconversion Constructor
-: Konvertiert den Input-Typ, wenn möglich. Muss mit `explicit` deklariert werden um mögliche Typumwandlungen zu vermeiden.
+: Konvertiert den Input-Typ, wenn möglich. Muss mit `explicit` deklariert werden um mögliche Typumwandlungen zu vermeiden. Grundsätzlich sollte man alle Konstruktoren `explicit` deklarieren, die nur einen Parameter haben. Sonst könnte in diesem Beispiel der Compiler bei einem Funktionsaufruf, der ein `Date` erwartet, aber ein String gegeben wird, diesen automatisch in ein Date konvertieren.
 
 ```c++
 // Deklaration

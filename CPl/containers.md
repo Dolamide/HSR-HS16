@@ -48,7 +48,8 @@ Derzeit können "Anforderungen" an Iterator noch nicht als bsp. Typ bei der Funk
 
 ### Input Iterator
 
-* Ist "one pass" - der Wert kann als nur ein Mal gelesen werden
+* Ist "one pass" - der Wert kann zwar mehrmals gelesen werden (`it*`), aber sobald man vorwärts geht (`it++`), werden alle Kopien ungültig
+* Achtung: `*it++` ist nach dieser Logik ungültig, wird aber vom Standard explizit erlaubt. Nicht verwenden!
 * Aktuelles Element lesen/schreiben `*it`
 * Präfix increment `it++`
 * Postfix increment `++it`

@@ -19,6 +19,7 @@
 * 100% der Basisklasse muss für Subklasse gelten
 * Object Slicing bei Pass by Value (Nur Basis Klassen Member werden transferiert)
 * Shadowing / Member Hiding
+    * Kommt nur auf den Namen an, Parameter sind egal!
 
 ```c++
 struct Base {
@@ -66,18 +67,23 @@ public:
 
 (Klassendefinition ist Typendefinition - darum ist `;` entscheidend. Man könnte einen Variablennamen direkt hinten anfügen, wie bei `int x;`.)
 
-`virtual`-Keyword ermöglicht, dass Subklasse Funktion überschreibt - natürlich muss die Funktionssignatur auch identisch sein (Vorsicht `const`! F19). Override-Keyword ist Optional aber gut - denn es gibt einen Compile-Fehler. Virtual wird "vererbt" (muss nicht explizit angegeben werden).
+`virtual`-Keyword ermöglicht, dass Subklasse Funktion überschreibt - natürlich muss die Funktionssignatur auch identisch sein (Vorsicht `const`! F19). Override-Keyword ist Optional aber gut - denn es gibt einen Compile-Fehler. 
+
+!!! note
+
+    Überschriebene Methoden sind implizit `virtual`, können also von weiteren Subklassen überschrieben werden
 
 `virtual` legt eine [Tabelle (vtable)](https://de.wikipedia.org/wiki/Tabelle_virtueller_Methoden) im Hintergrund an, welche den Dynamic Dispatch macht. Darum muss dies explizit angegeben werden.
 
 
 !!! warning
 
-    Fehlendes `virtual` = kein Dynamic Dispatch!
+    Fehlendes `virtual` = kein Dynamic Dispatch! -> Static Dispatch
 
 !!! warning
 
-    Wenn eine Funktion mit und ohne `const` definiert sind müssen(können) beide überladen werden, da unterschiedliche Signatur.
+    Wenn eine Funktion mit und ohne `const` definiert sind müssen (/ können) beide überladen werden, da unterschiedliche Signatur.
+    
 
 ## Abstrakte Basisklassen / "Interfaces"
 Abstract-Funktionen mit 0 initialisieren
@@ -87,11 +93,11 @@ struct AbstractBase {
     virtual ~AbstractBase(){}
     virtual void doitnow()=0;
 };
-```
+``` 
 
-Vorsicht: basisklassen mit virtuellen Members benötigen virtual destructor wenn Speicher auf dem Heap ohne `shared_ptr` alloziert wird (you shouldn't do that anyway)!
+Vorsicht: Basisklassen mit virtuellen Members benötigen virtual destructor wenn Speicher auf dem Heap ohne `shared_ptr` alloziert wird (you shouldn't do that anyway)!
 
-## Best Pracitce von Polymorphen Klassen
+## Best Practice von Polymorphen Klassen
 
 * Immer pass-by-reference (Pass-by-value: Object Slicing)
 * Virtual Keyword nur dann wenn nötig

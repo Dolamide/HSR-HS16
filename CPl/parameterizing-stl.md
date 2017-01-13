@@ -83,7 +83,7 @@ std::transform(v.begin(), v.end(), v.begin(), std::negate<int{});
 std::sort(v.begin(),v.end(),std::greater<>{});
 ```
 
-## Parameterize Associative Containers
+## Parameterized Associative Containers
 
 Standard functor Klassen können auch für die Parameterisierung über Template argumente für Vergleichsoperationen in Containern verwendet werden.
 
@@ -120,7 +120,7 @@ int main(){
 
 Way to go:
 
-`foo(double f(double));` → Geht mit Funktionen und Lambdas - nicht aber mit Funktioren!
+`foo(double f(double));` → Geht mit Funktionen und Lambdas - nicht aber mit Funktoren!
 
 Darum `std::function<double(double)>` verwenden. Lambdas, Funktoren und Funktionen können in diesen Typ _umgewandelt_ werden bzw. erfüllen diesen typ.
 
@@ -132,7 +132,7 @@ Ist Zudem sehr gut lesbar
 
 ```c++
 void apply_and_print(std::ostream& out, std::function<bool(int)> apredicate) {
-	if (apredicate) { // implicit bool conversion
+	if (apredicate) { // implicit bool conversion, true if apredicate is not empty
 		out << "pred(42) is " << apredicate(42) << '\n';
 	} else {
 		out << "empty function holder\n";
