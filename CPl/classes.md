@@ -77,7 +77,7 @@ Bestehend aus:
     {}
     ```
 
-## Verwendung
+## Verwendung von Klassen
 ```c++
 #include "Date.h"
 

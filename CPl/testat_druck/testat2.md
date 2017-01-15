@@ -25,7 +25,7 @@ class Word {
 	std::string value;
 public:
 	Word() = default;
-	Word(std::string const & value);
+	explicit Word(std::string const & value);
 
 	std::ostream & print(std::ostream & os) const;
 	std::istream & read(std::istream & is);

@@ -2,7 +2,7 @@
 
 * Value Range is *implementation defined*!
 
-## Strings
+## String literals und trigraphs
 
 * string literals sind nicht vom typ std::string (but it's usually converted properly when needed)
     * kann mit s suffix erreicht werden (``using namespace std::string_literals`` nicht vergessen)
@@ -137,11 +137,3 @@ std::vector<unsigned> values{3, 0, 1, 4, 0, 2};
 auto f = [&values](unsigned v) { values.push_back(v); };
 std::for_each(begin(values), end(values), f);
 ```
-
-## Copy in OS
-```c++
-using out=std::ostream_iterator<int>;
-set<int> s{1, 2, 3, 4};
-std::copy(s.begin(), s.end(), out{cout, "-"});
-```
-→ OUTPUT IST: `1-2-3-4-` mit trailing `-`

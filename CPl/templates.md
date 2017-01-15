@@ -35,7 +35,7 @@ T const& min(T const& a, T const& b){
 ```
 
 
-## Verwendung
+## Verwendung von Template Functions
 
 template argument deduction
 : T wird automatisch beim Funktionsaufruf anhand der argumente bestimmt (zur Compiletime!)
@@ -180,21 +180,35 @@ Template Klasse Member Spezialisierung
 
 Eine Implementation könnte wie folgt aussehen:
 
+!!! warning
+
+    GUARDS NICHT VERGESSEN!
+
 ```c++
 #ifndef SACK_H_
 #define SACK_H_
-#include <vector>   // Implementation specific
+#include <vector>   // Implementation specific, could be deque etc
 #include <random>
 #include <stdexcept>
+#include <initializer_list>
 
 template <typename T,
-    template<typename...> class container=std::vector>  // Optional: container Typ
+    template<typename...> class container=std::vector>
+    // Optional: container Typ
+    // Tipp: Denk an andere container wie deque!
 class Sack
 {
 	using SackType=container<T>;     // Type alias
-	using size_type=typename SackType::size_type; // dependent type alias- needs `typename` keyword
+	using size_type=typename SackType::size_type; // dependent type
+                                        // alias- needs `typename` keyword
 	SackType theSack{};
 public:
+    Sack() = default;
+    Sack(std::initializer_list<T> list) : c{list} {};
+
+    T front() const { return c.front();}
+	void pop_front() { c.pop_front();}
+
 	bool empty() const { return theSack.empty() ; }
 	size_type size() const { return theSack.size();}
 	void putInto(T const &item) { theSack.push_back(item);}

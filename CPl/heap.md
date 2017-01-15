@@ -134,9 +134,10 @@ NotePtr module = Node::makeNode(moduleName);
 module->addDependency(anotherModule);
 ```
 
-## Übungsfragen
+## Übungsfragen HEAP
 Which C++ mechanism can you use to deduce a dimension of an array passed as function parameter?
 → Templates
+
 ```c++
 template <typename T, unsigned N>
 void printArray(stD::ostream &out, T const (&x)[N]){

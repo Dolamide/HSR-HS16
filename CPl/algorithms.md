@@ -47,7 +47,8 @@ void redirect(std::istream & in, std::ostream & out) {
     using in_iter = std::istream_iterator<char>;
     using out_iter = std::ostream_iterator<char>;
     in_iter eof{};
-    std::copy(in_iter{in}, eof, out_iter{out});
+    std::copy(in_iter{in}, eof, out_iter{out});  // TRAILING DELIMITER!
+                                        // `ist x, y, z, `
 }
 ```
 
@@ -94,7 +95,7 @@ std::vector<int> r2{2, 30, 32, 41, 49, 63, 72, 88};
 std::vector<int> d(r1.size() + r2.size(), 0);
 ```
 
-### remove_if
+### remove_if (ERASE)
 
 * `std::remove_if` entfernt die Elemente nicht, sondern verschiebt die Elemente intern.
 * Mit *Erase-Remove-Idiom* kann der container anschliessend auf dir korrekte grösse reduziert werden.
@@ -184,7 +185,7 @@ Mutating sequence operations
 * `unique`, `unique_copy`
 * `reverse`, `reverse_copy`
 * `rotate`, `rotate_copy`
-* `shuffle`
+* `shuffle` -> `std::random_shuffle(v.begin(), v.end());`
 * `is_partitioned`, `partition`, `stable_partition`, `partition_copy`, `partition_point`
 
 Sorting and Related Operations

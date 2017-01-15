@@ -6,6 +6,7 @@ author:
 institute: HSR Hochschule für Technik Rapperswil
 
 pages:
+    - note.md
     - testat1.md
     - testat2.md
     - testat3.md

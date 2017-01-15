@@ -26,8 +26,8 @@ pages:
     - boost.md
     - cevelop.md
     - zen.md
-    - exam.md
-    - lernplan.md
+    # - exam.md
+    # - lernplan.md
 assets:
     - images/
 

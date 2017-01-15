@@ -67,7 +67,7 @@ public:
 
 (Klassendefinition ist Typendefinition - darum ist `;` entscheidend. Man könnte einen Variablennamen direkt hinten anfügen, wie bei `int x;`.)
 
-`virtual`-Keyword ermöglicht, dass Subklasse Funktion überschreibt - natürlich muss die Funktionssignatur auch identisch sein (Vorsicht `const`! F19). Override-Keyword ist Optional aber gut - denn es gibt einen Compile-Fehler. 
+`virtual`-Keyword ermöglicht, dass Subklasse Funktion überschreibt - natürlich muss die Funktionssignatur auch identisch sein (Vorsicht `const`! F19). Override-Keyword ist Optional aber gut - denn es gibt einen Compile-Fehler.
 
 !!! note
 
@@ -83,7 +83,7 @@ public:
 !!! warning
 
     Wenn eine Funktion mit und ohne `const` definiert sind müssen (/ können) beide überladen werden, da unterschiedliche Signatur.
-    
+
 
 ## Abstrakte Basisklassen / "Interfaces"
 Abstract-Funktionen mit 0 initialisieren
@@ -93,7 +93,7 @@ struct AbstractBase {
     virtual ~AbstractBase(){}
     virtual void doitnow()=0;
 };
-``` 
+```
 
 Vorsicht: Basisklassen mit virtuellen Members benötigen virtual destructor wenn Speicher auf dem Heap ohne `shared_ptr` alloziert wird (you shouldn't do that anyway)!
 
@@ -175,12 +175,17 @@ Vorsicht d)
 
 Probleme:
 
-* virtual nicht in Basisklasse: Function Hiding / Kein Dynamic Dispatch
-* slicing
-* (destruktor `virtual` (wenn virtual member hat ist))
+* virtual nicht in Basisklasse: **Function Hiding** / Kein Dynamic Dispatch
+* object slicing
+* destruktor `virtual` (wenn virtual member hat)
+* Funktionen, die auf dem Objekt selber nichts ändern sollten `const` sein!
 * Initialisierung von Hummingbird nicht offensichtlich - weil geschweifte Klammern fehlen.
 * Output nur im Default-Konstruktor - nicht aber im Copy-Konstruktor!
-* Funktionen, die auf dem Objekt selber nichts ändern sollten `const` sein!
+
+!!! warning
+
+    * Copy-Konstruktor hat kein output!
+    * Vorsicht vor nicht-virtual methoden.
 
 !!! warning
 

@@ -1,4 +1,4 @@
-# Tips
+# Tips & Tricks
 
 ## Imports
 ```
@@ -13,7 +13,7 @@ std::isalpha        // #include <cctype>
 std::toupper        // #include <cctype>
 std::lexicographical_compare // #include <algorithm>
 std::begin / std::end   // #include <iterator>
-
+std::multiset       // #include <set>
 
 ```
 
@@ -66,7 +66,8 @@ in >> name;
 
 using out_itr = std::ostream_iterator<int>;
 // using out_itr = std::ostreambuf_iterator<int>;
-std::copy(v.begin(), v.end(), out_itr{std::cout, ", "});
+std::copy(v.begin(), v.end(), out_itr{std::cout, ", "}); // TRAILING DELIMITER!
+                                    // `ist x, y, z, `
 ```
 
 ## Elemente zählen
@@ -82,7 +83,7 @@ for_each(std::istream_iterator<Word>(in), std::istream_iterator<Word>(), [&targe
 return target;
 ```
 
-## Elemente aus stream in vektor/set einlesen
+## Elemente aus stream in vektor/set einlesen (inserter)
 Einer Sequence können bequem Iteratoren mitgegeben werden um diese mit diesen Werten zu initialisieren:
 
 ```c++
@@ -90,10 +91,11 @@ std::set<Word> words{std::istream_iterator<Word>(in), std::istream_iterator<Word
 
 // gleich wie die folgende unschöne Variante
 std::set<Word> result{};
-copy(std::istream_iterator<Word>(in), std::istream_iterator<Word>(), std::inserter(result, result.begin()));
+copy(std::istream_iterator<Word>(in), std::istream_iterator<Word>(),
+     std::inserter(result, result.begin()));
 ```
 
-## Const
+## diverses zu `const`
 
 ```c++
 void demo() {
@@ -107,11 +109,17 @@ void demo() {
 //int a() const{
 //	return 1;
 //}
-// This is valid however
-const int b() {
+
+// This is valid however, because it returns a `const int`
+// BUT DON'T DO IT THAT WAY!
+const int b1() {
 	return 1;
 }
 
+// do it that way!
+int const b2() {
+	return 1;
+}
 // Parameters can be const as well
 const int c(const int x, int const y) {
 	return x + y;
@@ -157,3 +165,55 @@ void e(Class1 const & c){
 	//c.m2(); // ERROR: Is not const
 }
 ```
+
+## Iteratoren navigieren mit next und prev
+
+Wenn iteratoren **const** sind, dann kann man bsp. nicht `--it` machen. Dafür gibt es die Methoden `next` und `prev` in der stdlib.
+
+```c++
+std::multiset<int> s{1,2,3,4, 5, 6, 7};
+auto const it = end(s);
+std::cout << *std::prev(it); // 7
+std::cout << *std::prev(it, 3); // 5
+```
+
+!!! note
+
+    `advance` geht leider auch nicht mit const iteratoren. Hat keinen return wert - sondern ruft einfach n mal `--` bzw. `++` auf dem iterator auf.
+
+## Was für ein iterator?
+
+Es gibt `iterator`, `reverse_iterator`, `const_iterator` und `const_reverse_iterator`. Ist ein objekt `const` bsp `std::string const myString{"abc"}` und man ruft `begin(myString)` auf, so bekommt man ein const iterator zurück. mit rbegin bzw. rend einen `...reverse_iterator`
+
+## auto conversion
+
+```c++
+explicit operator std::multiset<T, COMPARE>() const{
+	return std::multiset<T, COMPARE>{this->cbegin(), this->cend()};
+}
+```
+
+## Find with comparator
+```c++
+// alternativ zu auto: const_iterator
+// dann wird aber 	using const_iterator = typename Base::const_iterator; benötigt!
+auto find(T const elm) const {
+    return std::find_if(this->cbegin(), this->cend(), [&elm](auto const x){
+        return !COMPARE{}(elm, x) && !COMPARE{}(x, elm);
+    });
+}
+// std::copy(vs.find('H'), vs.cend(), out{cout, ' '}); // works! BUT note *c*end!
+```
+
+!!! note
+
+    Comperatoren sind **nicht reflexiv** (es gilt also nicht `COMP{}(x,x) == true`), aber **transitiv** (`COMP{}(x, y) && COMP{}(y, z)` → `COMP{x, z}`). Auf **Gleichheit** kann mit `!COMPARE{}(elm, x) && !COMPARE{}(x, elm);` geprüft werden.  Es gilt eine **asymmetrische Relation**, also ``!COMPARE{}(elm, x) == COMPARE{}(elm, x)``
+
+
+## Copy in OS
+```c++
+using out=std::ostream_iterator<int>;
+set<int> s{1, 2, 3, 4};
+std::copy(s.begin(), s.end(), out{cout, "-"});
+```
+→ OUTPUT IST: `1-2-3-4-` mit trailing `-`
