@@ -10,46 +10,36 @@ Desktop Apps haben immer noch eine gewisse Existenzberechtigung.
 * Grosse Datenmengen beherrschbar
 * Breiter Technologiemix
 
-WPF
-: Windows Presentation Foundation
+## Zu WPF
 
-* Teil des .NET Frameworks
+* Windows Presentation Foundation
 * Vektorbasiert
-* Deklarativ (XAML)
-    * Trennung zwischen UI/Code
-    * XML-basierende Beschreibungssprache für WPF UIs
+* Deklarativ (XAML) ermöglicht Trennung zwischen UI/Code
 * Hardware-nah (DirextX)
 * Programmierbar mit VB.NET, C#, Python ...
-* Pixel = device-independent pixels/units:
-    * -> Fixe Physische Grösse: 1/96 Zoll (Fix im Gegensatz zu Android)
-    * Problem: "Rundungsfehler", darum etwas "schwammig" (=aliasing - siehe `UseLayoutRounding` und `SnapsToDevicePixels`)
-* Code Behind → XML wird mit Klasse *verschmolzen*
-* UI Thread -> Blockiert - daher Multi-Threading nutzen!
 
 
 ## Logical Tree vs Visual Tree
-Logical Tree
-: Entspricht der Struktur der XAML-Elemente
-
-Visual Tree
-: Dargestellte UI-Element & Dekorationen. Beinhaltet alle dargestellten Elemente gemäss der Vorlage jedes Controls
-
-Unterscheidung relevant, wenn Bsp. durch Tree navigiert wird.
-
-!!! seealso
-
-    Vorlesung "EINFÜHRUNG WPF & XAML" - Folie Nr. 25
-
-## XAML
 
 <figure>
-    <img src="images/xaml_vs_csh.png" style="max-width: 70%;"/>
-    <figcaption>Alles, was in XAML implementiert werden kann, kann auch in Code (z.B. C#) ausgedrückt werden.</figcaption>
+    <img src="images/visual_logical_tree.png" style="max-width: 70%;"/>
+    <figcaption></figcaption>
 </figure>
 
-XML und XML sollte gegenüber Code bevorzugt werden, da es einfacher zu warten und wesentlich weniger Schreibarbeit ist. Zudem gibt es Tools wie Form Designer.
+**Logical Tree** Entspricht der Struktur der XAML-Elemente. **Visual Tree** sind Dargestellte UI-Element & Dekorationen. Beinhaltet *alle dargestellten Elemente* gemäss der Vorlage jedes Controls.
 
-Property Element Syntax -> Ermöglicht komplexer Inhalt
+## XAML
+<img src="images/xaml_vs_csh.png" style="max-width: 55%;float:right"/>
+XAML gegenüber Code bevorzugen, da **einfacher zu warten** und **weniger Schreibarbeit** ist. Zudem gibt es Tools wie Form Designer.
+
+Dependency Properties
+: Ermöglicht Data Binding: Vollautomatische Aktualisierung von UI und/oder Model-Klassen bei Änderungen.
+
+Attached Properties
+: Element setzt Eigenschaften, die das Parent-Element betreffen - Bsp. `DockPanel.Dock="Top"`
+
+Property Element Syntax
+: Ermöglicht komplexer Inhalt in XML-Attributen (`<Button Content="..." ..>`)
 
 ```xml
 <!-- Attribute Syntax - kein zusammengesetzter Inhalt möglich!-->
@@ -57,63 +47,30 @@ Property Element Syntax -> Ermöglicht komplexer Inhalt
 <!-- Property Element Syntax - zusammengesetzter Inhalt möglich! -->
 <Button Width="120" Height="50">
     <Button.Content>
-        <StackPanel>
             <TextBlock Text="Watch Now" FontSize="20" />
-            <TextBlock Text="Duration: 50m" FontSize="12"
-                Foreground="#888888" />
-        </StackPanel>
     </Button.Content>
 </Button>
 ```
 
-Dependency Properties
-: Ermöglicht Data Binding: Vollautomatische Aktualisierung von UI und/oder Model-Klassen bei Änderungen.
-
-Attached Properties
-:Element setzt Eigenschaften, die das Parent-Element betreffen - Bsp. `DockPanel.Dock="Top"`
-
 Markup extensions
-: Verkürzte Notation um komplexe Ausdrücke unter Verwendung der Attribute Syntax eingeben zu können → Keine Expressions wie bei Android sondern nur "ShortCut"
+: Verkürzte Notation um komplexe Ausdrücke unter Verwendung der Attribute Syntax eingeben zu können → (Keine Expressions wie bei Android sondern nur "Shortcut")
+
 ```xml
 <TextBox Text="{Binding Path=FirstName}" />
 <!-- als Kurzform für -->
-<TextBox>
-    <TextBox.Text>
-        <Binding Path="FirstName" />
-    </TextBox.Text>
-</TextBox>
+<TextBox><TextBox.Text><Binding Path="FirstName" /></TextBox.Text></TextBox>
 ```
 
 Type Converters
-: Konvertieren (String-)Werte automatisch in einen passenden Datentyp
+: Konvertieren (String-)Werte automatisch in einen passenden Datentyp (Bsp. Brush)
+
 ```xml
 <Button Background="Aqua" />
 <!-- als Kurzform für: -->
-<Button>
-    <Button.Background>
-        <SolidColorBrush Color="Aqua" />
-    </Button.Background>
-</Button>
-```
-
-`XXX.xaml` sind die Markup Dateien - `XXX.xaml.cs` die "Code Behind" Klassen.
-Diese Klassen könne mit "partials" ergänzt werden:
-
-```csharp
-using System.Windows;
-namespace HelloWpf {
-    public partial class App : Application {
-         // your logic here
-     }
- }
+<Button><Button.Background><SolidColorBrush Color="Aqua" /></Button.Background></Button>
 ```
 
 ## C-Sharp Mini-Intro
-
-!!! seealso
-
-    MsTe Vorlesung
-
 ### Keywords
 
 Keywords im Vergleich zu Java
@@ -151,99 +108,74 @@ Keywords im Vergleich zu Java
 </tbody>
 </table>
 
-Für weitere Operatoren wie `event`, `operator`, `out`, `override`, `readonly`, `ref`, `struct` und `virtual` gibt es kein Äquivalent in Java.
+Weitere Keywords: `event`, `operator`, `out`, `override`, `readonly`, `ref`, `struct` und `virtual`.
 
-### Properties
-Getter/Setter-Paar als natives Sprach-Feature. Ermöglichen u.a Lazy Initialization. Change Tracking. Calculated Properties, Read-Only Properties usw.
+**Lambda Expressions**
 
 ```csharp
-private string _lastName;
+// Klammern, typ und return sind optional - letztes Generic ist return type.
+Func<int, int> func6 = (int x) => { return x + 1; };
+```
+
+**String Interpolation**
+```csharp
+$"{a.OldName} changed name to {a.NewName}"
+```
+
+### Properties (Getter/Setter-Paar als natives Sprach-Feature)
+Ermöglichen u.a **Lazy Initialization**, **Change Tracking**, **Calculated Properties**, **Read-Only Properties** usw.
+
+```csharp
+private string _lastName; // backing field
 public string LastName {
     get { return _lastName; }
     set { _lastName = value; }
 }
-
-public string FirstName { get; set; }
-
-public string FullName {
-    get {
-        var fullName = LastName + " " + FirstName
-        return fullName;
-    }
+public string FirstName { get; set; } // C# Compiler generates backing field
+public string FullName {        // Calculated property
+    get { return LastName + " " + FirstName }
 }
-// Lambda-syntax (C# >=6.0)
-public string FullNameFirstLast => FirstName + " " + LastName;
-
+public string FullNameFirstLast => FirstName + " " + LastName; // Lambda-syntax for calc. Prop.
 ```
 
-### Delegates
-= "Function Pointers"
+### Delegates = "Function Pointers"
 ```csharp
 namespace DelegateExample {
     class Program {
-        delegate int Calculation(int a, int b);
+        delegate int Calculation(int a, int b); // Define "Signature"
         static void Main(string[] args) {
-            int x = 2;
-            int y = 3;
-            Calculation add = delegate(int a, int b) { return a + b; };
-            int answer = add(x, y); System.Console.WriteLine(answer); // output: 5
+            int x = 2; int y = 3;
+            Calculation add = delegate(int a, int b) { return a + b; }; // Define implementation
+            add(x, y);          // Call implementation
         }
     }
 }
 ```
--> Vordefinierte Delegate-Typen wie `Action` und `Func` nutzen!
+→ Nutze vordefinierte Delegate-Typen wie `Action` und `Func`
 
-### C# Events
-Observer-Patterns (Publish/Subscribe) als natives Sprach-Feature
+### C# Events Publish-Subscribe/Observer als Sprach-Feature
 
 ```csharp
 public delegate void TickEventHandler (int ticks, int interval);
 public class Clock
 {
     public event TickEventHandler OnTickEvent;
-
-    // Implementierung
-    private void Tick(object sender, EventArgs e) {
+    private void Tick(object sender, EventArgs e) { // Implementation
         ticks++;
         OnTickEvent?.Invoke(ticks, interval);
     }
 }
-
-//
-ClockObserver t1 = new ClockObserver("O1");
-c1.onTickEvent += t1.OnTickEvent;
+ClockObserver t1 = new ClockObserver("O1"); // ClockObserver.OnTickEvent must have Signature of TickEventHandler
+c1.onTickEvent += t1.OnTickEvent;   // subscribe...
 ```
 
-### Lambda Expressions
-```csharp
-// Klammern, typ und return sind optional!
-Func<int, int> func6 = (int x) => { return x + 1; };
-```
-
-### String Interpolation
-```csharp
-$"{a.OldName} changed name to {a.NewName}"
-```
 ### Extension Methods
-statisch & erster parameter mit `this`
 ```csharp
-static string ToStringSafe(this object obj)
+static string ToStringSafe(this object obj) //statisch & erster parameter mit `this`!
 { return obj == null ? string.Empty : obj.ToString(); }
 
-public static void Test()
-{
-    int myInt = 0;
+public static void Test() {
     object myObj = null;
     myInt.ToStringSafe();
 }
-```
-
-### LINQ
-**L** anguage **IN** tegrated **Q** uery - vergleichbar mit Java 8 Streams.
-
-```csharp
-var q = students
-    .Where(s => s.Grade < 4m)
-    .Select(s => s.FirstName + " " + s.LastName);
-
 ```

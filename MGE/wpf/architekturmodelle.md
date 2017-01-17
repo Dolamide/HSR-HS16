@@ -2,31 +2,19 @@
 
 ## Internationalization (i18n)
 
-Internationalisierung : App für mehrere Sprachen **vorbereiten**.
+**Internationalisierung** : App für mehrere Sprachen **vorbereiten**.
 
-Lokalisierung : Effektive **Übersetzung** in die einzelnen Sprachen.
+**Lokalisierung** : Effektive **Übersetzung** in die einzelnen Sprachen.
 
 In .NET finden sich alle Informationne zur aktuellen Locale in `System.Globalization.CultureInfo`.
 
-Es gibt verschiedene Mechanismen, um WPF-Applikationen zu lokalisieren. Die einfachste und meist verberitete Methode ist dabei der Resource-Mechanismus von .NET. Dieser generiert für jede Sprache ein eigenes Sattelite Assembly (Bsp. `en-US/appname.resource.dll`).
-
-WPF hat einen spezifischen Mechanismus für Internationalisierung - dieser ist aber relativ komplex und wird in diesem Modul nicht weiter behandelt.
-
-Alternativ könnte man auch eingene lösungen mit Hilfe von bsp. Static Binding im XAML nutzen.
+Es gibt verschiedene Mechanismen, um WPF-Applikationen zu lokalisieren. Die einfachste und meist verberitete Methode ist dabei der **Resource-Mechanismus** von .NET. Dieser generiert für jede Sprache ein eigenes Sattelite Assembly (Bsp. `en-US/appname.resource.dll`). (WPF hat einen spezifischen Mechanismus für Internationalisierung, Alternativ eingene Lösungen: bsp. Static Binding im XAML)
 
 ### Vorgehen Internationalisierung mit .NET Embedded Resources
 
-* Öffnen der Datei `Resources.resx` unter `Properties`.
-* Art der Resource auf Strings setzen
-* Access Modifier auf `public`
+* Öffnen der Datei `Resources.resx` unter `Properties` und Art der Resource auf Strings setzen
 * Weitere Lokalisierungen mit neuen Resource Dateien `Resources.<lang>.resx`, woebi lang das Locale-Kurzel (`de-CH`, `en-US` usw.) ist.
-* WPF Spezifisch muss in der Datei `<appname>.csproj` unter `PropertyGroup` das Element `<UICulture>de-CH</UICulture>` ergänzt werden.
-  * Unload Project
-  * Rechtsklick auf Projekt → Edit `...csproj`
-  * Knoten ergänzen.
-  * Speichern, Schliessen und Project laden
 * Neutrale Sprache Festlegen
-  * In der Datei `Properties/AssemblyInfo.cs` die Zeile `NeutralResourceLanguate` auskommentieren und anpassen.
 * Zugriff von Code behind über `Properties.Resources.SAVE_ERROR`(strongly-typed) oder `Properties.Resources.ResourceManager.GetString("SAVE_ERROR")` (dynamic)
 * Zugriff im XAML über `{x:Static resx:Resources.LABEL_FIRST_NAME}`
     * `xmlns:resx="clr-namespace:I18n.Properties"` im Root-XAML-Element nicht vergessen!
@@ -35,8 +23,6 @@ Alternativ könnte man auch eingene lösungen mit Hilfe von bsp. Static Binding 
     ```
     "{Binding MinPwLenth, StringFormat={x:Static resx:Resources.MIN_PASSWORD_LENGHT_ERROR}}"
     ```
-
- (page break)
 
 ## MVVM
 
@@ -48,7 +34,7 @@ Wichtigste Regeln:
 
 * Die **View kennt Model nicht**
 * Nur das ViewModel kennt das Model und handled alle Kommuniaktion damit
-* View binded auf ViewModel - einzige Verbindung!
+* **View binded auf ViewModel** - einzige Verbindung!
 * Das Model hat kein verhalten, macht weder Formatierung, Darstellung noch Laden/Speichern.
 * ViewModel kennt die View nicht (keine einzige Referenz!!)
 * ViewModel erstellt neue Views nicht direkt selber.
@@ -56,7 +42,7 @@ Wichtigste Regeln:
 * Startup Code in `App.xaml.cs` (`StartupUri`-Attribut aus `App.xaml` löschen)
 * View-Model der View via Dependency-Injection mitgeben.
 
-#### Implementierung von Commands
+#### Implementierung von Commands (Relay Command)
 `RelayComand` übernimmt ein Action swoie eine Funktion `canExecute`.
 
 ```csharp
@@ -87,9 +73,8 @@ public class RelayCommand<T> : ICommand
 public class GadgetVm
 {
     public ICommand SaveCommand { get; set; } = new RelayCommand(
-        () => this.Save(), () => this.CanSave);
+        () => this.Save(), raw => raw is Option);
 
-    public CanSave => … ;
     public void Save() { ... }
 }
 ```
@@ -97,16 +82,5 @@ public class GadgetVm
 Binding im XAML
 
 ```xml
-<Button Content="Open"
-        Command="{Binding OpenGadgetViewCommand}"
-        CommandParameter="{Binding SelectedGadget}" />
-```
-
--> Events müssen in Commands "gemappt" werden.
-
-TODO;::: F48
-
-```
-* F50: DataContext von aussen setzen.
-    * F51: Erstellen aus der View?
+<Button Content="Open" Command="{Binding OpenGadgetViewCommand}" CommandParameter="{Binding SelectedGadget}" />
 ```

@@ -8,7 +8,6 @@ institute: HSR Hochschule für Technik Rapperswil
 pages:
     - index.md
     - gui_entwurf.md
-    - events.md
     - gui_design.md
     - databinding.md
     - benutzerinteraktion.md
@@ -19,4 +18,4 @@ assets:
     - images/
 
 # TODO: load from ../theme/ or default
-theme: /home/rzi/Desktop/raphidoc/raphi_theme/
+theme: /home/rzi/Desktop/raphidoc/raphi_compact/
