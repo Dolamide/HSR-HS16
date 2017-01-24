@@ -15,9 +15,7 @@
 
 
 ### Brute-Force
-Die Brute-Force-Methode vergleicht das Pattern P mit dem Text T für jede mögliche Position von P relativ zu T bis eine Übereinstimmung gefunden wurde oder alle Möglichkeiten durchprobiert wurden.
-
-Im Worst Case (T=aaa....ah, P=aaaaah) benötigt die Brute-Force-Methode $$O(nm)$$
+Die Brute-Force-Methode vergleicht das Pattern P mit dem Text T für jede mögliche Position von P relativ zu T bis eine Übereinstimmung gefunden wurde oder alle Möglichkeiten durchprobiert wurden. Im Worst Case (T=aaa....ah, P=aaaaah) benötigt die Brute-Force-Methode $$O(nm)$$
 
 ```java
 /*
@@ -46,7 +44,7 @@ Basiert auf zwei Heuristiken
 2. Character Jump: falls P das Zeichen c enthält, verschiebe P bis das letzte Auftreten von c in P mit T[i] übereinstimmt.
 
 Im Vorfeld muss dafür eine "Last-Occurence" Funktion implementiert werden:
-Beispiel: Missmatch bei t → lastOccurence('t') → 2, verschiebe Position um 2 nach rechts.
+Beispiel: Missmatch bei t → lastOccurence('t') → 2, verschiebe Position um 2 nach rechts. Wenn nach links verschieben müsste, einfach um 1 nach rechts. Wenn -1, komplette länge überspringen.
 
 ![Ein Beispiel Ablauf mit Boyer-Moore](images/text-boyer-example.png)
 : Ein Beispiel Ablauf mit Boyer-Moore
@@ -54,13 +52,10 @@ Beispiel: Missmatch bei t → lastOccurence('t') → 2, verschiebe Position um 2
 ![Vollständiges BM Beispiel](images/text-boyer-example-exercise.png)
 : Ein vollständiger Ablauf mit Boyer-Moore - mit 12 Vergleichen
 
-Im Worst-Case (T=aaaa ... a, P: baaaaa) hat diese Methode eine Laufzeit von $$O(n \cdot m + s)$$ :disappointed: (Best Case $$O(n/m)$$)
+Im Worst-Case (T=aaaa ... a, P: baaaaa) hat diese Methode eine Laufzeit von $$O(n \cdot m + s)$$ (Best Case $$O(\frac{n}{m})$$)
 
 Ist bei Textanalysen aber typischerweise sehr schnell - kann aber in Ausnahmesituationen sehr langsam sein!
 
-!!! todo
-
-    Lösung der Übungen besser lesbar?
 
 ```java
 /*
@@ -71,12 +66,16 @@ Ist bei Textanalysen aber typischerweise sehr schnell - kann aber in Ausnahmesit
 public static int findBoyerMoore(char[] text, char[] pattern) {
   int n = text.length;
   int m = pattern.length;
-  if (m == 0) return 0;                            // trivial search for empty string
+  if (m == 0) return 0;                            // trivial search for empty string\
+
+  // BEGIN last occurrence
   Map<Character,Integer> last = new HashMap<>();   // the 'last' map
   for (int i=0; i < n; i++)
     last.put(text[i], -1);               // set -1 as default for all text characters
   for (int k=0; k < m; k++)
     last.put(pattern[k], k);             // rightmost occurrence in pattern is last
+  // END last occurrence
+
   // start with the end of the pattern aligned at index m-1 of the text
   int i = m-1;                                     // an index into the text
   int k = m-1;                                     // an index into the pattern
@@ -99,16 +98,22 @@ Der KMP Algorithms arbeitet von links nach rechts, versucht aber redundante verg
 
 Im Vorfeld wird eine Tabelle erstellt, welche die Übereinstimmungen von Präfix im Muster selbst sucht:
 
-* `[aba]` hat sufix, der auch präfix ist: 1
-* `[abaa]` hat sufix, der auch präfix ist: 1
-* `[abaab]` hat sufix, der auch präfix ist: 2
-* `[abaaba]` hat sufix, der auch präfix ist: 3
+```
+p[0] = a      = a          → 0
+p[1] = ab     = ab         → 0
+p[2] = aba    = a_b_a      → 1
+p[3] = abaa   = a_ba_a     → 1
+p[4] = abaab  = ab_a_ab    → 2
+p[5] = abaaba = aba_aba    → 3
+```
+(Bsp. `[aba]` hat sufix, der auch präfix ist: 1)
 
 | j    | 0 | 1 | 2 | 3 | 4 | 5 |
 |------|---|---|---|---|---|---|
 | P[j] | a | b | a | a | b | a |
 | F(j) | 0 | 0 | 1 | 1 | 2 | 3 |
 
+**Beginne Links mit Vergleich**. Sobald missmatch, springe um `(idx + 1) - F(idx)`. (idx ist index aus Pattern) 
 
 Diese "failture function" kann als Array Dargestellt werden, in $$O(m)$$
 
@@ -118,9 +123,6 @@ Diese "failture function" kann als Array Dargestellt werden, in $$O(m)$$
 ![ineffizienter Ablauf mit Knuth-Morris-Pratt](images/text-KMP-example-exercise.png)
 : Ein ineffizienter Ablauf mit Knuth-Morris-Pratt - da ein keine interne Präfixe hat. (=Brute Force)
 
-!!! todo
-
-    Lösung der Übungen besser lesbar?
 
 ```java
 /*
@@ -169,14 +171,6 @@ private static int[] computeFailKMP(char[] pattern) {
 ```
 
 ## Tries
-
-
-!!! todo
-
-    Übung: JS volltext Suche vorbereitung: Trie vorbereiten
-
-    -> Did you mean? - Alg. finden für ändliche matches
-
 
 Ein Trie ist eine kompakte Datenstruktur für die Repräsentation einer Menge von Strings, wie z.B alle Wörter eines Textes
 

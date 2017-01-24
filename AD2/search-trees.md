@@ -102,10 +102,7 @@ Es gibt 3 mögliche Szenarien:
 * Der zu löschende Knoten hat **ein Blattkind**
 * Der zu löschende Knoten hat **keine Blattkinder**
 
-!!! warning
-
-    * Anhand von Grafik #11 nachspielen
-    * Folie 19/20
+Vorgehen:
 
 * Suche nach dem Key
 * Falls Knoten p gefunden:
@@ -201,7 +198,7 @@ als der Rechte ist (wäre natürlich vertauschbar!)
 2. $$\Rightarrow n(h) = 1 + n(h-1) + n(h-2)$$
 3. n(h) kann um zu Vereinfachen wie folgt *angenähert* werden:
 
-        $$n(h) > 2n(h-2)$$
+       $$n(h) > 2n(h-2)$$
 
 4. Der Schritt kann analog mit dem  linken und dem rechten Subtree durchgeführt werden:
 
@@ -280,6 +277,8 @@ Vorgehen zur Wiederherstellung der AVL-Balance:
     * y, x = Kind bzw. Grosskind mit dem Grössten Subtree
     * Rotiere so, dass T1, T2, T3 und T4 in der **inorder** Reihenfolge unverändert bleiben
     * x, y und z müssen bei inorder traversierung **aufsteigend sortiert** sein (Wie bei BinaryTree).
+3. Falls noch nicht so, **alle Knote in eine Reihe bringen** (Doppelrotation)
+4. Einfache Rotation ausführen
 
 ![ALV ROTATE](images/alv_insert_rotate.png)
 
@@ -332,10 +331,6 @@ implementiert werden:
 
 ![](images/alv_delete.png)
 
-!!! todo
-
-    * Einbinden von Beispielscode
-
 ### Laufzeitverhalten
 
 
@@ -352,24 +347,22 @@ Strukturierung (sortierung) analog zum sortierten Binärbaum (oben).
 
 Multimap - gleiche Keys können aber weit auseinander im Tree liegen.
 
-Nach jedem Zugriff auf ein Konten soll dieser zur Root werden.
+Nach **jedem Zugriff** (auch find) auf ein Konten soll dieser **zur Root** werden.
 
-!!! todo
-
-    Recap Doppel-Rotation
+x bleibt immer das selbe!
 
 
-###Suche
+### Suche
 
 * Suche abwärts bis zum gesuchten Entry oder ein externer Konten (wie gehabt)
 * Rotation: mit der ``splay``-Operation
 * bei Rotation ändert sich die Struktur des Baumes oberhalb x nicht
 
-zig(links) zag(rechts) immer von unten aus lesen!
+`zig(links)` `zag(rechts)` immer von unten aus lesen!
 
 ![](images/splaying_flowchart.png)
 
-Wenn externer Knoten → splay() mit dessen Parent!
+Wenn externer Knoten → `splay()` mit dessen Parent!
 
 Vorgehen:
 
@@ -377,7 +370,7 @@ Vorgehen:
 * Splaying gemäss flow-chart durchführen
 * Rotationen einzeln durchführen
 
-###Löschen
+### Löschen
 
 Ersetze v durch Inorder-Nachfolger. Lösche z.
 splay(u) mit dem tiefsten zugegriffenen internen Knoten durchführen
@@ -385,12 +378,12 @@ splay(u) mit dem tiefsten zugegriffenen internen Knoten durchführen
 
 ![](images/splaying_delete.png)
 
-###Insert
+### Insert
 
 Benutze den neuen Knoten bei welchem der Entry eingefügt/ersetzt wurde
 für die Splay-Methode.
 
-###Performance
+### Performance
 
 > Dinge die oft gesucht werden nahe in die Root
 

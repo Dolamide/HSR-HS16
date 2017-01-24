@@ -2,6 +2,8 @@
 
 ![Sorting Übersicht](images/sorting_sumary.png)
 
+Data Set < 1K: selection und insertion sort. Data Set 1K-1M: heap Sort. >1M: Merge sort!
+
 Stabile Sortierungseigenschaft
 : Die relative Ordnung von zwei Elementen mit dem selben Schlüssel werden durch den Algorithmus **nicht verändert**. Bsp `7:a 1:a 7:b 1:b` → `1:a 1:b 7:a 7:b`
 
@@ -149,8 +151,10 @@ Gute Pivot wahl:
      K temp;                            // temp object used for swapping
      while (left <= right) {
        // scan until reaching value equal or larger than pivot (or right marker)
+       // comp.compare(S[left], pivot) < 0) is equal to S[left] < pivot
        while (left <= right && comp.compare(S[left], pivot) < 0) left++;
        // scan until reaching value equal or smaller than pivot (or left marker)
+       // comp.compare(S[right], pivot) > 0 is equal toS[right] > pivot
        while (left <= right && comp.compare(S[right], pivot) > 0) right--;
        if (left <= right) {             // indices did not strictly cross
          // so swap values and shrink range
