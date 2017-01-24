@@ -6,7 +6,7 @@
 
 → Kann nur Funktionieren, wenn gemeinsame Regeln fetsgelegt: Die Common Language Specification.
 
-Die CLS von .NTE ist ein offener Standard.
+Die CLS von .NET ist ein offener Standard.
 
 <figure>
     <img src="images/dot-net-architektur.png" style="max-width: 40%;"/>
