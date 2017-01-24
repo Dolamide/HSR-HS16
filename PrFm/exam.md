@@ -7,10 +7,12 @@
 * one double sided A4 "cheat sheet" (WITH NAME - must be handed in at end of exam)
 * Proof-Rules werden angegeben - falls benötigt
 * Exercises as in the exercise session are probably how the exam looks like.
+* bleistift erlaubt
 
 ## TODO
 * Übungen 2ff in Kapitel FoPCe
-* Lambda Calculus + Übungen
+* Lambda Calculus **Übungen** 5.2, 5.3
+* Scala: Lernziele?
 
 ## Aufgabentypen
 

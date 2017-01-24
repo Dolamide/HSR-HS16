@@ -10,7 +10,7 @@ Custom functions are defined within a _script_ - a simple text file with the `.h
 Haskell comes with many function in the standard library (*standard prelude*) - many that we already know from prolog.
 
 * `head [1, 2, 3, 4, 5]` - `1`
-* `head [1, 2, 3, 4, 5]` - `[2, 3, 4, 5]`
+* `tail [1, 2, 3, 4, 5]` - `[2, 3, 4, 5]`
 * `take 3 [1, 2, 3, 4, 5]` - `[1, 2, 3]`
 * `drop 3 [1, 2, 3, 4, 5]` - `[4, 5]`
 * `lenght [1, 2, 3, 4, 5]` - `5`
@@ -24,7 +24,9 @@ Haskell comes with many function in the standard library (*standard prelude*) - 
 
     * function application is denoted using space
     * function appliaction binds stronger than all other operators
+
     `f a b + c * d` -> `f(a b) + c d`
+
     `f a + b` -> `(f a) + b`
 
 
@@ -117,7 +119,6 @@ Imperative version (pseudo code)
 ```
 n = input
 result = 1;
-```c++
 while(n > 0){
     result = result*n;
     n = n-1;
@@ -127,8 +128,8 @@ while(n > 0){
 Functional version (recursive definition)
 
 ```haskell
-fact 0 = 1;
-fact n = n * (fact n - 1);
+fact 0 = 1
+fact n = n * (fact n - 1)
 ```
 
 Functional is much more readable, since it is basically equivalent to the mathematical definition.
