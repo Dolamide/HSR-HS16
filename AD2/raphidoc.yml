@@ -12,8 +12,8 @@ pages:
     - text-processing.md
     - dynamic-programming.md
     - graphs.md
-    - exam.md
-    - lernplan.md
+    # - exam.md
+    # - lernplan.md
 
 assets:
     - images/

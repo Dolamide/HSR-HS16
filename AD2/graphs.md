@@ -70,17 +70,15 @@ Verbundener Graph
 Connectivity
 : Ein Graph ist verbunden, wenn zwischen **jedem Paar** ein Pfad besteht!
 
+<img src="images/tree.png" style="max-width: 25%;float:right" />
+
 Baum
 : Ein Verbundener ungerichteter Graph ohne Zykeln. Hat kein Root wie beim _Wurzelbaum_ da irelevant.
 
-![](images/tree.png)
-: Baum / Tree
+<img src="images/forest.png" style="max-width: 25%;float:right;" />
 
 Wald
 : Ein Wald ist ein ungerichteter Graph ohne Zyklen
-
-![](images/forest.png)
-: Wald / Forest
 
 Aufgespannter Baum
 Spanning Tree
@@ -98,42 +96,30 @@ Anzahl Vretizes mit $$n$$, Anzahl Kanten mit $$m$$
 
 #### Kanten-Listen Struktur
 
-Diese Struktur nutzt zwei Sequenzen - eine für die Vertizes und eine für die Kanten. Diese Muss eigene Datenstruktur sein, da ein Backlink vorhanden ist. Dieser ermöglicht, dass schnell gelöscht werden kann.
+Diese Struktur nutzt zwei Sequenzen - eine für die Vertizes und eine für die Kanten. Diese muss eine eigene Datenstruktur sein, da ein Backlink in die Datenstruktur vorhanden ist. Dies ermöglicht ein effizientes löschen.
 
 Vorsicht: Die Vertizes haben **keine** Referenzen auf die Kanten!
 
-![](images/graph_kls.png)
-: Schema Kanten-Listen Struktur - Quelle: Goodrich, Tamassia
+<figure>
+    <img src="images/graph_kls.png" style="max-width: 45%;"/>
+    <figcaption>Schema Kanten-Listen Struktur. Obere LinkedList (gelb: u, v, w, z) sind die Knoten im Graph, die Untere die Kanten (blau: a,b,c,d) </figcaption>
+</figure>
 
 #### Adjazenz-Listen Struktur
 Die Adjazenz-Listen Struktur ist analog zur Kanten-Listen Struktur, wobei es zustzlich für jeden Knoten eine Listen (Sequenz) von Kanten gibt.
 
-![](images/graph_als.png)
-: Schema Adjazenz-Listen Struktur - Quelle: Goodrich, Tamassia
+<figure>
+    <img src="images/graph_als.png" style="max-width: 45%;"/>
+</figure>
 
 #### Adjazenz-Matrix Struktur
 Bei der Adjazenz-Matrix Struktur gibt es auch zwei Sequenzen - eine mit den Vertizes und eine mit den Kanten. Die Vertex Objekte haben zusätzlich einen Index.
 Dieser wird in einer Matrix wird die "Verkabelung" abgelegt - bsp. Vertex mit Index `0` und Vertex mit Index `1` sind über die Kante `a` Verbunden.
 
-![](images/graph_ams.png)
-: Schema Adjazenz-Matrix Struktur - Quelle: Goodrich, Tamassia
-
-
-### API
-
-* `endVertices(e)`
-* `opposite(v, e)`
-* `areAdjacent(v, w)`
-* `replace(v, x)` - Wert auf Vertex `v` mit `x` ersetzen
-* `replace(e, x)` - Wert auf Kante `e` mit `x` ersetzen
-* `insertVertex(o)` - Neuer Vertex mit Wert `o` erzeugen. Erzeugt "Insel"
-* `insertEdge(v, w, o)` - Neue Kante zwischen Vertizes `v` und `w` einfügen
-* `removeVertex(v)` - Alle incident (eingehenden) Kanten auch löschen.
-* `removeEdge(e)`
-* `incidentEdges(v)` - länge des Resultats enspricht dem Grad!
-* `vertices()`
-* `edges()`
-
+<figure>
+    <img src="images/graph_ams.png" style="max-width: 45%;"/>
+    <figcaption></figcaption>
+</figure>
 
 ### Performance (Graphen)
 
@@ -148,6 +134,7 @@ Dieser wird in einer Matrix wird die "Verkabelung" abgelegt - bsp. Vertex mit In
 | `removeEdge(e)`       | 1       | 1                       | 1       |
 
 $$n$$ Anzahl Vertizes
+
 $$m$$ Anzahl Kanten
 
 Die Back-References in die Datenstruktur sowohl in der Adjazenz Liste als auch in der Adjazenz Matrix sind essentiel um gute Performance zu erreichen. Dies war auch schon in AD1 beim Heap der Fall.
@@ -166,7 +153,9 @@ Wenn es einen Pfad gibt, dann findet die Tiefensuche diesen garantiert, wobei di
 
 Der Algorithmus verwendet verschiedene Labels, welche er auf den Vertizes und den Kanten setzt. Dies kann effizient mit bsp. einer Hash-Map implementiert werden.
 
-Um den Algorithmus bsp. auf Papier auszuführen muss eine klare sortierung der Kanten/Vertizes beim Aufruf der Methoden `vertices`, `edges` und `incidentEdges`  definiert werden - bsp. aufsteigend sortiert. **Vorgehen:** Graph aufzeichen, Labels hinzufügen und durch den Code steppen.
+Um den Algorithmus bsp. auf Papier auszuführen muss eine klare sortierung der Kanten/Vertizes beim Aufruf der Methoden `vertices`, `edges` und `incidentEdges`  definiert werden - bsp. aufsteigend sortiert.
+
+**Vorgehen:** Graph aufzeichen, Labels hinzufügen und durch den Code steppen.
 
 ```
 Algorithm DFS(G)
@@ -201,11 +190,7 @@ Algorithm DFS(G, v)
 Das Ergebniss ist ein aufgespannter Baum. Die Kanten mit dem Label `Back` sind Zykeln ("im Baum zurückschauen") - also die "ausgeblendeten" Kanten.
 
 
-Im Gegensatz zum BFS können mit dem DFS Biconnected Komponenten gefunden werden ("Single Point of failture")
-
-!!! seealso
-
-    Beispiel in den Folien 4-5
+Im Gegensatz zum BFS können mit dem DFS Biconnected Komponenten gefunden werden, also ob 2 Teilgrahen nur über genau einen Vertex verbunden sind.
 
 ### Performance DFS
 
@@ -233,10 +218,10 @@ Algorithm pathDFS(G, v, z)
                 setLabel(e, DISCOVERY)
                 S.push(e)
                 pathDFS(G, w, z)
-                S.pop()
+                S.pop() // Popt Edge
             else
                 setLabel(e, BACK)
-    S.pop()
+    S.pop()     // Popt Vertex!
 ```
 
 ### Zyklen finden
@@ -261,7 +246,7 @@ Algorithm cycleDFS(G, v)
                 repeat
                     o ← S.pop()
                     T.push(o)
-                until o = w
+                until o = w     // Only take all elements, that actually ARE in the cycle!
                 finish: result is T.elements()
     S.pop()
 ```
@@ -277,13 +262,13 @@ Depth-First Search ist eine **Technik für die Traversierung** eines Graphen:
 
 Im Gegensatz zu DFS findet die BFS den kürzesten Pfad!
 
+<img src="images/bfs_skizze.png" style="max-width: 25%;float:right;" />
 Für jeden Vertex v in L gilt:
 
 * der Pfad in _aufgespannten Baum_ von s nach v besitzt i Kanten.
 * jeder Pfad von s nach v _im Graph_ besitzt mindestens i Kanten.
 
 **Vorgehen:** Graph aufzeichen: Root zu oberst, dann alle Kindknoten usw.
-![](images/bfs_skizze.png)
 
 ```
 Algorithm BFS(G)
@@ -299,8 +284,8 @@ Algorithm BFS(G)
         if getLabel(v) = UNEXPLORED
             BFS(G, v)
 
-Algorithm BFS(G, s)
-    L{0} ← new empty sequence
+Algorithm BFS(G, s) // s is final
+    L{0} ← new empty sequence   // L[0] = new List()
     L{0}.insertLast(s)
     setLabel(s, VISITED)
     i←0
@@ -323,10 +308,6 @@ Im Gegensatz zu DFS nicht *back* sonder *cross-edge*.
 Sequenz kann queue sein.
 
 Anzahl der Listen = "Längster kürzester Pfad"
-
-!!! seealso
-
-    Beispiel in den Folien 4-6
 
 ### Performance BFS
 Identisch zu DFS!
@@ -358,17 +339,15 @@ Eine mögliche Anwendungen ist u.a. Task Scheduling: Ein Task muss nach einem An
 * Tiefensuche kennt nebst `discovery`, `back` und `cross` auch `forward` - eine Verbindung zu einem Nachfolger im Baum.
 * Der aufgebaute DFS-Baum ist je nach Anfangsknoten **unterschiedlich**!
 
-![](images/digraph-labels.png)
-: Neu *cross!* (D → C) und **back** (C → A) und **forward** (A → D) - Quelle: AD2-Vorlesung (HSR)
+<figure>
+    <img src="images/digraph-labels.png" style="max-width: 40%;"/>
+    <figcaption>Neu cross (D → C) und back (C → A) und forward (A → D)</figcaption>
+</figure>
 
 Bei einem Digraph ergibt sich ein wesentlich anderer Tree (Bsp. mit DFS) im vergleich zum ungerichteten Graph.
 
 Erreichbarkeit
 : Vertizes im DFS Baum vom Wurzelknoten v sind durch gerichtete Pfade erreichbar.
-
-!!! todo
-
-    Code Übungen W13: Kind of Node
 
 ### Implementierung
 Adjazenzliste neu mit 2 Listen: Einmal für Incomming und einmal für Outgoing.
@@ -382,14 +361,14 @@ Strong connected component
 : Ein Subgraph, der Streng verbunden ist.
 
 * 1x Teifensuche ab irgend einem Knoten
-* Wenn es keine nicht besuchten Vertizes gibt: Neuer Graph "erstellen" mit gleichen Vertizes aber umgekehrten Kanten
-* Wenn es keine nicht besuchten Vertizes gibt: Graph ist Strong connected.
+* Wenn alle Vertizes besucht wurden: Neuer Graph "erstellen" mit gleichen Vertizes aber umgekehrten Kanten - sonst nicht strong connected!
+* Wenn alle Vertizes besucht wurden: Graph ist Strong connected (sonst nicht)
 
 Laufzeit $$O(n+m)$$
 
-NB: "Wenn es keine nicht besuchten Vertizes gibt" kann in der for schleife der `DFS(G)` Methode evaluiert werden.
+NB: "Wenn alle Vertizes besucht werden" ("Wenn es keine nicht besuchten Vertizes gibt") kann in der for schleife der `DFS(G)` Methode evaluiert werden.
 
-### Transitiver Abschluss
+### Transitiver Abschluss / Floyd Warshall
 Transitiver Abschluss von G ist ein Graph G*, der _zusätzlich direkte Verbindungen_ zu allen Knoten hat, die transitiv erreichbar sind.
 
 **Ist nichts anderes als eine Performance Verbesserung** bei der Nutzung.
@@ -402,25 +381,34 @@ Laufzeit:  $$O(n^3)$$ (FALLS: `areAdjacent` mit $$O(1)$$ läuft!). Dies ist nich
 Algorithm FloydWarshall(G)
     Input digraph
     G Output transitive closure G* of G
-    i←1
+    idx ← 1
+    v ← new Random access sequence - eg. Array or ArrayList
     for all v ∈ G.vertices()
-        denote v as vi
-        i←i+1
+        v{i} = v
+        idx ← idx+1
     G{0} ← G
-    for k ← 1 to n do
+    for k ← 1 to n do       # n = Anzahl Vertizes
         G{k} ← G{k−1}
         for i ← 1 to n (i ≠ k) do
-            if G{k} − 1.areAdjacent(v{i}, v{k})
+            if G{k−1}.areAdjacent(v{i}, v{k})
                 for j ← 1 to n (j ≠ i, k) do
-
-                  if G{k} − 1.areAdjacent(v{k}, v{j}) ∧
-                     ¬G{k}.areAdjacent(v{i}, v{j})
-
+                  if G{k−1}.areAdjacent(v{k}, v{j}) ∧ ¬G{k}.areAdjacent(v{i}, v{j})
                      G{k}.insertDirectedEdge(v{i}, v{j} , k)
-    return Gn
+    return G{n}
 ```
+'denote v as vi' -> Damit Random access ist (Bsp. in Array abfüllen)
+n = Anzahl Vertizes
 
-Vorgehen: Papierpfeile i, k, k → Kann sofort abbrechen, wenn 1. Bedinung nicht erfüllt. Check: Keine Gegenpfeile in Gegenrichtung.
+areAdjacent = DIREKT BENACHBART!
+
+**Vorgehen**: Vertex k festlegen. Suche 2 Vertizes, die über K verbunden sind, aber keine Direkte Verbindung besteht.
+
+Alternativ: Papierpfeile i, k, k → Kann sofort abbrechen, wenn 1. Bedinung nicht erfüllt. Check: Keine Gegenpfeile in Gegenrichtung.
+
+1. Gibt es Verbindung von I nach K? Nein -> i++
+2. Gibt es Verbindung von K nach J? Nein -> j++
+3. Gibt es **KEINE** Verbindung von I nach J? Nein -> j++
+4. Verbindung von I nach J Einfügen. -> j++
 
 
 ### DAGs & topologische Ordnung
@@ -433,6 +421,8 @@ Topologische Ordnung
 : Vertizes Nummeriern, so dass die Zahl der Startvertizes kleiner als die Endvertizes sind. Oft sind mehrere Lösungen möglich.
 
 Bsp. Buildtools wie Make, Maven usw. müssen topoligische Ordnung haben.
+
+**Vorgehen** DFS durch Vertizes durchiterieren. Sobald ein Aufruf von topolocicalDFS abgeschlossen ist, sprich alle `outgoingEdges` abgeklappert wurden, bekommt der Vertex die Nummer n. Anschliessend n--;
 
 ```
 Algorithm topologicalDFS(G)
@@ -495,13 +485,11 @@ Ziel: Finden des Weg mit dem kleinsten totalen Gewicht zwischen zwei Vertizes. B
 * Ein **Teilweg** eines kürzesten Weges **ist selbst auch ein kürzester Weg**
 * Es existiert ein Baum von kürzesten Wegen von einem Start-Vertex zu allen anderen Vertizes.
 
-!!! todo
-
-    Grafik aus Übungen
-
 Distanz
 : Die Länge des kürzesten Pfad zwischen Start und Zeilvertex.
 
+Gewicht
+: Summe aller Kanten im SPT
 
 ###  Dijkstra’s Algorithmus
 Der Dijkstra’s Algorithmus berechnet die Distanzen zu _allen_ Vertizes von _einem Start-Vertex_ `s` aus.
@@ -557,9 +545,7 @@ Dijkstra funktioniert, weil die Distanz immer, denn ...
 
 ...kann der neue Pfad nicht falsch sein.
 
-!!! vorgehen
-
-    Schritt für Schritt aufzeichnen oder PQ aufzeichen.
+**Schritt für Schritt Wolke aufzeichnen und Priorität angeben. Immer mit Vertex mit kleinsten Kosten fortfahren.** (Siehe Übungsserie 13)
 
 Nutzung von Adaptabe Priority queue (Recap: Priority kann sich ändern und retourniert Locator, also Link in Datenstruktur) wobei Key = Distanz und Element = Vertex.
 
@@ -639,13 +625,16 @@ Algorithm BellmanFord(G, s)
                 setDistance(z,r)
 ```
 
-![](images/bellmannFord.png)
-
+<figure>
+    <img src="images/bellmannFord.png" style="max-width: 70%;"/>
+    <figcaption></figcaption>
+</figure>
 
 ## DAG basierte Distanz
 * DAG = gerichteter Graph ohne Zyklen (Directed acyclic Graph)
 * basiert auf topologischer sortierung
 
+```
 Algorithm DagDistances(G, s)
     for all v ∈ G.vertices()
         if v = s
@@ -654,40 +643,47 @@ Algorithm DagDistances(G, s)
             setDistance(v, ∞)
     Perform a topological sort of the vertices
     for u ← 1 to n do
-    // in topologischer Reihenfolge
-        for each e ∈ G.outEdges(u)
-        // relax edge e
-        z ← G.opposite(u,e)
-        r ← getDistance(u) + weight(e)
-        if r < getDistance(z)
-            setDistance(z,r)
+        for each e ∈ G.outEdges(u) // in topologischer Reihenfolge
+            // relax edge e
+            z ← G.opposite(u,e)
+            r ← getDistance(u) + weight(e)
+            if r < getDistance(z)
+                setDistance(z,r)
+```
 
-![](images/dagDistance.png)
-
+<figure>
+    <img src="images/dagDistance.png" style="max-width: 70%;"/>
+    <figcaption></figcaption>
+</figure>
 
 ## Minimum Spanning Trees
-* Aufgespannter Subgraph
-* Wo kabel durchziehen, dass kabellänge minimal
-* recap CN1
-* schlaufen und Aufteilungseigenschaft
 
+* Aufgespannter Subgraph, der ein aufgespannter Baum ist, mit minimalem Gewicht (Summe aller Kanten im MST)
+    * Subgraph = also alle Vertizes, aber nur Teilmenge der Kanten
+    * Baum = Ein Verbundener ungerichteter Graph ohne Zykeln (Root nicht relevant)
+* "Kabel durchziehen, so dass die Kabellänge minimal ist"
+* Schlaufen-Eigenschaft und Ableitungs-Eingeschaft sind "Beweis", dass es sich um einen Spanning Tree handelt
+    * Schlaufen-Eigenschaft: Man kann keine Kante mit einer Anderen Ersetzen und erhält damit ein kleineres Gewicht
+    * Aufteilungs-Eigenschaft: Aufteilen des Vertex in 2 Teilmengen. Die Kante mit dem kleinsten Gewicht muss die beiden Mengen verbinden.
 
 ### Kuskal
-* Wolke - vergleichbar mit Dijkstra.
-*
 
-tood: code F5
+1. Jeder Vertex ist in einem Set.
+2. Suche Kante mit kleinstem Gewicht
+3. Falls beide Vertizes noch nicht im Gleichen Set: Vereine die Sets der beiden Vertizes. Sonst überspringen.
 
+<figure>
+    <img src="images/mst_kuskal_beispiel.png" style="max-width: 60%;"/>
+    <figcaption></figcaption>
+</figure>
+
+Hat Laufzeit von $$O(m\ log\ n)$$.
 
 ### PrimJarnik
-* Leicht modifizierter Dijkstra (weight und nicht distance + weight)
+Leicht modifizierter Dijkstra (Vertex Gewicht = Gewicht der "leichtesten" Kante und nicht wie bei Dijkstra (Distanz + Gewicht)).
 
--> Performance analog zu incidentEdges
+Einsatz bei hoher Vermaschung Prim-Jarnick sonst Kruskal.
 
-### Boruvka
+![](images/pj_beispiel.png)
 
-
-### ...
-Gewicht des Trees = Summe aller Gewichte im Tree
-
-SPT (Shortest Path Tree) vs. MST (Minimal Spannig Tree)
+Hat Laufzeit $$O(m\ log\ n)$$.

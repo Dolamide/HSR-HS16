@@ -108,31 +108,32 @@ Vorgehen Auslesen:
             * folge der Kolonne oder Reihe mit dem selben Wert
             * Mehrere varianten möglich (einmal horizontal, einmal vertikal)
 
-![](images/lcs_table.png)
+<figure>
+    <img src="images/lcs_table.png" style="max-width: 40%;"/>
+    <figcaption></figcaption>
+</figure>
 
+Bei Grossen Daten ist Rekursion keine Option - das Laufzeitstack zu klein. Darum könnte das mit einem separaten stack implementiert werden.
 
 ```java
 // Rekusive Suche nach allen möglichen LCS
 public List<String> findAll() {
   List<String> result = new LinkedList<>();
   StringBuilder lcs = new StringBuilder();
-
   Set<String> set = find(xStr.length(), yStr.length());
-
   List<String> l = new ArrayList<>(set);
   l.sort((o1, o2) -> o1.compareTo(o2));
   return l;
 }
-
+```
+```java
 private Set<String> find(int x, int y){
     Set<String> allLcs = new HashSet<String>();
-
     // Base Case
     if(x == 0|| y == 0){
       allLcs.add("");
       return allLcs;
     }
-
     // Jump first (if possible)
     boolean jump = xStr.charAt(x-1) == yStr.charAt(y-1);
     if (jump) {
@@ -141,19 +142,16 @@ private Set<String> find(int x, int y){
         allLcs.add(result + xStr.charAt(x-1));
       }
     }
-
     // Go further up (if possible)
     if(tableL[x][y] == tableL[x][y-1]){
       Set<String> results = find(x, y-1);
       allLcs.addAll(results);
     }
-
     // Go further left (if possible)
     if (tableL[x][y] == tableL[x-1][y]){
       Set<String> results = find(x-1, y);
       allLcs.addAll(results);
     }
-
     // Must jump (if not already done)
     if(!jump  && tableL[x][y] != tableL[x-1][y] && tableL[x][y] != tableL[x][y-1]){
       Set<String> results = find(x-1, y-1);
@@ -163,17 +161,9 @@ private Set<String> find(int x, int y){
     }
     return allLcs;
 }
-/**
-* Calculates the L-Table.
-* @param xStr First string (vertical axis of L-Table).
-* @param yStr Second string (horizontal axis of L-Table).
-* @return The calculated L-Table.
-*/
 public int[][] calculateTable(final String xStr, final String yStr) {
-
     this.xStr = xStr;
     this.yStr = yStr;
-
     tableL = new int[xStr.length()+1][yStr.length()+1];
     for(int y=1; y <= yStr.length(); y++){
       for(int x = 1; x <= xStr.length(); x++){
@@ -187,33 +177,4 @@ public int[][] calculateTable(final String xStr, final String yStr) {
     }
     return tableL;
 }
-
-/**
-* Prints the L-Table (see 'Session-Log').
-*/
-public void printTable() {
-    System.out.print("      ");
-    for(int x = 0; x < xStr.length(); x++){
-      System.out.print("  " + xStr.charAt(x));
-    }
-    System.out.println();
-
-    for(int y=0; y < tableL[0].length; y++){
-      if(y > 0){
-        System.out.print("  " + yStr.charAt(y-1));
-      }else{
-        System.out.print("   ");
-      }
-      for(int x = 0; x < tableL.length; x++){
-        System.out.print("  " + tableL[x][y]);
-      }
-      System.out.println();
-    }
-}
 ```
-
-Bei Grossen Daten ist Rekursion keine Option - das Laufzeitstack zu klein. Darum könnte das mit einem separaten stack implementiert werden.
-
-!!! seealso
-
-    [PDF-Annimation des LCS Algorithmus](https://www.hni.uni-paderborn.de/fileadmin/Fachgruppen/Algorithmen/Lehre/Vorlesungsarchiv/SS2007/Folien_09_-_DuA_SS_2007.pdf)

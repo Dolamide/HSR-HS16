@@ -5,7 +5,9 @@
 
 Beispiel ``find(7)`` in einer Array-Basierten Multimap:
 
-![Search Array](images/binary-search-array.png)
+<figure>
+    <img src="images/binary-search-array.png" style="max-width: 70%;"/>
+</figure>
 
 ## Varianten
 
@@ -23,14 +25,11 @@ Beispiel ``find(7)`` in einer Array-Basierten Multimap:
 
     * Entscheidende Frage bei der Implementierung: Null-Terminiert oder mit Guards?
     * Map oder Multimap?
-<hr>
+
 ## Binary-Search-Trees
+<img src="images/u_v_w.png" style="max-width: 20%;float: right;"/>
 
 * Binärbäume kennen wir schon von AD1 (beispielsweise Heap)
-
-![u v w](images/u_v_w.png)
-
-
 * **key(u) ≤ key(v) ≤ key(w)**
     * Keys welche im linken Subtree sind, sind **kleiner gleich** root
     * Keys welche im rechten Subtree sind, sind **grösser** als root
@@ -44,7 +43,7 @@ Beispiel ``find(7)`` in einer Array-Basierten Multimap:
     * [Interactive Binary-Search-Tree visualization 1](https://www.cs.usfca.edu/~galles/visualization/BST.html)
     * [Interactive Binary-Search-Tree visualization 2](http://visualgo.net/bst)
 
-###Suche
+### Suche
 
 * Ist der Key k gleich den key des Knotens → Suche beendet.
 * Ist der Key k kleiner als der key des Knotens → Linker Subtree
@@ -58,8 +57,7 @@ Beispiel ``find(7)`` in einer Array-Basierten Multimap:
 
     Achte auf Grenzwerte! Wird bei bsp. 911 nach links fortgefahren, so kann kein Wert >= 911 vorkommen!
 
-![broken binary tree](images/broken_binary_tree.jpg)
-
+<img src="images/broken_binary_tree.jpg" style="max-width: 20%;float:right;" />
 
 ```java
 Knoten suchen(Knoten p, int x) {
@@ -256,9 +254,7 @@ als der Rechte ist (wäre natürlich vertauschbar!)
 
 Beim Einfügen kann ``-2 ≤ b(x) ≤ 2`` gelten - was eine Verletzung der AVL-Balance ist!
 
-![](images/alv_insert_wrong.png)
-
-Man kann 4 generell mögliche Fälle unterscheiden
+<img src="images/alv_insert_wrong.png" style="max-width: 20%; float: right;" /> Man kann 4 generell mögliche Fälle unterscheiden
 
 * Einfügen in den linken Teilbaum des linken Sohnes
 * Einfügen in den rechten Teilbaum des linken Sohnes
@@ -280,7 +276,9 @@ Vorgehen zur Wiederherstellung der AVL-Balance:
 3. Falls noch nicht so, **alle Knote in eine Reihe bringen** (Doppelrotation)
 4. Einfache Rotation ausführen
 
-![ALV ROTATE](images/alv_insert_rotate.png)
+<figure>
+    <img src="images/alv_insert_rotate.png" style="max-width: 70%;"/>
+</figure>
 
 **CHECK: INORDER Reihenfolge vergleichen**
 
@@ -301,21 +299,10 @@ Nachteil: Komplexer
 
 Methode `restructure(x)` wird mit dem neu Angefügten Knoten x aufgerufen.
 
-1. z, y, x und T0, T1, T2, T3 festlegen (z ist der unterste unbalancierte Knoten - zumindest bei remove)
-
-    ![](images/alv_insert_cutlink1.png)
-
-2. Die Sieben Teile gemäss **inorder Reihenfolge nummerieren**
-
-    ![](images/alv_insert_cutlink2.png)
-
-3. ensprechend der inorder Reihenfolge in ein Array abfüllen
-
-    ![](images/alv_insert_cutlink3.png)
-
-4. Schrittweise neuer Baum a der Mitte des Arrays aufbauen: **NUR INORDER REIHENFOLGE RELEVANT**
-
-    ![](images/alv_insert_cutlink4.png)
+1. z, y, x und T0, T1, T2, T3 festlegen (z ist der unterste unbalancierte Knoten - zumindest bei remove) <img src="images/alv_insert_cutlink1.png" style="max-width: 50%" />
+2. Die Sieben Teile gemäss **inorder Reihenfolge nummerieren** <img src="images/alv_insert_cutlink2.png" style="max-width: 50%" />
+3. ensprechend der inorder Reihenfolge in ein Array abfüllen    <img src="images/alv_insert_cutlink3.png" style="max-width: 50%" />
+4. Schrittweise neuer Baum a der Mitte des Arrays aufbauen: **NUR INORDER REIHENFOLGE RELEVANT**<br> <img src="images/alv_insert_cutlink4.png" style="max-width: 50%" />
 
 ### Löschen
 
@@ -329,8 +316,10 @@ implementiert werden:
 * Zurück zu Schritt 2.
 * Falls komplett balanciert - fertig!
 
-![](images/alv_delete.png)
-
+<figure>
+    <img src="images/alv_delete.png" style="max-width: 50%;"/>
+    <figcaption></figcaption>
+</figure>
 ### Laufzeitverhalten
 
 
@@ -360,7 +349,9 @@ x bleibt immer das selbe!
 
 `zig(links)` `zag(rechts)` immer von unten aus lesen!
 
-![](images/splaying_flowchart.png)
+<figure>
+    <img src="images/splaying_flowchart.png" style="max-width: 55%;"/>
+</figure>
 
 Wenn externer Knoten → `splay()` mit dessen Parent!
 
@@ -375,8 +366,10 @@ Vorgehen:
 Ersetze v durch Inorder-Nachfolger. Lösche z.
 splay(u) mit dem tiefsten zugegriffenen internen Knoten durchführen
 
-
-![](images/splaying_delete.png)
+<figure>
+    <img src="images/splaying_delete.png" style="max-width: 55%;"/>
+    <figcaption></figcaption>
+</figure>
 
 ### Insert
 

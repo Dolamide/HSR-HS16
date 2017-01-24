@@ -18,11 +18,6 @@
 Die Brute-Force-Methode vergleicht das Pattern P mit dem Text T für jede mögliche Position von P relativ zu T bis eine Übereinstimmung gefunden wurde oder alle Möglichkeiten durchprobiert wurden. Im Worst Case (T=aaa....ah, P=aaaaah) benötigt die Brute-Force-Methode $$O(nm)$$
 
 ```java
-/*
- * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
- * (GPL Licensed) - via Data Structures and Algorithms in Java, Sixth Edition
- */
-/** Returns the lowest index at which substring pattern begins in text (or else -1).*/
 public static int findBrute(char[] text, char[] pattern) {
   int n = text.length;
   int m = pattern.length;
@@ -46,11 +41,15 @@ Basiert auf zwei Heuristiken
 Im Vorfeld muss dafür eine "Last-Occurence" Funktion implementiert werden:
 Beispiel: Missmatch bei t → lastOccurence('t') → 2, verschiebe Position um 2 nach rechts. Wenn nach links verschieben müsste, einfach um 1 nach rechts. Wenn -1, komplette länge überspringen.
 
-![Ein Beispiel Ablauf mit Boyer-Moore](images/text-boyer-example.png)
-: Ein Beispiel Ablauf mit Boyer-Moore
+<figure>
+    <img src="images/text-boyer-example.png" style="max-width: 65%;"/>
+    <figcaption>Ein Beispiel Ablauf mit Boyer-Moore</figcaption>
+</figure>
 
-![Vollständiges BM Beispiel](images/text-boyer-example-exercise.png)
-: Ein vollständiger Ablauf mit Boyer-Moore - mit 12 Vergleichen
+<figure>
+    <img src="images/text-boyer-example-exercise.png" style="max-width: 65%;"/>
+    <figcaption>Ein vollständiger Ablauf mit Boyer-Moore - mit 12 Vergleichen</figcaption>
+</figure>
 
 Im Worst-Case (T=aaaa ... a, P: baaaaa) hat diese Methode eine Laufzeit von $$O(n \cdot m + s)$$ (Best Case $$O(\frac{n}{m})$$)
 
@@ -58,24 +57,17 @@ Ist bei Textanalysen aber typischerweise sehr schnell - kann aber in Ausnahmesit
 
 
 ```java
-/*
- * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
- * (GPL Licensed) - via Data Structures and Algorithms in Java, Sixth Edition
- */
-/** Returns the lowest index at which substring pattern begins in text (or else -1).*/
 public static int findBoyerMoore(char[] text, char[] pattern) {
   int n = text.length;
   int m = pattern.length;
   if (m == 0) return 0;                            // trivial search for empty string\
-
-  // BEGIN last occurrence
-  Map<Character,Integer> last = new HashMap<>();   // the 'last' map
-  for (int i=0; i < n; i++)
-    last.put(text[i], -1);               // set -1 as default for all text characters
-  for (int k=0; k < m; k++)
-    last.put(pattern[k], k);             // rightmost occurrence in pattern is last
-  // END last occurrence
-
+      // BEGIN last occurrence
+      Map<Character,Integer> last = new HashMap<>();   // the 'last' map
+      for (int i=0; i < n; i++)
+        last.put(text[i], -1);               // set -1 as default for all text characters
+      for (int k=0; k < m; k++)
+        last.put(pattern[k], k);             // rightmost occurrence in pattern is last
+      // END last occurrence
   // start with the end of the pattern aligned at index m-1 of the text
   int i = m-1;                                     // an index into the text
   int k = m-1;                                     // an index into the pattern
@@ -113,23 +105,14 @@ p[5] = abaaba = aba_aba    → 3
 | P[j] | a | b | a | a | b | a |
 | F(j) | 0 | 0 | 1 | 1 | 2 | 3 |
 
-**Beginne Links mit Vergleich**. Sobald missmatch, springe um `(idx + 1) - F(idx)`. (idx ist index aus Pattern) 
+**Beginne Links mit Vergleich**. Sobald missmatch, springe um `(idx + 1) - F(idx)`. (idx ist index aus Pattern)
 
 Diese "failture function" kann als Array Dargestellt werden, in $$O(m)$$
 
-![Ein Beispiel Ablauf mit Knuth-Morris-Pratt](images/text-KMP-example.png)
-: Ein Beispiel Ablauf mit Knuth-Morris-Pratt
-
-![ineffizienter Ablauf mit Knuth-Morris-Pratt](images/text-KMP-example-exercise.png)
-: Ein ineffizienter Ablauf mit Knuth-Morris-Pratt - da ein keine interne Präfixe hat. (=Brute Force)
-
+<img src="images/text-KMP-example.png" style="max-width: 50%;"/>
+<img src="images/text-KMP-example-exercise.png" style="max-width: 30%;float:right;"/>
 
 ```java
-/*
- * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
- * (GPL Licensed) - via Data Structures and Algorithms in Java, Sixth Edition
- */
- /** Returns the lowest index at which substring pattern begins in text (or else -1).*/
 public static int findKMP(char[] text, char[] pattern) {
   int n = text.length;
   int m = pattern.length;
@@ -149,7 +132,8 @@ public static int findKMP(char[] text, char[] pattern) {
   }
   return -1;                                       // reached end without match
 }
-
+```
+```java
 private static int[] computeFailKMP(char[] pattern) {
   int m = pattern.length;
   int[] fail = new int[m];                         // by default, all overlaps are zero
@@ -167,7 +151,6 @@ private static int[] computeFailKMP(char[] pattern) {
   }
   return fail;
 }
-
 ```
 
 ## Tries
@@ -189,15 +172,17 @@ Die Laufzeit des Pattern Matching ist ok für kleinere Text - bzw. wenn einmal e
 * $$O(dm)$$ für suchen, einfügen und löschen (Könnte mit HashTable (für unicode) oder Array (für kleines Alphabeet wie bsp. ASCII) noch verbessert werden)
 * Die Position kommt ins Blatt
 
-![Standard-Trie](images/trie_standard.png)
-
+<figure>
+    <img src="images/trie_standard.png" style="max-width: 50%;"/>
+</figure>
 ### Komprimierte Tries
 
 * Elemente, die nur einen ein Child haben in einem Node zusammenfassen.
 * Darf nicht zusammengefasst werden, wenn Position in Node - Bsp. Wenn die beiden Wörter `Apple` und `a` vorkommen
 
-![](images/trie_komprimiert.png)
-
+<figure>
+    <img src="images/trie_komprimiert.png" style="max-width: 50%;"/>
+</figure>
 
 Ein Ansatz zur Implementation ist es, ein Komprimierter Node bei bedarf zu dekomprimieren bzw. beim aufräumen wider zu dekomprimieren.
 
@@ -207,9 +192,10 @@ Hat gleiche Komplexität, aber kostet etwas performance.
 * Knoten speichert Indizes anstelle von Substrings
 * Benötigt $$O(s)$$ Speicher, wobei s die Anzahl Strings im Array ist
 
-![](images/trie_kompakt.png)
-: Der Erste Index ist der des Arrays - die anderen beiden markieren Anfang und Ende des Substrungs
-
+<figure>
+    <img src="images/trie_kompakt.png" style="max-width: 70%;"/>
+    <figcaption>Der Erste Index ist der des Arrays - die anderen beiden markieren Anfang und Ende des Substrungs</figcaption>
+</figure>
 
 ### Suffix Tree
 * Ermöglicht Suche von Teilstrings ("Contains" oder "Suffixes" können mit (komprimierten/kompakten) Standard-Trie nicht gefunden werden.

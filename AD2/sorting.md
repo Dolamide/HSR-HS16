@@ -1,11 +1,11 @@
 # Sorting
-
-![Sorting Übersicht](images/sorting_sumary.png)
-
-Data Set < 1K: selection und insertion sort. Data Set 1K-1M: heap Sort. >1M: Merge sort!
-
 Stabile Sortierungseigenschaft
 : Die relative Ordnung von zwei Elementen mit dem selben Schlüssel werden durch den Algorithmus **nicht verändert**. Bsp `7:a 1:a 7:b 1:b` → `1:a 1:b 7:a 7:b`
+
+<figure>
+    <img src="images/sorting_sumary.png" style="max-width: 45%;"/>
+    <figcaption>Data Set < 1K: selection und insertion sort. Data Set 1K-1M: heap Sort. >1M: Merge sort!</figcaption>
+</figure>
 
 ## Merge-Sort
 
@@ -23,8 +23,10 @@ conquery
 * Auch Nicht-Rekursiv möglich (Im Array - in und out wird vertauscht)
 * Halbiert immer → immer garantierter balancierter baum
 
-![Rekursion als Baum dargestellt](images/merge-sort-tree.png)
-: Rekursion als Baum dargestellt
+<figure>
+    <img src="images/merge-sort-tree.png" style="max-width: 60%;"/>
+    <figcaption>Rekursion als Baum dargestellt</figcaption>
+</figure>
 
 
 ```java
@@ -63,112 +65,6 @@ class MergeSort {
     merge(S1, S2, S, comp);                // merge sorted halves back into original
   }
 }
-```
-
-## Quick-Sort
-* Auch Grundprinzip *Divide-and-Conquer*
-* x ist pivot - im Idealfall der Median
-* E →  equal sequenz
-* L →  Less sqeuenz
-* G →  greater sequenz
-
-![Quick sort Sequenzen](images/quick_sort_sequences.png)
-
-* gut inplace sortierbar
-* Kann auch als Baum dargestellt werden
-* Inline Quicksort ist *nicht* stabil
-* Laufzeit ist proportional zur Summe - im Worst-Case:
-
-\[
-    n+(n-1)+...+2+1 = \sum_{i=0}^n i = \frac{n^2 + n}{2} \Rightarrow O(n^2)
-\]
-
-Good call
-: Die Länge von `L` und `G` sind beide kleiner als $$\frac{3s}{4}$$
-
-Bad call
-: Die Länge von `L` oder `G`  ist länger als $$\frac{3s}{4}$$
-
-Ein Aufruf ist mit einer Wahrscheinlichkeit von $$\frac{1}{2}$$ ein "Good Call".
-**Somit ist die erwartete totale Laufzeit des Quick-Sort** $$O(n \cdot log(n))$$
-
-Gute Pivot wahl:
-
-* Median wäre ideal - aber aufwändig zu berechnen
-* Mögliche lösung: Median der letzten d elemente (wobei d >= 3) - statistische Stichprobe
-* Ein element möglichst am Anfang/Ende als Pivot zu wählen ist keine gute idee
-
-```java
-/*
- * Copyright 2014, Michael T. Goodrich, Roberto Tamassia, Michael H. Goldwasser
- * (GPL Licensed) - via Data Structures and Algorithms in Java, Sixth Edition
- */
- class QuickSort {
-
-   /** Quick-sort contents of a queue. */
-   public static <K> void quickSort(Queue<K> S, Comparator<K> comp) {
-     int n = S.size();
-     if (n < 2) return;                       // queue is trivially sorted
-     // divide
-     K pivot = S.first();                     // using first as arbitrary pivot
-     Queue<K> L = new LinkedQueue<>();
-     Queue<K> E = new LinkedQueue<>();
-     Queue<K> G = new LinkedQueue<>();
-     while (!S.isEmpty()) {                   // divide original into L, E, and G
-       K element = S.dequeue();
-       int c = comp.compare(element, pivot);
-       if (c < 0)                             // element is less than pivot
-         L.enqueue(element);
-       else if (c == 0)                       // element is equal to pivot
-         E.enqueue(element);
-       else                                   // element is greater than pivot
-         G.enqueue(element);
-     }
-     // conquer
-     quickSort(L, comp);                      // sort elements less than pivot
-     quickSort(G, comp);                      // sort elements greater than pivot
-     // concatenate results
-     while (!L.isEmpty())
-       S.enqueue(L.dequeue());
-     while (!E.isEmpty())
-       S.enqueue(E.dequeue());
-     while (!G.isEmpty())
-       S.enqueue(G.dequeue());
-   }
-
-   /** Quick-sort contents in-place. */
-   public static <K> void quickSortInPlace(K[] S, Comparator<K> comp) {
-     quickSortInPlace(S, comp, 0, S.length-1);
-   }
-
-   /** Sort the subarray S[a..b] inclusive. */
-   private static <K> void quickSortInPlace(K[] S, Comparator<K> comp,
-                                                                    int a, int b) {
-     if (a >= b) return;                // subarray is trivially sorted
-     int left = a;
-     int right = b-1;
-     K pivot = S[b];
-     K temp;                            // temp object used for swapping
-     while (left <= right) {
-       // scan until reaching value equal or larger than pivot (or right marker)
-       // comp.compare(S[left], pivot) < 0) is equal to S[left] < pivot
-       while (left <= right && comp.compare(S[left], pivot) < 0) left++;
-       // scan until reaching value equal or smaller than pivot (or left marker)
-       // comp.compare(S[right], pivot) > 0 is equal toS[right] > pivot
-       while (left <= right && comp.compare(S[right], pivot) > 0) right--;
-       if (left <= right) {             // indices did not strictly cross
-         // so swap values and shrink range
-         temp = S[left]; S[left] = S[right]; S[right] = temp;
-         left++; right--;
-       }
-     }
-     // put pivot into its final place (currently marked by left index)
-     temp = S[left]; S[left] = S[b]; S[b] = temp;
-     // make recursive calls
-     quickSortInPlace(S, comp, a, left - 1);
-     quickSortInPlace(S, comp, left + 1, b);
-   }
- }
 ```
 ## Bubble sort
 
@@ -218,28 +114,111 @@ Die Optimierung hat aber kein Einfluss auf das Laufzeitverhalten (nur auf die ve
 \sum_i^{n-1} i = \frac{n(n-1)}{2} \in O(n^2)
 \]
 
+## Quick-Sort
+<img src="images/quick_sort_sequences.png" style="max-width: 40%;float: right;"/>
+
+* Auch Grundprinzip *Divide-and-Conquer*
+* x ist pivot - im Idealfall der Median
+* E →  equal sequenz
+* L →  Less sqeuenz
+* G →  greater sequenz
+* gut inplace sortierbar
+* Kann auch als Baum dargestellt werden
+* Inline Quicksort ist *nicht* stabil
+* Laufzeit ist proportional zur Summe - im Worst-Case:
+
+\[
+    n+(n-1)+...+2+1 = \sum_{i=0}^n i = \frac{n^2 + n}{2} \Rightarrow O(n^2)
+\]
+
+Good call
+: Die Länge von `L` und `G` sind beide kleiner als $$\frac{3s}{4}$$
+
+Bad call
+: Die Länge von `L` oder `G`  ist länger als $$\frac{3s}{4}$$
+
+Ein Aufruf ist mit einer Wahrscheinlichkeit von $$\frac{1}{2}$$ ein "Good Call".
+**Somit ist die erwartete totale Laufzeit des Quick-Sort** $$O(n \cdot log(n))$$
+
+Gute Pivot wahl:
+
+* Median wäre ideal - aber aufwändig zu berechnen
+* Mögliche lösung: Median der letzten d elemente (wobei d >= 3) - statistische Stichprobe
+* Ein element möglichst am Anfang/Ende als Pivot zu wählen ist keine gute idee
+
+```java
+   public static <K> void quickSort(Queue<K> S, Comparator<K> comp) {
+     int n = S.size();
+     if (n < 2) return;                       // queue is trivially sorted
+     K pivot = S.first();      //DIVIDE               // using first as arbitrary pivot
+     Queue<K> L = new LinkedQueue<>();
+     Queue<K> E = new LinkedQueue<>();
+     Queue<K> G = new LinkedQueue<>();
+     while (!S.isEmpty()) {                   // divide original into L, E, and G
+       K element = S.dequeue();
+       int c = comp.compare(element, pivot);
+       if (c < 0)                             // element is less than pivot
+         L.enqueue(element);
+       else if (c == 0)                       // element is equal to pivot
+         E.enqueue(element);
+       else                                   // element is greater than pivot
+         G.enqueue(element);
+     }
+     quickSort(L, comp);        // conquer     // sort elements less than pivot
+     quickSort(G, comp);                      // sort elements greater than pivot
+     while (!L.isEmpty())                   // concatenate results
+       S.enqueue(L.dequeue());
+     while (!E.isEmpty())
+       S.enqueue(E.dequeue());
+     while (!G.isEmpty())
+       S.enqueue(G.dequeue());
+   }
+   public static <K> void quickSortInPlace(K[] S, Comparator<K> comp) {
+     quickSortInPlace(S, comp, 0, S.length-1);
+   }
+   private static <K> void quickSortInPlace(K[] S, Comparator<K> comp, int a, int b) {
+     if (a >= b) return;                // subarray is trivially sorted
+     int left = a;
+     int right = b-1;
+     K pivot = S[b];
+     K temp;                            // temp object used for swapping
+     while (left <= right) {
+       // scan until reaching value equal or larger than pivot (or right marker)
+       // comp.compare(S[left], pivot) < 0) is equal to S[left] < pivot
+       while (left <= right && comp.compare(S[left], pivot) < 0) left++;
+       // scan until reaching value equal or smaller than pivot (or left marker)
+       // comp.compare(S[right], pivot) > 0 is equal toS[right] > pivot
+       while (left <= right && comp.compare(S[right], pivot) > 0) right--;
+       if (left <= right) {             // indices did not strictly cross
+         // so swap values and shrink range
+         temp = S[left]; S[left] = S[right]; S[right] = temp;
+         left++; right--;
+       }
+     }
+     // put pivot into its final place (currently marked by left index)
+     temp = S[left]; S[left] = S[b]; S[b] = temp;
+     // make recursive calls
+     quickSortInPlace(S, comp, a, left - 1);
+     quickSortInPlace(S, comp, left + 1, b);
+   }
+```
+
 ## Sorting Lower Bound
 
 \[
     n^n > n! > \left(\frac{n}{2}\right)^\frac{n}{2}
 \]
 
-→ Jeder vergleichsbasierte Algorithmus hat eine min. Laufzeit von $$log(n!)$$, also floglich $$\frac{n}{2} \cdot log(\frac{n}{2})$$
-
-**→ Alle vergleichsbasierten Sortier-Algoritmen haben eine (worst-case) Mindestlaufzeit von** $$n \cdot log(n)$$
+→ Jeder vergleichsbasierte Algorithmus hat eine min. Laufzeit von $$log(n!)$$, also floglich $$\frac{n}{2} \cdot log(\frac{n}{2})$$ **→ Alle vergleichsbasierten Sortier-Algoritmen haben eine (worst-case) Mindestlaufzeit von** $$n \cdot log(n)$$
 
 ## Bucket-Sort
+<img src="images/sorting_bucket_sort.png" style="max-width: 30%; float: right;" />
 
 * Sequenz mit n Elemnten mit Werten im Breich von 0 bis N-1
 * Erreicht eine Laufzeit von $$O(n+N)$$ - **da nicht vergleichsbasiert**
 * Bsp PLZ: Range von 1000 - 9999 → N: 9000
 * Da die Keys als Index im Array verwendet werden müssen diese Integer-Werte sein. (Wobei mit Hilfsfunktion auch mit bsp. Strings möglich)
 * ist stabil
-
-
-![Pseudocode Bucket-Sort](images/sorting_bucket_sort.png)
-: Pseudocode Bucket-Sort
-
 
 ## Lexographicshe Ordnung
 
