@@ -1,6 +1,132 @@
+# Vorsicht
+
+* Arrays sind Objekte = leben auf dem Heap & werden Default Initialisiert
+* Aufzeichen Heap: Strings sind Reference Types!
+* Extension Methoden auf static class definieren
+* Structs können nicht null sein! Bsp. Array von Structs
+* NullpointerException in C# heisst NullReferenceExcepiton
+* `csc.exe /target:exe /r:Foo.dll MyFile.cs SecondFile.cs`
+* Lambda Closure: Hält referenz auf variable. Kann bei bsp. schleifen zu komischen Resultaten führen (fix: Temporäre Variable)
+
+LINQ
+
+* Fluent Syntax = `list.Where(...).OrderBy(...)`
+* Query-Syntax = `from x in list where ... select ...`
+* IEnumerable ohne Extension Methods:
+    ```csharp
+    IEnumerable<string> query =
+      Enumerable.Select(
+        Enumerable.OrderBy(
+           Enumerable.Where (
+             students, s => s.Name  == "x"
+           ), s => s.Name
+         ), s => s.Name
+      )
+    ```
 
 ```csharp
-    public static class Extensions
+// Konsequenz: Wird beim Erstellen in Finalize Queue eingetragen und beim
+// Abräumen in Freachable Queue verschoben + in separatem Thread abgeräumt
+public class DataAccess : IDisposable {
+    ~DataAccess() { Dispose(false); }
+    public void Dispose() {
+        Dispose(true);
+        System.GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing) {
+        if (disposing) {
+                if (resource != null) {
+                    // Andere disposable Objekte aufräumen (managed)
+                    resource.Dispose();
+                }
+                // eventuell von Callbacks abmelden
+        }
+        // Lokale dinge aufräumen (falls nötig) (auch unmanaged)
+        foo = null;
+        ReleaseBuffer(buffer);
+    }
+}
+```
+
+```csharp
+class Kunde { // Property
+    private int lenght;  // Backing-Field
+    public int Lenght { get {return lenght;} set {lenght = value;} }
+    public int AutoProperty {get;set;}
+}
+// Loop over delegates
+if(MyDelegate != null){
+    foreach(var c in MyDelegate.GetInvocationList()){
+        c.Invoke(...)
+    }
+}
+// einfacher
+c.?Invoke();
+
+// Genau eine Condition?
+if (condition.GetInvocationLost.Count != 1) throw new ArgumentException("");
+
+l.Count // Länge einer Liste
+l.Length // Array und String
+l.Count() // Extension Method (LINQ) für IEnumerable, bsp. group bei joins!
+
+// Explicit Inner-Join
+var q = from s in Students
+        join m in Marks on s.Id equals m.StudentId
+        orderby S.Name
+        select s.Name;
+
+// Implicit Inner-Join (SLOW)
+var q = from s in Studnets
+        from m in Marks
+        where s.Id == m.StudentId
+        select s.Name;
+
+// Group join
+var q = from s in Students
+        join m in Marks on s.Id equals m.StudentId into list
+        select new {Name = s.name, Marks = list}
+
+// Group
+var q = from s in Students
+        join m in Marks on s.Id equals m.StudentId
+        group s by s.Subject into g
+        select new {subject=g.Key, sum=g.Sum(s => s.xyz)};
+
+// Left outer join
+var q = from s in Students
+        join m in Marking on S.Id equals m.StudentId into match
+        from sm in match.DefaultIfEmpty()
+        select  (sm == null) ? "?" : sm.Course;
+
+// let for storing temporary variables
+var q = from s in Students
+        let year = s.Id / 1000
+        where year = 2009
+        select s.Name;
+
+// Select Many
+var q = from full in fullnames
+        from parts in full.Split()
+        select parts;
+var q = fullnames.SelectMany(full => full.Split())
+
+// Advanced
+var q2 = from b in bestellungen
+         group b by b.Datum into g
+         orderby g.Key, g.Count()
+         select new {
+             datum = g.Key,
+             preisTotal = g.Sum(y => y.items.Sum(i => i.Anzahl * i.Preis))
+             anzBestell = g.Count()
+         };
+
+
+```
+
+```csharp
+    public static class Extensions      // STATIC CLASS!!!!
     {
         // TODO: HsrForEach
         public static void HsrForEach<TSource>(this IEnumerable<TSource> source, Action<TSource> action)
@@ -68,7 +194,7 @@
                 new Employee { Name = "Peter", Address = "Ma Lane", State = "WA", Salary = 9999, DepId = 2},
                 new Employee { Name = "Henry", Address = "Ma Dr", State = "OR", Salary = 3209, DepId = 2}
             };
-			
+
 			var projects = new List<Project>
             {
                 new Project { Name="Saturn", ProjectManager=employees[0]} ,
@@ -83,7 +209,7 @@
             projects[1].AddEmployee(employees[2]);
 
             // ------------------------------------------------------------------------------------------- //
-            // TODO: Liste der Mitarbeiter die im State WA wohnen. 
+            // TODO: Liste der Mitarbeiter die im State WA wohnen.
 
             //var queryWashington = from e in employees
             //                      where e.State == "WA"
@@ -96,11 +222,11 @@
 
 
             // ------------------------------------------------------------------------------------------- //
-            // TODO: Liste der Namen und Adressen der Mitarbeiter im State WA. Sortiert nach Name absteigend. 
+            // TODO: Liste der Namen und Adressen der Mitarbeiter im State WA. Sortiert nach Name absteigend.
 
             //var queryWashingtonSorted = from e in employees
             //                            where e.State == "WA"
-            //                            orderby e.Name descending 
+            //                            orderby e.Name descending
             //                            select new { e.Name, e.Address };
             var queryWashingtonSorted = employees
                 .Where(e => e.State == "WA")
@@ -113,7 +239,7 @@
 
 
             // ------------------------------------------------------------------------------------------- //
-            // TODO: Liste der Department-Namen und der Anzahl Mitarbeiter der Departments.  
+            // TODO: Liste der Department-Namen und der Anzahl Mitarbeiter der Departments.
 
             //var queryDepartments = from d in departments
             //                       from e in employees
@@ -125,17 +251,15 @@
                     Department = d.Name, EmployeeCount = e.Count()
                     });
 
-
             Console.WriteLine("----- \r\nListe der Department-Namen und der Anzahl Mitarbeiter der Departments");
             queryDepartments.ForEach(d => {
                 Console.WriteLine("Department: {0}, EmployeeCount: {1}", d.Department, d.EmployeeCount)
             });
 
-
             // ------------------------------------------------------------------------------------------- //
-            // TODO: Liste der Departments mit ihren Mitarbeitern. 
+            // TODO: Liste der Departments mit ihren Mitarbeitern.
             // Ausgabe: Name des Departments, Name des Mitarbeiters
-            // Sortiert nach Departmentname 
+            // Sortiert nach Departmentname
 
             //var empQuery =
             //        from e in employees
@@ -156,9 +280,9 @@
             });
 
             // ------------------------------------------------------------------------------------------- //
-            // TODO: Liste der Departments mit dem Salär des bestverdienenden Mitarbeiters. 
+            // TODO: Liste der Departments mit dem Salär des bestverdienenden Mitarbeiters.
             // Ausgabe: Name des Departments, höchster Salär
-            // Sortiert nach höchstem Salär, absteigend 
+            // Sortiert nach höchstem Salär, absteigend
             // Tipp: Verwenden Sie die „let“ Klausel für das Speichern von Zwischenresultaten.
 
             //var maxDeptSalary =
@@ -180,11 +304,11 @@
             maxDeptSalary.ForEach(c => {
                 Console.WriteLine("Department: {0}, Höchster Salär: {1}", c.DepartmentName, c.MaxSalary)});
 
-			
+
 			// ------------------------------------------------------------------------------------------- //
-            // TODO: Liste der Projekte mir den zugeordneten Mitarbeitern  
+            // TODO: Liste der Projekte mir den zugeordneten Mitarbeitern
             // Ausgabe: Name des Projektes, Name des Mitarbeiters
-            // Sortiert nach Name des Projektes, Name des Mitarbeiters 
+            // Sortiert nach Name des Projektes, Name des Mitarbeiters
 
             var projList = from p in projects
                            from e in p.Employees
@@ -194,26 +318,26 @@
             //    .SelectMany(p => p.Employees
             //        .Select(e => new { Project = p.Name, Employee = e.Name }))
             //    .OrderBy(p => p.Project)
-            //    .ThenBy(p => p.Employee);			   
-						   
+            //    .ThenBy(p => p.Employee);
+
 			Console.WriteLine("---------- \r\nListe der Projekte und der beteiligten Mitarbeiter");
             projList.ForEach(p => Console.WriteLine("Projekt: {0} Mitarbeiter: {1}", p.Project, p.Employee));
 
             // ------------------------------------------------------------------------------------------- //
-            // TODO: Projektstatistik: Liste der Projekte 
-            // 
+            // TODO: Projektstatistik: Liste der Projekte
+            //
             // Ausgabe: Projektname, Name des Projektmanagers (falls nicht vorhanden "tba") ,
-            // Anzahl Mitarbeiter im Projekt, 
+            // Anzahl Mitarbeiter im Projekt,
             // Durchschnittliches Salaer der Mitarbeiter im Projekt
             // Sortiert nach Projektname, Anzahl Mitarbeiter
             var projStatistics = from p in projects
                                  orderby p.Name, p.Employees.Count()
-                                 select new 
+                                 select new
 								 {
 									 Project = p.Name,
 									 Mgr= p.ProjectManager == null ? "tba" : p.ProjectManager.Name,
 									 EmpCount = p.Employees.Count(),
-                                     AvgSalary = p.Employees.Any() ? p.Employees.Average(e=>e.Salary) : 0 
+                                     AvgSalary = p.Employees.Any() ? p.Employees.Average(e=>e.Salary) : 0
 								 };
 			//var projStatistics = projects
             //    .Select(p => new
@@ -225,7 +349,7 @@
             //    })
             //    .OrderBy(p => p.Project)
             //    .ThenBy(p => p.EmpCount);
-			
+
 			Console.WriteLine("---------- \r\nListe der Projekte und ihrer Statistik");
             projStatistics.ForEach(p => {
                  Console.WriteLine("Project {0} Mgr {1} Number Employees {2} Average Salary {3}",
