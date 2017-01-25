@@ -147,7 +147,8 @@ d1 = new Dictionary<int, string>
 
 ```
 # Anonymous Types
-Im Hintergrund wird eine neue `internal seald class` erstellt, welche die gleichen Properties wie.
+* Im Hintergrund wird eine neue `internal sealed class` erstellt, welche die gleichen Properties wie die anonyme Typendefinition hat
+* Muss immer mit `var` einer Variable zugewiesen werden
 
 ```csharp
 var a = new { Id = 1, Name = "John" };
@@ -163,7 +164,8 @@ var q = studentList
 
 // Compiler magic
 internal sealed class < > f__AnonymousType0<< Id > j__TPar, < Name > j__TPar > {
- private readonly < Id > j__TPar < Id > i__Field;private readonly < Name > j__TPar < Name > i__Field;public < Id > j__TPar Id {
+ private readonly < Id > j__TPar < Id > i__Field;
+    private readonly < Name > j__TPar < Name > i__Field;public < Id > j__TPar Id {
   get {
    return this. < Id > i__Field;
   }
@@ -185,12 +187,9 @@ internal sealed class < > f__AnonymousType0<< Id > j__TPar, < Name > j__TPar > {
 
 # LINQ
 
-!!! todo
-
-    BEISPIELE AUS MUSTERLÖSUNG DER ÜBUNGEN
-
 * Language integrated Query
 * Reine Compiler-Technologie
+* Wird in Lambda Expressions umgewandelt
 * Erlaubt Funktionale Programmierung mittels Lambda Expressions
 * Redundante Typ-Informationen können beim Programmieren weggelassen werden
 * Implementiert über Extension Methods `using System.Linq;`
@@ -266,4 +265,136 @@ var q2 = Students
             .Where(s => s.Subject == "Computing")
             .OrderBy(s => s.Name)
             .Select(s => new { s.Id, s.Name });
+```
+## LINQ Beispiele
+**Domain:**
+
+```csharp
+var departments = new List<Department>
+{
+    new Department {Name = "Engineering", Id = 1},
+    new Department {Name = "Marketing", Id = 2}
+};
+
+var employees = new List<Employee>
+{
+    new Employee { Name = "Michael", Address = "SW Liverpool Lane", 
+        State = "WA", Salary = 5675, DepId = 1},
+    new Employee { Name = "Henry", Address = "Ma Dr", 
+        State = "OR", Salary = 3209, DepId = 2}
+};
+
+var projects = new List<Project>
+{
+    new Project { Name="Saturn", ProjectManager=employees[0]} ,
+    new Project {Name ="Uranus", ProjectManager=employees[1] }                ,
+    new Project {Name= "Pluto" }
+
+};
+```
+
+**Liste der Mitarbeiter in Washington**
+```csharp
+var queryWashington = from e in employees
+                     where e.State == "WA"
+                     select e;
+var queryWashington = employees.Where(e => e.State == "WA");
+```
+
+Nur Name und Adressen, absteigend sortiert
+```csharp
+var queryWashingtonSorted = from e in employees
+                           where e.State == "WA"
+                           orderby e.Name descending 
+                           select new { e.Name, e.Address };
+
+var queryWashingtonSorted = employees
+   .Where(e => e.State == "WA")
+   .OrderByDescending(e => e.Name)
+   .Select(e => new { e.Name, e.Address });
+```
+
+**Liste der Department-Namen und der Anzahl Mitarbeiter der Departments**
+```csharp
+var queryDepartments = from d in departments
+                      from e in employees
+                      where d.Id == e.DepId
+                      group e by d.Name into g
+                      select new { Department = g.Key, EmployeeCount = g.Count() };
+
+var queryDepartments = departments
+    .GroupJoin(employees, dKey => dKey.Id, eKey => eKey.DepId, (d, e) =>
+    new { Department = d.Name, EmployeeCount = e.Count() });
+```
+
+**Liste der Departments mit dem Salär des bestverdienenden Mitarbeiters, sortiert nach höchstem Salär (mit `let`)**
+```csharp
+var maxDeptSalary =
+       from e in employees
+       from d in departments
+       where e.DepId == d.Id
+       group e by d.Name into g
+       let maxSalary = g.Max(eg => eg.Salary)
+       orderby maxSalary descending
+       select new { DepartmentName = g.Key, MaxSalary = maxSalary };
+```
+
+**List der Projekte mit den zugeordneten Mitarbeiter**
+```csharp
+var projList = from p in projects
+               from e in p.Employees
+               orderby p.Name, e.Name
+               select new { Project = p.Name, Employee = e.Name };
+
+var projList = projects
+   .SelectMany(p => p.Employees
+       .Select(e => new { Project = p.Name, Employee = e.Name }))
+   .OrderBy(p => p.Project)
+   .ThenBy(p => p.Employee);		
+```
+
+**Statistik über Projekte mit Default-Werte für Projektmanager und Salary**
+```csharp
+var projStatistics = from p in projects
+                     orderby p.Name, p.Employees.Count()
+                     select new 
+                     {
+                         Project = p.Name,
+                         Mgr = p.ProjectManager == null ? "tba" : p.ProjectManager.Name,
+                         EmpCount = p.Employees.Count(),
+                         AvgSalary = p.Employees.Any() ? p.Employees.Average(e=>e.Salary) : 0 
+                     };
+
+var projStatistics = projects
+    .Select(p => new
+    {
+        Project = p.Name,
+        Mgr = p.ProjectManager == null ? "tba" : p.ProjectManager.Name,
+        EmpCount = p.Employees.Count(),
+        AvgSalary = p.Employees.Any() ? p.Employees.Average(e => e.Salary) : 0
+    })
+    .OrderBy(p => p.Project)
+    .ThenBy(p => p.EmpCount);
+```
+
+**Alle Abteilungen mit Anzahl Angestellte und deren Salärsumme**
+```csharp
+var query = from d in departments
+            join e in employees on d.Id equals e.DepId into abtAng
+            select new {
+                depName,
+                anzahlMA = abtAng.count(),
+                salaerSum = abtAng.Sum(p => p.Salary)
+            }
+```
+
+**Wohnorte von Mitarbeitern mit deren Anzahl**
+```csharp
+var query = from e in employees
+            group e by e.State into g
+            where g.Count >= 2
+            select new {
+                State = g.Key,
+                AnzahlMA = g.Count()
+            }
 ```
