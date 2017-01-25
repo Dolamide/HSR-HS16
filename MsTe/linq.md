@@ -377,24 +377,24 @@ var projStatistics = projects
     .ThenBy(p => p.EmpCount);
 ```
 
-**Aus Prüfung HS14: Alle Abteilungen mit Anzahl Angestellte und deren Salärsumme**
+**Alle Abteilungen mit Anzahl Angestellte und deren Salärsumme**
 ```csharp
-var query = from abt in abteilungen
-            join ang in angestellte on abt.id equals ang.abtId into abtAng
+var query = from d in departments
+            join e in employees on d.Id equals e.DepId into abtAng
             select new {
-                abtName = abt.Name,
+                depName,
                 anzahlMA = abtAng.count(),
-                salaerSum = abtAng.Sum(p => p.Salaer)
+                salaerSum = abtAng.Sum(p => p.Salary)
             }
 ```
 
-**Aus Prüfung HS14: Wohnorte von Mitarbeitern mit deren Anzahl**
+**Wohnorte von Mitarbeitern mit deren Anzahl**
 ```csharp
-var query = from ang in angestellte
-            group ang by ang.Wohnort into g
+var query = from e in employees
+            group e by e.State into g
             where g.Count >= 2
             select new {
-                Wohnort = g.Key,
+                State = g.Key,
                 AnzahlMA = g.Count()
             }
 ```
